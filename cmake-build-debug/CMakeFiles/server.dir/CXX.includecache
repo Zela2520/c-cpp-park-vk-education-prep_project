@@ -1,0 +1,26 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../include/connection.h
+SFML/Graphics.hpp
+-
+SFML/Network.hpp
+-
+iostream
+-
+string
+-
+queue
+-
+
+/home/daniil/CLionProjects/application/server.cpp
+connection.h
+/home/daniil/CLionProjects/application/connection.h
+vector
+-
+
