@@ -60,7 +60,7 @@ int main() {
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
                 dir = "LEFT";
             }
-            if (event.type == sf::Event::Closed) {
+            if(event.type == sf::Event::Closed){
                 window.close();
             }
 
@@ -72,17 +72,13 @@ int main() {
             // получаем обработанные(обновлённые) данные с сервера
             socket.receive(packet);
             packet >> user_ball;
-            circle.setPosition(user_ball.x, user_ball.y);
+            packet.clear();
             window.clear(sf::Color::White);
+            circle.setPosition(user_ball.x, user_ball.y);
             window.draw(circle);
             window.display();
         }
     }
-
-
-
-
-
 
     return 0;
 }
