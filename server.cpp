@@ -28,24 +28,30 @@ int main(int argc, char* argv[]) {
         std::cerr << "Error";
     }
 
-    // рассмотрим случай с одним клиентом
-    sf::TcpSocket client;
-    sf::TcpSocket client_2;
+    // рассмотрим случай для двух клиентов
+    std::vector<sf::TcpSocket> clients(2);
 
     // инициализация сокета для дальнейшего взаимодействия с клиентом
     // если кто-то подключается, то accept индентифицирует клиента для дальнешей работы с ним
-    listener.accept(client);
-    listener.accept(client_2);
+    for (auto &socket : clients) {
+        listener.accept(socket);
+    }
 
     // Для передачи даннных между клиент сервером создаём пакет, который будет летать по сети
     sf::Packet packet;
 
-    // инициализируем клиента значниями по умолчанию
-    Ball user_ball{0,0, "Black"};
-    Ball user_ball_2{0,0, "Black"};
+    // инициализируем клиентов значниями по умолчанию
+    std::vector<Ball> user_balls(clients.size(),{0,0, "Black"});
 
     // записывем данные в пакет и отправляем
-    packet << user_ball;
+    for (int i = 0; i < clients.size(); ++i) {
+        for (int j = 0; j < user_balls.size(); ++j) {
+            packet << user_balls[j];
+            clients[j].send(packet);
+            packet.clear();
+        }
+    }
+    /*packet << user_ball;
     client.send(packet);
     // чистим пакет после отправки
     packet.clear();
@@ -53,59 +59,44 @@ int main(int argc, char* argv[]) {
     packet << user_ball_2;
     client_2.send(packet);
     // чистим пакет после отправки
-    packet.clear();
+    packet.clear();*/
 
     while(1) {
         // укащывем направление движения объекта
         std::string dir;
 
         // получаем пакет и извлекаем информацию
-        client.receive(packet);
-        packet >> dir;
-        packet.clear();
+        for (int i = 0; i < clients.size(); ++i) {
+            clients[i].receive(packet);
+            packet >> dir;
+            packet.clear();
 
+            // обрабатываем действие пользователя
+            if (dir == "UP") {
+                --user_balls[i].y;
+            }
+            if (dir == "RIGHT") {
+                ++user_balls[i].x;
+            }
+            if (dir == "DOWN") {
+                ++user_balls[i].y;
+            }
+            if (dir == "LEFT") {
+                --user_balls[i].x;
+            }
 
-        // обрабатываем действие пользователя
-        if (dir == "UP") {
-            --user_ball.y;
+            // отправляем обновлённые данные об объекте на сервер
+            /*packet << user_balls[i];
+            clients[i].send(packet);
+            packet.clear();*/
         }
-        if (dir == "RIGHT") {
-            ++user_ball.x;
+        for (int i = 0; i < clients.size(); ++i) {
+            for (int j = 0; j < user_balls.size(); ++j) {
+                packet << user_balls[j];
+                clients[i].send(packet);
+                packet.clear();
+            }
         }
-        if (dir == "DOWN") {
-            ++user_ball.y;
-        }
-        if (dir == "LEFT") {
-            --user_ball.x;
-        }
-
-        // получаем пакет и извлекаем информацию
-        client_2.receive(packet);
-        packet >> dir;
-        packet.clear();
-
-        // обрабатываем действие пользователя
-        if (dir == "UP") {
-            --user_ball_2.y;
-        }
-        if (dir == "RIGHT") {
-            ++user_ball_2.x;
-        }
-        if (dir == "DOWN") {
-            ++user_ball_2.y;
-        }
-        if (dir == "LEFT") {
-            --user_ball_2.x;
-        }
-
-        // отправляем обновлённые данные об объекте на сервер
-        packet << user_ball;
-        client.send(packet);
-        packet.clear();
-
-        packet << user_ball_2;
-        client_2.send(packet);
-        packet.clear();
     }
     return 0;
 }
