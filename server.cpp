@@ -30,21 +30,28 @@ int main(int argc, char* argv[]) {
 
     // рассмотрим случай с одним клиентом
     sf::TcpSocket client;
+    sf::TcpSocket client_2;
 
     // инициализация сокета для дальнейшего взаимодействия с клиентом
     // если кто-то подключается, то accept индентифицирует клиента для дальнешей работы с ним
     listener.accept(client);
+    listener.accept(client_2);
 
     // Для передачи даннных между клиент сервером создаём пакет, который будет летать по сети
     sf::Packet packet;
 
     // инициализируем клиента значниями по умолчанию
     Ball user_ball{0,0, "Black"};
+    Ball user_ball_2{0,0, "Black"};
 
     // записывем данные в пакет и отправляем
     packet << user_ball;
     client.send(packet);
+    // чистим пакет после отправки
+    packet.clear();
 
+    packet << user_ball_2;
+    client_2.send(packet);
     // чистим пакет после отправки
     packet.clear();
 
@@ -56,6 +63,7 @@ int main(int argc, char* argv[]) {
         client.receive(packet);
         packet >> dir;
         packet.clear();
+
 
         // обрабатываем действие пользователя
         if (dir == "UP") {
@@ -71,9 +79,32 @@ int main(int argc, char* argv[]) {
             --user_ball.x;
         }
 
+        // получаем пакет и извлекаем информацию
+        client_2.receive(packet);
+        packet >> dir;
+        packet.clear();
+
+        // обрабатываем действие пользователя
+        if (dir == "UP") {
+            --user_ball_2.y;
+        }
+        if (dir == "RIGHT") {
+            ++user_ball_2.x;
+        }
+        if (dir == "DOWN") {
+            ++user_ball_2.y;
+        }
+        if (dir == "LEFT") {
+            --user_ball_2.x;
+        }
+
         // отправляем обновлённые данные об объекте на сервер
         packet << user_ball;
         client.send(packet);
+        packet.clear();
+
+        packet << user_ball_2;
+        client_2.send(packet);
         packet.clear();
     }
     return 0;
