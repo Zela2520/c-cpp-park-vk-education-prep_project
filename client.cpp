@@ -31,6 +31,7 @@ int main() {
     for (auto &ball : user_balls) {
         socket.receive(packet);
         packet >> ball;
+        std::cout << ball.x << ' ' << ball.y << ' ' << ball.color << '\n';
         packet.clear();
     }
 
@@ -55,26 +56,28 @@ int main() {
         sf::Event event; // переменная для отслеживания событий, происходящих на кажой итерации цикла
         std::string dir;  // направление движения, которое будет обрабатваться на сервере
         while (window.pollEvent(event)) {
-            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
-                dir = "UP";
+            if (window.hasFocus()) {
+                if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
+                    dir = "UP";
+                }
+                if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
+                    dir = "DOWN";
+                }
+                if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
+                    dir = "RIGHT";
+                }
+                if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
+                    dir = "LEFT";
+                }
+                if (event.type == sf::Event::Closed) {
+                    window.close();
+                }
             }
-            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
-                dir = "DOWN";
-            }
-            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
-                dir = "RIGHT";
-            }
-            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
-                dir = "LEFT";
-            }
-            if(event.type == sf::Event::Closed){
-                window.close();
-            }
-
             // запаковываем данные пользователя в пакет и отправляем на сервер
             packet << dir;
             socket.send(packet);
             packet.clear();
+            std::cout << dir << '\n';
 
             // Отрисовываем все мячи у каждого пользователя
             // получаем обработанные(обновлённые) данные с сервера
@@ -83,6 +86,7 @@ int main() {
                 socket.receive(packet);
                 packet >> user_balls[i];
                 packet.clear();
+                std::cout << user_balls[i].x << ' '<< user_balls[i].y << ' ' << user_balls[i].color << '\n';
                 circle.setPosition(user_balls[i].x, user_balls[i].y);
                 window.draw(circle);
                 window.display();

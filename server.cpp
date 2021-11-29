@@ -49,6 +49,7 @@ int main(int argc, char* argv[]) {
             packet << user_balls[j];
             clients[i].send(packet);
             packet.clear();
+            std::cout << user_balls[j].x << ' '<< user_balls[j].y << ' ' << user_balls[j].color << '\n';
         }
     }
 
@@ -62,6 +63,7 @@ int main(int argc, char* argv[]) {
             clients[i].receive(packet);
             packet >> dir;
             packet.clear();
+            std::cout << dir << "\n";
 
             // обрабатываем действие пользователя
             if (dir == "UP") {
@@ -84,6 +86,7 @@ int main(int argc, char* argv[]) {
                 packet << user_balls[j];
                 clients[i].send(packet);
                 packet.clear();
+                std::cout << user_balls[j].x << ' '<< user_balls[j].y << ' ' << user_balls[j].color << '\n';
             }
         }
     }
