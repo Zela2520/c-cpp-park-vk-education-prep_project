@@ -26,39 +26,29 @@ int main() {
     socket.connect("127.0.0.1", 3000); // подключаемся к серверу по заданному порту
     sf::Packet packet; // создаём пакет для общения клиента с сервером
 
-
-
-    // инициализируем начальное положение объекта, принимая данные от сервера
-    socket.receive(packet);
+    // инициализируем начальное положение объектов на карте, принимая данные от сервера
     std::vector<Ball> user_balls(2);
     for (auto &ball : user_balls) {
+        socket.receive(packet);
         packet >> ball;
         packet.clear();
     }
-    /*// инициализируем начальное положение объекта, принимая данные от сервера
-    socket.receive(packet);
-    Ball user_ball;
-    packet >> user_ball;
-    packet.clear();*/
 
     // отрисуем окно c белым цветом
     sf::RenderWindow window(sf::VideoMode(320, 420), "Squid game");
     window.clear(sf::Color::White);
-    //  отрисуем мячик с начальными координатами
+
+    // отрисуем мячик с начальными координатами
     sf::CircleShape circle;
     for (auto &ball : user_balls) {
-        // window.clear(sf::Color::White);
         circle.setPosition(ball.x, ball.y);
         circle.setRadius(15.f);
         circle.setFillColor(sf::Color::Black);
         window.draw(circle);
         window.display();
+        // sleep(sf::milliseconds(10));  // Задержка
     }
-    /*circle.setPosition(user_ball.x, user_ball.y);
-    circle.setRadius(15.f);
-    circle.setFillColor(sf::Color::Black);
-    window.draw(circle);
-    window.display();*/
+
 
     // выполняем действия над объектом конкретного клиента
     while (window.isOpen()) {
@@ -86,24 +76,18 @@ int main() {
             socket.send(packet);
             packet.clear();
 
-            window.clear(sf::Color::White);
+            // Отрисовываем все мячи у каждого пользователя
             // получаем обработанные(обновлённые) данные с сервера
+            window.clear(sf::Color::White);
             for (int i = 0; i < user_balls.size(); ++i) {
                 socket.receive(packet);
                 packet >> user_balls[i];
                 packet.clear();
-                // window.clear(sf::Color::White);
                 circle.setPosition(user_balls[i].x, user_balls[i].y);
                 window.draw(circle);
                 window.display();
+                // sleep(sf::milliseconds(10));//Задержка
             }
-            /*socket.receive(packet);
-            packet >> user_ball;
-            packet.clear();
-            window.clear(sf::Color::White);
-            circle.setPosition(user_ball.x, user_ball.y);
-            window.draw(circle);
-            window.display();*/
         }
     }
 

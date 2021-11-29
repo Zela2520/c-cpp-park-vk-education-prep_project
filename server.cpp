@@ -43,30 +43,22 @@ int main(int argc, char* argv[]) {
     // инициализируем клиентов значниями по умолчанию
     std::vector<Ball> user_balls(clients.size(),{0,0, "Black"});
 
-    // записывем данные в пакет и отправляем
+    // записывем данные о каждом мяче на карте в пакет и отправляем каждому клиенту все мячи
     for (int i = 0; i < clients.size(); ++i) {
         for (int j = 0; j < user_balls.size(); ++j) {
             packet << user_balls[j];
-            clients[j].send(packet);
+            clients[i].send(packet);
             packet.clear();
         }
     }
-    /*packet << user_ball;
-    client.send(packet);
-    // чистим пакет после отправки
-    packet.clear();
-
-    packet << user_ball_2;
-    client_2.send(packet);
-    // чистим пакет после отправки
-    packet.clear();*/
 
     while(1) {
-        // укащывем направление движения объекта
+        // указывем направление движения объекта
         std::string dir;
 
-        // получаем пакет и извлекаем информацию
-        for (int i = 0; i < clients.size(); ++i) {
+        // получаем пакет с информацией о перемещение какждого клиента и извлекаем информацию о перемещение каждого кклиента
+        // перемещение i-ого клиента значит перемещение i-ого мячика
+        for (int i = 0; i < clients.size(); ++i) { // проблема в этом цикле - все мячи смещаются на одно и тоже расстояние одновременно
             clients[i].receive(packet);
             packet >> dir;
             packet.clear();
@@ -84,12 +76,9 @@ int main(int argc, char* argv[]) {
             if (dir == "LEFT") {
                 --user_balls[i].x;
             }
-
-            // отправляем обновлённые данные об объекте на сервер
-            /*packet << user_balls[i];
-            clients[i].send(packet);
-            packet.clear();*/
         }
+
+        // отправляем обновлённые данные об изменение всех объектов на сервере каждому клиенту
         for (int i = 0; i < clients.size(); ++i) {
             for (int j = 0; j < user_balls.size(); ++j) {
                 packet << user_balls[j];
