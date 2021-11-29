@@ -31,8 +31,10 @@ int main() {
     for (auto &ball : user_balls) {
         socket.receive(packet);
         packet >> ball;
-        std::cout << ball.x << ' ' << ball.y << ' ' << ball.color << '\n';
         packet.clear();
+
+        // каждый клиент печатает информацию о пришедших к нему мячиках
+        std::cout << ball.x << ' ' << ball.y << ' ' << ball.color << '\n';
     }
 
     // отрисуем окно c белым цветом
@@ -46,9 +48,8 @@ int main() {
         circle.setRadius(15.f);
         circle.setFillColor(sf::Color::Black);
         window.draw(circle);
-        window.display();
-        // sleep(sf::milliseconds(10));  // Задержка
     }
+    window.display();
 
 
     // выполняем действия над объектом конкретного клиента
@@ -56,44 +57,43 @@ int main() {
         sf::Event event; // переменная для отслеживания событий, происходящих на кажой итерации цикла
         std::string dir;  // направление движения, которое будет обрабатваться на сервере
         while (window.pollEvent(event)) {
-            if (window.hasFocus()) {
-                if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
-                    dir = "UP";
-                }
-                if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
-                    dir = "DOWN";
-                }
-                if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
-                    dir = "RIGHT";
-                }
-                if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
-                    dir = "LEFT";
-                }
-                if (event.type == sf::Event::Closed) {
-                    window.close();
-                }
-            }
-            // запаковываем данные пользователя в пакет и отправляем на сервер
-            packet << dir;
-            socket.send(packet);
-            packet.clear();
-            std::cout << dir << '\n';
-
-            // Отрисовываем все мячи у каждого пользователя
-            // получаем обработанные(обновлённые) данные с сервера
-            window.clear(sf::Color::White);
-            for (int i = 0; i < user_balls.size(); ++i) {
-                socket.receive(packet);
-                packet >> user_balls[i];
-                packet.clear();
-                std::cout << user_balls[i].x << ' '<< user_balls[i].y << ' ' << user_balls[i].color << '\n';
-                circle.setPosition(user_balls[i].x, user_balls[i].y);
-                window.draw(circle);
-                window.display();
-                // sleep(sf::milliseconds(10));//Задержка
+            if (event.type == sf::Event::Closed) {
+                window.close();
             }
         }
-    }
+        if (window.hasFocus()) {
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
+                dir = "UP";
+            }
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
+                dir = "DOWN";
+            }
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
+                dir = "RIGHT";
+            }
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
+                dir = "LEFT";
+            }
+        }
 
+        // запаковываем данные пользователя в пакет и отправляем на сервер
+        packet << dir;
+        socket.send(packet);
+        packet.clear();
+        std::cout << dir << '\n';
+
+        // Отрисовываем все мячи у каждого пользователя
+        // получаем обработанные(обновлённые) данные с сервера
+        window.clear(sf::Color::White);
+        for (int i = 0; i < user_balls.size(); ++i) {
+            socket.receive(packet);
+            packet >> user_balls[i];
+            packet.clear();
+            std::cout << user_balls[i].x << ' '<< user_balls[i].y << ' ' << user_balls[i].color << '\n';
+            circle.setPosition(user_balls[i].x, user_balls[i].y);
+            window.draw(circle);
+        }
+        window.display();
+    }
     return 0;
 }
