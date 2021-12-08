@@ -3,21 +3,76 @@
 #include <iostream>
 #include <string>
 #include <vector>
+using namespace sf;
 
-struct Ball {
-    int x;
-    int y;
-    std::string color;
+//struct Ball {
+//    int x;
+//    int y;
+//    std::string color;
+//};
+
+class Object {
+    Sprite sprite;
+protected:
+    int x = 0;
+    int y = 0;
+public:
+//    Object(int _x, int _y) {
+//        x = _x;
+//        y = _y;
+//    }
+    int getX() const {
+        return x;
+    }
+    int getY() const {
+        return y;
+    }
+    void setX(int _x) {
+        x = _x;
+    }
+    void setY(int _y) {
+        y = _y;
+    }
+    void goUp(int distance = 1) {
+        y-= distance;
+    }
+    void goDown(int distance = 1) {
+        y += distance;
+    }
+    void goRight(int distance = 1) {
+        x += distance;
+    }
+    void goLeft(int distance = 1) {
+        x -= distance;
+    }
 };
 
-sf::Packet& operator <<(sf::Packet& packet, const Ball& ball)
-{
-    return packet << ball.x << ball.y << ball.color;
-}
+class Ball : public Object {
+//    Color color;
+    float size;
+public:
+    Ball(int _x, int _y, Color _color, float _size) {
+        x = _x;
+        y = _y;
+//        color = _color;
+        size = _size;
+    }
+//    Color getColor() const {
+//        return color;
+//    }
+//    Color setColor(sf::Color _color) const {
+//        color = _color;
+//    }
+friend sf::Packet& operator >> (sf::Packet& packet, Ball& ball);
+    friend sf::Packet& operator << (sf::Packet& packet, const Ball& ball);
+};
 
-sf::Packet& operator >>(sf::Packet& packet, Ball& ball)
-{
-    return packet >> ball.x >> ball.y >> ball.color;
+sf::Packet& operator << (sf::Packet& packet, const Ball& ball) {
+    return packet << ball.x << ball.y;
+}
+//
+sf::Packet& operator >> (sf::Packet& packet, Ball& ball) {
+    return packet >> ball.x >> ball.y;
 }
 
 
@@ -37,15 +92,15 @@ int main(int argc, char* argv[]) {
 
 
     sf::Packet packet;  // Для передачи даннных между клиент сервером создаём пакет, который будет летать по сети.
-    std::vector<Ball> balls(clients.size(),{0,0, "Black"}); // инициализируем клиентов значниями по умолчанию.
-    // Заранее отправляем клиентам данные о том, что мячи расположены на нулевых координатах
+    std::vector<Ball> balls(clients.size(), Ball(0, 0, sf::Color::Black, 15));  // инициализируем клиентов значниями по умолчанию.
+    // Заранее отправляем клиентам данные о том, что мячи расположены на нулевых координатах.
     for (auto & client : clients) {  // Для каждого клиента.
         for (auto & ball : balls) {  // О каждом шаре.
             packet << ball;
             client.send(packet);
             packet.clear();
             
-            std::cout << ball.x << ' '<< ball.y << ' ' << ball.color << '\n';  // Дебаг
+            std::cout << ball.getX() << ' '<< ball.getY() << '\n';  // Дебаг
         }
     }
 
@@ -62,16 +117,16 @@ int main(int argc, char* argv[]) {
 
             // обрабатываем действие пользователя
             if (dir == "UP") {
-                --balls[i].y;
+                balls[i].goUp();
             }
             if (dir == "RIGHT") {
-                ++balls[i].x;
+                balls[i].goRight();
             }
             if (dir == "DOWN") {
-                ++balls[i].y;
+                balls[i].goDown();
             }
             if (dir == "LEFT") {
-                --balls[i].x;
+                balls[i].goLeft();
             }
         }
 
@@ -81,7 +136,7 @@ int main(int argc, char* argv[]) {
                 packet << balls[j];
                 clients[i].send(packet);
                 packet.clear();
-                std::cout << balls[j].x << ' '<< balls[j].y << ' ' << balls[j].color << '\n';
+                std::cout << balls[j].getX() << ' '<< balls[j].getY() << '\n';
             }
         }
     }

@@ -4,20 +4,83 @@
 #include <string>
 #include <vector>
 
-struct Ball {
-    int x;
-    int y;
-    std::string color;
+using namespace sf;
+
+//struct Ball {
+//    int x;
+//    int y;
+//    std::string color;
+//};
+
+class Object {
+    Sprite sprite;
+protected:
+    int x = 0;
+    int y = 0;
+public:
+//    Object(int _x, int _y) {
+//        x = _x;
+//        y = _y;
+//    }
+    int getX() const {
+        return x;
+    }
+    int getY() const {
+        return y;
+    }
+    void setX(int _x) {
+        x = _x;
+    }
+    void setY(int _y) {
+        y = _y;
+    }
+    void goUp(int distance = 1) {
+        y-= distance;
+    }
+    void goDown(int distance = 1) {
+        y += distance;
+    }
+    void goRight(int distance = 1) {
+        x += distance;
+    }
+    void goLeft(int distance = 1) {
+        x -= distance;
+    }
 };
 
-sf::Packet& operator << (sf::Packet& packet, const Ball& ball)
-{
-    return packet << ball.x << ball.y << ball.color;
-}
+class Ball : public Object {
+//    Color color;
+    float size;
+public:
+    Ball(int _x, int _y, Color _color, float _size) {
+        x = _x;
+        y = _y;
+//        color = _color;
+        size = _size;
+    }
+//    Color getColor() const {
+//        return color;
+//    }
+//    Color setColor(sf::Color _color) const {
+//        color = _color;
+//    }
+    void draw(sf::RenderWindow& window) {
+        sf::CircleShape circle;
+        circle.setPosition(x, y);
+        circle.setRadius(size);
+        circle.setFillColor(sf::Color::Black);
+        window.draw(circle);
+    }
+    friend sf::Packet& operator >> (sf::Packet& packet, Ball& ball);
+    friend sf::Packet& operator << (sf::Packet& packet, const Ball& ball);
+};
 
-sf::Packet& operator >> (sf::Packet& packet, Ball& ball)
-{
-    return packet >> ball.x >> ball.y >> ball.color;
+sf::Packet& operator << (sf::Packet& packet, const Ball& ball) {
+    return packet << ball.x << ball.y;
+}
+//
+sf::Packet& operator >> (sf::Packet& packet, Ball& ball) {
+    return packet >> ball.x >> ball.y;
 }
 
 
@@ -29,33 +92,31 @@ int main() {
     socket.connect("127.0.0.1", 3000);  // Подключаемся к серверу по заданному порту.
     
     sf::Packet packet;  // Создаём пакет для общения клиента с сервером.
-    std::vector<Ball> balls(2);  // Инициализируем начальное положение объектов на карте, принимая данные от сервера.
-    for (auto &ball : balls) {  // Пробегаем по всем шарам. На 1 шар 1 пакет.
-        socket.receive(packet);  // Получаем пакет.
-        packet >> ball;  // Записываем данные из пакета в текущую структуру шара.
-        packet.clear();
+    std::vector<Ball> balls(2, Ball(0, 0, sf::Color::Black, 15));  // Инициализируем начальное положение объектов на карте, принимая данные от сервера.
 
-        std::cout << ball.x << ' ' << ball.y << ' ' << ball.color << '\n';  // Дебаг.
-    }
-
-    // отрисуем окно c белым цветом
-    sf::RenderWindow window(sf::VideoMode(320, 420), "Squid game");
-    window.clear(sf::Color::White);
-
-    // отрисуем мячик с начальными координатами
-    sf::CircleShape circle;
-    for (auto &ball : balls) {
-        circle.setPosition(ball.x, ball.y);
-        circle.setRadius(15.f);
-        circle.setFillColor(sf::Color::Black);
-        window.draw(circle);
-    }
-    window.display();
+    sf::RenderWindow window(sf::VideoMode(500, 500), "Squid game");  // Создаём игровое окно.
 
 
-    // выполняем действия над объектом конкретного клиента
     while (window.isOpen()) {
-        sf::Event event; // переменная для отслеживания событий, происходящих на кажой итерации цикла
+        // Получение информации обо всех шарах.
+        sf::CircleShape circle;
+        for (auto &ball : balls) {  // Пробегаем по всем шарам. На 1 шар 1 пакет.
+            socket.receive(packet);  // Получаем пакет.
+            packet >> ball;  // Записываем данные из пакета в текущую структуру шара.
+            packet.clear();
+
+            std::cout << ball.getX() << ' ' << ball.getY() << ' ';  // Дебаг.
+        }
+
+        // Отрисовка всех шаров.
+        window.clear(sf::Color::White);
+        for (auto &ball : balls) {
+            ball.draw(window);
+        }
+        window.display();
+
+
+        sf::Event event{}; // переменная для отслеживания событий, происходящих на кажой итерации цикла
         std::string dir;  // направление движения, которое будет обрабатваться на сервере
         while (window.pollEvent(event)) {
             if (event.type == sf::Event::Closed) {
@@ -77,24 +138,11 @@ int main() {
             }
         }
 
-        // запаковываем данные пользователя в пакет и отправляем на сервер
+        // Запаковываем данные пользователя в пакет и отправляем на сервер
         packet << dir;
         socket.send(packet);
         packet.clear();
         std::cout << dir << '\n';  // Дебаг
-
-        // Отрисовываем все мячи у каждого пользователя
-        // получаем обработанные(обновлённые) данные с сервера
-        window.clear(sf::Color::White);
-        for (int i = 0; i < balls.size(); ++i) {
-            socket.receive(packet);
-            packet >> balls[i];
-            packet.clear();
-            std::cout << balls[i].x << ' '<< balls[i].y << ' ' << balls[i].color << '\n';
-            circle.setPosition(balls[i].x, balls[i].y);
-            window.draw(circle);
-        }
-        window.display();
     }
     return 0;
 }
