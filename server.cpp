@@ -75,6 +75,11 @@ sf::Packet& operator >> (sf::Packet& packet, Ball& ball) {
     return packet >> ball.x >> ball.y;
 }
 
+sf::Packet& operator >> (sf::Packet& packet, bool* directions) {
+    return packet >> directions[0] >> directions[1] >> directions[2] >> directions[3];
+}
+
+
 
 
 int main(int argc, char* argv[]) {
@@ -110,22 +115,22 @@ int main(int argc, char* argv[]) {
         for (int i = 0; i < clients.size(); ++i) {
             // указывем направление движения объекта
             clients[i].receive(packet);
-            std::string dir;
-            packet >> dir;
+            bool directions[4];
+            packet >> directions;
             packet.clear();
-            std::cout << dir << "\n";  // Дебаг.
+//            std::cout << directions << "\n";  // Дебаг.
 
             // обрабатываем действие пользователя
-            if (dir == "UP") {
+            if (directions[0]) {
                 balls[i].goUp();
             }
-            if (dir == "RIGHT") {
+            if (directions[1]) {
                 balls[i].goRight();
             }
-            if (dir == "DOWN") {
+            if (directions[2]) {
                 balls[i].goDown();
             }
-            if (dir == "LEFT") {
+            if (directions[3]) {
                 balls[i].goLeft();
             }
         }

@@ -83,6 +83,10 @@ sf::Packet& operator >> (sf::Packet& packet, Ball& ball) {
     return packet >> ball.x >> ball.y;
 }
 
+sf::Packet& operator << (sf::Packet& packet, const bool* directions) {  // Запись в пакет направлений движения.
+    return packet << directions[0] << directions[1] << directions[2] << directions[3];
+}
+
 
 
 int main() {
@@ -117,7 +121,7 @@ int main() {
 
 
         sf::Event event{}; // переменная для отслеживания событий, происходящих на кажой итерации цикла
-        std::string dir;  // направление движения, которое будет обрабатваться на сервере
+        bool directions[4] = {false, false, false, false};  // направление движения, которое будет обрабатваться на сервере
         while (window.pollEvent(event)) {
             if (event.type == sf::Event::Closed) {
                 window.close();
@@ -125,24 +129,24 @@ int main() {
         }
         if (window.hasFocus()) {
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
-                dir = "UP";
-            }
-            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
-                dir = "DOWN";
+                directions[0] = true;
             }
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
-                dir = "RIGHT";
+                directions[1] = true;
+            }
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
+                directions[2] = true;
             }
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
-                dir = "LEFT";
+                directions[3] = true;
             }
         }
 
         // Запаковываем данные пользователя в пакет и отправляем на сервер
-        packet << dir;
+        packet << directions;
         socket.send(packet);
         packet.clear();
-        std::cout << dir << '\n';  // Дебаг
+//        std::cout << directions << '\n';  // Дебаг
     }
     return 0;
 }
