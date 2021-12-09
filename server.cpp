@@ -12,8 +12,9 @@ using namespace sf;
 //};
 
 class Object {
-    Sprite sprite;
 protected:
+    Sprite sprite;
+    Texture texture;
     int x = 0;
     int y = 0;
 public:
@@ -63,20 +64,45 @@ public:
 //    Color setColor(sf::Color _color) const {
 //        color = _color;
 //    }
-friend sf::Packet& operator >> (sf::Packet& packet, Ball& ball);
-    friend sf::Packet& operator << (sf::Packet& packet, const Ball& ball);
+
 };
 
-sf::Packet& operator << (sf::Packet& packet, const Ball& ball) {
-    return packet << ball.x << ball.y;
+class Unmovable : public Object {
+public:
+    Unmovable(int _x, int _y, Sprite _sprite) {
+        x = _x;
+        y = _y;
+        sprite = _sprite;
+    }
+    friend sf::Packet& operator << (sf::Packet& packet, const Unmovable& unmovable);
+};
+
+class Player : public Object {
+    float size;
+public:
+    Player(int _x, int _y, Color _color, float _size) {
+        x = _x;
+        y = _y;
+//        color = _color;
+        size = _size;
+    }
+    friend sf::Packet& operator >> (sf::Packet& packet, Player& player);
+    friend sf::Packet& operator << (sf::Packet& packet, const Player& player);
+};
+
+sf::Packet& operator << (sf::Packet& packet, const Player& player) {
+    return packet << player.x << player.y;
 }
 //
-sf::Packet& operator >> (sf::Packet& packet, Ball& ball) {
-    return packet >> ball.x >> ball.y;
+sf::Packet& operator >> (sf::Packet& packet, Player& player) {
+    return packet >> player.x >> player.y;
 }
 
 sf::Packet& operator >> (sf::Packet& packet, bool* directions) {
     return packet >> directions[0] >> directions[1] >> directions[2] >> directions[3];
+}
+sf::Packet& operator << (sf::Packet& packet, const Unmovable& unmovable) {
+    return packet << unmovable.x << unmovable.y;
 }
 
 
@@ -96,18 +122,33 @@ int main(int argc, char* argv[]) {
     }
 
 
+    sf::Texture gachiTexture;
+    gachiTexture.loadFromFile("/home/dima/!Stuff/TP/trying to make engine/baby.png");
+    Sprite gachiSprite(gachiTexture);
+    std::vector<Unmovable> unmovables(1, Unmovable(200, 200, gachiSprite));
+
     sf::Packet packet;  // Для передачи даннных между клиент сервером создаём пакет, который будет летать по сети.
-    std::vector<Ball> balls(clients.size(), Ball(0, 0, sf::Color::Black, 15));  // инициализируем клиентов значниями по умолчанию.
+    std::vector<Player> players(clients.size(), Player(0, 0, sf::Color::Black, 15));  // инициализируем клиентов значниями по умолчанию.
     // Заранее отправляем клиентам данные о том, что мячи расположены на нулевых координатах.
     for (auto & client : clients) {  // Для каждого клиента.
-        for (auto & ball : balls) {  // О каждом шаре.
-            packet << ball;
+        for (auto & player : players) {   // О каждом игроке.
+            packet << player;
             client.send(packet);
             packet.clear();
             
-            std::cout << ball.getX() << ' '<< ball.getY() << '\n';  // Дебаг
+            std::cout << player.getX() << ' ' << player.getY() << '\n';  // Дебаг.
+        }
+        for (auto & unmovable : unmovables) {   // О каждом несдвигаемом объекте
+            packet << unmovable;
+            client.send(packet);
+            packet.clear();
+
+//            std::cout << unmovable.getX() << ' ' << unmovable.getY() << '\n';  // Дебаг.
         }
     }
+
+
+
 
     while (true) {
         // получаем пакет с информацией о перемещении какждого клиента и извлекаем информацию о перемещение каждого клиента
@@ -122,26 +163,33 @@ int main(int argc, char* argv[]) {
 
             // обрабатываем действие пользователя
             if (directions[0]) {
-                balls[i].goUp();
+                players[i].goUp();
             }
             if (directions[1]) {
-                balls[i].goRight();
+                players[i].goRight();
             }
             if (directions[2]) {
-                balls[i].goDown();
+                players[i].goDown();
             }
             if (directions[3]) {
-                balls[i].goLeft();
+                players[i].goLeft();
             }
         }
 
         // отправляем обновлённые данные об изменение всех объектов на сервере каждому клиенту
-        for (int i = 0; i < clients.size(); ++i) {
-            for (int j = 0; j < balls.size(); ++j) {
-                packet << balls[j];
-                clients[i].send(packet);
+        for (auto & client : clients) {
+            for (auto & player : players) {
+                packet << player;
+                client.send(packet);
                 packet.clear();
-                std::cout << balls[j].getX() << ' '<< balls[j].getY() << '\n';
+                std::cout << player.getX() << ' ' << player.getY() << '\n';
+            }
+            for (auto & unmovable : unmovables) {   // О каждом несдвигаемом объекте
+                packet << unmovable;
+                client.send(packet);
+                packet.clear();
+
+//            std::cout << unmovable.getX() << ' ' << unmovable.getY() << '\n';  // Дебаг.
             }
         }
     }

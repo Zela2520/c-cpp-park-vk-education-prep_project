@@ -6,15 +6,16 @@
 
 using namespace sf;
 
-//struct Ball {
+//struct Object {
 //    int x;
 //    int y;
 //    std::string color;
 //};
 
 class Object {
-    Sprite sprite;
 protected:
+    Sprite sprite;
+    Texture texture;
     int x = 0;
     int y = 0;
 public:
@@ -64,27 +65,51 @@ public:
 //    Color setColor(sf::Color _color) const {
 //        color = _color;
 //    }
-    void draw(sf::RenderWindow& window) {
-        sf::CircleShape circle;
-        circle.setPosition(x, y);
-        circle.setRadius(size);
-        circle.setFillColor(sf::Color::Black);
-        window.draw(circle);
-    }
-    friend sf::Packet& operator >> (sf::Packet& packet, Ball& ball);
-    friend sf::Packet& operator << (sf::Packet& packet, const Ball& ball);
 };
 
-sf::Packet& operator << (sf::Packet& packet, const Ball& ball) {
-    return packet << ball.x << ball.y;
-}
-//
-sf::Packet& operator >> (sf::Packet& packet, Ball& ball) {
-    return packet >> ball.x >> ball.y;
-}
+class Unmovable : public Object {
+public:
+    Unmovable(int _x, int _y, Sprite _sprite) {
+        x = _x;
+        y = _y;
+        sprite = _sprite;
+    }
+    void draw(RenderWindow& window) {
+        sprite.setPosition(x, y);
+        window.draw(sprite);
+    }
+    friend sf::Packet& operator << (sf::Packet& packet, const Unmovable& unmovable);
+    friend sf::Packet& operator >> (sf::Packet& packet, Unmovable& unmovable);
+};
+
+class Player : public Object {
+    float size;
+public:
+    Player(int _x, int _y, Color _color, float _size) {
+        x = _x;
+        y = _y;
+//        color = _color;
+        size = _size;
+    }
+    void draw(RenderWindow& window) {
+        sf:CircleShape circle;
+        circle.setRadius(15.f);
+        circle.setFillColor(Color::Black);
+        circle.setPosition(x, y);
+        window.draw(circle);
+    }
+    friend sf::Packet& operator >> (sf::Packet& packet, Player& player);
+    friend sf::Packet& operator << (sf::Packet& packet, const Player& player);
+};
 
 sf::Packet& operator << (sf::Packet& packet, const bool* directions) {  // Запись в пакет направлений движения.
     return packet << directions[0] << directions[1] << directions[2] << directions[3];
+}
+sf::Packet& operator >> (sf::Packet& packet, Player& player) {
+    return packet >> player.x >> player.y;
+}
+sf::Packet& operator >> (sf::Packet& packet, Unmovable& unmovable) {
+    return packet >> unmovable.x >> unmovable.y;
 }
 
 
@@ -96,26 +121,42 @@ int main() {
     socket.connect("127.0.0.1", 3000);  // Подключаемся к серверу по заданному порту.
     
     sf::Packet packet;  // Создаём пакет для общения клиента с сервером.
-    std::vector<Ball> balls(2, Ball(0, 0, sf::Color::Black, 15));  // Инициализируем начальное положение объектов на карте, принимая данные от сервера.
+    std::vector<Player> players(2, Player(0, 0, sf::Color::Black, 15));  // Инициализируем начальное положение объектов на карте, принимая данные от сервера.
+
+    sf::Texture gachiTexture;
+    gachiTexture.loadFromFile("/home/dima/!Stuff/TP/trying to make engine/baby.png");
+    Sprite gachiSprite(gachiTexture);
+    std::vector<Unmovable> unmovables(1, Unmovable(200, 200, gachiSprite));
+//    Ball ball(0, 0, sf::Color::Black, 15);
+//    players.push_back(ball);
 
     sf::RenderWindow window(sf::VideoMode(500, 500), "Squid game");  // Создаём игровое окно.
 
-
+//    if (typeid(objects[2]).name() == typeid(Object).name()) {std::cout << "JOPA"; return 1;}
     while (window.isOpen()) {
         // Получение информации обо всех шарах.
         sf::CircleShape circle;
-        for (auto &ball : balls) {  // Пробегаем по всем шарам. На 1 шар 1 пакет.
+        for (auto &player : players) {  // Пробегаем по всем шарам. На 1 шар 1 пакет.
             socket.receive(packet);  // Получаем пакет.
-            packet >> ball;  // Записываем данные из пакета в текущую структуру шара.
+            packet >> player;  // Записываем данные из пакета в текущую структуру шара.
             packet.clear();
 
-            std::cout << ball.getX() << ' ' << ball.getY() << ' ';  // Дебаг.
+            std::cout << player.getX() << ' ' << player.getY() << ' ';  // Дебаг.
         }
-
         // Отрисовка всех шаров.
         window.clear(sf::Color::White);
-        for (auto &ball : balls) {
-            ball.draw(window);
+        for (auto &player : players) {
+            player.draw(window);
+        }
+        for (auto &unmovable : unmovables) {  // Пробегаем по всем шарам. На 1 шар 1 пакет.
+            socket.receive(packet);  // Получаем пакет.
+            packet >> unmovable;  // Записываем данные из пакета в текущую структуру шара.
+            packet.clear();
+
+            std::cout << unmovable.getX() << ' ' << unmovable.getY() << ' ';  // Дебаг.
+        }
+        for (auto& unmovable : unmovables) {
+            unmovable.draw(window);
         }
         window.display();
 
