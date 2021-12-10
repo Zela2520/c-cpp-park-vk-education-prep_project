@@ -76,6 +76,7 @@ public:
     Unmovable(float _x, float _y, const Texture& texture) : Object() {
         sprite.setTexture(texture);
 //        sprite.setColor(Color(0, 255, 0));
+//        sprite.setColor(Color(100,255,100, 100));
         this->setX(_x);
         this->setY(_y);
     }
@@ -89,7 +90,8 @@ public:
         sprite.setTexture(texture);
         this->setX(_x);
         this->setY(_y);
-        sprite.scale(0.1, 0.1);
+        sprite.scale(1, 1);
+//        sprite.setColor(Color(100, 1, 1, 100));
     }
 //    void draw(RenderWindow& window) {
 //        window.draw(sprite);
@@ -126,14 +128,22 @@ int main() {
     socket.connect("127.0.0.1", 3000);  // Подключаемся к серверу по заданному порту.
     
     sf::Packet packet;  // Создаём пакет для общения клиента с сервером.
+    Texture amogusTexture;
+    amogusTexture.loadFromFile("/home/dima/!Stuff/TP/trying to make engine/amogus.png");
+    sf::Texture babyTexture;
+    babyTexture.loadFromFile("/home/dima/!Stuff/TP/trying to make engine/baby.png");
     Texture gachiTexture;
-    gachiTexture.loadFromFile("/home/dima/!Stuff/TP/trying to make engine/amogus.png");
-    std::vector<Player> players(2, Player(0, 0, gachiTexture));  // Инициализируем начальное положение объектов на карте, принимая данные от сервера.
+    gachiTexture.loadFromFile("/home/dima/!Stuff/TP/trying to make engine/gachi.png");
+    Texture kotTexture;
+    kotTexture.loadFromFile("/home/dima/!Stuff/TP/trying to make engine/kot.jpg");
+    Texture tntTexture;
+    tntTexture.loadFromFile("/home/dima/!Stuff/TP/trying to make engine/tnt.png");
 
-    sf::Texture gachiTexture2;
-    gachiTexture2.loadFromFile("/home/dima/!Stuff/TP/trying to make engine/baby.png");
+    std::vector<Player> players(2, Player(0, 0, tntTexture));  // Инициализируем начальное положение объектов на карте, принимая данные от сервера.
+
+
 //    Sprite gachiSprite(gachiTexture);
-    std::vector<Unmovable> unmovables(1, Unmovable(200, 200, gachiTexture2));
+    std::vector<Unmovable> unmovables(1, Unmovable(200, 200, gachiTexture));
 //    Ball ball(0, 0, sf::Color::Black, 15);
 //    players.push_back(ball);
 

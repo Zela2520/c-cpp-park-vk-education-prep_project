@@ -19,6 +19,9 @@ public:
 //    explicit Object(const Texture& texture) {
 //        sprite = new Sprite(texture);
 //    }
+    Sprite& getSprite() {
+        return sprite;
+    }
     float getX() const {
         return sprite.getPosition().x;
     }
@@ -46,6 +49,7 @@ public:
     void draw(RenderWindow& window) {
         window.draw(sprite);
     }
+//    virtual bool intersectsWith(vector<Object>& objects);
 };
 
 //class Ball : public Object {
@@ -88,15 +92,29 @@ public:
         Texture texture;
         texture.loadFromFile(filename);
         sprite.setTexture(texture);
+        sprite.scale(0.1, 0.1);
         this->setX(_x);
         this->setY(_y);
     }
-//    void draw(RenderWindow& window) {
-//        window.draw(sprite);
-//    }
+    bool intersectsWith(vector<Unmovable>& objects) {
+        for (auto& object : objects) {
+            Rect<float> thisBounds = sprite.getGlobalBounds();
+            Rect<float> objectBounds = object.getSprite().getGlobalBounds();
+            Rect<float> scaledThisBounds(thisBounds.left, thisBounds.top, thisBounds.width*sprite.getScale().x, thisBounds.height*sprite.getScale().y);
+            Rect<float> scaledObjectBounds(objectBounds.left, objectBounds.top, objectBounds.width*object.getSprite().getScale().x, objectBounds.height*object.getSprite().getScale().y);
+            if (scaledThisBounds.intersects((scaledObjectBounds))) {
+                std::cout << "ПЕРЕСЕЧЕНИЕ" << endl;
+                cout << scaledThisBounds.left << " " << scaledThisBounds.top << " " << scaledThisBounds.height << " " << scaledThisBounds.width << endl;
+                cout << scaledObjectBounds.left << " " << scaledObjectBounds.top << " " << scaledObjectBounds.height << " " << scaledObjectBounds.width << endl;
+                return true;
+            }
+        }
+        return false;
+    }
     friend sf::Packet& operator >> (sf::Packet& packet, Player& player);
     friend sf::Packet& operator << (sf::Packet& packet, const Player& player);
 };
+
 
 sf::Packet& operator << (sf::Packet& packet, const Player& player) {
     return packet << player.getX() << player.getY();
@@ -116,17 +134,17 @@ sf::Packet& operator >> (sf::Packet& packet, bool* directions) {
 sf::Packet& operator << (sf::Packet& packet, const Unmovable& unmovable) {
     return packet << unmovable.getX() << unmovable.getY();
 }
-
-class Map {
-private:
-    vector<Player>* players;
-    vector<Unmovable>* unmovables;
-public:
-    Map(vector<Player>* _players, vector<Unmovable>* _unmovables) {
-        players = _players;
-        unmovables = _unmovables;
-    }
-};
+//
+//class Map {
+//private:
+//    vector<Player>* players;
+//    vector<Unmovable>* unmovables;
+//public:
+//    Map(vector<Player>* _players, vector<Unmovable>* _unmovables) {
+//        players = _players;
+//        unmovables = _unmovables;
+//    }
+//};
 
 
 int main(int argc, char* argv[]) {
@@ -157,7 +175,7 @@ int main(int argc, char* argv[]) {
             client.send(packet);
             packet.clear();
             
-            std::cout << player.getX() << ' ' << player.getY() << std::endl;  // Дебаг.
+//            std::cout << player.getX() << ' ' << player.getY() << std::endl;  // Дебаг.
         }
         for (auto & unmovable : unmovables) {   // О каждом несдвигаемом объекте
             packet << unmovable;
@@ -185,15 +203,19 @@ int main(int argc, char* argv[]) {
             // обрабатываем действие пользователя
             if (directions[0]) {
                 players[i].goUp(0.3);
+                if (players[i].intersectsWith(unmovables)) players[i].goDown(0.3);
             }
             if (directions[1]) {
                 players[i].goRight(0.3);
+                if (players[i].intersectsWith(unmovables)) players[i].goLeft(0.3);
             }
             if (directions[2]) {
                 players[i].goDown(0.3);
+                if (players[i].intersectsWith(unmovables)) players[i].goUp(0.3);
             }
             if (directions[3]) {
                 players[i].goLeft(0.3);
+                if (players[i].intersectsWith(unmovables)) players[i].goRight(0.3);
             }
         }
 
@@ -203,7 +225,7 @@ int main(int argc, char* argv[]) {
                 packet << player;
                 client.send(packet);
                 packet.clear();
-                std::cout << player.getX() << ' ' << player.getY() << '\n';
+//                std::cout << player.getX() << ' ' << player.getY() << '\n';
             }
             for (auto & unmovable : unmovables) {   // О каждом несдвигаемом объекте
                 packet << unmovable;
