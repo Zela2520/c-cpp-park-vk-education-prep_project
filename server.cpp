@@ -3,6 +3,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include "model.h"
 using namespace sf;
 using namespace std;
 
@@ -12,139 +13,148 @@ using namespace std;
 //    std::string color;
 //};
 
-class Object {
-protected:
-    Sprite sprite;
-public:
-//    explicit Object(const Texture& texture) {
-//        sprite = new Sprite(texture);
-//    }
-    Sprite& getSprite() {
-        return sprite;
-    }
-    float getX() const {
-        return sprite.getPosition().x;
-    }
-    float getY() const {
-        return sprite.getPosition().y;
-    }
-    void setX(float _x) {
-        sprite.setPosition(_x, this->getY());
-    }
-    void setY(float _y) {
-        sprite.setPosition(this->getX(), _y);
-    }
-    void goUp(float distance = 1) {
-        sprite.setPosition(this->getX(), this->getY() - distance);
-    }
-    void goDown(float distance = 1) {
-        sprite.setPosition(this->getX(), this->getY() + distance);
-    }
-    void goRight(float distance = 1) {
-        sprite.setPosition(this->getX() + distance, this->getY());
-    }
-    void goLeft(float distance = 1) {
-        sprite.setPosition(this->getX() - distance, this->getY());
-    }
-    void draw(RenderWindow& window) {
-        window.draw(sprite);
-    }
-//    virtual bool intersectsWith(vector<Object>& objects);
-};
-
-//class Ball : public Object {
-////    Color color;
-//    float size;
+//class Object {
+//protected:
+//    CircleShape border;
+//    Sprite sprite;
 //public:
-//    Ball(float _x, float _y, Color _color, float _size) {
-//        x = _x;
-//        y = _y;
-////        color = _color;
-//        size = _size;
+////    explicit Object(const Texture& texture) {
+////        sprite = new Sprite(texture);
+////    }
+//    Sprite& getSprite() {
+//        return sprite;
 //    }
-////    Color getColor() const {
-////       return color;
-////    }
-////    Color setColor(sf::Color _color) const {
-////        color = _color;
-////    }
-//
+//    float getX() const {
+//        return sprite.getPosition().x;
+//    }
+//    float getY() const {
+//        return sprite.getPosition().y;
+//    }
+//    void setX(float _x) {
+//        sprite.setPosition(_x, this->getY());
+//    }
+//    void setY(float _y) {
+//        sprite.setPosition(this->getX(), _y);
+//    }
+//    void goUp(float distance = 1) {
+//        sprite.setPosition(this->getX(), this->getY() - distance);
+//    }
+//    void goDown(float distance = 1) {
+//        sprite.setPosition(this->getX(), this->getY() + distance);
+//    }
+//    void goRight(float distance = 1) {
+//        sprite.setPosition(this->getX() + distance, this->getY());
+//    }
+//    void goLeft(float distance = 1) {
+//        sprite.setPosition(this->getX() - distance, this->getY());
+//    }
+//    void draw(RenderWindow& window) {
+//        window.draw(sprite);
+//        window.draw(border);
+//    }
+////    virtual bool intersectsWith(vector<Object>& objects);
 //};
-
-class Unmovable : public Object {
-private:
-//    Texture texture;
-//    Sprite* viewPtr;
-public:
-    Unmovable(float _x, float _y, const String& filename) : Object() {
-        Texture texture;
-        texture.loadFromFile(filename);
-        sprite.setTexture(texture);
-        this->setX(_x);
-        this->setY(_y);
-    }
-    friend sf::Packet& operator << (sf::Packet& packet, const Unmovable& unmovable);
-};
-
-class Player : public Object {
-public:
-    Player(float _x, float _y, const String& filename) : Object() {
-        Texture texture;
-        texture.loadFromFile(filename);
-        sprite.setTexture(texture);
-        sprite.scale(0.1, 0.1);
-        this->setX(_x);
-        this->setY(_y);
-    }
-    bool intersectsWith(vector<Unmovable>& objects) {
-        for (auto& object : objects) {
-            Rect<float> thisBounds = sprite.getGlobalBounds();
-            Rect<float> objectBounds = object.getSprite().getGlobalBounds();
-            Rect<float> scaledThisBounds(thisBounds.left, thisBounds.top, thisBounds.width*sprite.getScale().x, thisBounds.height*sprite.getScale().y);
-            Rect<float> scaledObjectBounds(objectBounds.left, objectBounds.top, objectBounds.width*object.getSprite().getScale().x, objectBounds.height*object.getSprite().getScale().y);
-            if (scaledThisBounds.intersects((scaledObjectBounds))) {
-                std::cout << "ПЕРЕСЕЧЕНИЕ" << endl;
-                cout << scaledThisBounds.left << " " << scaledThisBounds.top << " " << scaledThisBounds.height << " " << scaledThisBounds.width << endl;
-                cout << scaledObjectBounds.left << " " << scaledObjectBounds.top << " " << scaledObjectBounds.height << " " << scaledObjectBounds.width << endl;
-                return true;
-            }
-        }
-        return false;
-    }
-    friend sf::Packet& operator >> (sf::Packet& packet, Player& player);
-    friend sf::Packet& operator << (sf::Packet& packet, const Player& player);
-};
-
-
-sf::Packet& operator << (sf::Packet& packet, const Player& player) {
-    return packet << player.getX() << player.getY();
-}
 //
-sf::Packet& operator >> (sf::Packet& packet, Player& player) {
-    float x, y;
-    packet >> x >> y;
-    player.setX(x);
-    player.setY(y);
-    return packet;
-}
-
-sf::Packet& operator >> (sf::Packet& packet, bool* directions) {
-    return packet >> directions[0] >> directions[1] >> directions[2] >> directions[3];
-}
-sf::Packet& operator << (sf::Packet& packet, const Unmovable& unmovable) {
-    return packet << unmovable.getX() << unmovable.getY();
-}
+////class Ball : public Object {
+//////    Color color;
+////    float size;
+////public:
+////    Ball(float _x, float _y, Color _color, float _size) {
+////        x = _x;
+////        y = _y;
+//////        color = _color;
+////        size = _size;
+////    }
+//////    Color getColor() const {
+//////       return color;
+//////    }
+//////    Color setColor(sf::Color _color) const {
+//////        color = _color;
+//////    }
+////
+////};
 //
-//class Map {
+//class Unmovable : public Object {
 //private:
-//    vector<Player>* players;
-//    vector<Unmovable>* unmovables;
+////    Texture texture;
+////    Sprite* viewPtr;
 //public:
-//    Map(vector<Player>* _players, vector<Unmovable>* _unmovables) {
-//        players = _players;
-//        unmovables = _unmovables;
+//    Unmovable(float _x, float _y, const String& filename) : Object() {
+//        Texture texture;
+//        texture.loadFromFile(filename);
+//        sprite.setTexture(texture);
+//        this->setX(_x);
+//        this->setY(_y);
 //    }
+//    friend sf::Packet& operator << (sf::Packet& packet, const Unmovable& unmovable);
 //};
+//
+//class Player : public Object {
+//public:
+//    Player(float _x, float _y, const String& filename) : Object() {
+//        Texture texture;
+//        texture.loadFromFile(filename);
+//        sprite.setTexture(texture);
+////        sprite.scale(0.1, 0.1);  // Масштабировани модели
+//        this->setX(_x);
+//        this->setY(_y);
+//    }
+//    bool intersectsWith(vector<Unmovable>& objects) {
+//        for (auto& object : objects) {
+//            Rect<float> thisBounds = sprite.getGlobalBounds();
+//            Rect<float> objectBounds = object.getSprite().getGlobalBounds();
+//
+//            border.setPointCount(4);
+//            border.setPosition(thisBounds.left, thisBounds.top);
+//            border.setRadius(thisBounds.width);
+//            border.setOutlineColor(Color::Green);
+//            border.setOutlineThickness(10);
+//
+//            Rect<float> scaledThisBounds(thisBounds.left, thisBounds.top, thisBounds.width*1, thisBounds.height*1);
+//            Rect<float> scaledObjectBounds(objectBounds.left, objectBounds.top, objectBounds.width*1, objectBounds.height*1);
+//            if (scaledThisBounds.intersects((scaledObjectBounds))) {
+//                std::cout << "ПЕРЕСЕЧЕНИЕ" << endl;
+//                cout << scaledThisBounds.left << " " << scaledThisBounds.top << " " << scaledThisBounds.height << " " << scaledThisBounds.width << endl;
+//                cout << scaledObjectBounds.left << " " << scaledObjectBounds.top << " " << scaledObjectBounds.height << " " << scaledObjectBounds.width << endl;
+//                return true;
+//            }
+//        }
+//        return false;
+//    }
+//    friend sf::Packet& operator >> (sf::Packet& packet, Player& player);
+//    friend sf::Packet& operator << (sf::Packet& packet, const Player& player);
+//};
+//
+//
+//sf::Packet& operator << (sf::Packet& packet, const Player& player) {
+//    return packet << player.getX() << player.getY();
+//}
+////
+//sf::Packet& operator >> (sf::Packet& packet, Player& player) {
+//    float x, y;
+//    packet >> x >> y;
+//    player.setX(x);
+//    player.setY(y);
+//    return packet;
+//}
+//
+//sf::Packet& operator >> (sf::Packet& packet, bool* directions) {
+//    return packet >> directions[0] >> directions[1] >> directions[2] >> directions[3];
+//}
+//sf::Packet& operator << (sf::Packet& packet, const Unmovable& unmovable) {
+//    return packet << unmovable.getX() << unmovable.getY();
+//}
+////
+////class Map {
+////private:
+////    vector<Player>* players;
+////    vector<Unmovable>* unmovables;
+////public:
+////    Map(vector<Player>* _players, vector<Unmovable>* _unmovables) {
+////        players = _players;
+////        unmovables = _unmovables;
+////    }
+////};
 
 
 int main(int argc, char* argv[]) {
@@ -164,10 +174,10 @@ int main(int argc, char* argv[]) {
 //    sf::Texture gachiTexture;
 //    gachiTexture.loadFromFile("/home/dima/!Stuff/TP/trying to make engine/baby.png");
 //    Sprite gachiSprite(gachiTexture);
-    std::vector<Unmovable> unmovables(1, Unmovable(200, 200, "/home/dima/!Stuff/TP/trying to make engine/baby.png"));
+    std::vector<Unmovable> unmovables(1, Unmovable(200, 200));
 
     sf::Packet packet;  // Для передачи даннных между клиент сервером создаём пакет, который будет летать по сети.
-    std::vector<Player> players(clients.size(), Player(0, 0, "/home/dima/!Stuff/TP/trying to make engine/amogus.png"));  // инициализируем клиентов значниями по умолчанию.
+    std::vector<Player> players(clients.size(), Player(0, 0));  // инициализируем клиентов значниями по умолчанию.
     // Заранее отправляем клиентам данные о том, что мячи расположены на нулевых координатах.
     for (auto & client : clients) {  // Для каждого клиента.
         for (auto & player : players) {   // О каждом игроке.
