@@ -4,6 +4,7 @@
 #include <string>
 #include <vector>
 using namespace sf;
+using namespace std;
 
 //struct Ball {
 //    int x;
@@ -116,7 +117,16 @@ sf::Packet& operator << (sf::Packet& packet, const Unmovable& unmovable) {
     return packet << unmovable.getX() << unmovable.getY();
 }
 
-
+class Map {
+private:
+    vector<Player>* players;
+    vector<Unmovable>* unmovables;
+public:
+    Map(vector<Player>* _players, vector<Unmovable>* _unmovables) {
+        players = _players;
+        unmovables = _unmovables;
+    }
+};
 
 
 int main(int argc, char* argv[]) {

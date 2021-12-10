@@ -89,6 +89,7 @@ public:
         sprite.setTexture(texture);
         this->setX(_x);
         this->setY(_y);
+        sprite.scale(0.1, 0.1);
     }
 //    void draw(RenderWindow& window) {
 //        window.draw(sprite);
