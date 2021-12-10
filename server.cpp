@@ -14,95 +14,106 @@ using namespace sf;
 class Object {
 protected:
     Sprite sprite;
-    Texture texture;
-    int x = 0;
-    int y = 0;
 public:
-//    Object(int _x, int _y) {
+//    explicit Object(const Texture& texture) {
+//        sprite = new Sprite(texture);
+//    }
+    float getX() const {
+        return sprite.getPosition().x;
+    }
+    float getY() const {
+        return sprite.getPosition().y;
+    }
+    void setX(float _x) {
+        sprite.setPosition(_x, this->getY());
+    }
+    void setY(float _y) {
+        sprite.setPosition(this->getX(), _y);
+    }
+    void goUp(float distance = 1) {
+        sprite.setPosition(this->getX(), this->getY() - distance);
+    }
+    void goDown(float distance = 1) {
+        sprite.setPosition(this->getX(), this->getY() + distance);
+    }
+    void goRight(float distance = 1) {
+        sprite.setPosition(this->getX() + distance, this->getY());
+    }
+    void goLeft(float distance = 1) {
+        sprite.setPosition(this->getX() - distance, this->getY());
+    }
+    void draw(RenderWindow& window) {
+        window.draw(sprite);
+    }
+};
+
+//class Ball : public Object {
+////    Color color;
+//    float size;
+//public:
+//    Ball(float _x, float _y, Color _color, float _size) {
 //        x = _x;
 //        y = _y;
+////        color = _color;
+//        size = _size;
 //    }
-    int getX() const {
-        return x;
-    }
-    int getY() const {
-        return y;
-    }
-    void setX(int _x) {
-        x = _x;
-    }
-    void setY(int _y) {
-        y = _y;
-    }
-    void goUp(int distance = 1) {
-        y-= distance;
-    }
-    void goDown(int distance = 1) {
-        y += distance;
-    }
-    void goRight(int distance = 1) {
-        x += distance;
-    }
-    void goLeft(int distance = 1) {
-        x -= distance;
-    }
-};
-
-class Ball : public Object {
-//    Color color;
-    float size;
-public:
-    Ball(int _x, int _y, Color _color, float _size) {
-        x = _x;
-        y = _y;
-//        color = _color;
-        size = _size;
-    }
-//    Color getColor() const {
-//        return color;
-//    }
-//    Color setColor(sf::Color _color) const {
-//        color = _color;
-//    }
-
-};
+////    Color getColor() const {
+////       return color;
+////    }
+////    Color setColor(sf::Color _color) const {
+////        color = _color;
+////    }
+//
+//};
 
 class Unmovable : public Object {
+private:
+//    Texture texture;
+//    Sprite* viewPtr;
 public:
-    Unmovable(int _x, int _y, Sprite _sprite) {
-        x = _x;
-        y = _y;
-        sprite = _sprite;
+    Unmovable(float _x, float _y, const String& filename) : Object() {
+        Texture texture;
+        texture.loadFromFile(filename);
+        sprite.setTexture(texture);
+        this->setX(_x);
+        this->setY(_y);
     }
     friend sf::Packet& operator << (sf::Packet& packet, const Unmovable& unmovable);
 };
 
 class Player : public Object {
-    float size;
 public:
-    Player(int _x, int _y, Color _color, float _size) {
-        x = _x;
-        y = _y;
-//        color = _color;
-        size = _size;
+    Player(float _x, float _y, const String& filename) : Object() {
+        Texture texture;
+        texture.loadFromFile(filename);
+        sprite.setTexture(texture);
+        this->setX(_x);
+        this->setY(_y);
     }
+//    void draw(RenderWindow& window) {
+//        window.draw(sprite);
+//    }
     friend sf::Packet& operator >> (sf::Packet& packet, Player& player);
     friend sf::Packet& operator << (sf::Packet& packet, const Player& player);
 };
 
 sf::Packet& operator << (sf::Packet& packet, const Player& player) {
-    return packet << player.x << player.y;
+    return packet << player.getX() << player.getY();
 }
 //
 sf::Packet& operator >> (sf::Packet& packet, Player& player) {
-    return packet >> player.x >> player.y;
+    float x, y;
+    packet >> x >> y;
+    player.setX(x);
+    player.setY(y);
+    return packet;
 }
 
 sf::Packet& operator >> (sf::Packet& packet, bool* directions) {
     return packet >> directions[0] >> directions[1] >> directions[2] >> directions[3];
 }
 sf::Packet& operator << (sf::Packet& packet, const Unmovable& unmovable) {
-    return packet << unmovable.x << unmovable.y;
+    return packet << unmovable.getX() << unmovable.getY();
 }
 
 
@@ -122,13 +133,13 @@ int main(int argc, char* argv[]) {
     }
 
 
-    sf::Texture gachiTexture;
-    gachiTexture.loadFromFile("/home/dima/!Stuff/TP/trying to make engine/baby.png");
-    Sprite gachiSprite(gachiTexture);
-    std::vector<Unmovable> unmovables(1, Unmovable(200, 200, gachiSprite));
+//    sf::Texture gachiTexture;
+//    gachiTexture.loadFromFile("/home/dima/!Stuff/TP/trying to make engine/baby.png");
+//    Sprite gachiSprite(gachiTexture);
+    std::vector<Unmovable> unmovables(1, Unmovable(200, 200, "/home/dima/!Stuff/TP/trying to make engine/baby.png"));
 
     sf::Packet packet;  // Для передачи даннных между клиент сервером создаём пакет, который будет летать по сети.
-    std::vector<Player> players(clients.size(), Player(0, 0, sf::Color::Black, 15));  // инициализируем клиентов значниями по умолчанию.
+    std::vector<Player> players(clients.size(), Player(0, 0, "/home/dima/!Stuff/TP/trying to make engine/amogus.png"));  // инициализируем клиентов значниями по умолчанию.
     // Заранее отправляем клиентам данные о том, что мячи расположены на нулевых координатах.
     for (auto & client : clients) {  // Для каждого клиента.
         for (auto & player : players) {   // О каждом игроке.
@@ -136,7 +147,7 @@ int main(int argc, char* argv[]) {
             client.send(packet);
             packet.clear();
             
-            std::cout << player.getX() << ' ' << player.getY() << '\n';  // Дебаг.
+            std::cout << player.getX() << ' ' << player.getY() << std::endl;  // Дебаг.
         }
         for (auto & unmovable : unmovables) {   // О каждом несдвигаемом объекте
             packet << unmovable;
@@ -163,16 +174,16 @@ int main(int argc, char* argv[]) {
 
             // обрабатываем действие пользователя
             if (directions[0]) {
-                players[i].goUp();
+                players[i].goUp(0.3);
             }
             if (directions[1]) {
-                players[i].goRight();
+                players[i].goRight(0.3);
             }
             if (directions[2]) {
-                players[i].goDown();
+                players[i].goDown(0.3);
             }
             if (directions[3]) {
-                players[i].goLeft();
+                players[i].goLeft(0.3);
             }
         }
 
