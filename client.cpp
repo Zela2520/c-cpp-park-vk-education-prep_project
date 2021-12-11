@@ -145,10 +145,12 @@ int main() {
 
 //    Sprite gachiSprite(gachiTexture);
     std::vector<Unmovable> unmovables(1, Unmovable(200, 200, gachiTexture));
-//    Ball ball(0, 0, sf::Color::Black, 15);
-//    players.push_back(ball);
 
-    sf::RenderWindow window(sf::VideoMode(500, 500), "Squid game");  // Создаём игровое окно.
+    RenderWindow window(sf::VideoMode(500, 500), "Squid game");  // Создаём игровое окно.
+
+    View camera;
+    camera.zoom(2);
+    camera.setCenter(players[0].getX(), players[0].getY());
 
 //    if (typeid(objects[2]).name() == typeid(Object).name()) {std::cout << "JOPA"; return 1;}
     while (window.isOpen()) {
@@ -189,18 +191,22 @@ int main() {
         if (window.hasFocus()) {
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
                 directions[0] = true;
+                camera.move(0,-0.3);
             }
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
                 directions[1] = true;
+                camera.move(0.3,0);
             }
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
                 directions[2] = true;
+                camera.move(0,0.3);
             }
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
                 directions[3] = true;
+                camera.move(-0.3,0);
             }
         }
-
+        window.setView(camera);
         // Запаковываем данные пользователя в пакет и отправляем на сервер
         packet << directions;
         socket.send(packet);
