@@ -130,15 +130,15 @@ int main() {
     
     sf::Packet packet;  // Создаём пакет для общения клиента с сервером.
     Texture amogusTexture;
-    amogusTexture.loadFromFile("../amogus.png");
+    amogusTexture.loadFromFile("../include/textures/amogus.png");
     sf::Texture babyTexture;
-    babyTexture.loadFromFile("/home/dima/!Stuff/TP/trying to make engine/baby.png");
+    babyTexture.loadFromFile("../include/textures/baby.png");
     Texture gachiTexture;
-    gachiTexture.loadFromFile("/home/dima/!Stuff/TP/trying to make engine/gachi.png");
+    gachiTexture.loadFromFile("../include/textures/gachi.png");
     Texture kotTexture;
-    kotTexture.loadFromFile("/home/dima/!Stuff/TP/trying to make engine/kot.jpg");
+    kotTexture.loadFromFile("../include/textures/kot.jpg");
     Texture tntTexture;
-    tntTexture.loadFromFile("/home/dima/!Stuff/TP/trying to make engine/tnt.png");
+    tntTexture.loadFromFile("../include/textures/tnt.png");
 
     std::vector<Player> players(2, Player(0, 0, amogusTexture));  // Инициализируем начальное положение объектов на карте, принимая данные от сервера.
 
