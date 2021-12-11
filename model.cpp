@@ -53,7 +53,7 @@ Unmovable::Unmovable(float _x, float _y, const Texture& texture) : Object() {
 
 Player::Player(float _x, float _y, const Texture& texture) : Object() {
     sprite.setTexture(texture);
-    sprite.scale(0.1, 0.1);  // Масштабировани модели
+    sprite.setScale(0.1, 0.1);  // Масштабировани модели
     this->setX(_x);
     this->setY(_y);
 }
@@ -67,23 +67,16 @@ bool Player::intersectsWith(vector<Unmovable>& objects) {
         Rect<float> thisBounds = sprite.getGlobalBounds();
         Rect<float> objectBounds = object.getSprite().getGlobalBounds();
 
-//        border.setPointCount(4);
-//        border.setPosition(thisBounds.left, thisBounds.top);
-//        border.setRadius(thisBounds.width);
-//        border.setOutlineColor(Color::Green);
-//        border.setOutlineThickness(10);
-
-        Rect<float> scaledThisBounds(thisBounds.left, thisBounds.top, thisBounds.width*sprite.getScale().x, thisBounds.height*sprite.getScale().y);
-        Rect<float> scaledObjectBounds(objectBounds.left, objectBounds.top, objectBounds.width*object.getSprite().getScale().x, objectBounds.height*object.getSprite().getScale().y);
-        if (scaledThisBounds.intersects((scaledObjectBounds))) {
+        if (thisBounds.intersects((objectBounds))) {
             std::cout << "ПЕРЕСЕЧЕНИЕ" << endl;
-            cout << scaledThisBounds.left << " " << scaledThisBounds.top << " " << scaledThisBounds.height << " " << scaledThisBounds.width << endl;
-            cout << scaledObjectBounds.left << " " << scaledObjectBounds.top << " " << scaledObjectBounds.height << " " << scaledObjectBounds.width << endl;
+            cout << "Масштаб" << sprite.getScale().x << "*" << thisBounds.width << endl;
+            cout << thisBounds.left << " " << thisBounds.top << " " << thisBounds.height << " " << thisBounds.width << endl;
+            cout << objectBounds.left << " " << objectBounds.top << " " << objectBounds.height << " " << objectBounds.width << endl;
             return true;
         } else {
             cout << "НЕТ ПЕРЕСЕЧЕНИЯ" << endl;
-            cout << scaledThisBounds.left << " " << scaledThisBounds.top << " " << scaledThisBounds.height << " " << scaledThisBounds.width << endl;
-            cout << scaledObjectBounds.left << " " << scaledObjectBounds.top << " " << scaledObjectBounds.height << " " << scaledObjectBounds.width << endl;
+            cout << thisBounds.left << " " << thisBounds.top << " " << thisBounds.height << " " << thisBounds.width << endl;
+            cout << objectBounds.left << " " << objectBounds.top << " " << objectBounds.height << " " << objectBounds.width << endl;
         }
     }
 \
