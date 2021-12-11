@@ -100,11 +100,11 @@ Unmovable::Unmovable(float _x, float _y, const Texture& texture) : Object() {
 
 Player::Player(float _x, float _y, const Texture& _texture) : Object() {  // Конструктор инициализации игрока.
     sprite.setTexture(_texture);
+    defaultWidth = sprite.getGlobalBounds().width;
+    defaultHeight = sprite.getGlobalBounds().height;
     setScale(0.1, 0.1);  // Масштабировани модели
     setX(_x);
     setY(_y);
-    defaultWidth = sprite.getGlobalBounds().width;
-    defaultHeight = sprite.getGlobalBounds().height;
 }
 //Player::Player(float _x, float _y) : Object() {
 //    sprite.scale(1, 1);  // Масштабировани модели
@@ -131,7 +131,7 @@ bool Player::intersectsWith(vector<Unmovable>& objects) {
     return false;
 }
 void Player::draw(RenderWindow& window) {
-    cout << "Я НУЖНЫЙ КОНСТРУКТОР" << endl;
+//    cout << "Я НУЖНЫЙ КОНСТРУКТОР" << endl;
 //    float scale = sprite.getScale().x;
 ////    sprite.setScale(1, 1);
 

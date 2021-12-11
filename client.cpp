@@ -159,7 +159,7 @@ int main() {
             packet >> player;  // Записываем данные из пакета в текущую структуру шара.
             packet.clear();
 
-            std::cout << player.getX() << ' ' << player.getY() << std::endl;  // Дебаг.
+            std::cout << "Корды игрока: " << player.getX() << ' ' << player.getY() << std::endl;  // Дебаг.
         }
         // Отрисовка всех шаров.
         window.clear(sf::Color::White);
@@ -171,7 +171,7 @@ int main() {
             packet >> unmovable;  // Записываем данные из пакета в текущую структуру шара.
             packet.clear();
 
-            std::cout << unmovable.getX() << ' ' << unmovable.getY() << std::endl;  // Дебаг.
+            std::cout << "Корды Гачимучи" << unmovable.getX() << ' ' << unmovable.getY() << std::endl;  // Дебаг.
         }
         for (auto& unmovable : unmovables) {
             unmovable.draw(window);
