@@ -73,17 +73,17 @@ Unmovable::Unmovable(float _x, float _y, const Texture& texture) : Object() {
 
 Player::Player(float _x, float _y, const Texture& texture) : Object() {
     sprite.setTexture(texture);
+//    if (turnedRight) {
+//        sprite.setTextureRect(IntRect(getX(), getY(), sprite.getGlobalBounds().width, sprite.getGlobalBounds().height));
+//        cout << "ПРАВАК" << endl;
+//    }
+//    if (!turnedRight) {
+//        cout << "Левак!" << endl;
+//        sprite.setTextureRect(IntRect(getX() + sprite.getGlobalBounds().width, getY(), -sprite.getGlobalBounds().width, sprite.getGlobalBounds().height));
+//    }
     sprite.setScale(0.1, 0.1);  // Масштабировани модели
     this->setX(_x);
     this->setY(_y);
-        if (turnedRight) {
-        sprite.setTextureRect(IntRect(getX(), getY(), sprite.getGlobalBounds().width, sprite.getGlobalBounds().height));
-    cout << "ПРАВАК" << endl;
-    }
-            if (!turnedRight) {
-            cout << "Левак!" << endl;
-        sprite.setTextureRect(IntRect(getX() + sprite.getGlobalBounds().width, getY(), -sprite.getGlobalBounds().width, sprite.getGlobalBounds().height));
-    }
 }
 //Player::Player(float _x, float _y) : Object() {
 //    sprite.scale(1, 1);  // Масштабировани модели
@@ -111,14 +111,15 @@ bool Player::intersectsWith(vector<Unmovable>& objects) {
 }
 void Player::draw(RenderWindow& window) {
     cout << "Я НУЖНЫЙ КОНСТРУКТОР" << endl;
-//    if (turnedRight) {
-//        sprite.setTextureRect(IntRect(getX(), getY(), sprite.getGlobalBounds().width, sprite.getGlobalBounds().height));
-//    cout << "ПРАВАК" << endl;
-//    } else
-//        if (!turnedRight) {
-//            cout << "Левак!" << endl;
-//        sprite.setTextureRect(IntRect(getX() + sprite.getGlobalBounds().width, getY(), -sprite.getGlobalBounds().width, sprite.getGlobalBounds().height));
-//    }
+    sprite.setScale(1, 1);
+    if (turnedRight) {
+        sprite.setTextureRect(IntRect(getX(), getY(), sprite.getGlobalBounds().width, sprite.getGlobalBounds().height));
+        cout << "ПРАВАК" << endl;
+    } else if (!turnedRight) {
+        cout << "Левак!" << endl;
+        sprite.setTextureRect(IntRect(getX() + sprite.getGlobalBounds().width, getY(), -sprite.getGlobalBounds().width,sprite.getGlobalBounds().height));
+    }
+    sprite.setScale(0.1, 0.1);
     window.draw(sprite);
     window.draw(border);
 }
