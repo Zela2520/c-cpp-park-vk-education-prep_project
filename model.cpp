@@ -30,9 +30,11 @@ void Object::goDown(float distance) {
 }
 void Object::goRight(float distance) {
     sprite.setPosition(this->getX() + distance, this->getY());
+//    sprite.setRotation(0);
 }
 void Object::goLeft(float distance) {
     sprite.setPosition(this->getX() - distance, this->getY());
+//    sprite.setRotation(180);
 }
 void Object::draw(RenderWindow& window) {
     window.draw(sprite);
