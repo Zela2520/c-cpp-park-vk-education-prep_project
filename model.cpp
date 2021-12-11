@@ -7,7 +7,7 @@
 using namespace sf;
 using namespace std;
 
-Sprite& Object::getSprite() {
+Sprite Object::getSprite() const {
     return sprite;
 }
 float Object::getX() const {
@@ -16,11 +16,20 @@ float Object::getX() const {
 float Object::getY() const {
     return sprite.getPosition().y;
 }
+float Object::getRotation() const {
+    return sprite.getRotation();
+}
 void Object::setX(float _x) {
     sprite.setPosition(_x, this->getY());
 }
 void Object::setY(float _y) {
     sprite.setPosition(this->getX(), _y);
+}
+void Object::setRotation(float _rotation) {
+    sprite.setRotation(_rotation);
+}
+void Object::setTurnedRight(bool _turnedRight) {
+    turnedRight = _turnedRight;
 }
 void Object::goUp(float distance) {
     sprite.setPosition(this->getX(), this->getY() - distance);
@@ -30,13 +39,22 @@ void Object::goDown(float distance) {
 }
 void Object::goRight(float distance) {
     sprite.setPosition(this->getX() + distance, this->getY());
-//    sprite.setRotation(0);
+//    sprite.rotate(180);
+    turnedRight = true;
 }
 void Object::goLeft(float distance) {
     sprite.setPosition(this->getX() - distance, this->getY());
-//    sprite.setRotation(180);
+//    sprite.setTextureRect(IntRect(getX() + sprite.getGlobalBounds().width, getY(), -sprite.getGlobalBounds().width, sprite.getGlobalBounds().height));
+    turnedRight = false;
+//    sprite.rotate(180);
+//    sprite.move(-this->getX(), -this->getY());
 }
 void Object::draw(RenderWindow& window) {
+//    if (turnedRight) {
+//        sprite.setTextureRect(IntRect(getX(), getY(), sprite.getGlobalBounds().width, sprite.getGlobalBounds().height));
+//    } else if (!turnedRight) {
+//        sprite.setTextureRect(IntRect(getX() + sprite.getGlobalBounds().width, getY(), -sprite.getGlobalBounds().width, sprite.getGlobalBounds().height));
+//    }
     window.draw(sprite);
     window.draw(border);
 }
@@ -55,6 +73,14 @@ Unmovable::Unmovable(float _x, float _y, const Texture& texture) : Object() {
 
 Player::Player(float _x, float _y, const Texture& texture) : Object() {
     sprite.setTexture(texture);
+//    if (turnedRight) {
+//        sprite.setTextureRect(IntRect(getX(), getY(), sprite.getGlobalBounds().width, sprite.getGlobalBounds().height));
+//        cout << "ПРАВАК" << endl;
+//    }
+//    if (!turnedRight) {
+//        cout << "Левак!" << endl;
+//        sprite.setTextureRect(IntRect(getX() + sprite.getGlobalBounds().width, getY(), -sprite.getGlobalBounds().width, sprite.getGlobalBounds().height));
+//    }
     sprite.setScale(0.1, 0.1);  // Масштабировани модели
     this->setX(_x);
     this->setY(_y);
@@ -81,20 +107,39 @@ bool Player::intersectsWith(vector<Unmovable>& objects) {
             cout << objectBounds.left << " " << objectBounds.top << " " << objectBounds.height << " " << objectBounds.width << endl;
         }
     }
-\
     return false;
+}
+void Player::draw(RenderWindow& window) {
+    cout << "Я НУЖНЫЙ КОНСТРУКТОР" << endl;
+    sprite.setScale(1, 1);
+    if (turnedRight) {
+        sprite.setTextureRect(IntRect(getX(), getY(), sprite.getGlobalBounds().width, sprite.getGlobalBounds().height));
+        cout << "ПРАВАК" << endl;
+    } else if (!turnedRight) {
+        cout << "Левак!" << endl;
+        sprite.setTextureRect(IntRect(getX() + sprite.getGlobalBounds().width, getY(), -sprite.getGlobalBounds().width,sprite.getGlobalBounds().height));
+    }
+    sprite.setScale(0.1, 0.1);
+    window.draw(sprite);
+    window.draw(border);
 }
 
 
 
 sf::Packet& operator << (sf::Packet& packet, const Player& player) {  // Из игрока в пакет
-    return packet << player.getX() << player.getY();
+    return packet << player.getX() << player.getY() << player.turnedRight;
 }
 sf::Packet& operator >> (sf::Packet& packet, Player& player) {  // Из пакета в игрока
     float x, y;
-    packet >> x >> y;
+    bool turnedRight;
+    packet >> x >> y >> turnedRight;
+    player.setTurnedRight(turnedRight);
     player.setX(x);
     player.setY(y);
+//    if (angle == 0) {
+//        sprite.setTextureRect(IntRect(getX(), getY(), sprite.getGlobalBounds().width, sprite.getGlobalBounds().height));
+//    }
+//    player.setRotation(angle);
     return packet;
 }
 

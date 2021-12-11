@@ -175,15 +175,15 @@ int main(int argc, char* argv[]) {
 //    gachiTexture.loadFromFile("/home/dima/!Stuff/TP/trying to make engine/baby.png");
 //    Sprite gachiSprite(gachiTexture);
     Texture amogusTexture;
-    amogusTexture.loadFromFile("/home/dima/!Stuff/TP/trying to make engine/amogus.png");
+    amogusTexture.loadFromFile("../amogus.png");
     sf::Texture babyTexture;
-    babyTexture.loadFromFile("/home/dima/!Stuff/TP/trying to make engine/baby.png");
+    babyTexture.loadFromFile("../baby.png");
     Texture gachiTexture;
-    gachiTexture.loadFromFile("/home/dima/!Stuff/TP/trying to make engine/gachi.png");
+    gachiTexture.loadFromFile("../gachi.png");
     Texture kotTexture;
-    kotTexture.loadFromFile("/home/dima/!Stuff/TP/trying to make engine/kot.jpg");
+    kotTexture.loadFromFile("../kot.jpg");
     Texture tntTexture;
-    tntTexture.loadFromFile("/home/dima/!Stuff/TP/trying to make engine/tnt.png");
+    tntTexture.loadFromFile("../tnt.png");
     std::vector<Unmovable> unmovables(1, Unmovable(200, 200, gachiTexture));
 
     sf::Packet packet;  // Для передачи даннных между клиент сервером создаём пакет, который будет летать по сети.
