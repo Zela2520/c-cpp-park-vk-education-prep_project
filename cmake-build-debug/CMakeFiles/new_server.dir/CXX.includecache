@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/home/daniil/CLionProjects/application/include/connection.h
+../include/connection.h
 SFML/Graphics.hpp
 -
 SFML/Network.hpp
@@ -17,8 +17,12 @@ string
 -
 vector
 -
+memory
+-
 
-/home/daniil/CLionProjects/application/src/new_server.cpp
-../include/connection.h
-/home/daniil/CLionProjects/application/include/connection.h
+/home/daniil/CLionProjects/application/src/connection.cpp
+connection.h
+/home/daniil/CLionProjects/application/src/connection.h
+cstdlib
+-
 
