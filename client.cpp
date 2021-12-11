@@ -130,7 +130,7 @@ int main() {
     
     sf::Packet packet;  // Создаём пакет для общения клиента с сервером.
     Texture amogusTexture;
-    amogusTexture.loadFromFile("/home/dima/!Stuff/TP/trying to make engine/amogus.png");
+    amogusTexture.loadFromFile("../amogus.png");
     sf::Texture babyTexture;
     babyTexture.loadFromFile("/home/dima/!Stuff/TP/trying to make engine/baby.png");
     Texture gachiTexture;

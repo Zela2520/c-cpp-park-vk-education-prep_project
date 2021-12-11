@@ -14,17 +14,21 @@ class Object {
 protected:
     CircleShape border;
     Sprite sprite;
+    bool turnedRight = true;
 public:
-    Sprite& getSprite();
+    Sprite getSprite() const;
     float getX() const;
     float getY() const;
+    float getRotation() const;
     void setX(float _x);
     void setY(float _y);
+    void setRotation(float _rotation);
+    void setTurnedRight(bool _turnedRight);
     void goUp(float distance = 1);
     void goDown(float distance = 1);
     void goRight(float distance = 1);
     void goLeft(float distance = 1);
-    void draw(RenderWindow& window);
+    virtual void draw(RenderWindow& window);
 //    virtual bool intersectsWith(vector<Object>& objects);
 };
 
@@ -42,6 +46,7 @@ public:
     Player(float _x, float _y, const Texture& texture);
 //    Player(float _x, float _y);
     bool intersectsWith(vector<Unmovable>& objects);
+    void draw(RenderWindow& window) override;
     friend sf::Packet& operator >> (sf::Packet& packet, Player& player);
     friend sf::Packet& operator << (sf::Packet& packet, const Player& player);
 };
