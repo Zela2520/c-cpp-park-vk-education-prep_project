@@ -174,10 +174,20 @@ int main(int argc, char* argv[]) {
 //    sf::Texture gachiTexture;
 //    gachiTexture.loadFromFile("/home/dima/!Stuff/TP/trying to make engine/baby.png");
 //    Sprite gachiSprite(gachiTexture);
-    std::vector<Unmovable> unmovables(1, Unmovable(200, 200));
+    Texture amogusTexture;
+    amogusTexture.loadFromFile("/home/dima/!Stuff/TP/trying to make engine/amogus.png");
+    sf::Texture babyTexture;
+    babyTexture.loadFromFile("/home/dima/!Stuff/TP/trying to make engine/baby.png");
+    Texture gachiTexture;
+    gachiTexture.loadFromFile("/home/dima/!Stuff/TP/trying to make engine/gachi.png");
+    Texture kotTexture;
+    kotTexture.loadFromFile("/home/dima/!Stuff/TP/trying to make engine/kot.jpg");
+    Texture tntTexture;
+    tntTexture.loadFromFile("/home/dima/!Stuff/TP/trying to make engine/tnt.png");
+    std::vector<Unmovable> unmovables(1, Unmovable(200, 200, gachiTexture));
 
     sf::Packet packet;  // Для передачи даннных между клиент сервером создаём пакет, который будет летать по сети.
-    std::vector<Player> players(clients.size(), Player(0, 0));  // инициализируем клиентов значниями по умолчанию.
+    std::vector<Player> players(clients.size(), Player(0, 0, amogusTexture));  // инициализируем клиентов значниями по умолчанию.
     // Заранее отправляем клиентам данные о том, что мячи расположены на нулевых координатах.
     for (auto & client : clients) {  // Для каждого клиента.
         for (auto & player : players) {   // О каждом игроке.

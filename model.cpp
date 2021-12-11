@@ -46,42 +46,47 @@ Unmovable::Unmovable(float _x, float _y, const Texture& texture) : Object() {
     this->setX(_x);
     this->setY(_y);
 }
-Unmovable::Unmovable(float _x, float _y) {
-    this->setX(_x);
-    this->setY(_y);
-}
+//Unmovable::Unmovable(float _x, float _y) {
+//    this->setX(_x);
+//    this->setY(_y);
+//}
 
 Player::Player(float _x, float _y, const Texture& texture) : Object() {
     sprite.setTexture(texture);
-//        sprite.scale(0.1, 0.1);  // Масштабировани модели
+        sprite.scale(1, 1);  // Масштабировани модели
     this->setX(_x);
     this->setY(_y);
 }
-Player::Player(float _x, float _y) : Object() {
-//        sprite.scale(0.1, 0.1);  // Масштабировани модели
-    this->setX(_x);
-    this->setY(_y);
-}
+//Player::Player(float _x, float _y) : Object() {
+//    sprite.scale(1, 1);  // Масштабировани модели
+//    this->setX(_x);
+//    this->setY(_y);
+//}
 bool Player::intersectsWith(vector<Unmovable>& objects) {
     for (auto& object : objects) {
         Rect<float> thisBounds = sprite.getGlobalBounds();
         Rect<float> objectBounds = object.getSprite().getGlobalBounds();
 
-        border.setPointCount(4);
-        border.setPosition(thisBounds.left, thisBounds.top);
-        border.setRadius(thisBounds.width);
-        border.setOutlineColor(Color::Green);
-        border.setOutlineThickness(10);
+//        border.setPointCount(4);
+//        border.setPosition(thisBounds.left, thisBounds.top);
+//        border.setRadius(thisBounds.width);
+//        border.setOutlineColor(Color::Green);
+//        border.setOutlineThickness(10);
 
-        Rect<float> scaledThisBounds(thisBounds.left, thisBounds.top, thisBounds.width*1, thisBounds.height*1);
-        Rect<float> scaledObjectBounds(objectBounds.left, objectBounds.top, objectBounds.width*1, objectBounds.height*1);
+        Rect<float> scaledThisBounds(thisBounds.left, thisBounds.top, thisBounds.width*sprite.getScale().x, thisBounds.height*sprite.getScale().y);
+        Rect<float> scaledObjectBounds(objectBounds.left, objectBounds.top, objectBounds.width*object.getSprite().getScale().x, objectBounds.height*object.getSprite().getScale().y);
         if (scaledThisBounds.intersects((scaledObjectBounds))) {
             std::cout << "ПЕРЕСЕЧЕНИЕ" << endl;
             cout << scaledThisBounds.left << " " << scaledThisBounds.top << " " << scaledThisBounds.height << " " << scaledThisBounds.width << endl;
             cout << scaledObjectBounds.left << " " << scaledObjectBounds.top << " " << scaledObjectBounds.height << " " << scaledObjectBounds.width << endl;
             return true;
+        } else {
+            cout << "НЕТ ПЕРЕСЕЧЕНИЯ" << endl;
+            cout << scaledThisBounds.left << " " << scaledThisBounds.top << " " << scaledThisBounds.height << " " << scaledThisBounds.width << endl;
+            cout << scaledObjectBounds.left << " " << scaledObjectBounds.top << " " << scaledObjectBounds.height << " " << scaledObjectBounds.width << endl;
         }
     }
+\
     return false;
 }
 

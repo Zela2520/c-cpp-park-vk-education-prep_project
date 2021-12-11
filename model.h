@@ -32,7 +32,7 @@ class Unmovable : public Object {
 private:
 public:
     Unmovable(float _x, float _y, const Texture &texture);
-    Unmovable(float _x, float _y);
+//    Unmovable(float _x, float _y);
     friend sf::Packet& operator << (sf::Packet& packet, const Unmovable& unmovable);
     friend sf::Packet& operator >> (sf::Packet& packet, Unmovable& unmovable);
 };
@@ -40,7 +40,7 @@ public:
 class Player : public Object {
 public:
     Player(float _x, float _y, const Texture& texture);
-    Player(float _x, float _y);
+//    Player(float _x, float _y);
     bool intersectsWith(vector<Unmovable>& objects);
     friend sf::Packet& operator >> (sf::Packet& packet, Player& player);
     friend sf::Packet& operator << (sf::Packet& packet, const Player& player);
