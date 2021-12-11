@@ -57,9 +57,9 @@ int main() {
         sf::Event event; // переменная для отслеживания событий, происходящих на кажой итерации цикла
         std::string dir;  // направление движения, которое будет обрабатваться на сервере
         while (window.pollEvent(event)) {
-                if (event.type == sf::Event::Closed) {
-                    window.close();
-                }
+            if (event.type == sf::Event::Closed) {
+                window.close();
+            }
         }
         if (window.hasFocus()) {
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {

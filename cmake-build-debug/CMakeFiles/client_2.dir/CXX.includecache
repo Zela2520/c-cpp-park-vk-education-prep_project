@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/home/daniil/CLionProjects/application/client_2.cpp
+/home/daniil/CLionProjects/application/src/client.cpp
 SFML/Graphics.hpp
 -
 SFML/Network.hpp

@@ -66,27 +66,27 @@ include CMakeFiles/client_2.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/client_2.dir/flags.make
 
-CMakeFiles/client_2.dir/client_2.cpp.o: CMakeFiles/client_2.dir/flags.make
-CMakeFiles/client_2.dir/client_2.cpp.o: ../client_2.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/daniil/CLionProjects/application/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/client_2.dir/client_2.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/client_2.dir/client_2.cpp.o -c /home/daniil/CLionProjects/application/client_2.cpp
+CMakeFiles/client_2.dir/src/client.cpp.o: CMakeFiles/client_2.dir/flags.make
+CMakeFiles/client_2.dir/src/client.cpp.o: ../src/client.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/daniil/CLionProjects/application/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/client_2.dir/src/client.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/client_2.dir/src/client.cpp.o -c /home/daniil/CLionProjects/application/src/client.cpp
 
-CMakeFiles/client_2.dir/client_2.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/client_2.dir/client_2.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/daniil/CLionProjects/application/client_2.cpp > CMakeFiles/client_2.dir/client_2.cpp.i
+CMakeFiles/client_2.dir/src/client.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/client_2.dir/src/client.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/daniil/CLionProjects/application/src/client.cpp > CMakeFiles/client_2.dir/src/client.cpp.i
 
-CMakeFiles/client_2.dir/client_2.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/client_2.dir/client_2.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/daniil/CLionProjects/application/client_2.cpp -o CMakeFiles/client_2.dir/client_2.cpp.s
+CMakeFiles/client_2.dir/src/client.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/client_2.dir/src/client.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/daniil/CLionProjects/application/src/client.cpp -o CMakeFiles/client_2.dir/src/client.cpp.s
 
 # Object files for target client_2
 client_2_OBJECTS = \
-"CMakeFiles/client_2.dir/client_2.cpp.o"
+"CMakeFiles/client_2.dir/src/client.cpp.o"
 
 # External object files for target client_2
 client_2_EXTERNAL_OBJECTS =
 
-client_2: CMakeFiles/client_2.dir/client_2.cpp.o
+client_2: CMakeFiles/client_2.dir/src/client.cpp.o
 client_2: CMakeFiles/client_2.dir/build.make
 client_2: /usr/lib/x86_64-linux-gnu/libsfml-graphics.so
 client_2: /usr/lib/x86_64-linux-gnu/libsfml-window.so

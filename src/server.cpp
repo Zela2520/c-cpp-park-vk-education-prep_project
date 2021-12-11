@@ -19,25 +19,16 @@ sf::Packet& operator >>(sf::Packet& packet, Ball& ball)
     return packet >> ball.x >> ball.y >> ball.color;
 }
 
-
 int main(int argc, char* argv[]) {
-    if (argc != 2) {
-        perror("The server haven't been init");
-        exit(EXIT_FAILURE);
-    }
-
     sf::TcpListener listener;
-    // std::thread th();
 
     // устанвливаем по какому порту  будет проходить подключение к серверу
     if (listener.listen(3000) != sf::Socket::Done) {
         std::cerr << "Error";
     }
 
-    // сделать очередь для ожидание на подключения к серверу
     // рассмотрим случай для двух клиентов
-    std::vector<sf::TcpSocket> clients(4);
-
+    std::vector<sf::TcpSocket> clients(2);
 
     // инициализация сокета для дальнейшего взаимодействия с клиентом
     // если кто-то подключается, то accept индентифицирует клиента для дальнешей работы с ним
@@ -53,13 +44,12 @@ int main(int argc, char* argv[]) {
 
     // записывем данные о каждом мяче на карте в пакет и отправляем каждому клиенту все мячи
     for (int i = 0; i < clients.size(); ++i) {
-        // std::thread th(sent_game(packet), packet);
         for (int j = 0; j < user_balls.size(); ++j) {
             packet << user_balls[j];
             clients[i].send(packet);
             packet.clear();
 
-            // печатаем мячики, которые отправляются каждому клиенту
+            // печатаем мячики, которые отправляюися каждому клиенту
             std::cout << user_balls[j].x << ' '<< user_balls[j].y << ' ' << user_balls[j].color << '\n';
         }
     }
@@ -96,7 +86,7 @@ int main(int argc, char* argv[]) {
                 packet << user_balls[j];
                 clients[i].send(packet);
                 packet.clear();
-                std::cout << user_balls[j].x << ' '<< user_balls[j].y << ' ' << user_balls[j].color << '\n';
+                // std::cout << user_balls[j].x << ' '<< user_balls[j].y << ' ' << user_balls[j].color << '\n';
             }
         }
     }

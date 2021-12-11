@@ -65,16 +65,6 @@ CMAKE_BINARY_DIR = /home/daniil/CLionProjects/application/cmake-build-debug
 #=============================================================================
 # Targets provided globally by CMake.
 
-# Special rule for the target edit_cache
-edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	/snap/clion/175/bin/cmake/linux/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
-.PHONY : edit_cache
-
-# Special rule for the target edit_cache
-edit_cache/fast: edit_cache
-.PHONY : edit_cache/fast
-
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
@@ -84,6 +74,16 @@ rebuild_cache:
 # Special rule for the target rebuild_cache
 rebuild_cache/fast: rebuild_cache
 .PHONY : rebuild_cache/fast
+
+# Special rule for the target edit_cache
+edit_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
+	/snap/clion/175/bin/cmake/linux/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+.PHONY : edit_cache
+
+# Special rule for the target edit_cache
+edit_cache/fast: edit_cache
+.PHONY : edit_cache/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -117,30 +117,17 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named server
+# Target rules for targets named new_server
 
 # Build rule for target.
-server: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 server
-.PHONY : server
+new_server: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 new_server
+.PHONY : new_server
 
 # fast build rule for target.
-server/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/build
-.PHONY : server/fast
-
-#=============================================================================
-# Target rules for targets named client
-
-# Build rule for target.
-client: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 client
-.PHONY : client
-
-# fast build rule for target.
-client/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/build
-.PHONY : client/fast
+new_server/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/new_server.dir/build.make CMakeFiles/new_server.dir/build
+.PHONY : new_server/fast
 
 #=============================================================================
 # Target rules for targets named client_2
@@ -155,77 +142,93 @@ client_2/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/client_2.dir/build.make CMakeFiles/client_2.dir/build
 .PHONY : client_2/fast
 
-client.o: client.cpp.o
-.PHONY : client.o
+#=============================================================================
+# Target rules for targets named client
+
+# Build rule for target.
+client: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 client
+.PHONY : client
+
+# fast build rule for target.
+client/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/build
+.PHONY : client/fast
+
+src/client.o: src/client.cpp.o
+.PHONY : src/client.o
 
 # target to build an object file
-client.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/client.cpp.o
-.PHONY : client.cpp.o
+src/client.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client_2.dir/build.make CMakeFiles/client_2.dir/src/client.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/src/client.cpp.o
+.PHONY : src/client.cpp.o
 
-client.i: client.cpp.i
-.PHONY : client.i
+src/client.i: src/client.cpp.i
+.PHONY : src/client.i
 
 # target to preprocess a source file
-client.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/client.cpp.i
-.PHONY : client.cpp.i
+src/client.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client_2.dir/build.make CMakeFiles/client_2.dir/src/client.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/src/client.cpp.i
+.PHONY : src/client.cpp.i
 
-client.s: client.cpp.s
-.PHONY : client.s
+src/client.s: src/client.cpp.s
+.PHONY : src/client.s
 
 # target to generate assembly for a file
-client.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/client.cpp.s
-.PHONY : client.cpp.s
+src/client.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client_2.dir/build.make CMakeFiles/client_2.dir/src/client.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/src/client.cpp.s
+.PHONY : src/client.cpp.s
 
-client_2.o: client_2.cpp.o
-.PHONY : client_2.o
+src/connection.o: src/connection.cpp.o
+.PHONY : src/connection.o
 
 # target to build an object file
-client_2.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/client_2.dir/build.make CMakeFiles/client_2.dir/client_2.cpp.o
-.PHONY : client_2.cpp.o
+src/connection.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/new_server.dir/build.make CMakeFiles/new_server.dir/src/connection.cpp.o
+.PHONY : src/connection.cpp.o
 
-client_2.i: client_2.cpp.i
-.PHONY : client_2.i
+src/connection.i: src/connection.cpp.i
+.PHONY : src/connection.i
 
 # target to preprocess a source file
-client_2.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/client_2.dir/build.make CMakeFiles/client_2.dir/client_2.cpp.i
-.PHONY : client_2.cpp.i
+src/connection.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/new_server.dir/build.make CMakeFiles/new_server.dir/src/connection.cpp.i
+.PHONY : src/connection.cpp.i
 
-client_2.s: client_2.cpp.s
-.PHONY : client_2.s
+src/connection.s: src/connection.cpp.s
+.PHONY : src/connection.s
 
 # target to generate assembly for a file
-client_2.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/client_2.dir/build.make CMakeFiles/client_2.dir/client_2.cpp.s
-.PHONY : client_2.cpp.s
+src/connection.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/new_server.dir/build.make CMakeFiles/new_server.dir/src/connection.cpp.s
+.PHONY : src/connection.cpp.s
 
-server.o: server.cpp.o
-.PHONY : server.o
+src/new_server.o: src/new_server.cpp.o
+.PHONY : src/new_server.o
 
 # target to build an object file
-server.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/server.cpp.o
-.PHONY : server.cpp.o
+src/new_server.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/new_server.dir/build.make CMakeFiles/new_server.dir/src/new_server.cpp.o
+.PHONY : src/new_server.cpp.o
 
-server.i: server.cpp.i
-.PHONY : server.i
+src/new_server.i: src/new_server.cpp.i
+.PHONY : src/new_server.i
 
 # target to preprocess a source file
-server.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/server.cpp.i
-.PHONY : server.cpp.i
+src/new_server.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/new_server.dir/build.make CMakeFiles/new_server.dir/src/new_server.cpp.i
+.PHONY : src/new_server.cpp.i
 
-server.s: server.cpp.s
-.PHONY : server.s
+src/new_server.s: src/new_server.cpp.s
+.PHONY : src/new_server.s
 
 # target to generate assembly for a file
-server.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/server.cpp.s
-.PHONY : server.cpp.s
+src/new_server.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/new_server.dir/build.make CMakeFiles/new_server.dir/src/new_server.cpp.s
+.PHONY : src/new_server.cpp.s
 
 # Help Target
 help:
@@ -237,16 +240,16 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... client"
 	@echo "... client_2"
-	@echo "... server"
-	@echo "... client.o"
-	@echo "... client.i"
-	@echo "... client.s"
-	@echo "... client_2.o"
-	@echo "... client_2.i"
-	@echo "... client_2.s"
-	@echo "... server.o"
-	@echo "... server.i"
-	@echo "... server.s"
+	@echo "... new_server"
+	@echo "... src/client.o"
+	@echo "... src/client.i"
+	@echo "... src/client.s"
+	@echo "... src/connection.o"
+	@echo "... src/connection.i"
+	@echo "... src/connection.s"
+	@echo "... src/new_server.o"
+	@echo "... src/new_server.i"
+	@echo "... src/new_server.s"
 .PHONY : help
 
 

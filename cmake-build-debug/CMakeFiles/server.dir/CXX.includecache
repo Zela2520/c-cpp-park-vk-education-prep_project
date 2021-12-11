@@ -6,17 +6,15 @@
 
 #IncludeRegexTransform: 
 
-/home/daniil/CLionProjects/application/server.cpp
+../include/model.h
+SFML/Graphics.hpp
+-
 SFML/Network.hpp
 -
 iostream
 -
-string
--
-thread
--
-vector
--
-queue
--
+
+/home/daniil/CLionProjects/application/src/model.cpp
+model.h
+/home/daniil/CLionProjects/application/src/model.h
 

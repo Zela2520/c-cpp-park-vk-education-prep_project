@@ -1,5 +1,5 @@
-/home/daniil/CLionProjects/application/cmake-build-debug/CMakeFiles/server.dir
+/home/daniil/CLionProjects/application/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/daniil/CLionProjects/application/cmake-build-debug/CMakeFiles/new_server.dir
+/home/daniil/CLionProjects/application/cmake-build-debug/CMakeFiles/client_2.dir
 /home/daniil/CLionProjects/application/cmake-build-debug/CMakeFiles/client.dir
 /home/daniil/CLionProjects/application/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/daniil/CLionProjects/application/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/home/daniil/CLionProjects/application/cmake-build-debug/CMakeFiles/client_2.dir
