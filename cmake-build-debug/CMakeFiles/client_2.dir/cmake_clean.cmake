@@ -1,5 +1,5 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/client_2.dir/client.cpp.o"
+  "CMakeFiles/client_2.dir/client_2.cpp.o"
   "client_2"
   "client_2.pdb"
 )

@@ -6,21 +6,17 @@
 
 #IncludeRegexTransform: 
 
-../include/connection.h
-SFML/Graphics.hpp
--
+/home/daniil/CLionProjects/application/server.cpp
 SFML/Network.hpp
 -
 iostream
 -
 string
 -
-queue
+thread
 -
-
-/home/daniil/CLionProjects/application/server.cpp
-connection.h
-/home/daniil/CLionProjects/application/connection.h
 vector
+-
+queue
 -
 

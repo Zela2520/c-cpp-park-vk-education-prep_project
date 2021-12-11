@@ -178,6 +178,8 @@
 		</Build>
 		<Unit filename="/home/daniil/CLionProjects/application/client.cpp">
 			<Option target="client"/>
+		</Unit>
+		<Unit filename="/home/daniil/CLionProjects/application/client_2.cpp">
 			<Option target="client_2"/>
 		</Unit>
 		<Unit filename="/home/daniil/CLionProjects/application/server.cpp">

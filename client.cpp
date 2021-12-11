@@ -3,6 +3,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <thread>
 
 struct Ball {
     int x;
@@ -19,6 +20,7 @@ sf::Packet& operator >>(sf::Packet& packet, Ball& ball)
 {
     return packet >> ball.x >> ball.y >> ball.color;
 }
+
 
 int main() {
     setlocale(LC_ALL, "");
