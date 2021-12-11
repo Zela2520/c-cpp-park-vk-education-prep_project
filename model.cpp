@@ -53,7 +53,7 @@ Unmovable::Unmovable(float _x, float _y, const Texture& texture) : Object() {
 
 Player::Player(float _x, float _y, const Texture& texture) : Object() {
     sprite.setTexture(texture);
-        sprite.scale(1, 1);  // Масштабировани модели
+    sprite.scale(0.1, 0.1);  // Масштабировани модели
     this->setX(_x);
     this->setY(_y);
 }

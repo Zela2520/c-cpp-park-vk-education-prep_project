@@ -140,7 +140,7 @@ int main() {
     Texture tntTexture;
     tntTexture.loadFromFile("/home/dima/!Stuff/TP/trying to make engine/tnt.png");
 
-    std::vector<Player> players(2, Player(0, 0, tntTexture));  // Инициализируем начальное положение объектов на карте, принимая данные от сервера.
+    std::vector<Player> players(2, Player(0, 0, amogusTexture));  // Инициализируем начальное положение объектов на карте, принимая данные от сервера.
 
 
 //    Sprite gachiSprite(gachiTexture);
