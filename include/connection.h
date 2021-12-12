@@ -6,16 +6,14 @@
 #include <iostream>
 #include <string>
 #include <vector>
-#include <memory>
 
 namespace server_logic {
 
     class Server {
     private:
         size_t m_port;
-        size_t m_number_of_clients;
         sf::TcpListener m_listener;
-        std::vector<std::unique_ptr<sf::TcpSocket>> m_clients;
+        std::vector<sf::TcpSocket*> m_clients;
         sf::Packet m_packet;
         struct Ball {
             int x;
@@ -29,10 +27,8 @@ namespace server_logic {
         Server(size_t port);
         ~Server() = default;
         void set_connection();
-        void set_clients_size();
         void receive_clients();
         void clients_init();
-        void set_user_balls_size();
         void send_data();
         void clients_movements();
         void start_server();

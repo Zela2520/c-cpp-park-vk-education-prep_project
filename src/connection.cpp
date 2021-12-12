@@ -5,7 +5,7 @@
 
 server_logic::Server::Server(size_t port) {
     m_port = port;
-    m_number_of_clients = MAX_NUMBER_OF_CLIENTS;
+    // m_clients.reserve(MAX_NUMBER_OF_CLIENTS);
     std::cout << "Server was started\n";
 }
 
@@ -17,34 +17,37 @@ void server_logic::Server::set_connection() {
     }
 
     std::cout << "Сервер начал слушать\n";
-    this->set_clients_size();
-    this->set_user_balls_size();
 }
 
 void server_logic::Server::receive_clients() {
     std::cout << "Сервер должен принять клиента\n";
-    for (auto &client : m_clients) {
-        m_listener.accept(*client);
-        std::cout << "Сервер принял клиента\n";
+    sf::TcpSocket* temp_socket;
+    size_t count = 0;
+    while (count < MAX_NUMBER_OF_CLIENTS) {
+        m_listener.accept(*temp_socket);
+        m_clients.emplace_back(temp_socket);
+        ++count;
     }
+    std::cout << "Сервер принял клиента\n";
 }
 
 void server_logic::Server::clients_init() {
     std::cout << " КЛИЕНТ ДОЛЖЕН БЫТЬ ИНИЦИЛИЗИРОВАН\n";
-    for (auto &cur_ball : m_user_balls) {
-        cur_ball.x = 0;
-        cur_ball.y = 0;
-        cur_ball.color = "Black";
-        std::cout << " КЛИЕНТ ИНИЦИАЛИЗИРОВАН\n";
+    Ball cur_ball{0, 0,"Black"};
+    size_t count = 0;
+    while (count < MAX_NUMBER_OF_CLIENTS) {
+        m_user_balls.emplace_back(cur_ball);
+        ++count;
     }
+    std::cout << " КЛИЕНТ ИНИЦИАЛИЗИРОВАН\n";
 }
 
 void server_logic::Server::send_data() {
     std::cout << "ДАННЫЕ ДОЛЖНЫ БЫТЬ ОТПРАВЛЕНЫ\n";
-    for (int i = 0; i < m_clients.size(); ++i) {
-        for (int j = 0; j < m_user_balls.size(); ++j) {
-            m_packet << m_user_balls[j];
-            m_clients[i]->send(m_packet);
+    for (auto& cur_client : m_clients) {
+        for (auto& cur_ball : m_user_balls) {
+            m_packet << cur_ball;
+            cur_client->send(m_packet);
             m_packet.clear();
             std::cout << "ДАННЫЕ БЫЛИ ОТПРАВЛЕНЫ\n";
         }
@@ -74,6 +77,9 @@ void server_logic::Server::clients_movements() {
         if (dir == "LEFT") {
             --m_user_balls[i].x;
         }
+
+        std::cout << " information has been received\n";
+        this->send_data();
     }
     std::cout << "ЗАКАНЧИВАЕМ ОТСЛЕЖИВАТЬ ПЕРЕДВИЖЕНИЯ КЛИЕНТА\n";
 }
@@ -81,20 +87,10 @@ void server_logic::Server::clients_movements() {
 void server_logic::Server::start_server() {
     std::cout << "СТАРТ";
     while (1) {
-        this->clients_movements();
-        this->send_data();
+        clients_movements();
+        std::cout << "ДАННЫЕ ДОЛЖНЫ УЛЕТЕТЬ КЛИЕНТУ";
+        // send_data();
+        std::cout << "ДАННЫЕ УЛЕТЕЛИ КЛИЕНТУ";
     }
-    std::cout << "";
-}
-
-
-void server_logic::Server::set_clients_size() {
-    std::cout << "УСТАНВЛИВАЕМ РАЗМЕР\n";
-    m_clients.reserve(m_number_of_clients);
-}
-
-void server_logic::Server::set_user_balls_size() {
-    std::cout << "УСТАНВЛИВАЕМ РАЗМЕР\n";
-    m_user_balls.reserve(m_number_of_clients);
 }
 

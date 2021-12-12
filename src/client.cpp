@@ -56,6 +56,7 @@ int main() {
     while (window.isOpen()) {
         sf::Event event; // переменная для отслеживания событий, происходящих на кажой итерации цикла
         std::string dir;  // направление движения, которое будет обрабатваться на сервере
+
         while (window.pollEvent(event)) {
             if (event.type == sf::Event::Closed) {
                 window.close();
@@ -80,7 +81,7 @@ int main() {
         packet << dir;
         socket.send(packet);
         packet.clear();
-        std::cout << dir << '\n';
+        // std::cout << dir << '\n';
 
         // Отрисовываем все мячи у каждого пользователя
         // получаем обработанные(обновлённые) данные с сервера
