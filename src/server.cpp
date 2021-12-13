@@ -89,6 +89,7 @@ int main(int argc, char* argv[]) {
                 // std::cout << user_balls[j].x << ' '<< user_balls[j].y << ' ' << user_balls[j].color << '\n';
             }
         }
+
     }
     return 0;
 }

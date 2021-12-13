@@ -17,6 +17,8 @@ string
 -
 vector
 -
+memory
+-
 
 /home/daniil/CLionProjects/application/src/connection.cpp
 connection.h

@@ -55,7 +55,7 @@ int main() {
     // выполняем действия над объектом конкретного клиента
     while (window.isOpen()) {
         sf::Event event; // переменная для отслеживания событий, происходящих на кажой итерации цикла
-        std::string dir;  // направление движения, которое будет обрабатваться на сервере
+        std::string dir = "\0";  // направление движения, которое будет обрабатваться на сервере
 
         while (window.pollEvent(event)) {
             if (event.type == sf::Event::Closed) {
@@ -64,16 +64,20 @@ int main() {
         }
         if (window.hasFocus()) {
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
-                dir = "UP";
+                dir = "UP\n";
+                std::cout << "UP\n";
             }
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
-                dir = "DOWN";
+                dir = "DOWN\n";
+                std::cout << "DOWN\n";
             }
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
-                dir = "RIGHT";
+                dir = "RIGHT\n";
+                std::cout << "RIGHT\n";
             }
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
-                dir = "LEFT";
+                dir = "LEFT\n";
+                std::cout << "LEFT\n";
             }
         }
 
@@ -81,7 +85,7 @@ int main() {
         packet << dir;
         socket.send(packet);
         packet.clear();
-        // std::cout << dir << '\n';
+        std::cout << dir << '\n';
 
         // Отрисовываем все мячи у каждого пользователя
         // получаем обработанные(обновлённые) данные с сервера

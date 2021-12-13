@@ -6,6 +6,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <memory>
 
 namespace server_logic {
 
@@ -33,9 +34,10 @@ namespace server_logic {
         void clients_movements();
         void start_server();
 
-        friend sf::Packet& operator<<(sf::Packet& packet, const Ball& ball) {
+        friend sf::Packet &operator<<(sf::Packet &packet, const Ball &ball) {
             return packet << ball.x << ball.y << ball.color;
         }
+
         friend sf::Packet& operator>>(sf::Packet& packet, Ball& ball) {
             return packet >> ball.x >> ball.y >> ball.color;
         }
