@@ -3,7 +3,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
-#include "model.h"
+#include "../include/model.h"
 using namespace sf;
 using namespace std;
 
@@ -175,7 +175,7 @@ int main(int argc, char* argv[]) {
 //    gachiTexture.loadFromFile("/home/dima/!Stuff/TP/trying to make engine/baby.png");
 //    Sprite gachiSprite(gachiTexture);
     Texture amogusTexture;
-    amogusTexture.loadFromFile("../include/textures/amogus.png");
+    amogusTexture.loadFromFile("/home/dima/!Stuff/TP/trying to make engine/include/textures/amogus.png");
     sf::Texture babyTexture;
     babyTexture.loadFromFile("../include/textures/baby.png");
     Texture gachiTexture;
@@ -185,7 +185,8 @@ int main(int argc, char* argv[]) {
     Texture tntTexture;
     tntTexture.loadFromFile("../include/textures/tnt.png");
 
-    sf::Packet packet;  // Для передачи даннных между клиент сервером создаём пакет, который будет летать по сети.
+    sf::Packet packet;  // Создаём пакет для общения клиента с сервером.
+
     std::vector<Player> players(clients.size(), Player(0, 0, amogusTexture));  // инициализируем клиентов значниями по умолчанию.
 
     std::vector<Unmovable> unmovables(1, Unmovable(200, 200, gachiTexture));

@@ -1,7 +1,7 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Network.hpp>
 #include <iostream>
-#include "model.h"
+#include "../include/model.h"
 using namespace sf;
 using namespace std;
 

@@ -3,7 +3,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
-#include "model.h"
+#include "../include/model.h"
 
 using namespace sf;
 
@@ -130,7 +130,7 @@ int main() {
     
     sf::Packet packet;  // Создаём пакет для общения клиента с сервером.
     Texture amogusTexture;
-    amogusTexture.loadFromFile("../include/textures/amogus.png");
+    amogusTexture.loadFromFile("/home/dima/!Stuff/TP/trying to make engine/include/textures/amogus.png");
     sf::Texture babyTexture;
     babyTexture.loadFromFile("../include/textures/baby.png");
     Texture gachiTexture;
@@ -142,8 +142,6 @@ int main() {
 
     std::vector<Player> players(2, Player(0, 0, amogusTexture));  // Инициализируем начальное положение объектов на карте, принимая данные от сервера.
 
-
-//    Sprite gachiSprite(gachiTexture);
     std::vector<Unmovable> unmovables(1, Unmovable(200, 200, gachiTexture));
 
     RenderWindow window(sf::VideoMode(500, 500), "Squid game");  // Создаём игровое окно.
