@@ -18,7 +18,7 @@ protected:
     float defaultHeight = -1;
     float xScale = 1;
     float yScale = 1;
-    float rotation;
+    float rotation = 0;
     Sprite sprite;
     bool turnedRight = true;
 //    Texture texture;
@@ -65,6 +65,8 @@ public:
 
 Packet& operator >> (sf::Packet& packet, bool* directions);
 Packet& operator << (sf::Packet& packet, const bool* directions);
+
+
 
 
 #endif // PROJECT_INCLUDE_MODEL_H_
