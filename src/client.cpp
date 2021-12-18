@@ -28,10 +28,15 @@ int main() {
     kotTexture.loadFromFile("../include/textures/kot.jpg");
     Texture tntTexture;
     tntTexture.loadFromFile("../include/textures/tnt.png");
+    Texture laserTexture;
+    laserTexture.loadFromFile("../include/textures/laser.png");
 
 
     std::vector<Player> players(2, Player(0, 0, amogusTexture));  //// Инициализируем начальное положение объектов на карте, принимая данные от сервера.
     std::vector<Unmovable> unmovables(1, Unmovable(200, 200, gachiTexture));
+    std::vector<Turret> turrets(1, Turret(-300, -300, babyTexture));
+    std::vector<Bullet> bullets(1, Bullet(turrets[0].getX(), turrets[0].getY(), 0, laserTexture));
+
 
 
     RenderWindow window(sf::VideoMode(500, 500), "Squid game");  //// Создаём игровое окно.
@@ -70,6 +75,24 @@ int main() {
         }
         for (auto& unmovable : unmovables) {
             unmovable.draw(window);
+        }
+
+        for (auto& turret : turrets) {
+            socket.receive(packet);
+            packet >> turret;
+            packet.clear();
+        }
+        for (auto& turret : turrets) {
+            turret.draw(window);
+        }
+
+        for (auto& bullet : bullets) {
+            socket.receive(packet);
+            packet >> bullet;
+            packet.clear();
+        }
+        for (auto& bullet : bullets) {
+            bullet.draw(window);
         }
         window.display();
 

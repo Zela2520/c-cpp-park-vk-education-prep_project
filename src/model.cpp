@@ -49,6 +49,10 @@ void Object::setScale(float _xScale, float _yScale) {
     yScale = _yScale;
     sprite.setScale(_xScale, _yScale);
 }
+void Object::move(float x, float y) {
+    setX(getX() + x);
+    setY(getY() + y);
+}
 void Object::goUp(float distance) {
     y -= distance;
     sprite.move(0, -distance);
@@ -73,6 +77,8 @@ void Object::draw(RenderWindow& window) {
 
 Unmovable::Unmovable(float _x, float _y, const Texture& texture) : Object() {
     sprite.setTexture(texture);
+    defaultWidth = sprite.getGlobalBounds().width;
+    defaultHeight = sprite.getGlobalBounds().height;
     setX(_x);
     setY(_y);
 }
@@ -120,6 +126,16 @@ int Player::getId() const {
 }
 
 
+Turret::Turret(float _x, float _y, const Texture& texture) {
+    sprite.setTexture(texture);
+    defaultWidth = sprite.getGlobalBounds().width;
+    defaultHeight = sprite.getGlobalBounds().height;
+    setX(_x);
+    setY(_y);
+}
+
+
+
 
 sf::Packet& operator << (sf::Packet& packet, const Player& player) {  //// Из игрока в пакет
     return packet << player.getId() << player.getX() << player.getY() << player.turnedRight;
@@ -153,4 +169,26 @@ sf::Packet& operator >> (sf::Packet& packet, Unmovable& unmovable) {  //// Па�
 }
 sf::Packet& operator << (sf::Packet& packet, const Unmovable& unmovable) {  //// Из статичного объекта в пакет
     return packet << unmovable.getX() << unmovable.getY();
+}
+
+sf::Packet& operator >> (sf::Packet& packet, Turret& turret) {
+    float x, y;
+    packet >> x >> y;
+    turret.setX(x);
+    turret.setY(y);
+    return packet;
+}
+sf::Packet& operator << (sf::Packet& packet, const Turret& turret) {
+    return packet << turret.getX() << turret.getY();
+}
+
+sf::Packet& operator >> (sf::Packet& packet, Bullet& bullet) {
+    float x, y;
+    packet >> x >> y;
+    bullet.setX(x);
+    bullet.setY(y);
+    return packet;
+}
+sf::Packet& operator << (sf::Packet& packet, const Bullet& bullet) {
+    return packet << bullet.getX() << bullet.getY();
 }

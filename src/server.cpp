@@ -38,15 +38,17 @@ int main(int argc, char* argv[]) {
     kotTexture.loadFromFile("../include/textures/kot.jpg");
     Texture tntTexture;
     tntTexture.loadFromFile("../include/textures/tnt.png");
+    Texture laserTexture;
+    laserTexture.loadFromFile("../include/textures/laser.png");
 
     std::vector<Player> players;
     for (int i = 0; i < 2; i++) {
         players.emplace_back(0, 0, amogusTexture);
         players[i].setId(i);
     }
-//    std::vector<Player> players(clients.size(), Player(0, 0, amogusTexture));  //// Задаём начальное положение массиву игроков.
-
     std::vector<Unmovable> unmovables(1, Unmovable(200, 200, gachiTexture));   //// Создаём одну стенку.
+    std::vector<Turret> turrets(1, Turret(-300, -300, babyTexture));
+    std::vector<Bullet> bullets(1, Bullet(turrets[0].getX(), turrets[0].getY(), 0, laserTexture));
 
 
     //// Заранее отправляем клиентам данные о том, что мячи расположены на нулевых координатах.
@@ -62,6 +64,16 @@ int main(int argc, char* argv[]) {
             client.send(packet);
             packet.clear();
 //            std::cout << unmovable.getX() << ' ' << unmovable.getY() << '\n';  // Дебаг.
+        }
+        for (auto & turret : turrets) {
+            packet << turret;
+            client.send(packet);
+            packet.clear();
+        }
+        for (auto & bullet : bullets) {
+            packet << bullet;
+            client.send(packet);
+            packet.clear();
         }
     }
 
@@ -114,6 +126,16 @@ int main(int argc, char* argv[]) {
                 packet.clear();
 
 //            std::cout << unmovable.getX() << ' ' << unmovable.getY() << '\n';  // Дебаг.
+            }
+            for (auto & turret : turrets) {
+                packet << turret;
+                client.send(packet);
+                packet.clear();
+            }
+            for (auto & bullet : bullets) {
+                packet << bullet;
+                client.send(packet);
+                packet.clear();
             }
         }
     }

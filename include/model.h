@@ -34,6 +34,7 @@ public:
     void setScale(float _x, float _y);
     void setX(float _x);
     void setY(float _y);
+    void move(float _x, float _y);
     void setRotation(float _rotation);
     void setTurnedRight(bool _turnedRight);
     void goUp(float distance = 1);
@@ -66,7 +67,27 @@ public:
     friend sf::Packet& operator << (sf::Packet& packet, const Player& player);
 };
 
-//c
+class Turret : public Object {
+public:
+    Turret(float _x, float _y, const Texture& texture);
+    friend sf::Packet& operator >> (sf::Packet& packet, Turret& turret);
+    friend sf::Packet& operator << (sf::Packet& packet, const Turret& turret);
+};
+
+class Bullet : public Object {
+    bool isAlive = false;
+public:
+    Bullet(float _x, float _y, float _rotation, const Texture& texture) {
+        rotation = _rotation;
+        sprite.setTexture(texture);
+        setX(_x);
+        setY(_y);
+        isAlive = true;
+    }
+    friend sf::Packet& operator >> (sf::Packet& packet, Bullet& bullet);
+    friend sf::Packet& operator << (sf::Packet& packet, const Bullet& bullet);
+};
+
 
 Packet& operator >> (sf::Packet& packet, bool* directions);
 Packet& operator << (sf::Packet& packet, const bool* directions);
