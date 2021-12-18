@@ -6,14 +6,15 @@
 using namespace sf;
 using namespace std;
 
+#define LOL (30)
 
 
 int main(int argc, char* argv[]) {
     sf::TcpListener listener;
     //// Устанавливаем по какому порту будет проходить подключение к серверу
-    if (listener.listen(3000) != sf::Socket::Done) {  //// Слушаем порт 3000.
-        std::cerr << "Error";
-    }
+        if (listener.listen(3000) != sf::Socket::Done) {  //// Слушаем порт 3000.
+            std::cerr << "Error";
+        }
     sf::Packet packet;  //// Создаём пакет для общения клиента с сервером.
 
     // Рассмотрим случай для двух клиентов
@@ -30,24 +31,16 @@ int main(int argc, char* argv[]) {
     //// Все используемые в программе текстуры.
     Texture amogusTexture;
     amogusTexture.loadFromFile("../include/textures/amogus.png");
-    sf::Texture babyTexture;
-    //babyTexture.loadFromFile("../include/textures/baby.png");
     Texture gachiTexture;
     gachiTexture.loadFromFile("../include/textures/gachi.png");
-    Texture kotTexture;
-    // kotTexture.loadFromFile("../include/textures/kot.jpg");
-    Texture tntTexture;
-    // tntTexture.loadFromFile("../include/textures/tnt.png");
 
     std::vector<Player> players;
     for (int i = 0; i < 2; i++) {
         players.emplace_back(0, 0, amogusTexture);
         players[i].setId(i);
     }
-//    std::vector<Player> players(clients.size(), Player(0, 0, amogusTexture));  //// Задаём начальное положение массиву игроков.
 
     std::vector<Unmovable> unmovables(1, Unmovable(200, 200, gachiTexture));   //// Создаём одну стенку.
-
 
     //// Заранее отправляем клиентам данные о том, что мячи расположены на нулевых координатах.
     for (auto & client : clients) {  //// Для каждого клиента.
@@ -55,8 +48,8 @@ int main(int argc, char* argv[]) {
             packet << player;
             client.send(packet);
             packet.clear();
-//            std::cout << player.getX() << ' ' << player.getY() << std::endl;  // Дебаг.
         }
+
         for (auto & unmovable : unmovables) {   //// И о каждом несдвигаемом объекте.
             packet << unmovable;
             client.send(packet);

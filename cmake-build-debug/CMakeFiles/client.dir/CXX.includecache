@@ -32,3 +32,15 @@ vector
 ../include/model.h
 /home/daniil/CLionProjects/application/include/model.h
 
+/home/daniil/CLionProjects/application/src/model.cpp
+SFML/Graphics.hpp
+-
+SFML/Network.hpp
+-
+iostream
+-
+../include/model.h
+/home/daniil/CLionProjects/application/include/model.h
+cmath
+/home/daniil/CLionProjects/application/src/cmath
+

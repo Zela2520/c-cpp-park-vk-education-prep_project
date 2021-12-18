@@ -21,8 +21,9 @@ protected:
     float rotation = 0;
     Sprite sprite;
     bool turnedRight = true;
-//    Texture texture;
+    Texture m_texture;
 public:
+    void setSprite();
     Sprite getSprite() const;
     float getX() const;
     float getY() const;
@@ -40,6 +41,7 @@ public:
     void goDown(float distance = 1);
     void goRight(float distance = 1);
     void goLeft(float distance = 1);
+    void load_picture(std::string path_to_file);
     virtual void draw(RenderWindow& window);
 };
 
@@ -63,11 +65,14 @@ public:
     friend sf::Packet& operator << (sf::Packet& packet, const Player& player);
 };
 
-class Enemy : public Object {
+class Mob : public Object {
 public:
+    sf::Vector2<float> getPlayersCoords(Player player); //// получаем координаты объекта
+    sf::Vector2<float> moveMob(Mob mob, Player player); //// задаём направление движения персонажу
+    friend sf::Packet& operator << (sf::Packet& packet, const Mob& unmovable);
+    friend sf::Packet& operator >> (sf::Packet& packet, Mob& unmovable);
+    //sf::Player setTarget();
 };
-
-//
 
 Packet& operator >> (sf::Packet& packet, bool* directions);
 Packet& operator << (sf::Packet& packet, const bool* directions);

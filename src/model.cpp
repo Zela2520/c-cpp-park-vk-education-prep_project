@@ -2,9 +2,11 @@
 #include <SFML/Network.hpp>
 #include <iostream>
 #include "../include/model.h"
+#include "cmath"
 
 using namespace sf;
 using namespace std;
+
 
 Sprite Object::getSprite() const {
     return sprite;
@@ -69,8 +71,16 @@ void Object::goLeft(float distance) {
     turnedRight = false;
 }
 void Object::draw(RenderWindow& window) {
+    this->sprite.setTexture(m_texture);
     window.draw(sprite);
 }
+
+void Object::load_picture(std::string const path_to_file) {
+    m_texture.loadFromFile(path_to_file);
+}
+
+
+
 
 Unmovable::Unmovable(float _x, float _y, const Texture& texture) : Object() {
     sprite.setTexture(texture);
@@ -102,12 +112,8 @@ void Player::draw(RenderWindow& window) {
     cout << "Дефолтные размеры " << defaultWidth << "x" << defaultHeight << endl;
     if (turnedRight) {
         sprite.setTextureRect(IntRect(0, 0, (int)defaultWidth, (int)defaultHeight));
-//        cout << "ПРАВАК " << sprite.getGlobalBounds().width << endl;
-//        cout << "ПРАВАК " << sprite.getGlobalBounds().height << endl;
     }
     if (!turnedRight) {
-//         cout << "Левак!" << sprite.getGlobalBounds().width << endl;
-//        cout << "Левак!" << sprite.getGlobalBounds().height << endl;
         sprite.setTextureRect(IntRect(0 + (int)defaultWidth, 0, - (int)defaultWidth,(int)defaultHeight));
     }
 //    sprite.setScale(scale, scale);
@@ -117,8 +123,25 @@ void Player::draw(RenderWindow& window) {
 void Player::setId(int _gotId) {
     Id = _gotId;
 }
+
 int Player::getId() const {
     return Id;
+}
+
+Vector2<float> Mob::getPlayersCoords(const Player player) {
+    Vector2<float> playersCoords(player.getX(), player.getY());
+    return playersCoords;
+}
+
+Vector2<float> Mob::moveMob(Mob mob, Player player) {
+    Vector2<float> playersCoords = getPlayersCoords(player);
+    Vector2<float> mobCoords(mob.getX(), mob.getY());
+    Vector2<float> movingDir(playersCoords.x - mobCoords.x, playersCoords.y - mobCoords.y);
+    movingDir.x /= static_cast<float>(pow(pow(playersCoords.x - mobCoords.x, 2) + pow(playersCoords.y - mobCoords.y, 2), 0.5));
+    movingDir.y /= static_cast<float>(pow(pow(playersCoords.x - mobCoords.x, 2) + pow(playersCoords.y - mobCoords.y, 2), 0.5));
+    mob.setX(movingDir.x + mob.getX());
+    mob.setY(movingDir.y + mob.getY());
+    return movingDir;
 }
 
 
@@ -139,9 +162,25 @@ sf::Packet& operator >> (sf::Packet& packet, Player& player) {  //// Из пак
     return packet;
 }
 
+sf::Packet& operator << (sf::Packet& packet, const Mob& player) {  //// Из игрока в пакет
+    return packet << player.getX() << player.getY() << player.turnedRight;
+}
+
+sf::Packet& operator >> (sf::Packet& packet, Mob& player) {  //// Из пакета в игрока
+    float x, y;
+    bool turnedRight;
+    packet >> x >> y >> turnedRight;
+    player.setTurnedRight(turnedRight);
+    player.setX(x);
+    player.setY(y);
+
+    return packet;
+}
+
 sf::Packet& operator << (sf::Packet& packet, const bool* directions) {  //// Из массива направлений в пакет
     return packet << directions[0] << directions[1] << directions[2] << directions[3];
 }
+
 sf::Packet& operator >> (sf::Packet& packet, bool* directions) {  //// Из пакета в массив направлений
     return packet >> directions[0] >> directions[1] >> directions[2] >> directions[3];
 }
@@ -153,6 +192,7 @@ sf::Packet& operator >> (sf::Packet& packet, Unmovable& unmovable) {  //// Па�
     unmovable.setY(y);
     return packet;
 }
+
 sf::Packet& operator << (sf::Packet& packet, const Unmovable& unmovable) {  //// Из статичного объекта в пакет
     return packet << unmovable.getX() << unmovable.getY();
 }

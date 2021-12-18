@@ -20,16 +20,16 @@ int main() {
     //// Все используемые в программе текстуры.
     Texture amogusTexture;
     amogusTexture.loadFromFile("../include/textures/amogus.png");
-    sf::Texture babyTexture;
-    // babyTexture.loadFromFile("../include/textures/baby.png");
     Texture gachiTexture;
     gachiTexture.loadFromFile("../include/textures/gachi.png");
-    Texture kotTexture;
-    // kotTexture.loadFromFile("../include/textures/kot.jpg");
-    Texture tntTexture;
-    // tntTexture.loadFromFile("../include/textures/tnt.png");
 
 
+    Texture mobTexture;
+    Mob mob;
+    mob.load_picture("../include/textures/amogus.png");
+    mob.setX(0);
+    mob.setY(0);
+    mob.setScale(0.5,0.5);
     std::vector<Player> players(2, Player(0, 0, amogusTexture));  //// Инициализируем начальное положение объектов на карте, принимая данные от сервера.
     std::vector<Unmovable> unmovables(1, Unmovable(200, 200, gachiTexture));
 
@@ -38,7 +38,6 @@ int main() {
     View camera;
     camera.zoom(1);
     camera.setCenter(players[0].getX(), players[0].getY());
-
     int ID = -1;
     socket.receive(packet);
     packet >> ID;
@@ -57,6 +56,7 @@ int main() {
         camera.setCenter(players[ID].getX() ,players[ID].getY());
         window.setView(camera);
         window.clear(sf::Color::White);
+        mob.draw(window);
         //// Отрисовка всех игроков.
         for (auto &player : players) {
             player.draw(window);
