@@ -49,7 +49,7 @@ int main(int argc, char* argv[]) {
     }
     std::vector<Unmovable> unmovables(1, Unmovable(200, 200, gachiTexture));   //// Создаём одну стенку.
     std::vector<Turret> turrets(1, Turret(-300, -300, babyTexture));
-    std::vector<Bullet> bullets(1, Bullet(turrets[0].getX() + turrets[0].getWidth()/2, turrets[0].getY() + turrets[0].getHeight()/2, 100, laserTexture));
+    std::vector<Bullet> bullets(1, Bullet(turrets[0].getX() + turrets[0].getWidth()/2, turrets[0].getY() + turrets[0].getHeight()/2,turrets[0].getDirection(players[0]), laserTexture));
 
 
     //// Заранее отправляем клиентам данные о том, что мячи расположены на нулевых координатах.
@@ -85,7 +85,12 @@ int main(int argc, char* argv[]) {
 
     while (true) {
         float playerTime = playerClock.getElapsedTime().asMilliseconds();
-        playerTime /= 800;
+        playerTime /= 1300;
+        float laserTime = laserClock.getElapsedTime().asMilliseconds();
+        if (laserTime > 500) {
+            laserClock.restart();
+            bullets.emplace_back(Bullet(turrets[0].getX() + turrets[0].getWidth()/2, turrets[0].getY() + turrets[0].getHeight()/2,turrets[0].getDirection(players[0]), laserTexture));
+        }
         //// Получаем пакет с информацией о перемещении какждого клиента и извлекаем информацию о его перемещении.
         //// Перемещение i-ого клиента значит перемещение i-ого мячика.
         for (int i = 0; i < clients.size(); ++i) {

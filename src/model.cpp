@@ -162,10 +162,11 @@ Player& Turret::getClosestPlayer(vector<Player>& players) const {
     }
     return *closestPlayer;
 }
-//
-//float Turret::getDirection(Player& player) {
-//
-//}
+
+float Turret::getDirection(Player& player) const {
+    float tg = (player.getY() - getY()) / (player.getX() - getX());
+    return atan(tg);
+}
 
 
 sf::Packet& operator << (sf::Packet& packet, const Player& player) {  //// Из игрока в пакет

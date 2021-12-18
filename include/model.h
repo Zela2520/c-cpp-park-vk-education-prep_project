@@ -72,6 +72,7 @@ class Turret : public Object {
 public:
     Turret(float _x, float _y, const Texture& texture);
     Player& getClosestPlayer(vector<Player>& players) const;
+    float getDirection(Player& player) const;
     friend sf::Packet& operator >> (sf::Packet& packet, Turret& turret);
     friend sf::Packet& operator << (sf::Packet& packet, const Turret& turret);
 };
@@ -85,7 +86,8 @@ public:
 };
 
 double sqr(double n);
-double getDistance(Turret& turret, Player& player);
+
+float getDirection(Player& player);
 
 Packet& operator >> (sf::Packet& packet, bool* directions);
 Packet& operator << (sf::Packet& packet, const bool* directions);

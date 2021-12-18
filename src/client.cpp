@@ -35,7 +35,7 @@ int main() {
     std::vector<Player> players(2, Player(0, 0, amogusTexture));  //// Инициализируем начальное положение объектов на карте, принимая данные от сервера.
     std::vector<Unmovable> unmovables(1, Unmovable(200, 200, gachiTexture));
     std::vector<Turret> turrets(1, Turret(-300, -300, babyTexture));
-    std::vector<Bullet> bullets(1, Bullet(turrets[0].getX(), turrets[0].getY(), 0, laserTexture));
+//    std::vector<Bullet> bullets(1, Bullet(turrets[0].getX(), turrets[0].getY(), 0, laserTexture));
 
 
 
@@ -86,9 +86,12 @@ int main() {
             turret.draw(window);
         }
 
-        for (auto& bullet : bullets) {
+        int amountOfBullets;
+        packet >> amountOfBullets;
+        for (int i = 0; i < amountOfBullets; i++) {
+            std::vector<Bullet> bullets(1, Bullet(turrets[0].getX(), turrets[0].getY(), 0, laserTexture));
             socket.receive(packet);
-            packet >> bullet;
+            packet >> bullet[i];
             packet.clear();
         }
         for (auto& bullet : bullets) {
