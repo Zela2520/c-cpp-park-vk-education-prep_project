@@ -54,14 +54,19 @@ public:
 };
 
 class Player : public Object {
+    int Id = -1;
 public:
     Player(float _x, float _y, const Texture& texture);
 //    Player(float _x, float _y);
     bool intersectsWith(vector<Unmovable>& objects);
     void draw(RenderWindow& window) override;
+    void setId(int);
+    int getId() const;
     friend sf::Packet& operator >> (sf::Packet& packet, Player& player);
     friend sf::Packet& operator << (sf::Packet& packet, const Player& player);
 };
+
+//c
 
 Packet& operator >> (sf::Packet& packet, bool* directions);
 Packet& operator << (sf::Packet& packet, const bool* directions);

@@ -112,18 +112,27 @@ void Player::draw(RenderWindow& window) {
     window.draw(sprite);
 }
 
+void Player::setId(int _gotId) {
+    Id = _gotId;
+}
+int Player::getId() const {
+    return Id;
+}
+
 
 
 sf::Packet& operator << (sf::Packet& packet, const Player& player) {  //// Из игрока в пакет
-    return packet << player.getX() << player.getY() << player.turnedRight;
+    return packet << player.getId() << player.getX() << player.getY() << player.turnedRight;
 }
 sf::Packet& operator >> (sf::Packet& packet, Player& player) {  //// Из пакета в игрока
     float x, y;
+    int Id;
     bool turnedRight;
-    packet >> x >> y >> turnedRight;
+    packet >> Id >> x >> y >> turnedRight;
     player.setTurnedRight(turnedRight);
     player.setX(x);
     player.setY(y);
+    player.setId(Id);
 
     return packet;
 }

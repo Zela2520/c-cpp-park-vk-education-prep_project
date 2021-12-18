@@ -29,6 +29,7 @@ int main() {
     Texture tntTexture;
     tntTexture.loadFromFile("../include/textures/tnt.png");
 
+
     std::vector<Player> players(2, Player(0, 0, amogusTexture));  //// Инициализируем начальное положение объектов на карте, принимая данные от сервера.
     std::vector<Unmovable> unmovables(1, Unmovable(200, 200, gachiTexture));
 
@@ -37,6 +38,10 @@ int main() {
     View camera;
     camera.zoom(1);
     camera.setCenter(players[0].getX(), players[0].getY());
+
+    int ID = -1;
+    socket.receive(packet);
+    packet >> ID;
 
 
     while (window.isOpen()) {
@@ -49,6 +54,8 @@ int main() {
             std::cout << "Корды игрока: " << player.getX() << ' ' << player.getY() << std::endl;  // Дебаг.
         }
 
+        camera.setCenter(players[ID].getX() ,players[ID].getY());
+        window.setView(camera);
         window.clear(sf::Color::White);
         //// Отрисовка всех игроков.
         for (auto &player : players) {
@@ -77,23 +84,22 @@ int main() {
         if (window.hasFocus()) {
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
                 directions[0] = true;
-                camera.move(0,-0.3);
+//                camera.move(0,-0.3);
             }
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
                 directions[1] = true;
-                camera.move(0.3,0);
+//                camera.move(0.3,0);
             }
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
                 directions[2] = true;
-                camera.move(0,0.3);
+//                camera.move(0,0.3);
             }
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
                 directions[3] = true;
-                camera.move(-0.3,0);
+//                camera.move(-0.3,0);
             }
         }
 
-        window.setView(camera);
         //// Запаковываем данные пользователя в пакет и отправляем на сервер
         packet << directions;
         socket.send(packet);

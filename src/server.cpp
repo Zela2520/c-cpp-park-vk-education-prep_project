@@ -10,15 +10,20 @@ using namespace std;
 
 int main(int argc, char* argv[]) {
     sf::TcpListener listener;
-    // Устанавливаем по какому порту будет проходить подключение к серверу
-    if (listener.listen(3000) != sf::Socket::Done) {  // Слушаем порт 3000.
+    //// Устанавливаем по какому порту будет проходить подключение к серверу
+    if (listener.listen(3000) != sf::Socket::Done) {  //// Слушаем порт 3000.
         std::cerr << "Error";
     }
+    sf::Packet packet;  //// Создаём пакет для общения клиента с сервером.
+
     // Рассмотрим случай для двух клиентов
     std::vector<sf::TcpSocket> clients(2);
     // если кто-то подключается, то accept индентифицирует клиента для дальнешей работы с ним
-    for (auto &socket : clients) {
-        listener.accept(socket);
+    for (int i = 0; i < clients.size(); i++) {
+        listener.accept(clients[i]);
+        packet << i;
+        clients[i].send(packet);
+        packet.clear();
     }
 
 
@@ -34,9 +39,12 @@ int main(int argc, char* argv[]) {
     Texture tntTexture;
     tntTexture.loadFromFile("../include/textures/tnt.png");
 
-    sf::Packet packet;  //// Создаём пакет для общения клиента с сервером.
-
-    std::vector<Player> players(clients.size(), Player(0, 0, amogusTexture));  //// Задаём начальное положение массиву игроков.
+    std::vector<Player> players;
+    for (int i = 0; i < 2; i++) {
+        players.emplace_back(0, 0, amogusTexture);
+        players[i].setId(i);
+    }
+//    std::vector<Player> players(clients.size(), Player(0, 0, amogusTexture));  //// Задаём начальное положение массиву игроков.
 
     std::vector<Unmovable> unmovables(1, Unmovable(200, 200, gachiTexture));   //// Создаём одну стенку.
 
@@ -58,9 +66,12 @@ int main(int argc, char* argv[]) {
     }
 
 
-
+    sf::Clock clock;
 
     while (true) {
+        float time = clock.getElapsedTime().asMicroseconds();
+        clock.restart();
+        time /= 800;
         //// Получаем пакет с информацией о перемещении какждого клиента и извлекаем информацию о его перемещении.
         //// Перемещение i-ого клиента значит перемещение i-ого мячика.
         for (int i = 0; i < clients.size(); ++i) {
@@ -72,20 +83,20 @@ int main(int argc, char* argv[]) {
 
             //// Обрабатываем полученную информацию о направлении.
             if (directions[0]) {   //// Вверх.
-                players[i].goUp(0.3);
-                if (players[i].intersectsWith(unmovables)) players[i].goDown(0.3);
+                players[i].goUp(0.3 * time);
+                if (players[i].intersectsWith(unmovables)) players[i].goDown(0.3 * time);
             }
             if (directions[1]) {  //// Направо.
-                players[i].goRight(0.3);
-                if (players[i].intersectsWith(unmovables)) players[i].goLeft(0.3);
+                players[i].goRight(0.3 * time);
+                if (players[i].intersectsWith(unmovables)) players[i].goLeft(0.3 * time);
             }
             if (directions[2]) {  //// Вниз.
-                players[i].goDown(0.3);
-                if (players[i].intersectsWith(unmovables)) players[i].goUp(0.3);
+                players[i].goDown(0.3 * time);
+                if (players[i].intersectsWith(unmovables)) players[i].goUp(0.3 * time);
             }
             if (directions[3]) {  //// Налево.
-                players[i].goLeft(0.3);
-                if (players[i].intersectsWith(unmovables)) players[i].goRight(0.3);
+                players[i].goLeft(0.3 * time);
+                if (players[i].intersectsWith(unmovables)) players[i].goRight(0.3 * time);
             }
         }
 
