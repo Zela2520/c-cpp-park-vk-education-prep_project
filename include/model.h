@@ -77,13 +77,7 @@ public:
 class Bullet : public Object {
     bool isAlive = false;
 public:
-    Bullet(float _x, float _y, float _rotation, const Texture& texture) {
-        rotation = _rotation;
-        sprite.setTexture(texture);
-        setX(_x);
-        setY(_y);
-        isAlive = true;
-    }
+    Bullet(float _x, float _y, float _rotation, const Texture& texture);
     friend sf::Packet& operator >> (sf::Packet& packet, Bullet& bullet);
     friend sf::Packet& operator << (sf::Packet& packet, const Bullet& bullet);
 };

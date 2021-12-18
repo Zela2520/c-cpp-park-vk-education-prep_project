@@ -134,6 +134,13 @@ Turret::Turret(float _x, float _y, const Texture& texture) {
     setY(_y);
 }
 
+Bullet::Bullet(float _x, float _y, float _rotation, const Texture& texture) {
+    sprite.setTexture(texture);
+    setX(_x);
+    setY(_y);
+    setRotation(_rotation);
+    isAlive = true;
+}
 
 
 
@@ -183,12 +190,13 @@ sf::Packet& operator << (sf::Packet& packet, const Turret& turret) {
 }
 
 sf::Packet& operator >> (sf::Packet& packet, Bullet& bullet) {
-    float x, y;
-    packet >> x >> y;
+    float x, y, rotation;
+    packet >> x >> y >> rotation;
     bullet.setX(x);
     bullet.setY(y);
+    bullet.setRotation(rotation);
     return packet;
 }
 sf::Packet& operator << (sf::Packet& packet, const Bullet& bullet) {
-    return packet << bullet.getX() << bullet.getY();
+    return packet << bullet.getX() << bullet.getY() << bullet.getRotation();
 }

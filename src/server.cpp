@@ -2,6 +2,7 @@
 #include <SFML/Network.hpp>
 #include <iostream>
 #include <vector>
+#include <cmath>
 #include "../include/model.h"
 using namespace sf;
 using namespace std;
@@ -48,7 +49,7 @@ int main(int argc, char* argv[]) {
     }
     std::vector<Unmovable> unmovables(1, Unmovable(200, 200, gachiTexture));   //// Создаём одну стенку.
     std::vector<Turret> turrets(1, Turret(-300, -300, babyTexture));
-    std::vector<Bullet> bullets(1, Bullet(turrets[0].getX(), turrets[0].getY(), 0, laserTexture));
+    std::vector<Bullet> bullets(1, Bullet(turrets[0].getX() + turrets[0].getWidth()/2, turrets[0].getY() + turrets[0].getHeight()/2, 100, laserTexture));
 
 
     //// Заранее отправляем клиентам данные о том, что мячи расположены на нулевых координатах.
@@ -83,7 +84,7 @@ int main(int argc, char* argv[]) {
 
 
     while (true) {
-        float playerTime = playerClock.getElapsedTime().asMicroseconds();
+        float playerTime = playerClock.getElapsedTime().asMilliseconds();
         playerTime /= 800;
         //// Получаем пакет с информацией о перемещении какждого клиента и извлекаем информацию о его перемещении.
         //// Перемещение i-ого клиента значит перемещение i-ого мячика.
@@ -113,7 +114,9 @@ int main(int argc, char* argv[]) {
             }
         }
 
-        bullets[0].move(-0.00001 * playerTime, 0 * playerTime);
+        bullets[0].move(0.0007 * playerTime * cos(3.1415 / 180 * bullets[0].getRotation()), 0.0007 * playerTime * sin(3.1415 / 180 * bullets[0].getRotation()));
+        cout << "cos(bullets[0].getRotation()) " << cos(bullets[0].getRotation()) << endl;
+        cout << "bullets[0].getRotation() " << bullets[0].getRotation() << endl;
 
         //// Отправляем обновлённые данные об изменение всех объектов на сервере каждому клиенту.
         for (auto & client : clients) {  //// Каждому клиенту.
