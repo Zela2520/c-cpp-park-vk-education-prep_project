@@ -58,6 +58,7 @@ class Player : public Object {
     int Id = -1;
 public:
     Player(float _x, float _y, const Texture& texture);
+    Player() = default;
 //    Player(float _x, float _y);
     bool intersectsWith(vector<Unmovable>& objects);
     void draw(RenderWindow& window) override;
@@ -70,6 +71,7 @@ public:
 class Turret : public Object {
 public:
     Turret(float _x, float _y, const Texture& texture);
+    Player& getClosestPlayer(vector<Player>& players) const;
     friend sf::Packet& operator >> (sf::Packet& packet, Turret& turret);
     friend sf::Packet& operator << (sf::Packet& packet, const Turret& turret);
 };
@@ -82,6 +84,8 @@ public:
     friend sf::Packet& operator << (sf::Packet& packet, const Bullet& bullet);
 };
 
+double sqr(double n);
+double getDistance(Turret& turret, Player& player);
 
 Packet& operator >> (sf::Packet& packet, bool* directions);
 Packet& operator << (sf::Packet& packet, const bool* directions);

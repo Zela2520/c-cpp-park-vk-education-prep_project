@@ -1,6 +1,7 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Network.hpp>
 #include <iostream>
+#include <cmath>
 #include "../include/model.h"
 using namespace sf;
 using namespace std;
@@ -142,6 +143,29 @@ Bullet::Bullet(float _x, float _y, float _rotation, const Texture& texture) {
     isAlive = true;
 }
 
+double sqr(double n) {
+    return n*n;
+}
+
+double getDistance(const Turret& turret, Player& player) {
+    return sqrt(sqr(player.getX() + player.getWidth()/2 - turret.getX() - turret.getWidth()) + sqr(player.getY() + player.getHeight()/2 - turret.getY() - turret.getHeight()));
+}
+
+Player& Turret::getClosestPlayer(vector<Player>& players) const {
+    double minDistance = sqrt(sqr(players[0].getX() + players[0].getWidth()/2 - getX() - getWidth()) + sqr(players[0].getY() + players[0].getHeight()/2 - getY() - getHeight()));
+    Player *closestPlayer;
+    for (auto& player : players) {
+        if (getDistance(*this, player) < minDistance) {
+            minDistance = getDistance(*this, player);
+            closestPlayer = &player;
+        }
+    }
+    return *closestPlayer;
+}
+//
+//float Turret::getDirection(Player& player) {
+//
+//}
 
 
 sf::Packet& operator << (sf::Packet& packet, const Player& player) {  //// Из игрока в пакет
