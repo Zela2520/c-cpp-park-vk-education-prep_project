@@ -78,12 +78,13 @@ int main(int argc, char* argv[]) {
     }
 
 
-    sf::Clock clock;
+    sf::Clock playerClock;
+    sf::Clock laserClock;
+
 
     while (true) {
-        float time = clock.getElapsedTime().asMicroseconds();
-        clock.restart();
-        time /= 800;
+        float playerTime = playerClock.getElapsedTime().asMicroseconds();
+        playerTime /= 800;
         //// Получаем пакет с информацией о перемещении какждого клиента и извлекаем информацию о его перемещении.
         //// Перемещение i-ого клиента значит перемещение i-ого мячика.
         for (int i = 0; i < clients.size(); ++i) {
@@ -95,22 +96,24 @@ int main(int argc, char* argv[]) {
 
             //// Обрабатываем полученную информацию о направлении.
             if (directions[0]) {   //// Вверх.
-                players[i].goUp(0.3 * time);
-                if (players[i].intersectsWith(unmovables)) players[i].goDown(0.3 * time);
+                players[i].goUp(0.3 * playerTime);
+                if (players[i].intersectsWith(unmovables)) players[i].goDown(0.3 * playerTime);
             }
             if (directions[1]) {  //// Направо.
-                players[i].goRight(0.3 * time);
-                if (players[i].intersectsWith(unmovables)) players[i].goLeft(0.3 * time);
+                players[i].goRight(0.3 * playerTime);
+                if (players[i].intersectsWith(unmovables)) players[i].goLeft(0.3 * playerTime);
             }
             if (directions[2]) {  //// Вниз.
-                players[i].goDown(0.3 * time);
-                if (players[i].intersectsWith(unmovables)) players[i].goUp(0.3 * time);
+                players[i].goDown(0.3 * playerTime);
+                if (players[i].intersectsWith(unmovables)) players[i].goUp(0.3 * playerTime);
             }
             if (directions[3]) {  //// Налево.
-                players[i].goLeft(0.3 * time);
-                if (players[i].intersectsWith(unmovables)) players[i].goRight(0.3 * time);
+                players[i].goLeft(0.3 * playerTime);
+                if (players[i].intersectsWith(unmovables)) players[i].goRight(0.3 * playerTime);
             }
         }
+
+        bullets[0].move(-0.00001 * playerTime, 0 * playerTime);
 
         //// Отправляем обновлённые данные об изменение всех объектов на сервере каждому клиенту.
         for (auto & client : clients) {  //// Каждому клиенту.
