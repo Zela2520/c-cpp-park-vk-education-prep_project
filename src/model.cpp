@@ -1,118 +1,181 @@
-#include "model.h"
+#include "../include/model.h"
 
-using namespace sf;
-using namespace std;
+#define DEFAULT_COORD_X (0)
+#define DEFAULT_COORD_Y (0)
+#define DEFAULT_SIZE_X (-1)
+#define DEFAULT_SIZE_Y (-1)
+#define DEFAULT_SCALE_X (1)
+#define DEFAULT_SCALE_Y (1)
+#define DEFAULT_ENGLE (0)
 
-Sprite& Object::getSprite() {
-    return sprite;
+Object::Object() {
+    m_x = DEFAULT_COORD_X;
+    m_y = DEFAULT_COORD_Y;
+    m_default_width = DEFAULT_SIZE_X;
+    m_default_height = DEFAULT_SIZE_Y;
+    m_x_scale = DEFAULT_SCALE_X;
+    m_y_scale = DEFAULT_SCALE_Y;
+    m_rotation = DEFAULT_ENGLE;
+    m_turned_right = true;
 }
+
+sf::Sprite Object::getSprite() const {
+    return m_sprite;
+}
+
 float Object::getX() const {
-    return sprite.getPosition().x;
+    return m_x;
 }
+
 float Object::getY() const {
-    return sprite.getPosition().y;
+    return m_y;
 }
-void Object::setX(float _x) {
-    sprite.setPosition(_x, this->getY());
+
+float Object::getWidth() const {
+    return m_default_width;
 }
-void Object::setY(float _y) {
-    sprite.setPosition(this->getX(), _y);
+
+float Object::getHeight() const {
+    return m_default_height;
 }
+
+float Object::getRotation() const {
+    return m_rotation;
+}
+float Object::getXScale() const {
+    return m_x_scale;
+}
+float Object::getYScale() const {
+    return m_y_scale;
+}
+
+void Object::setX(float x) {
+    m_x = x;
+    m_sprite.setPosition(m_x, m_y);
+}
+
+void Object::setY(float y) {
+    m_y = y;
+    m_sprite.setPosition(m_x, m_y);
+}
+
+void Object::setRotation(float rotation) {
+    m_rotation = rotation;
+    m_sprite.setRotation(rotation);
+}
+
+void Object::setTurnedRight(bool turned_right) {
+    m_turned_right = turned_right;
+}
+
+void Object::setScale(float xScale, float yScale) {
+    m_x_scale = xScale;
+    m_y_scale = yScale;
+    m_sprite.setScale(xScale, yScale);
+}
+
 void Object::goUp(float distance) {
-    sprite.setPosition(this->getX(), this->getY() - distance);
+    m_y -= distance;
+    m_sprite.move(0, -distance);
 }
+
 void Object::goDown(float distance) {
-    sprite.setPosition(this->getX(), this->getY() + distance);
+    m_y += distance;
+    m_sprite.move(0, distance);
 }
+
 void Object::goRight(float distance) {
-    sprite.setPosition(this->getX() + distance, this->getY());
+    m_x += distance;
+    m_sprite.move(distance, 0);
+    m_turned_right = true;
 }
+
 void Object::goLeft(float distance) {
-    sprite.setPosition(this->getX() - distance, this->getY());
-}
-void Object::draw(RenderWindow& window) {
-    window.draw(sprite);
-    window.draw(border);
+    m_x -= distance;
+    m_sprite.move(-distance, 0);
+    m_turned_right = false;
 }
 
-Unmovable::Unmovable(float _x, float _y, const Texture& texture) : Object() {
-    sprite.setTexture(texture);
-//        sprite.setColor(Color(0, 255, 0));
-//        sprite.setColor(Color(100,255,100, 100));
-    this->setX(_x);
-    this->setY(_y);
-}
-Unmovable::Unmovable(float _x, float _y) {
-    this->setX(_x);
-    this->setY(_y);
+void Object::draw(sf::RenderWindow& window) {
+    window.draw(m_sprite);
 }
 
-Player::Player(float _x, float _y, const Texture& texture) : Object() {
-    sprite.setTexture(texture);
-    sprite.scale(1, 1);  // Масштабировани модели
-    this->setX(_x);
-    this->setY(_y);
+Unmovable::Unmovable(float x, float y, const sf::Texture& texture) : Object() {
+    m_sprite.setTexture(texture);
+    setX(x);
+    setY(y);
 }
-Player::Player(float _x, float _y) : Object() {
-    sprite.scale(1, 1);  // Масштабировани модели
-    this->setX(_x);
-    this->setY(_y);
+
+
+Player::Player(float x, float y, const sf::Texture& texture) : Object() {  //// Конструктор инициализации игрока.
+    m_sprite.setTexture(texture);
+    m_default_width = m_sprite.getGlobalBounds().width;
+    m_default_height = m_sprite.getGlobalBounds().height;
+    ++count;
+    m_id = count;
+    setScale(0.1, 0.1);  //// Масштабировани модели
+    setX(x);
+    setY(y);
 }
-bool Player::intersectsWith(vector<Unmovable>& objects) {
+
+size_t Player::get_id() {
+    return m_id;
+}
+
+bool Player::intersects_with(std::vector<Unmovable>& objects) {
+    // перебираем все объекты на карте и смотрим какие объекты пересекаются с игроком
     for (auto& object : objects) {
-        Rect<float> thisBounds = sprite.getGlobalBounds();
-        Rect<float> objectBounds = object.getSprite().getGlobalBounds();
-
-        border.setPointCount(4);
-        border.setPosition(thisBounds.left, thisBounds.top);
-        border.setRadius(thisBounds.width);
-        border.setOutlineColor(Color::Green);
-        border.setOutlineThickness(10);
-
-        Rect<float> scaledThisBounds(thisBounds.left, thisBounds.top, thisBounds.width*sprite.getScale().x, thisBounds.height*sprite.getScale().y);
-        Rect<float> scaledObjectBounds(objectBounds.left, objectBounds.top, objectBounds.width*object.getSprite().getScale().x, objectBounds.height*object.getSprite().getScale().y);
-        if (scaledThisBounds.intersects((scaledObjectBounds))) {
-            std::cout << "ПЕРЕСЕЧЕНИЕ" << endl;
-            cout << scaledThisBounds.left << " " << scaledThisBounds.top << " " << scaledThisBounds.height << " " << scaledThisBounds.width << endl;
-            cout << scaledObjectBounds.left << " " << scaledObjectBounds.top << " " << scaledObjectBounds.height << " " << scaledObjectBounds.width << endl;
-            return true;
-        } else {
-            cout << "НЕТ ПЕРЕСЕЧЕНИЯ" << endl;
-            cout << scaledThisBounds.left << " " << scaledThisBounds.top << " " << scaledThisBounds.height << " " << scaledThisBounds.width << endl;
-            cout << scaledObjectBounds.left << " " << scaledObjectBounds.top << " " << scaledObjectBounds.height << " " << scaledObjectBounds.width << endl;
-        }
+        sf::Rect<float> this_bounds = m_sprite.getGlobalBounds(); // сохраняем глобальные координаты игрока
+        sf::Rect<float> object_bounds = object.getSprite().getGlobalBounds(); // сохраняем глобальные координаты объекта
+        return (this_bounds.intersects(object_bounds)); // сравниваем глобальные координаты игрока и глобальные координаты объекта
     }
+    return false; // если пересечения границ отсутствует возвращаем false
+}
 
-    return false;
+void Player::draw(sf::RenderWindow& window) { // рисуем окно в завсимости от ориентация персонажа
+    std::cout << "Дефолтные размеры " << m_default_width << "x" << m_default_height << std::endl;
+    if (m_turned_right) {
+        m_sprite.setTextureRect(sf::IntRect(0, 0, (int)m_default_width, (int)m_default_height));
+    }
+    if (!m_turned_right) {
+        m_sprite.setTextureRect(sf::IntRect(0 + (int)m_default_width, 0, -(int)m_default_width,(int)m_default_height));
+    }
+    window.draw(m_sprite);
 }
 
 
 
-sf::Packet& operator << (sf::Packet& packet, const Player& player) {  // Из игрока в пакет
-    return packet << player.getX() << player.getY();
+sf::Packet& operator << (sf::Packet& packet, const Player& player) {  //// Из игрока в пакет
+    return packet << player.getX() << player.getY() << player.m_turned_right;
 }
-sf::Packet& operator >> (sf::Packet& packet, Player& player) {  // Из пакета в игрока
+
+sf::Packet& operator >> (sf::Packet& packet, Player& player) {  //// Из пакета в игрока
     float x, y;
-    packet >> x >> y;
+    bool turnedRight;
+    packet >> x >> y >> turnedRight;
+    player.setTurnedRight(turnedRight);
     player.setX(x);
     player.setY(y);
+
     return packet;
 }
 
-sf::Packet& operator << (sf::Packet& packet, const bool* directions) {  // Из массива направлений в пакет
+sf::Packet& operator << (sf::Packet& packet, const bool* directions) {  //// Из массива направлений в пакет
     return packet << directions[0] << directions[1] << directions[2] << directions[3];
 }
-sf::Packet& operator >> (sf::Packet& packet, bool* directions) {  // Из пакета в массив направлений
+
+sf::Packet& operator >> (sf::Packet& packet, bool* directions) {  //// Из пакета в массив направлений
     return packet >> directions[0] >> directions[1] >> directions[2] >> directions[3];
 }
 
-sf::Packet& operator >> (sf::Packet& packet, Unmovable& unmovable) {  // Пакета в статичный объект
+sf::Packet& operator >> (sf::Packet& packet, Unmovable& unmovable) {  //// Пакета в статичный объект
     float x, y;
     packet >> x >> y;
     unmovable.setX(x);
     unmovable.setY(y);
     return packet;
 }
-sf::Packet& operator << (sf::Packet& packet, const Unmovable& unmovable) {  // Из статичного объекта в пакет
+
+sf::Packet& operator << (sf::Packet& packet, const Unmovable& unmovable) {  //// Из статичного объекта в пакет
     return packet << unmovable.getX() << unmovable.getY();
 }

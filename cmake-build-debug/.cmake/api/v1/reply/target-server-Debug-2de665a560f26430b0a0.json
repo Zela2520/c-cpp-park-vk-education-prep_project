@@ -2,7 +2,7 @@
 	"artifacts" : 
 	[
 		{
-			"path" : "client_2"
+			"path" : "server"
 		}
 	],
 	"backtrace" : 1,
@@ -11,8 +11,7 @@
 		"commands" : 
 		[
 			"add_executable",
-			"target_link_libraries",
-			"include_directories"
+			"target_link_libraries"
 		],
 		"files" : 
 		[
@@ -26,19 +25,13 @@
 			{
 				"command" : 0,
 				"file" : 0,
-				"line" : 11,
+				"line" : 9,
 				"parent" : 0
 			},
 			{
 				"command" : 1,
 				"file" : 0,
-				"line" : 14,
-				"parent" : 0
-			},
-			{
-				"command" : 2,
-				"file" : 0,
-				"line" : 8,
+				"line" : 12,
 				"parent" : 0
 			}
 		]
@@ -55,13 +48,6 @@
 					"fragment" : "-std=gnu++20"
 				}
 			],
-			"includes" : 
-			[
-				{
-					"backtrace" : 3,
-					"path" : "/home/daniil/CLionProjects/application/./include"
-				}
-			],
 			"language" : "CXX",
 			"languageStandard" : 
 			{
@@ -73,11 +59,12 @@
 			},
 			"sourceIndexes" : 
 			[
-				0
+				0,
+				1
 			]
 		}
 	],
-	"id" : "client_2::@6890427a1f51a3e7e1df",
+	"id" : "server::@6890427a1f51a3e7e1df",
 	"link" : 
 	{
 		"commandFragments" : 
@@ -113,8 +100,8 @@
 		],
 		"language" : "CXX"
 	},
-	"name" : "client_2",
-	"nameOnDisk" : "client_2",
+	"name" : "server",
+	"nameOnDisk" : "server",
 	"paths" : 
 	{
 		"build" : ".",
@@ -126,7 +113,8 @@
 			"name" : "Source Files",
 			"sourceIndexes" : 
 			[
-				0
+				0,
+				1
 			]
 		}
 	],
@@ -135,7 +123,13 @@
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "src/client.cpp",
+			"path" : "src/dim_server.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "src/model.cpp",
 			"sourceGroupIndex" : 0
 		}
 	],

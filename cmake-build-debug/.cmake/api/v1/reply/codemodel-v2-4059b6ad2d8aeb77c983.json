@@ -43,22 +43,22 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "client::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-client-Debug-34a2ce8bcd8a6aef7689.json",
+					"jsonFile" : "target-client-Debug-3ce958681d9995a968f0.json",
 					"name" : "client",
 					"projectIndex" : 0
 				},
 				{
 					"directoryIndex" : 0,
 					"id" : "client_2::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-client_2-Debug-2f82923c42cb7821419c.json",
+					"jsonFile" : "target-client_2-Debug-5f17ae88d954f90746cc.json",
 					"name" : "client_2",
 					"projectIndex" : 0
 				},
 				{
 					"directoryIndex" : 0,
-					"id" : "new_server::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-new_server-Debug-fb738a97f662f890e74b.json",
-					"name" : "new_server",
+					"id" : "server::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-server-Debug-2de665a560f26430b0a0.json",
+					"name" : "server",
 					"projectIndex" : 0
 				}
 			]

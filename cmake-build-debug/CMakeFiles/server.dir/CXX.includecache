@@ -6,15 +6,25 @@
 
 #IncludeRegexTransform: 
 
-../include/model.h
+/home/daniil/CLionProjects/application/include/model.h
 SFML/Graphics.hpp
 -
 SFML/Network.hpp
 -
+vector
+-
 iostream
 -
+string
+-
+map
+-
+
+/home/daniil/CLionProjects/application/src/dim_server.cpp
+../include/model.h
+/home/daniil/CLionProjects/application/include/model.h
 
 /home/daniil/CLionProjects/application/src/model.cpp
-model.h
-/home/daniil/CLionProjects/application/src/model.h
+../include/model.h
+/home/daniil/CLionProjects/application/include/model.h
 

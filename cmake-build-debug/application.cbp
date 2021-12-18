@@ -17,24 +17,13 @@
 					<DistClean command="/usr/bin/make -j8 -f &quot;/home/daniil/CLionProjects/application/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
-			<Target title="rebuild_cache">
-				<Option working_dir="/home/daniil/CLionProjects/application/cmake-build-debug"/>
-				<Option type="4"/>
-				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/daniil/CLionProjects/application/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/daniil/CLionProjects/application/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/home/daniil/CLionProjects/application/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/home/daniil/CLionProjects/application/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
-			<Target title="new_server">
-				<Option output="/home/daniil/CLionProjects/application/cmake-build-debug/new_server" prefix_auto="0" extension_auto="0"/>
+			<Target title="server">
+				<Option output="/home/daniil/CLionProjects/application/cmake-build-debug/server" prefix_auto="0" extension_auto="0"/>
 				<Option working_dir="/home/daniil/CLionProjects/application/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="/home/daniil/CLionProjects/application/./include"/>
 					<Add directory="/usr/include/c++/11"/>
 					<Add directory="/usr/include/x86_64-linux-gnu/c++/11"/>
 					<Add directory="/usr/include/c++/11/backward"/>
@@ -44,20 +33,19 @@
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/daniil/CLionProjects/application/cmake-build-debug/Makefile&quot;  VERBOSE=1 new_server"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/daniil/CLionProjects/application/cmake-build-debug/Makefile&quot;  VERBOSE=1 server"/>
 					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/daniil/CLionProjects/application/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
 					<Clean command="/usr/bin/make -j8 -f &quot;/home/daniil/CLionProjects/application/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 					<DistClean command="/usr/bin/make -j8 -f &quot;/home/daniil/CLionProjects/application/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
-			<Target title="new_server/fast">
-				<Option output="/home/daniil/CLionProjects/application/cmake-build-debug/new_server" prefix_auto="0" extension_auto="0"/>
+			<Target title="server/fast">
+				<Option output="/home/daniil/CLionProjects/application/cmake-build-debug/server" prefix_auto="0" extension_auto="0"/>
 				<Option working_dir="/home/daniil/CLionProjects/application/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="/home/daniil/CLionProjects/application/./include"/>
 					<Add directory="/usr/include/c++/11"/>
 					<Add directory="/usr/include/x86_64-linux-gnu/c++/11"/>
 					<Add directory="/usr/include/c++/11/backward"/>
@@ -67,53 +55,7 @@
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/daniil/CLionProjects/application/cmake-build-debug/Makefile&quot;  VERBOSE=1 new_server/fast"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/daniil/CLionProjects/application/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/home/daniil/CLionProjects/application/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/home/daniil/CLionProjects/application/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
-			<Target title="client_2">
-				<Option output="/home/daniil/CLionProjects/application/cmake-build-debug/client_2" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/daniil/CLionProjects/application/cmake-build-debug"/>
-				<Option object_output="./"/>
-				<Option type="1"/>
-				<Option compiler="gcc"/>
-				<Compiler>
-					<Add directory="/home/daniil/CLionProjects/application/./include"/>
-					<Add directory="/usr/include/c++/11"/>
-					<Add directory="/usr/include/x86_64-linux-gnu/c++/11"/>
-					<Add directory="/usr/include/c++/11/backward"/>
-					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/11/include"/>
-					<Add directory="/usr/local/include"/>
-					<Add directory="/usr/include/x86_64-linux-gnu"/>
-					<Add directory="/usr/include"/>
-				</Compiler>
-				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/daniil/CLionProjects/application/cmake-build-debug/Makefile&quot;  VERBOSE=1 client_2"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/daniil/CLionProjects/application/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/home/daniil/CLionProjects/application/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/home/daniil/CLionProjects/application/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
-			<Target title="client_2/fast">
-				<Option output="/home/daniil/CLionProjects/application/cmake-build-debug/client_2" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/daniil/CLionProjects/application/cmake-build-debug"/>
-				<Option object_output="./"/>
-				<Option type="1"/>
-				<Option compiler="gcc"/>
-				<Compiler>
-					<Add directory="/home/daniil/CLionProjects/application/./include"/>
-					<Add directory="/usr/include/c++/11"/>
-					<Add directory="/usr/include/x86_64-linux-gnu/c++/11"/>
-					<Add directory="/usr/include/c++/11/backward"/>
-					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/11/include"/>
-					<Add directory="/usr/local/include"/>
-					<Add directory="/usr/include/x86_64-linux-gnu"/>
-					<Add directory="/usr/include"/>
-				</Compiler>
-				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/daniil/CLionProjects/application/cmake-build-debug/Makefile&quot;  VERBOSE=1 client_2/fast"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/daniil/CLionProjects/application/cmake-build-debug/Makefile&quot;  VERBOSE=1 server/fast"/>
 					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/daniil/CLionProjects/application/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
 					<Clean command="/usr/bin/make -j8 -f &quot;/home/daniil/CLionProjects/application/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 					<DistClean command="/usr/bin/make -j8 -f &quot;/home/daniil/CLionProjects/application/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
@@ -126,7 +68,6 @@
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="/home/daniil/CLionProjects/application/./include"/>
 					<Add directory="/usr/include/c++/11"/>
 					<Add directory="/usr/include/x86_64-linux-gnu/c++/11"/>
 					<Add directory="/usr/include/c++/11/backward"/>
@@ -149,7 +90,6 @@
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="/home/daniil/CLionProjects/application/./include"/>
 					<Add directory="/usr/include/c++/11"/>
 					<Add directory="/usr/include/x86_64-linux-gnu/c++/11"/>
 					<Add directory="/usr/include/c++/11/backward"/>
@@ -175,16 +115,78 @@
 					<DistClean command="/usr/bin/make -j8 -f &quot;/home/daniil/CLionProjects/application/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/home/daniil/CLionProjects/application/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/daniil/CLionProjects/application/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/daniil/CLionProjects/application/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/daniil/CLionProjects/application/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/daniil/CLionProjects/application/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="client_2">
+				<Option output="/home/daniil/CLionProjects/application/cmake-build-debug/client_2" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/daniil/CLionProjects/application/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/include/c++/11"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/11"/>
+					<Add directory="/usr/include/c++/11/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/11/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/daniil/CLionProjects/application/cmake-build-debug/Makefile&quot;  VERBOSE=1 client_2"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/daniil/CLionProjects/application/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/daniil/CLionProjects/application/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/daniil/CLionProjects/application/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="client_2/fast">
+				<Option output="/home/daniil/CLionProjects/application/cmake-build-debug/client_2" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/daniil/CLionProjects/application/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/include/c++/11"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/11"/>
+					<Add directory="/usr/include/c++/11/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/11/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/daniil/CLionProjects/application/cmake-build-debug/Makefile&quot;  VERBOSE=1 client_2/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/daniil/CLionProjects/application/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/daniil/CLionProjects/application/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/daniil/CLionProjects/application/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
 		</Build>
-		<Unit filename="/home/daniil/CLionProjects/application/src/client.cpp">
-			<Option target="client_2"/>
+		<Unit filename="/home/daniil/CLionProjects/application/include/map.h">
 			<Option target="client"/>
 		</Unit>
-		<Unit filename="/home/daniil/CLionProjects/application/src/connection.cpp">
-			<Option target="new_server"/>
+		<Unit filename="/home/daniil/CLionProjects/application/src/dim_client.cpp">
+			<Option target="client"/>
+			<Option target="client_2"/>
 		</Unit>
-		<Unit filename="/home/daniil/CLionProjects/application/src/new_server.cpp">
-			<Option target="new_server"/>
+		<Unit filename="/home/daniil/CLionProjects/application/src/dim_server.cpp">
+			<Option target="server"/>
+		</Unit>
+		<Unit filename="/home/daniil/CLionProjects/application/src/map.cpp">
+			<Option target="client"/>
+		</Unit>
+		<Unit filename="/home/daniil/CLionProjects/application/src/model.cpp">
+			<Option target="server"/>
+			<Option target="client"/>
+			<Option target="client_2"/>
 		</Unit>
 		<Unit filename="/home/daniil/CLionProjects/application/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>

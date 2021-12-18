@@ -8,14 +8,13 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/daniil/CLionProjects/application/src/connection.cpp" "/home/daniil/CLionProjects/application/cmake-build-debug/CMakeFiles/server.dir/src/connection.cpp.o"
-  "/home/daniil/CLionProjects/application/src/server.cpp" "/home/daniil/CLionProjects/application/cmake-build-debug/CMakeFiles/server.dir/src/server.cpp.o"
+  "/home/daniil/CLionProjects/application/src/dim_server.cpp" "/home/daniil/CLionProjects/application/cmake-build-debug/CMakeFiles/server.dir/src/dim_server.cpp.o"
+  "/home/daniil/CLionProjects/application/src/model.cpp" "/home/daniil/CLionProjects/application/cmake-build-debug/CMakeFiles/server.dir/src/model.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
-  ".././include"
   )
 
 # The set of dependency files which are needed:

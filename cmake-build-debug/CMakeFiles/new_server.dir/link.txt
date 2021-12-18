@@ -1,1 +1,1 @@
-/usr/bin/c++ -g CMakeFiles/new_server.dir/src/new_server.cpp.o CMakeFiles/new_server.dir/src/connection.cpp.o -o new_server  /usr/lib/x86_64-linux-gnu/libsfml-graphics.so /usr/lib/x86_64-linux-gnu/libsfml-window.so /usr/lib/x86_64-linux-gnu/libsfml-system.so /usr/lib/x86_64-linux-gnu/libsfml-network.so 
+/usr/bin/c++ -g CMakeFiles/new_server.dir/src/dim_server.cpp.o -o new_server  /usr/lib/x86_64-linux-gnu/libsfml-graphics.so /usr/lib/x86_64-linux-gnu/libsfml-window.so /usr/lib/x86_64-linux-gnu/libsfml-system.so /usr/lib/x86_64-linux-gnu/libsfml-network.so 

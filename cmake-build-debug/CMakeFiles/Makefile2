@@ -63,9 +63,9 @@ CMAKE_BINARY_DIR = /home/daniil/CLionProjects/application/cmake-build-debug
 # Directory level rules for the build root directory
 
 # The main recursive "all" target.
-all: CMakeFiles/new_server.dir/all
-all: CMakeFiles/client_2.dir/all
+all: CMakeFiles/server.dir/all
 all: CMakeFiles/client.dir/all
+all: CMakeFiles/client_2.dir/all
 .PHONY : all
 
 # The main recursive "preinstall" target.
@@ -73,62 +73,36 @@ preinstall:
 .PHONY : preinstall
 
 # The main recursive "clean" target.
-clean: CMakeFiles/new_server.dir/clean
-clean: CMakeFiles/client_2.dir/clean
+clean: CMakeFiles/server.dir/clean
 clean: CMakeFiles/client.dir/clean
+clean: CMakeFiles/client_2.dir/clean
 .PHONY : clean
 
 #=============================================================================
-# Target rules for target CMakeFiles/new_server.dir
+# Target rules for target CMakeFiles/server.dir
 
 # All Build rule for target.
-CMakeFiles/new_server.dir/all:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/new_server.dir/build.make CMakeFiles/new_server.dir/depend
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/new_server.dir/build.make CMakeFiles/new_server.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/daniil/CLionProjects/application/cmake-build-debug/CMakeFiles --progress-num=5,6,7 "Built target new_server"
-.PHONY : CMakeFiles/new_server.dir/all
+CMakeFiles/server.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/daniil/CLionProjects/application/cmake-build-debug/CMakeFiles --progress-num=8,9,10 "Built target server"
+.PHONY : CMakeFiles/server.dir/all
 
 # Build rule for subdir invocation for target.
-CMakeFiles/new_server.dir/rule: cmake_check_build_system
+CMakeFiles/server.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/daniil/CLionProjects/application/cmake-build-debug/CMakeFiles 3
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/new_server.dir/all
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/server.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/daniil/CLionProjects/application/cmake-build-debug/CMakeFiles 0
-.PHONY : CMakeFiles/new_server.dir/rule
+.PHONY : CMakeFiles/server.dir/rule
 
 # Convenience name for target.
-new_server: CMakeFiles/new_server.dir/rule
-.PHONY : new_server
+server: CMakeFiles/server.dir/rule
+.PHONY : server
 
 # clean rule for target.
-CMakeFiles/new_server.dir/clean:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/new_server.dir/build.make CMakeFiles/new_server.dir/clean
-.PHONY : CMakeFiles/new_server.dir/clean
-
-#=============================================================================
-# Target rules for target CMakeFiles/client_2.dir
-
-# All Build rule for target.
-CMakeFiles/client_2.dir/all:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/client_2.dir/build.make CMakeFiles/client_2.dir/depend
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/client_2.dir/build.make CMakeFiles/client_2.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/daniil/CLionProjects/application/cmake-build-debug/CMakeFiles --progress-num=3,4 "Built target client_2"
-.PHONY : CMakeFiles/client_2.dir/all
-
-# Build rule for subdir invocation for target.
-CMakeFiles/client_2.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/daniil/CLionProjects/application/cmake-build-debug/CMakeFiles 2
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/client_2.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/daniil/CLionProjects/application/cmake-build-debug/CMakeFiles 0
-.PHONY : CMakeFiles/client_2.dir/rule
-
-# Convenience name for target.
-client_2: CMakeFiles/client_2.dir/rule
-.PHONY : client_2
-
-# clean rule for target.
-CMakeFiles/client_2.dir/clean:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/client_2.dir/build.make CMakeFiles/client_2.dir/clean
-.PHONY : CMakeFiles/client_2.dir/clean
+CMakeFiles/server.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/clean
+.PHONY : CMakeFiles/server.dir/clean
 
 #=============================================================================
 # Target rules for target CMakeFiles/client.dir
@@ -137,12 +111,12 @@ CMakeFiles/client_2.dir/clean:
 CMakeFiles/client.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/daniil/CLionProjects/application/cmake-build-debug/CMakeFiles --progress-num=1,2 "Built target client"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/daniil/CLionProjects/application/cmake-build-debug/CMakeFiles --progress-num=1,2,3,4 "Built target client"
 .PHONY : CMakeFiles/client.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/client.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/daniil/CLionProjects/application/cmake-build-debug/CMakeFiles 2
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/daniil/CLionProjects/application/cmake-build-debug/CMakeFiles 4
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/client.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/daniil/CLionProjects/application/cmake-build-debug/CMakeFiles 0
 .PHONY : CMakeFiles/client.dir/rule
@@ -155,6 +129,32 @@ client: CMakeFiles/client.dir/rule
 CMakeFiles/client.dir/clean:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/clean
 .PHONY : CMakeFiles/client.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/client_2.dir
+
+# All Build rule for target.
+CMakeFiles/client_2.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client_2.dir/build.make CMakeFiles/client_2.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client_2.dir/build.make CMakeFiles/client_2.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/daniil/CLionProjects/application/cmake-build-debug/CMakeFiles --progress-num=5,6,7 "Built target client_2"
+.PHONY : CMakeFiles/client_2.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/client_2.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/daniil/CLionProjects/application/cmake-build-debug/CMakeFiles 3
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/client_2.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/daniil/CLionProjects/application/cmake-build-debug/CMakeFiles 0
+.PHONY : CMakeFiles/client_2.dir/rule
+
+# Convenience name for target.
+client_2: CMakeFiles/client_2.dir/rule
+.PHONY : client_2
+
+# clean rule for target.
+CMakeFiles/client_2.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client_2.dir/build.make CMakeFiles/client_2.dir/clean
+.PHONY : CMakeFiles/client_2.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

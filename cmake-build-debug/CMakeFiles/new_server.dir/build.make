@@ -66,49 +66,34 @@ include CMakeFiles/new_server.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/new_server.dir/flags.make
 
-CMakeFiles/new_server.dir/src/new_server.cpp.o: CMakeFiles/new_server.dir/flags.make
-CMakeFiles/new_server.dir/src/new_server.cpp.o: ../src/new_server.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/daniil/CLionProjects/application/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/new_server.dir/src/new_server.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/new_server.dir/src/new_server.cpp.o -c /home/daniil/CLionProjects/application/src/new_server.cpp
+CMakeFiles/new_server.dir/src/dim_server.cpp.o: CMakeFiles/new_server.dir/flags.make
+CMakeFiles/new_server.dir/src/dim_server.cpp.o: ../src/dim_server.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/daniil/CLionProjects/application/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/new_server.dir/src/dim_server.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/new_server.dir/src/dim_server.cpp.o -c /home/daniil/CLionProjects/application/src/dim_server.cpp
 
-CMakeFiles/new_server.dir/src/new_server.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/new_server.dir/src/new_server.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/daniil/CLionProjects/application/src/new_server.cpp > CMakeFiles/new_server.dir/src/new_server.cpp.i
+CMakeFiles/new_server.dir/src/dim_server.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/new_server.dir/src/dim_server.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/daniil/CLionProjects/application/src/dim_server.cpp > CMakeFiles/new_server.dir/src/dim_server.cpp.i
 
-CMakeFiles/new_server.dir/src/new_server.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/new_server.dir/src/new_server.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/daniil/CLionProjects/application/src/new_server.cpp -o CMakeFiles/new_server.dir/src/new_server.cpp.s
-
-CMakeFiles/new_server.dir/src/connection.cpp.o: CMakeFiles/new_server.dir/flags.make
-CMakeFiles/new_server.dir/src/connection.cpp.o: ../src/connection.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/daniil/CLionProjects/application/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/new_server.dir/src/connection.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/new_server.dir/src/connection.cpp.o -c /home/daniil/CLionProjects/application/src/connection.cpp
-
-CMakeFiles/new_server.dir/src/connection.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/new_server.dir/src/connection.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/daniil/CLionProjects/application/src/connection.cpp > CMakeFiles/new_server.dir/src/connection.cpp.i
-
-CMakeFiles/new_server.dir/src/connection.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/new_server.dir/src/connection.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/daniil/CLionProjects/application/src/connection.cpp -o CMakeFiles/new_server.dir/src/connection.cpp.s
+CMakeFiles/new_server.dir/src/dim_server.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/new_server.dir/src/dim_server.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/daniil/CLionProjects/application/src/dim_server.cpp -o CMakeFiles/new_server.dir/src/dim_server.cpp.s
 
 # Object files for target new_server
 new_server_OBJECTS = \
-"CMakeFiles/new_server.dir/src/new_server.cpp.o" \
-"CMakeFiles/new_server.dir/src/connection.cpp.o"
+"CMakeFiles/new_server.dir/src/dim_server.cpp.o"
 
 # External object files for target new_server
 new_server_EXTERNAL_OBJECTS =
 
-new_server: CMakeFiles/new_server.dir/src/new_server.cpp.o
-new_server: CMakeFiles/new_server.dir/src/connection.cpp.o
+new_server: CMakeFiles/new_server.dir/src/dim_server.cpp.o
 new_server: CMakeFiles/new_server.dir/build.make
 new_server: /usr/lib/x86_64-linux-gnu/libsfml-graphics.so
 new_server: /usr/lib/x86_64-linux-gnu/libsfml-window.so
 new_server: /usr/lib/x86_64-linux-gnu/libsfml-system.so
 new_server: /usr/lib/x86_64-linux-gnu/libsfml-network.so
 new_server: CMakeFiles/new_server.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/daniil/CLionProjects/application/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable new_server"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/daniil/CLionProjects/application/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable new_server"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/new_server.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

@@ -1,52 +1,86 @@
-#include "connection.h"
+#ifndef PROJECT_INCLUDE_MODEL_H_
+#define PROJECT_INCLUDE_MODEL_H_
 
-using namespace sf;
-using namespace std;
+#include <SFML/Graphics.hpp>
+#include <SFML/Network.hpp>
+#include <vector>
+#include <iostream>
+#include <string>
+#include <map>
 
-#ifndef INCLUDE_MODEL_H_
-#define INCLUDE_MODEL_H_
+
 
 class Object {
-protected:
 
-    CircleShape border;
-    Sprite sprite;
+protected:
+    float m_x; // начальные координаты объекта
+    float m_y; // начальные координаты объекта
+    float m_default_width;
+    float m_default_height;
+    float m_x_scale; // начальный масштаб x
+    float m_y_scale; // начальный масштаб y
+    float m_rotation; // угол поворота
+    sf::Sprite m_sprite; // поля для отображения объекта в игре
+    bool m_turned_right; // поворот направо
 
 public:
-    Sprite& getSprite();
-    float getX() const;
-    float getY() const;
-    void setX(float _x);
-    void setY(float _y);
-    void goUp(float distance = 1);
-    void goDown(float distance = 1);
-    void goRight(float distance = 1);
-    void goLeft(float distance = 1);
-    void draw(RenderWindow& window);
-
-    friend server_logic::Server;
+    // подписать, что деалает каждая функция и где она испоьзуется
+    Object();
+    sf::Sprite getSprite() const; // берём спрайт текущего объекта
+    float getX() const; // берём координату
+    float getY() const; // берём координату
+    float getWidth() const; // берём ширину
+    float getHeight() const; // берём высоту
+    float getRotation() const; //  берём угол поворота
+    float getXScale() const; // берём масштаб
+    float getYScale() const; // берём масштаб
+    void setScale(float x, float y); // устанавливаем масштаб
+    void setX(float x); // устанавливаем координаты
+    void setY(float y); // устанавливаем координаты
+    void setRotation(float rotation); // устанавливаем угол поворота
+    void setTurnedRight(bool turnedRight); // устанавливаем ориентацию героя
+    void goUp(float distance = 1); // поднимаемся вверх
+    void goDown(float distance = 1); // опускаемся вниз
+    void goRight(float distance = 1); // идём вправо
+    void goLeft(float distance = 1); // идём влево
+    virtual void draw(sf::RenderWindow& window); // почему так ? Зачем оно надо ?
 };
 
 class Unmovable : public Object {
-private:
 public:
-    Unmovable(float _x, float _y, const Texture &texture);
+    Unmovable(float x, float y, const sf::Texture &texture); // конструктор неподвижных объектов
     friend sf::Packet& operator << (sf::Packet& packet, const Unmovable& unmovable);
     friend sf::Packet& operator >> (sf::Packet& packet, Unmovable& unmovable);
-    friend server_logic::Server;
 };
 
 class Player : public Object {
 public:
-    Player(float _x, float _y, const Texture& texture);
-    bool intersectsWith(vector<Unmovable>& objects);
+    static size_t count;
+    Player(float x, float y, const sf::Texture& texture); // конструктор игрока
+    bool intersects_with(std::vector<Unmovable>& objects); // отслеживаем пересечение игррока с объектами
+    void draw(sf::RenderWindow& window) override; // рисуем окно
+    size_t get_id();
     friend sf::Packet& operator >> (sf::Packet& packet, Player& player);
     friend sf::Packet& operator << (sf::Packet& packet, const Player& player);
-    friend server_logic::Server;
+private:
+    size_t m_id;
 };
 
-Packet& operator >> (sf::Packet& packet, bool* directions);
-Packet& operator << (sf::Packet& packet, const bool* directions);
+size_t Player::count = 0;
+
+class Enemy : public Object {
+    Enemy(float x, float y, const sf::Texture& texture); // конструктор игрока
+    bool intersects_with_hero(std::vector<Player>& players); // отслеживаем пересечение игррока с объектами
+    bool intersects_with(std::vector<Unmovable>& objects);
+    void draw(sf::RenderWindow& window) override; // рисуем окно
+    friend sf::Packet& operator >> (sf::Packet& packet, Enemy& player);
+    friend sf::Packet& operator << (sf::Packet& packet, const Enemy& player);
+};
+
+sf::Packet& operator >> (sf::Packet& packet, bool* directions);
+sf::Packet& operator << (sf::Packet& packet, const bool* directions);
 
 
-#endif // INCLUDE_MODEL_H_
+
+
+#endif // PROJECT_INCLUDE_MODEL_H_

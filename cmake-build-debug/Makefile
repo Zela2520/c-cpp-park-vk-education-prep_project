@@ -65,16 +65,6 @@ CMAKE_BINARY_DIR = /home/daniil/CLionProjects/application/cmake-build-debug
 #=============================================================================
 # Targets provided globally by CMake.
 
-# Special rule for the target rebuild_cache
-rebuild_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/snap/clion/175/bin/cmake/linux/bin/cmake --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
-.PHONY : rebuild_cache
-
-# Special rule for the target rebuild_cache
-rebuild_cache/fast: rebuild_cache
-.PHONY : rebuild_cache/fast
-
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
@@ -84,6 +74,16 @@ edit_cache:
 # Special rule for the target edit_cache
 edit_cache/fast: edit_cache
 .PHONY : edit_cache/fast
+
+# Special rule for the target rebuild_cache
+rebuild_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
+	/snap/clion/175/bin/cmake/linux/bin/cmake --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+.PHONY : rebuild_cache
+
+# Special rule for the target rebuild_cache
+rebuild_cache/fast: rebuild_cache
+.PHONY : rebuild_cache/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -117,30 +117,17 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named new_server
+# Target rules for targets named server
 
 # Build rule for target.
-new_server: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 new_server
-.PHONY : new_server
+server: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 server
+.PHONY : server
 
 # fast build rule for target.
-new_server/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/new_server.dir/build.make CMakeFiles/new_server.dir/build
-.PHONY : new_server/fast
-
-#=============================================================================
-# Target rules for targets named client_2
-
-# Build rule for target.
-client_2: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 client_2
-.PHONY : client_2
-
-# fast build rule for target.
-client_2/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/client_2.dir/build.make CMakeFiles/client_2.dir/build
-.PHONY : client_2/fast
+server/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/build
+.PHONY : server/fast
 
 #=============================================================================
 # Target rules for targets named client
@@ -155,80 +142,123 @@ client/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/build
 .PHONY : client/fast
 
-src/client.o: src/client.cpp.o
-.PHONY : src/client.o
+#=============================================================================
+# Target rules for targets named client_2
+
+# Build rule for target.
+client_2: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 client_2
+.PHONY : client_2
+
+# fast build rule for target.
+client_2/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client_2.dir/build.make CMakeFiles/client_2.dir/build
+.PHONY : client_2/fast
+
+src/dim_client.o: src/dim_client.cpp.o
+.PHONY : src/dim_client.o
 
 # target to build an object file
-src/client.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/client_2.dir/build.make CMakeFiles/client_2.dir/src/client.cpp.o
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/src/client.cpp.o
-.PHONY : src/client.cpp.o
+src/dim_client.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/src/dim_client.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client_2.dir/build.make CMakeFiles/client_2.dir/src/dim_client.cpp.o
+.PHONY : src/dim_client.cpp.o
 
-src/client.i: src/client.cpp.i
-.PHONY : src/client.i
+src/dim_client.i: src/dim_client.cpp.i
+.PHONY : src/dim_client.i
 
 # target to preprocess a source file
-src/client.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/client_2.dir/build.make CMakeFiles/client_2.dir/src/client.cpp.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/src/client.cpp.i
-.PHONY : src/client.cpp.i
+src/dim_client.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/src/dim_client.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client_2.dir/build.make CMakeFiles/client_2.dir/src/dim_client.cpp.i
+.PHONY : src/dim_client.cpp.i
 
-src/client.s: src/client.cpp.s
-.PHONY : src/client.s
+src/dim_client.s: src/dim_client.cpp.s
+.PHONY : src/dim_client.s
 
 # target to generate assembly for a file
-src/client.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/client_2.dir/build.make CMakeFiles/client_2.dir/src/client.cpp.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/src/client.cpp.s
-.PHONY : src/client.cpp.s
+src/dim_client.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/src/dim_client.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client_2.dir/build.make CMakeFiles/client_2.dir/src/dim_client.cpp.s
+.PHONY : src/dim_client.cpp.s
 
-src/connection.o: src/connection.cpp.o
-.PHONY : src/connection.o
+src/dim_server.o: src/dim_server.cpp.o
+.PHONY : src/dim_server.o
 
 # target to build an object file
-src/connection.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/new_server.dir/build.make CMakeFiles/new_server.dir/src/connection.cpp.o
-.PHONY : src/connection.cpp.o
+src/dim_server.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/dim_server.cpp.o
+.PHONY : src/dim_server.cpp.o
 
-src/connection.i: src/connection.cpp.i
-.PHONY : src/connection.i
+src/dim_server.i: src/dim_server.cpp.i
+.PHONY : src/dim_server.i
 
 # target to preprocess a source file
-src/connection.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/new_server.dir/build.make CMakeFiles/new_server.dir/src/connection.cpp.i
-.PHONY : src/connection.cpp.i
+src/dim_server.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/dim_server.cpp.i
+.PHONY : src/dim_server.cpp.i
 
-src/connection.s: src/connection.cpp.s
-.PHONY : src/connection.s
+src/dim_server.s: src/dim_server.cpp.s
+.PHONY : src/dim_server.s
 
 # target to generate assembly for a file
-src/connection.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/new_server.dir/build.make CMakeFiles/new_server.dir/src/connection.cpp.s
-.PHONY : src/connection.cpp.s
+src/dim_server.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/dim_server.cpp.s
+.PHONY : src/dim_server.cpp.s
 
-src/new_server.o: src/new_server.cpp.o
-.PHONY : src/new_server.o
+src/map.o: src/map.cpp.o
+.PHONY : src/map.o
 
 # target to build an object file
-src/new_server.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/new_server.dir/build.make CMakeFiles/new_server.dir/src/new_server.cpp.o
-.PHONY : src/new_server.cpp.o
+src/map.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/src/map.cpp.o
+.PHONY : src/map.cpp.o
 
-src/new_server.i: src/new_server.cpp.i
-.PHONY : src/new_server.i
+src/map.i: src/map.cpp.i
+.PHONY : src/map.i
 
 # target to preprocess a source file
-src/new_server.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/new_server.dir/build.make CMakeFiles/new_server.dir/src/new_server.cpp.i
-.PHONY : src/new_server.cpp.i
+src/map.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/src/map.cpp.i
+.PHONY : src/map.cpp.i
 
-src/new_server.s: src/new_server.cpp.s
-.PHONY : src/new_server.s
+src/map.s: src/map.cpp.s
+.PHONY : src/map.s
 
 # target to generate assembly for a file
-src/new_server.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/new_server.dir/build.make CMakeFiles/new_server.dir/src/new_server.cpp.s
-.PHONY : src/new_server.cpp.s
+src/map.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/src/map.cpp.s
+.PHONY : src/map.cpp.s
+
+src/model.o: src/model.cpp.o
+.PHONY : src/model.o
+
+# target to build an object file
+src/model.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/model.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/src/model.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client_2.dir/build.make CMakeFiles/client_2.dir/src/model.cpp.o
+.PHONY : src/model.cpp.o
+
+src/model.i: src/model.cpp.i
+.PHONY : src/model.i
+
+# target to preprocess a source file
+src/model.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/model.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/src/model.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client_2.dir/build.make CMakeFiles/client_2.dir/src/model.cpp.i
+.PHONY : src/model.cpp.i
+
+src/model.s: src/model.cpp.s
+.PHONY : src/model.s
+
+# target to generate assembly for a file
+src/model.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/model.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/src/model.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client_2.dir/build.make CMakeFiles/client_2.dir/src/model.cpp.s
+.PHONY : src/model.cpp.s
 
 # Help Target
 help:
@@ -240,16 +270,19 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... client"
 	@echo "... client_2"
-	@echo "... new_server"
-	@echo "... src/client.o"
-	@echo "... src/client.i"
-	@echo "... src/client.s"
-	@echo "... src/connection.o"
-	@echo "... src/connection.i"
-	@echo "... src/connection.s"
-	@echo "... src/new_server.o"
-	@echo "... src/new_server.i"
-	@echo "... src/new_server.s"
+	@echo "... server"
+	@echo "... src/dim_client.o"
+	@echo "... src/dim_client.i"
+	@echo "... src/dim_client.s"
+	@echo "... src/dim_server.o"
+	@echo "... src/dim_server.i"
+	@echo "... src/dim_server.s"
+	@echo "... src/map.o"
+	@echo "... src/map.i"
+	@echo "... src/map.s"
+	@echo "... src/model.o"
+	@echo "... src/model.i"
+	@echo "... src/model.s"
 .PHONY : help
 
 
