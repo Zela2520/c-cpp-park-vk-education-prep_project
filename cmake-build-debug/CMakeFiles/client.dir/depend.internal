@@ -4,10 +4,6 @@
 CMakeFiles/client.dir/src/dim_client.cpp.o
  /home/daniil/CLionProjects/application/include/model.h
  /home/daniil/CLionProjects/application/src/dim_client.cpp
-CMakeFiles/client.dir/src/map.cpp.o
- /home/daniil/CLionProjects/application/include/map.h
- /home/daniil/CLionProjects/application/include/model.h
- /home/daniil/CLionProjects/application/src/map.cpp
 CMakeFiles/client.dir/src/model.cpp.o
  /home/daniil/CLionProjects/application/include/model.h
  /home/daniil/CLionProjects/application/src/model.cpp

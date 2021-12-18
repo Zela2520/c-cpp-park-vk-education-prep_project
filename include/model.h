@@ -3,82 +3,74 @@
 
 #include <SFML/Graphics.hpp>
 #include <SFML/Network.hpp>
-#include <vector>
 #include <iostream>
-#include <string>
-#include <map>
+#include <cstdio>
+#include <cstdlib>
 
-
+using namespace sf;
+using namespace std;
 
 class Object {
-
 protected:
-    float m_x; // начальные координаты объекта
-    float m_y; // начальные координаты объекта
-    float m_default_width;
-    float m_default_height;
-    float m_x_scale; // начальный масштаб x
-    float m_y_scale; // начальный масштаб y
-    float m_rotation; // угол поворота
-    sf::Sprite m_sprite; // поля для отображения объекта в игре
-    bool m_turned_right; // поворот направо
-
+    float x = 0;
+    float y = 0;
+    float defaultWidth = -1;
+    float defaultHeight = -1;
+    float xScale = 1;
+    float yScale = 1;
+    float rotation = 0;
+    Sprite sprite;
+    bool turnedRight = true;
+//    Texture texture;
 public:
-    // подписать, что деалает каждая функция и где она испоьзуется
-    Object();
-    sf::Sprite getSprite() const; // берём спрайт текущего объекта
-    float getX() const; // берём координату
-    float getY() const; // берём координату
-    float getWidth() const; // берём ширину
-    float getHeight() const; // берём высоту
-    float getRotation() const; //  берём угол поворота
-    float getXScale() const; // берём масштаб
-    float getYScale() const; // берём масштаб
-    void setScale(float x, float y); // устанавливаем масштаб
-    void setX(float x); // устанавливаем координаты
-    void setY(float y); // устанавливаем координаты
-    void setRotation(float rotation); // устанавливаем угол поворота
-    void setTurnedRight(bool turnedRight); // устанавливаем ориентацию героя
-    void goUp(float distance = 1); // поднимаемся вверх
-    void goDown(float distance = 1); // опускаемся вниз
-    void goRight(float distance = 1); // идём вправо
-    void goLeft(float distance = 1); // идём влево
-    virtual void draw(sf::RenderWindow& window); // почему так ? Зачем оно надо ?
+    Sprite getSprite() const;
+    float getX() const;
+    float getY() const;
+    float getWidth() const;
+    float getHeight() const;
+    float getRotation() const;
+    float getXScale() const;
+    float getYScale() const;
+    void setScale(float _x, float _y);
+    void setX(float _x);
+    void setY(float _y);
+    void setRotation(float _rotation);
+    void setTurnedRight(bool _turnedRight);
+    void goUp(float distance = 1);
+    void goDown(float distance = 1);
+    void goRight(float distance = 1);
+    void goLeft(float distance = 1);
+    virtual void draw(RenderWindow& window);
 };
 
 class Unmovable : public Object {
+private:
 public:
-    Unmovable(float x, float y, const sf::Texture &texture); // конструктор неподвижных объектов
+    Unmovable(float _x, float _y, const Texture &texture);
     friend sf::Packet& operator << (sf::Packet& packet, const Unmovable& unmovable);
     friend sf::Packet& operator >> (sf::Packet& packet, Unmovable& unmovable);
 };
 
 class Player : public Object {
+    int Id = -1;
 public:
-    static size_t count;
-    Player(float x, float y, const sf::Texture& texture); // конструктор игрока
-    bool intersects_with(std::vector<Unmovable>& objects); // отслеживаем пересечение игррока с объектами
-    void draw(sf::RenderWindow& window) override; // рисуем окно
-    size_t get_id();
+    Player(float _x, float _y, const Texture& texture);
+    bool intersectsWith(vector<Unmovable>& objects);
+    void draw(RenderWindow& window) override;
+    void setId(int);
+    int getId() const;
     friend sf::Packet& operator >> (sf::Packet& packet, Player& player);
     friend sf::Packet& operator << (sf::Packet& packet, const Player& player);
-private:
-    size_t m_id;
 };
-
-size_t Player::count = 0;
 
 class Enemy : public Object {
-    Enemy(float x, float y, const sf::Texture& texture); // конструктор игрока
-    bool intersects_with_hero(std::vector<Player>& players); // отслеживаем пересечение игррока с объектами
-    bool intersects_with(std::vector<Unmovable>& objects);
-    void draw(sf::RenderWindow& window) override; // рисуем окно
-    friend sf::Packet& operator >> (sf::Packet& packet, Enemy& player);
-    friend sf::Packet& operator << (sf::Packet& packet, const Enemy& player);
+public:
 };
 
-sf::Packet& operator >> (sf::Packet& packet, bool* directions);
-sf::Packet& operator << (sf::Packet& packet, const bool* directions);
+//
+
+Packet& operator >> (sf::Packet& packet, bool* directions);
+Packet& operator << (sf::Packet& packet, const bool* directions);
 
 
 

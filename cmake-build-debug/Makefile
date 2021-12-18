@@ -206,30 +206,6 @@ src/dim_server.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/dim_server.cpp.s
 .PHONY : src/dim_server.cpp.s
 
-src/map.o: src/map.cpp.o
-.PHONY : src/map.o
-
-# target to build an object file
-src/map.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/src/map.cpp.o
-.PHONY : src/map.cpp.o
-
-src/map.i: src/map.cpp.i
-.PHONY : src/map.i
-
-# target to preprocess a source file
-src/map.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/src/map.cpp.i
-.PHONY : src/map.cpp.i
-
-src/map.s: src/map.cpp.s
-.PHONY : src/map.s
-
-# target to generate assembly for a file
-src/map.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/src/map.cpp.s
-.PHONY : src/map.cpp.s
-
 src/model.o: src/model.cpp.o
 .PHONY : src/model.o
 
@@ -277,9 +253,6 @@ help:
 	@echo "... src/dim_server.o"
 	@echo "... src/dim_server.i"
 	@echo "... src/dim_server.s"
-	@echo "... src/map.o"
-	@echo "... src/map.i"
-	@echo "... src/map.s"
 	@echo "... src/model.o"
 	@echo "... src/model.i"
 	@echo "... src/model.s"

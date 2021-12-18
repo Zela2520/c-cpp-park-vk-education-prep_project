@@ -1,7 +1,13 @@
+#include <SFML/Graphics.hpp>
+#include <SFML/Network.hpp>
+#include <iostream>
+#include <string>
+#include <vector>
 #include "../include/model.h"
-
 using namespace sf;
 using namespace std;
+
+
 
 int main() {
     setlocale(LC_ALL, "");
@@ -13,15 +19,15 @@ int main() {
 
     //// Все используемые в программе текстуры.
     Texture amogusTexture;
-    amogusTexture.loadFromFile("/home/dima/!Stuff/TP/trying to make engine/include/textures/amogus.png");
+    amogusTexture.loadFromFile("../include/textures/amogus.png");
     sf::Texture babyTexture;
-    babyTexture.loadFromFile("../include/textures/baby.png");
+    // babyTexture.loadFromFile("../include/textures/baby.png");
     Texture gachiTexture;
     gachiTexture.loadFromFile("../include/textures/gachi.png");
     Texture kotTexture;
-    kotTexture.loadFromFile("../include/textures/kot.jpg");
+    // kotTexture.loadFromFile("../include/textures/kot.jpg");
     Texture tntTexture;
-    tntTexture.loadFromFile("../include/textures/tnt.png");
+    // tntTexture.loadFromFile("../include/textures/tnt.png");
 
 
     std::vector<Player> players(2, Player(0, 0, amogusTexture));  //// Инициализируем начальное положение объектов на карте, принимая данные от сервера.
@@ -78,19 +84,15 @@ int main() {
         if (window.hasFocus()) {
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
                 directions[0] = true;
-//                camera.move(0,-0.3);
             }
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
                 directions[1] = true;
-//                camera.move(0.3,0);
             }
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
                 directions[2] = true;
-//                camera.move(0,0.3);
             }
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
                 directions[3] = true;
-//                camera.move(-0.3,0);
             }
         }
 
@@ -98,7 +100,6 @@ int main() {
         packet << directions;
         socket.send(packet);
         packet.clear();
-//        std::cout << directions << '\n';  // Дебаг
     }
     return 0;
 }

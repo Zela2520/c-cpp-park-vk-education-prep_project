@@ -170,18 +170,12 @@
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/home/daniil/CLionProjects/application/include/map.h">
-			<Option target="client"/>
-		</Unit>
 		<Unit filename="/home/daniil/CLionProjects/application/src/dim_client.cpp">
 			<Option target="client"/>
 			<Option target="client_2"/>
 		</Unit>
 		<Unit filename="/home/daniil/CLionProjects/application/src/dim_server.cpp">
 			<Option target="server"/>
-		</Unit>
-		<Unit filename="/home/daniil/CLionProjects/application/src/map.cpp">
-			<Option target="client"/>
 		</Unit>
 		<Unit filename="/home/daniil/CLionProjects/application/src/model.cpp">
 			<Option target="server"/>

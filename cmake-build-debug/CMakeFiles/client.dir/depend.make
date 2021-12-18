@@ -4,10 +4,6 @@
 CMakeFiles/client.dir/src/dim_client.cpp.o: \
  ../include/model.h \
  ../src/dim_client.cpp
-CMakeFiles/client.dir/src/map.cpp.o: \
- ../include/map.h \
- ../include/model.h \
- ../src/map.cpp
 CMakeFiles/client.dir/src/model.cpp.o: \
  ../include/model.h \
  ../src/model.cpp
