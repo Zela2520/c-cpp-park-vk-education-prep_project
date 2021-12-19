@@ -2,6 +2,7 @@
 #include "../../include/player.h"
 #include "../../include/unmovable.h"
 #include "../../include/mob.h"
+#include "../../include/map.h"
 
 #include <iostream>
 
@@ -35,12 +36,24 @@ int main(int argc, char* argv[]) {
     amogusTexture.loadFromFile("../include/textures/amogus.png");
     Texture gachiTexture;
     gachiTexture.loadFromFile("../include/textures/gachi.png");
+    sf::Texture globalBoundTexture;
+    globalBoundTexture.loadFromFile("../include/textures/gachi.png");
+    sf::Texture localBoundTexture;
+    localBoundTexture.loadFromFile("../include/textures/gachi.png");
+
+    vector<globalBound> globalBounds;
+    vector<localBound> localBounds;
+    Map map;
+    map.getBounds(localBounds, globalBounds, globalBoundTexture, localBoundTexture);
+
+
 
     std::vector<Player> players;
     for (int i = 0; i < 2; i++) {
         players.emplace_back(0, 0, amogusTexture);
         players[i].setId(i);
     }
+
 
     std::vector<Unmovable> unmovables(1, Unmovable(200, 200, gachiTexture));   //// Создаём одну стенку.
 
@@ -79,19 +92,19 @@ int main(int argc, char* argv[]) {
             //// Обрабатываем полученную информацию о направлении.
             if (directions[0]) {   //// Вверх.
                 players[i].goUp(0.3 * time);
-                if (players[i].intersectsWith(unmovables)) players[i].goDown(0.3 * time);
+                if (players[i].intersectsWith(unmovables) || players[i].intersectsWith(localBounds) || players[i].intersectsWith(globalBounds)) players[i].goDown(0.3 * time);
             }
             if (directions[1]) {  //// Направо.
                 players[i].goRight(0.3 * time);
-                if (players[i].intersectsWith(unmovables)) players[i].goLeft(0.3 * time);
+                if (players[i].intersectsWith(unmovables) || players[i].intersectsWith(localBounds) || players[i].intersectsWith(globalBounds)) players[i].goLeft(0.3 * time);
             }
             if (directions[2]) {  //// Вниз.
                 players[i].goDown(0.3 * time);
-                if (players[i].intersectsWith(unmovables)) players[i].goUp(0.3 * time);
+                if (players[i].intersectsWith(unmovables) || players[i].intersectsWith(localBounds) || players[i].intersectsWith(globalBounds)) players[i].goUp(0.3 * time);
             }
             if (directions[3]) {  //// Налево.
                 players[i].goLeft(0.3 * time);
-                if (players[i].intersectsWith(unmovables)) players[i].goRight(0.3 * time);
+                if (players[i].intersectsWith(unmovables) || players[i].intersectsWith(localBounds) || players[i].intersectsWith(globalBounds)) players[i].goRight(0.3 * time);
             }
         }
 

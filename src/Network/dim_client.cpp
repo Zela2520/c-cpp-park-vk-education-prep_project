@@ -2,6 +2,7 @@
 #include "../../include/player.h"
 #include "../../include/unmovable.h"
 #include "../../include/mob.h"
+#include "../../include/map.h"
 
 #include <iostream>
 
@@ -23,6 +24,15 @@ int main() {
     amogusTexture.loadFromFile("../include/textures/amogus.png");
     Texture gachiTexture;
     gachiTexture.loadFromFile("../include/textures/gachi.png");
+    sf::Texture globalBoundTexture;
+    globalBoundTexture.loadFromFile("../include/textures/gachi.png");
+    sf::Texture localBoundTexture;
+    localBoundTexture.loadFromFile("../include/textures/gachi.png");
+
+    vector<globalBound> globalBounds;
+    vector<localBound> localBounds;
+    Map map;
+    map.getBounds(localBounds, globalBounds, globalBoundTexture, localBoundTexture);
 
 
     Texture mobTexture;
@@ -43,6 +53,13 @@ int main() {
 
 
     while (window.isOpen()) {
+        for (auto& localBound : localBounds) {
+            cout << localBounds.size() << endl;
+            localBound.draw(window);
+        }
+        for (auto& globalBound : globalBounds) {
+            globalBound.draw(window);
+        }
         //// Получение информации обо всех игроках.
         for (auto &player : players) {  //// Пробегаем по всем игрокам. На 1 игрока 1 пакет.
             socket.receive(packet);  //// Получаем пакет.

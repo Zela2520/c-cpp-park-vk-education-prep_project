@@ -6,9 +6,18 @@
 #define HEIGHT_MAP (400)
 #define WIDTH_MAP (500)
 
+class globalBound : public Object {
+public:
+    globalBound(float _x, float _y, const sf::Texture& texture);
+};
+class localBound : public Object {
+public:
+    localBound(float _x, float _y, const sf::Texture& texture);
+};
+
 class Map {
 private:
-    sf::String m_tile_map[HEIGHT_MAP] = {
+    sf::String map[HEIGHT_MAP] = {
             "00000000000000000000000000000000000000000000000000000000000000000",
             "0                                                               0",
             "0                                                               0",
@@ -50,12 +59,15 @@ private:
     sf::Image map_image; //// картинка откуда будет загружаться карта
     sf::Texture map_texture; //// текстура из картинки
     sf::Sprite map_sprite; //// спарйт для карты
-
 public:
-    Map();
-    Map(std::string path_to_file);
+    Map() = default;
+//    Map(std::string path_to_file);
     ~Map() = default;
     void draw_map();
+    void getBounds(std::vector<localBound>& localBounds, std::vector<globalBound> globalBounds, const sf::Texture&, const sf::Texture&) const;
 };
+
+
+
 
 #endif //APPLICATION_MAP_H

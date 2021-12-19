@@ -1,4 +1,4 @@
-#include "../include/map.h"
+//#include "../include/map.h"
 
 Map::Map() {
     map_image.loadFromFile("../include/map.png");
