@@ -56,7 +56,7 @@ int main() {
             packet >> player;  //// Записываем данные из пакета в игрока.
             packet.clear();
 
-            std::cout << "Корды игрока: " << player.getX() << ' ' << player.getY() << std::endl;  // Дебаг.
+//            std::cout << "Корды игрока: " << player.getX() << ' ' << player.getY() << std::endl;  // Дебаг.
         }
 
         camera.setCenter(players[ID].getX() ,players[ID].getY());
@@ -71,7 +71,7 @@ int main() {
             packet >> unmovable;
             packet.clear();
 
-            std::cout << "Корды Гачимучи" << unmovable.getX() << ' ' << unmovable.getY() << std::endl;
+//            std::cout << "Корды Гачимучи" << unmovable.getX() << ' ' << unmovable.getY() << std::endl;
         }
         for (auto& unmovable : unmovables) {
             unmovable.draw(window);
@@ -97,6 +97,7 @@ int main() {
             Bullet tempBullet;
             packet >> tempBullet;
             bullets.emplace_back(Bullet(tempBullet.getX(), tempBullet.getY(), tempBullet.getRotation(), laserTexture));
+            cout << "tempBullet.getRotation() " << tempBullet.getRotation() << endl;
             packet.clear();
         }
         for (auto& bullet : bullets) {

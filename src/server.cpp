@@ -96,10 +96,11 @@ int main(int argc, char* argv[]) {
         float playerTime = playerClock.getElapsedTime().asMilliseconds();
         playerTime /= 1300;
         float laserTime = laserClock.getElapsedTime().asMilliseconds();
-        if (laserTime > 2500) {
+        if (laserTime > 1500) {
             cout << "NEW ONE" << endl;
             laserClock.restart();
-            bullets.emplace_back(Bullet(turrets[0].getX() + turrets[0].getWidth()/2, turrets[0].getY() + turrets[0].getHeight()/2,turrets[0].getDirection(players[0]), laserTexture));
+            bullets.emplace_back(Bullet(turrets[0].getX() + turrets[0].getWidth()/2, turrets[0].getY() + turrets[0].getHeight()/2,turrets[0].getDirection(players[0]) * 180 / 2 / 3.1415, laserTexture));
+            cout << "turrets[0].getDirection(players[0]) " << turrets[0].getDirection(players[0]);
         }
         //// Получаем пакет с информацией о перемещении какждого клиента и извлекаем информацию о его перемещении.
         //// Перемещение i-ого клиента значит перемещение i-ого мячика.
@@ -130,7 +131,7 @@ int main(int argc, char* argv[]) {
         }
 
         for (auto& bullet : bullets) {
-            bullet.move(0.03 * playerTime * cos(3.1415 / 180 * bullet.getRotation()), 0.03 * playerTime * sin(3.1415 / 180 * bullet.getRotation()));
+            bullet.move(0.1 * playerTime * cos(3.1415 / 180 * bullet.getRotation()), 0.1 * playerTime * sin(3.1415 / 180 * bullet.getRotation()));
         }
 
 //        cout << "cos(bullets[0].getRotation()) " << cos(bullets[0].getRotation()) << endl;
