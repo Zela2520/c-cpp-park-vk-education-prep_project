@@ -71,7 +71,7 @@ void Object::goLeft(float distance) {
     turnedRight = false;
 }
 void Object::draw(RenderWindow& window) {
-    this->sprite.setTexture(m_texture);
+    //this->sprite.setTexture(m_texture);
     window.draw(sprite);
 }
 
@@ -88,7 +88,11 @@ Unmovable::Unmovable(float _x, float _y, const Texture& texture) : Object() {
     setY(_y);
 }
 
-
+Mob::Mob(float _x, float _y, const Texture& texture) {
+    sprite.setTexture(texture);
+    setX(_x);
+    setY(_y);
+}
 Player::Player(float _x, float _y, const Texture& _texture) : Object() {  //// Конструктор инициализации игрока.
     sprite.setTexture(_texture);
     defaultWidth = sprite.getGlobalBounds().width;
@@ -133,14 +137,14 @@ Vector2<float> Mob::getPlayersCoords(const Player player) {
     return playersCoords;
 }
 
-Vector2<float> Mob::moveMob(Mob mob, Player player) {
+Vector2<float> Mob::moveMob(Player player) {
     Vector2<float> playersCoords = getPlayersCoords(player);
-    Vector2<float> mobCoords(mob.getX(), mob.getY());
+    Vector2<float> mobCoords(this->getX(), this->getY());
     Vector2<float> movingDir(playersCoords.x - mobCoords.x, playersCoords.y - mobCoords.y);
     movingDir.x /= static_cast<float>(pow(pow(playersCoords.x - mobCoords.x, 2) + pow(playersCoords.y - mobCoords.y, 2), 0.5));
     movingDir.y /= static_cast<float>(pow(pow(playersCoords.x - mobCoords.x, 2) + pow(playersCoords.y - mobCoords.y, 2), 0.5));
-    mob.setX(movingDir.x + mob.getX());
-    mob.setY(movingDir.y + mob.getY());
+    this->setX(movingDir.x + this->getX());
+    this->setY(movingDir.y + this->getY());
     return movingDir;
 }
 

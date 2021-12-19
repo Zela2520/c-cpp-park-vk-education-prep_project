@@ -25,10 +25,8 @@ int main() {
 
 
     Texture mobTexture;
-    Mob mob;
-    mob.load_picture("../include/textures/amogus.png");
-    mob.setX(0);
-    mob.setY(0);
+    mobTexture.loadFromFile("../include/textures/amogus.png");
+    Mob mob(-500.0,-500.0,mobTexture);
     mob.setScale(0.5,0.5);
     std::vector<Player> players(2, Player(0, 0, amogusTexture));  //// Инициализируем начальное положение объектов на карте, принимая данные от сервера.
     std::vector<Unmovable> unmovables(1, Unmovable(200, 200, gachiTexture));
@@ -50,9 +48,10 @@ int main() {
             packet >> player;  //// Записываем данные из пакета в игрока.
             packet.clear();
 
-            std::cout << "Корды игрока: " << player.getX() << ' ' << player.getY() << std::endl;  // Дебаг.
+            //std::cout << "Корды игрока: " << player.getX() << ' ' << player.getY() << std::endl;  // Дебаг.
         }
-
+        mob.moveMob(players[1]);
+        mob.draw(window);
         camera.setCenter(players[ID].getX() ,players[ID].getY());
         window.setView(camera);
         window.clear(sf::Color::White);

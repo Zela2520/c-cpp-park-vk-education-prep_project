@@ -18,20 +18,6 @@ cstdio
 cstdlib
 -
 
-/home/daniil/CLionProjects/application/src/dim_client.cpp
-SFML/Graphics.hpp
--
-SFML/Network.hpp
--
-iostream
--
-string
--
-vector
--
-../include/model.h
-/home/daniil/CLionProjects/application/include/model.h
-
 /home/daniil/CLionProjects/application/src/model.cpp
 SFML/Graphics.hpp
 -

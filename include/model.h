@@ -67,8 +67,9 @@ public:
 
 class Mob : public Object {
 public:
+    Mob(float _x, float _y, const Texture& texture);
     sf::Vector2<float> getPlayersCoords(Player player); //// получаем координаты объекта
-    sf::Vector2<float> moveMob(Mob mob, Player player); //// задаём направление движения персонажу
+    sf::Vector2<float> moveMob(Player player); //// задаём направление движения персонажу
     friend sf::Packet& operator << (sf::Packet& packet, const Mob& unmovable);
     friend sf::Packet& operator >> (sf::Packet& packet, Mob& unmovable);
     //sf::Player setTarget();
