@@ -4,7 +4,6 @@
 #include "model.h"
 
 class Unmovable : public Object {
-private:
 public:
     Unmovable(float _x, float _y, const sf::Texture &texture);
     friend sf::Packet& operator << (sf::Packet& packet, const Unmovable& unmovable);

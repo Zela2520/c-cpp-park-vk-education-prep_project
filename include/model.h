@@ -8,8 +8,7 @@
 #include <string>
 
 #include "cmath"
-#include "unmovable.h"
-#include "player.h"
+
 
 class Object {
 
@@ -26,7 +25,6 @@ protected:
     sf::Texture m_texture;
 
 public:
-    // void setSprite();
 
     sf::Sprite getSprite() const;
     float getX() const;

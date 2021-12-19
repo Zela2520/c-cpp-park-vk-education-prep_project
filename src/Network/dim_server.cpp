@@ -1,8 +1,10 @@
-#include <SFML/Graphics.hpp>
-#include <SFML/Network.hpp>
-#include <iostream>
-#include <vector>
 #include "../../include/model.h"
+#include "../../include/player.h"
+#include "../../include/unmovable.h"
+#include "../../include/mob.h"
+
+#include <iostream>
+
 using namespace sf;
 using namespace std;
 

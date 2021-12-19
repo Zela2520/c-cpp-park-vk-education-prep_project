@@ -1,7 +1,7 @@
 #ifndef APPLICATION_MOB_H
 #define APPLICATION_MOB_H
 
-#include "model.h"
+#include "player.h"
 
 class Mob : public Object {
 public:

@@ -1,7 +1,13 @@
 #ifndef APPLICATION_INCLUDE_PLAYER_H
 #define APPLICATION_INCLUDE_PLAYER_H
 
-#include "model.h"
+#include <SFML/Graphics.hpp>
+#include <SFML/Network.hpp>
+#include <vector>
+#include <string>
+
+#include "unmovable.h"
+#include "cmath"
 
 class Player : public Object {
     int Id = -1;

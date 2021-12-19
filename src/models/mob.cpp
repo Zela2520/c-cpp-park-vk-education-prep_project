@@ -1,4 +1,3 @@
-#include "../../include/player.h"
 #include "../../include/mob.h"
 
 Mob::Mob(float _x, float _y, const sf::Texture& texture) {

@@ -1,5 +1,4 @@
 #include "../../include/player.h"
-#include "../../include/unmovable.h"
 
 Player::Player(float _x, float _y, const sf::Texture& _texture) : Object() {  //// Конструктор инициализации игрока.
     sprite.setTexture(_texture);
@@ -13,7 +12,7 @@ Player::Player(float _x, float _y, const sf::Texture& _texture) : Object() {  //
 bool Player::intersectsWith(std::vector<Unmovable>& objects) {
     for (auto& object : objects) {
         sf::Rect<float> thisBounds = sprite.getGlobalBounds();
-        sf::Rect<float> objectBounds = object.;
+        sf::Rect<float> objectBounds = object.getSprite().getGlobalBounds();
 
         return (thisBounds.intersects(objectBounds));
     }
