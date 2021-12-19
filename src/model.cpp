@@ -140,6 +140,8 @@ Bullet::Bullet(float _x, float _y, float _rotation, const Texture& texture) {
     setX(_x);
     setY(_y);
     setRotation(_rotation);
+    defaultWidth = sprite.getGlobalBounds().width;
+    defaultHeight = sprite.getGlobalBounds().height;
     isAlive = true;
 }
 

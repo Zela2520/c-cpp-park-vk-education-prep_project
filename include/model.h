@@ -81,6 +81,7 @@ class Bullet : public Object {
     bool isAlive = false;
 public:
     Bullet(float _x, float _y, float _rotation, const Texture& texture);
+    Bullet() = default;
     friend sf::Packet& operator >> (sf::Packet& packet, Bullet& bullet);
     friend sf::Packet& operator << (sf::Packet& packet, const Bullet& bullet);
 };

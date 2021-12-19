@@ -52,25 +52,34 @@ int main(int argc, char* argv[]) {
     std::vector<Bullet> bullets(1, Bullet(turrets[0].getX() + turrets[0].getWidth()/2, turrets[0].getY() + turrets[0].getHeight()/2,turrets[0].getDirection(players[0]), laserTexture));
 
 
-    //// Заранее отправляем клиентам данные о том, что мячи расположены на нулевых координатах.
+     //// ##### Заранее отправляем клиентам данные о том, что мячи расположены на нулевых координатах. ######
     for (auto & client : clients) {  //// Для каждого клиента.
         for (auto & player : players) {   //// О каждом игроке.
+//            cout << "Players" << endl;
             packet << player;
             client.send(packet);
             packet.clear();
 //            std::cout << player.getX() << ' ' << player.getY() << std::endl;  // Дебаг.
         }
         for (auto & unmovable : unmovables) {   //// И о каждом несдвигаемом объекте.
+//            cout << "Unmovables" << endl;
             packet << unmovable;
             client.send(packet);
             packet.clear();
 //            std::cout << unmovable.getX() << ' ' << unmovable.getY() << '\n';  // Дебаг.
         }
         for (auto & turret : turrets) {
+//            cout << "Turrels" << endl;
             packet << turret;
             client.send(packet);
             packet.clear();
         }
+//        cout << "LKDSJFLKSJD:LFJSKDJFKSDLKFJKDS" << endl;
+        int amountOfBullets = bullets.size();
+        packet << amountOfBullets;
+//        cout << amountOfBullets << endl;
+        client.send(packet);
+        packet.clear();
         for (auto & bullet : bullets) {
             packet << bullet;
             client.send(packet);
@@ -87,7 +96,8 @@ int main(int argc, char* argv[]) {
         float playerTime = playerClock.getElapsedTime().asMilliseconds();
         playerTime /= 1300;
         float laserTime = laserClock.getElapsedTime().asMilliseconds();
-        if (laserTime > 500) {
+        if (laserTime > 2500) {
+            cout << "NEW ONE" << endl;
             laserClock.restart();
             bullets.emplace_back(Bullet(turrets[0].getX() + turrets[0].getWidth()/2, turrets[0].getY() + turrets[0].getHeight()/2,turrets[0].getDirection(players[0]), laserTexture));
         }
@@ -119,9 +129,12 @@ int main(int argc, char* argv[]) {
             }
         }
 
-        bullets[0].move(0.0007 * playerTime * cos(3.1415 / 180 * bullets[0].getRotation()), 0.0007 * playerTime * sin(3.1415 / 180 * bullets[0].getRotation()));
-        cout << "cos(bullets[0].getRotation()) " << cos(bullets[0].getRotation()) << endl;
-        cout << "bullets[0].getRotation() " << bullets[0].getRotation() << endl;
+        for (auto& bullet : bullets) {
+            bullet.move(0.03 * playerTime * cos(3.1415 / 180 * bullet.getRotation()), 0.03 * playerTime * sin(3.1415 / 180 * bullet.getRotation()));
+        }
+
+//        cout << "cos(bullets[0].getRotation()) " << cos(bullets[0].getRotation()) << endl;
+//        cout << "bullets[0].getRotation() " << bullets[0].getRotation() << endl;
 
         //// Отправляем обновлённые данные об изменение всех объектов на сервере каждому клиенту.
         for (auto & client : clients) {  //// Каждому клиенту.
@@ -143,6 +156,9 @@ int main(int argc, char* argv[]) {
                 client.send(packet);
                 packet.clear();
             }
+            packet << (int)bullets.size();
+            client.send(packet);
+            packet.clear();
             for (auto & bullet : bullets) {
                 packet << bullet;
                 client.send(packet);

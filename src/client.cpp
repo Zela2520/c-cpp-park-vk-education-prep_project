@@ -86,12 +86,17 @@ int main() {
             turret.draw(window);
         }
 
+        socket.receive(packet);
         int amountOfBullets;
         packet >> amountOfBullets;
+        std::vector<Bullet> bullets(0);
         for (int i = 0; i < amountOfBullets; i++) {
-            std::vector<Bullet> bullets(1, Bullet(turrets[0].getX(), turrets[0].getY(), 0, laserTexture));
             socket.receive(packet);
-            packet >> bullet[i];
+//            bullets.emplace_back(Bullet());
+//            packet >> bullets[i];
+            Bullet tempBullet;
+            packet >> tempBullet;
+            bullets.emplace_back(Bullet(tempBullet.getX(), tempBullet.getY(), tempBullet.getRotation(), laserTexture));
             packet.clear();
         }
         for (auto& bullet : bullets) {
