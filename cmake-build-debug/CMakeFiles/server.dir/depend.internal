@@ -3,7 +3,12 @@
 
 CMakeFiles/server.dir/src/dim_server.cpp.o
  /home/daniil/CLionProjects/application/include/model.h
+ /home/daniil/CLionProjects/application/include/object.h
  /home/daniil/CLionProjects/application/src/dim_server.cpp
 CMakeFiles/server.dir/src/model.cpp.o
  /home/daniil/CLionProjects/application/include/model.h
+ /home/daniil/CLionProjects/application/include/object.h
  /home/daniil/CLionProjects/application/src/model.cpp
+CMakeFiles/server.dir/src/object.cpp.o
+ /home/daniil/CLionProjects/application/include/object.h
+ /home/daniil/CLionProjects/application/src/object.cpp

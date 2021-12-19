@@ -8,8 +8,11 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/daniil/CLionProjects/application/src/dim_server.cpp" "/home/daniil/CLionProjects/application/cmake-build-debug/CMakeFiles/server.dir/src/dim_server.cpp.o"
-  "/home/daniil/CLionProjects/application/src/model.cpp" "/home/daniil/CLionProjects/application/cmake-build-debug/CMakeFiles/server.dir/src/model.cpp.o"
+  "/home/daniil/CLionProjects/application/src/Network/dim_server.cpp" "/home/daniil/CLionProjects/application/cmake-build-debug/CMakeFiles/server.dir/src/Network/dim_server.cpp.o"
+  "/home/daniil/CLionProjects/application/src/models/mob.cpp" "/home/daniil/CLionProjects/application/cmake-build-debug/CMakeFiles/server.dir/src/models/mob.cpp.o"
+  "/home/daniil/CLionProjects/application/src/models/model.cpp" "/home/daniil/CLionProjects/application/cmake-build-debug/CMakeFiles/server.dir/src/models/model.cpp.o"
+  "/home/daniil/CLionProjects/application/src/models/player.cpp" "/home/daniil/CLionProjects/application/cmake-build-debug/CMakeFiles/server.dir/src/models/player.cpp.o"
+  "/home/daniil/CLionProjects/application/src/models/unmovable.cpp" "/home/daniil/CLionProjects/application/cmake-build-debug/CMakeFiles/server.dir/src/models/unmovable.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

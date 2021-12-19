@@ -1,6 +1,9 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/server.dir/src/dim_server.cpp.o"
-  "CMakeFiles/server.dir/src/model.cpp.o"
+  "CMakeFiles/server.dir/src/Network/dim_server.cpp.o"
+  "CMakeFiles/server.dir/src/models/mob.cpp.o"
+  "CMakeFiles/server.dir/src/models/model.cpp.o"
+  "CMakeFiles/server.dir/src/models/player.cpp.o"
+  "CMakeFiles/server.dir/src/models/unmovable.cpp.o"
   "server"
   "server.pdb"
 )

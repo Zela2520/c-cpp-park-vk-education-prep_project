@@ -2,7 +2,7 @@
 #include <SFML/Network.hpp>
 #include <iostream>
 #include <vector>
-#include "../include/model.h"
+#include "../../include/model.h"
 using namespace sf;
 using namespace std;
 

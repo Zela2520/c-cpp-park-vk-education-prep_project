@@ -1,4 +1,4 @@
-#include "../include/connection.h"
+#include "../../include/connection.h"
 
 #define MAX_NUMBER_OF_CLIENTS 2
 

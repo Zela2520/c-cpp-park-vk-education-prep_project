@@ -155,86 +155,176 @@ client_2/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/client_2.dir/build.make CMakeFiles/client_2.dir/build
 .PHONY : client_2/fast
 
-src/dim_client.o: src/dim_client.cpp.o
-.PHONY : src/dim_client.o
+src/Network/dim_client.o: src/Network/dim_client.cpp.o
+.PHONY : src/Network/dim_client.o
 
 # target to build an object file
-src/dim_client.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/src/dim_client.cpp.o
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/client_2.dir/build.make CMakeFiles/client_2.dir/src/dim_client.cpp.o
-.PHONY : src/dim_client.cpp.o
+src/Network/dim_client.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/src/Network/dim_client.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client_2.dir/build.make CMakeFiles/client_2.dir/src/Network/dim_client.cpp.o
+.PHONY : src/Network/dim_client.cpp.o
 
-src/dim_client.i: src/dim_client.cpp.i
-.PHONY : src/dim_client.i
+src/Network/dim_client.i: src/Network/dim_client.cpp.i
+.PHONY : src/Network/dim_client.i
 
 # target to preprocess a source file
-src/dim_client.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/src/dim_client.cpp.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/client_2.dir/build.make CMakeFiles/client_2.dir/src/dim_client.cpp.i
-.PHONY : src/dim_client.cpp.i
+src/Network/dim_client.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/src/Network/dim_client.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client_2.dir/build.make CMakeFiles/client_2.dir/src/Network/dim_client.cpp.i
+.PHONY : src/Network/dim_client.cpp.i
 
-src/dim_client.s: src/dim_client.cpp.s
-.PHONY : src/dim_client.s
+src/Network/dim_client.s: src/Network/dim_client.cpp.s
+.PHONY : src/Network/dim_client.s
 
 # target to generate assembly for a file
-src/dim_client.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/src/dim_client.cpp.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/client_2.dir/build.make CMakeFiles/client_2.dir/src/dim_client.cpp.s
-.PHONY : src/dim_client.cpp.s
+src/Network/dim_client.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/src/Network/dim_client.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client_2.dir/build.make CMakeFiles/client_2.dir/src/Network/dim_client.cpp.s
+.PHONY : src/Network/dim_client.cpp.s
 
-src/dim_server.o: src/dim_server.cpp.o
-.PHONY : src/dim_server.o
+src/Network/dim_server.o: src/Network/dim_server.cpp.o
+.PHONY : src/Network/dim_server.o
 
 # target to build an object file
-src/dim_server.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/dim_server.cpp.o
-.PHONY : src/dim_server.cpp.o
+src/Network/dim_server.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/Network/dim_server.cpp.o
+.PHONY : src/Network/dim_server.cpp.o
 
-src/dim_server.i: src/dim_server.cpp.i
-.PHONY : src/dim_server.i
+src/Network/dim_server.i: src/Network/dim_server.cpp.i
+.PHONY : src/Network/dim_server.i
 
 # target to preprocess a source file
-src/dim_server.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/dim_server.cpp.i
-.PHONY : src/dim_server.cpp.i
+src/Network/dim_server.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/Network/dim_server.cpp.i
+.PHONY : src/Network/dim_server.cpp.i
 
-src/dim_server.s: src/dim_server.cpp.s
-.PHONY : src/dim_server.s
+src/Network/dim_server.s: src/Network/dim_server.cpp.s
+.PHONY : src/Network/dim_server.s
 
 # target to generate assembly for a file
-src/dim_server.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/dim_server.cpp.s
-.PHONY : src/dim_server.cpp.s
+src/Network/dim_server.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/Network/dim_server.cpp.s
+.PHONY : src/Network/dim_server.cpp.s
 
-src/model.o: src/model.cpp.o
-.PHONY : src/model.o
+src/models/mob.o: src/models/mob.cpp.o
+.PHONY : src/models/mob.o
 
 # target to build an object file
-src/model.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/model.cpp.o
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/src/model.cpp.o
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/client_2.dir/build.make CMakeFiles/client_2.dir/src/model.cpp.o
-.PHONY : src/model.cpp.o
+src/models/mob.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/models/mob.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/src/models/mob.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client_2.dir/build.make CMakeFiles/client_2.dir/src/models/mob.cpp.o
+.PHONY : src/models/mob.cpp.o
 
-src/model.i: src/model.cpp.i
-.PHONY : src/model.i
+src/models/mob.i: src/models/mob.cpp.i
+.PHONY : src/models/mob.i
 
 # target to preprocess a source file
-src/model.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/model.cpp.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/src/model.cpp.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/client_2.dir/build.make CMakeFiles/client_2.dir/src/model.cpp.i
-.PHONY : src/model.cpp.i
+src/models/mob.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/models/mob.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/src/models/mob.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client_2.dir/build.make CMakeFiles/client_2.dir/src/models/mob.cpp.i
+.PHONY : src/models/mob.cpp.i
 
-src/model.s: src/model.cpp.s
-.PHONY : src/model.s
+src/models/mob.s: src/models/mob.cpp.s
+.PHONY : src/models/mob.s
 
 # target to generate assembly for a file
-src/model.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/model.cpp.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/src/model.cpp.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/client_2.dir/build.make CMakeFiles/client_2.dir/src/model.cpp.s
-.PHONY : src/model.cpp.s
+src/models/mob.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/models/mob.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/src/models/mob.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client_2.dir/build.make CMakeFiles/client_2.dir/src/models/mob.cpp.s
+.PHONY : src/models/mob.cpp.s
+
+src/models/model.o: src/models/model.cpp.o
+.PHONY : src/models/model.o
+
+# target to build an object file
+src/models/model.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/models/model.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/src/models/model.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client_2.dir/build.make CMakeFiles/client_2.dir/src/models/model.cpp.o
+.PHONY : src/models/model.cpp.o
+
+src/models/model.i: src/models/model.cpp.i
+.PHONY : src/models/model.i
+
+# target to preprocess a source file
+src/models/model.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/models/model.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/src/models/model.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client_2.dir/build.make CMakeFiles/client_2.dir/src/models/model.cpp.i
+.PHONY : src/models/model.cpp.i
+
+src/models/model.s: src/models/model.cpp.s
+.PHONY : src/models/model.s
+
+# target to generate assembly for a file
+src/models/model.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/models/model.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/src/models/model.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client_2.dir/build.make CMakeFiles/client_2.dir/src/models/model.cpp.s
+.PHONY : src/models/model.cpp.s
+
+src/models/player.o: src/models/player.cpp.o
+.PHONY : src/models/player.o
+
+# target to build an object file
+src/models/player.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/models/player.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/src/models/player.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client_2.dir/build.make CMakeFiles/client_2.dir/src/models/player.cpp.o
+.PHONY : src/models/player.cpp.o
+
+src/models/player.i: src/models/player.cpp.i
+.PHONY : src/models/player.i
+
+# target to preprocess a source file
+src/models/player.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/models/player.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/src/models/player.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client_2.dir/build.make CMakeFiles/client_2.dir/src/models/player.cpp.i
+.PHONY : src/models/player.cpp.i
+
+src/models/player.s: src/models/player.cpp.s
+.PHONY : src/models/player.s
+
+# target to generate assembly for a file
+src/models/player.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/models/player.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/src/models/player.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client_2.dir/build.make CMakeFiles/client_2.dir/src/models/player.cpp.s
+.PHONY : src/models/player.cpp.s
+
+src/models/unmovable.o: src/models/unmovable.cpp.o
+.PHONY : src/models/unmovable.o
+
+# target to build an object file
+src/models/unmovable.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/models/unmovable.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/src/models/unmovable.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client_2.dir/build.make CMakeFiles/client_2.dir/src/models/unmovable.cpp.o
+.PHONY : src/models/unmovable.cpp.o
+
+src/models/unmovable.i: src/models/unmovable.cpp.i
+.PHONY : src/models/unmovable.i
+
+# target to preprocess a source file
+src/models/unmovable.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/models/unmovable.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/src/models/unmovable.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client_2.dir/build.make CMakeFiles/client_2.dir/src/models/unmovable.cpp.i
+.PHONY : src/models/unmovable.cpp.i
+
+src/models/unmovable.s: src/models/unmovable.cpp.s
+.PHONY : src/models/unmovable.s
+
+# target to generate assembly for a file
+src/models/unmovable.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/models/unmovable.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/src/models/unmovable.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client_2.dir/build.make CMakeFiles/client_2.dir/src/models/unmovable.cpp.s
+.PHONY : src/models/unmovable.cpp.s
 
 # Help Target
 help:
@@ -247,15 +337,24 @@ help:
 	@echo "... client"
 	@echo "... client_2"
 	@echo "... server"
-	@echo "... src/dim_client.o"
-	@echo "... src/dim_client.i"
-	@echo "... src/dim_client.s"
-	@echo "... src/dim_server.o"
-	@echo "... src/dim_server.i"
-	@echo "... src/dim_server.s"
-	@echo "... src/model.o"
-	@echo "... src/model.i"
-	@echo "... src/model.s"
+	@echo "... src/Network/dim_client.o"
+	@echo "... src/Network/dim_client.i"
+	@echo "... src/Network/dim_client.s"
+	@echo "... src/Network/dim_server.o"
+	@echo "... src/Network/dim_server.i"
+	@echo "... src/Network/dim_server.s"
+	@echo "... src/models/mob.o"
+	@echo "... src/models/mob.i"
+	@echo "... src/models/mob.s"
+	@echo "... src/models/model.o"
+	@echo "... src/models/model.i"
+	@echo "... src/models/model.s"
+	@echo "... src/models/player.o"
+	@echo "... src/models/player.i"
+	@echo "... src/models/player.s"
+	@echo "... src/models/unmovable.o"
+	@echo "... src/models/unmovable.i"
+	@echo "... src/models/unmovable.s"
 .PHONY : help
 
 

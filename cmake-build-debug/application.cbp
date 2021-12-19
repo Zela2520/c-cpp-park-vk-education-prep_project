@@ -170,14 +170,29 @@
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/home/daniil/CLionProjects/application/src/dim_client.cpp">
+		<Unit filename="/home/daniil/CLionProjects/application/src/Network/dim_client.cpp">
 			<Option target="client"/>
 			<Option target="client_2"/>
 		</Unit>
-		<Unit filename="/home/daniil/CLionProjects/application/src/dim_server.cpp">
+		<Unit filename="/home/daniil/CLionProjects/application/src/Network/dim_server.cpp">
 			<Option target="server"/>
 		</Unit>
-		<Unit filename="/home/daniil/CLionProjects/application/src/model.cpp">
+		<Unit filename="/home/daniil/CLionProjects/application/src/models/mob.cpp">
+			<Option target="server"/>
+			<Option target="client"/>
+			<Option target="client_2"/>
+		</Unit>
+		<Unit filename="/home/daniil/CLionProjects/application/src/models/model.cpp">
+			<Option target="server"/>
+			<Option target="client"/>
+			<Option target="client_2"/>
+		</Unit>
+		<Unit filename="/home/daniil/CLionProjects/application/src/models/player.cpp">
+			<Option target="server"/>
+			<Option target="client"/>
+			<Option target="client_2"/>
+		</Unit>
+		<Unit filename="/home/daniil/CLionProjects/application/src/models/unmovable.cpp">
 			<Option target="server"/>
 			<Option target="client"/>
 			<Option target="client_2"/>

@@ -1,4 +1,4 @@
-#include "../include/connection.h"
+#include "../../include/connection.h"
 
 int main(int argc, char* argv[]) {
     server_logic::Server my_server(3000);

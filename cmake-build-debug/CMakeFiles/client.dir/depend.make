@@ -3,7 +3,12 @@
 
 CMakeFiles/client.dir/src/dim_client.cpp.o: \
  ../include/model.h \
+ ../include/object.h \
  ../src/dim_client.cpp
 CMakeFiles/client.dir/src/model.cpp.o: \
  ../include/model.h \
+ ../include/object.h \
  ../src/model.cpp
+CMakeFiles/client.dir/src/object.cpp.o: \
+ ../include/object.h \
+ ../src/object.cpp

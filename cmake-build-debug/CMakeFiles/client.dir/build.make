@@ -66,49 +66,94 @@ include CMakeFiles/client.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/client.dir/flags.make
 
-CMakeFiles/client.dir/src/dim_client.cpp.o: CMakeFiles/client.dir/flags.make
-CMakeFiles/client.dir/src/dim_client.cpp.o: ../src/dim_client.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/daniil/CLionProjects/application/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/client.dir/src/dim_client.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/client.dir/src/dim_client.cpp.o -c /home/daniil/CLionProjects/application/src/dim_client.cpp
+CMakeFiles/client.dir/src/Network/dim_client.cpp.o: CMakeFiles/client.dir/flags.make
+CMakeFiles/client.dir/src/Network/dim_client.cpp.o: ../src/Network/dim_client.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/daniil/CLionProjects/application/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/client.dir/src/Network/dim_client.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/client.dir/src/Network/dim_client.cpp.o -c /home/daniil/CLionProjects/application/src/Network/dim_client.cpp
 
-CMakeFiles/client.dir/src/dim_client.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/client.dir/src/dim_client.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/daniil/CLionProjects/application/src/dim_client.cpp > CMakeFiles/client.dir/src/dim_client.cpp.i
+CMakeFiles/client.dir/src/Network/dim_client.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/client.dir/src/Network/dim_client.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/daniil/CLionProjects/application/src/Network/dim_client.cpp > CMakeFiles/client.dir/src/Network/dim_client.cpp.i
 
-CMakeFiles/client.dir/src/dim_client.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/client.dir/src/dim_client.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/daniil/CLionProjects/application/src/dim_client.cpp -o CMakeFiles/client.dir/src/dim_client.cpp.s
+CMakeFiles/client.dir/src/Network/dim_client.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/client.dir/src/Network/dim_client.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/daniil/CLionProjects/application/src/Network/dim_client.cpp -o CMakeFiles/client.dir/src/Network/dim_client.cpp.s
 
-CMakeFiles/client.dir/src/model.cpp.o: CMakeFiles/client.dir/flags.make
-CMakeFiles/client.dir/src/model.cpp.o: ../src/model.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/daniil/CLionProjects/application/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/client.dir/src/model.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/client.dir/src/model.cpp.o -c /home/daniil/CLionProjects/application/src/model.cpp
+CMakeFiles/client.dir/src/models/model.cpp.o: CMakeFiles/client.dir/flags.make
+CMakeFiles/client.dir/src/models/model.cpp.o: ../src/models/model.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/daniil/CLionProjects/application/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/client.dir/src/models/model.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/client.dir/src/models/model.cpp.o -c /home/daniil/CLionProjects/application/src/models/model.cpp
 
-CMakeFiles/client.dir/src/model.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/client.dir/src/model.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/daniil/CLionProjects/application/src/model.cpp > CMakeFiles/client.dir/src/model.cpp.i
+CMakeFiles/client.dir/src/models/model.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/client.dir/src/models/model.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/daniil/CLionProjects/application/src/models/model.cpp > CMakeFiles/client.dir/src/models/model.cpp.i
 
-CMakeFiles/client.dir/src/model.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/client.dir/src/model.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/daniil/CLionProjects/application/src/model.cpp -o CMakeFiles/client.dir/src/model.cpp.s
+CMakeFiles/client.dir/src/models/model.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/client.dir/src/models/model.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/daniil/CLionProjects/application/src/models/model.cpp -o CMakeFiles/client.dir/src/models/model.cpp.s
+
+CMakeFiles/client.dir/src/models/unmovable.cpp.o: CMakeFiles/client.dir/flags.make
+CMakeFiles/client.dir/src/models/unmovable.cpp.o: ../src/models/unmovable.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/daniil/CLionProjects/application/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/client.dir/src/models/unmovable.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/client.dir/src/models/unmovable.cpp.o -c /home/daniil/CLionProjects/application/src/models/unmovable.cpp
+
+CMakeFiles/client.dir/src/models/unmovable.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/client.dir/src/models/unmovable.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/daniil/CLionProjects/application/src/models/unmovable.cpp > CMakeFiles/client.dir/src/models/unmovable.cpp.i
+
+CMakeFiles/client.dir/src/models/unmovable.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/client.dir/src/models/unmovable.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/daniil/CLionProjects/application/src/models/unmovable.cpp -o CMakeFiles/client.dir/src/models/unmovable.cpp.s
+
+CMakeFiles/client.dir/src/models/player.cpp.o: CMakeFiles/client.dir/flags.make
+CMakeFiles/client.dir/src/models/player.cpp.o: ../src/models/player.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/daniil/CLionProjects/application/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/client.dir/src/models/player.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/client.dir/src/models/player.cpp.o -c /home/daniil/CLionProjects/application/src/models/player.cpp
+
+CMakeFiles/client.dir/src/models/player.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/client.dir/src/models/player.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/daniil/CLionProjects/application/src/models/player.cpp > CMakeFiles/client.dir/src/models/player.cpp.i
+
+CMakeFiles/client.dir/src/models/player.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/client.dir/src/models/player.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/daniil/CLionProjects/application/src/models/player.cpp -o CMakeFiles/client.dir/src/models/player.cpp.s
+
+CMakeFiles/client.dir/src/models/mob.cpp.o: CMakeFiles/client.dir/flags.make
+CMakeFiles/client.dir/src/models/mob.cpp.o: ../src/models/mob.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/daniil/CLionProjects/application/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/client.dir/src/models/mob.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/client.dir/src/models/mob.cpp.o -c /home/daniil/CLionProjects/application/src/models/mob.cpp
+
+CMakeFiles/client.dir/src/models/mob.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/client.dir/src/models/mob.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/daniil/CLionProjects/application/src/models/mob.cpp > CMakeFiles/client.dir/src/models/mob.cpp.i
+
+CMakeFiles/client.dir/src/models/mob.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/client.dir/src/models/mob.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/daniil/CLionProjects/application/src/models/mob.cpp -o CMakeFiles/client.dir/src/models/mob.cpp.s
 
 # Object files for target client
 client_OBJECTS = \
-"CMakeFiles/client.dir/src/dim_client.cpp.o" \
-"CMakeFiles/client.dir/src/model.cpp.o"
+"CMakeFiles/client.dir/src/Network/dim_client.cpp.o" \
+"CMakeFiles/client.dir/src/models/model.cpp.o" \
+"CMakeFiles/client.dir/src/models/unmovable.cpp.o" \
+"CMakeFiles/client.dir/src/models/player.cpp.o" \
+"CMakeFiles/client.dir/src/models/mob.cpp.o"
 
 # External object files for target client
 client_EXTERNAL_OBJECTS =
 
-client: CMakeFiles/client.dir/src/dim_client.cpp.o
-client: CMakeFiles/client.dir/src/model.cpp.o
+client: CMakeFiles/client.dir/src/Network/dim_client.cpp.o
+client: CMakeFiles/client.dir/src/models/model.cpp.o
+client: CMakeFiles/client.dir/src/models/unmovable.cpp.o
+client: CMakeFiles/client.dir/src/models/player.cpp.o
+client: CMakeFiles/client.dir/src/models/mob.cpp.o
 client: CMakeFiles/client.dir/build.make
 client: /usr/lib/x86_64-linux-gnu/libsfml-graphics.so
 client: /usr/lib/x86_64-linux-gnu/libsfml-window.so
 client: /usr/lib/x86_64-linux-gnu/libsfml-system.so
 client: /usr/lib/x86_64-linux-gnu/libsfml-network.so
 client: CMakeFiles/client.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/daniil/CLionProjects/application/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable client"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/daniil/CLionProjects/application/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX executable client"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/client.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

@@ -3,7 +3,12 @@
 
 CMakeFiles/server.dir/src/dim_server.cpp.o: \
  ../include/model.h \
+ ../include/object.h \
  ../src/dim_server.cpp
 CMakeFiles/server.dir/src/model.cpp.o: \
  ../include/model.h \
+ ../include/object.h \
  ../src/model.cpp
+CMakeFiles/server.dir/src/object.cpp.o: \
+ ../include/object.h \
+ ../src/object.cpp
