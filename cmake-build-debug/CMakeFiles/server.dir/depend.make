@@ -7,6 +7,10 @@ CMakeFiles/server.dir/src/Network/dim_server.cpp.o: \
  ../include/player.h \
  ../include/unmovable.h \
  ../src/Network/dim_server.cpp
+CMakeFiles/server.dir/src/models/map.cpp.o: \
+ ../include/map.h \
+ ../include/model.h \
+ ../src/models/map.cpp
 CMakeFiles/server.dir/src/models/mob.cpp.o: \
  ../include/mob.h \
  ../include/model.h \
@@ -17,6 +21,7 @@ CMakeFiles/server.dir/src/models/model.cpp.o: \
  ../include/model.h \
  ../src/models/model.cpp
 CMakeFiles/server.dir/src/models/player.cpp.o: \
+ ../include/map.h \
  ../include/model.h \
  ../include/player.h \
  ../include/unmovable.h \

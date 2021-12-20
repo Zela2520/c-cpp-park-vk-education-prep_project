@@ -1,61 +1,64 @@
-#ifndef APPLICATION_MAP_H
-#define APPLICATION_MAP_H
+#ifndef APPLICATION_INCLUDE_MAP_H
+#define APPLICATION_INCLUDE_MAP_H
 
 #include "model.h"
 
-#define HEIGHT_MAP (400)
-#define WIDTH_MAP (500)
+#define HEIGHT_MAP (40)
 
 class Map {
+
 private:
-    sf::String m_tile_map[HEIGHT_MAP] = {
-            "00000000000000000000000000000000000000000000000000000000000000000",
-            "0                                                               0",
-            "0                                                               0",
-            "0          ssssssssssss                                         0",
-            "0                                                               0",
-            "0                                     ssssssssssssss            0",
-            "0                                                               0",
-            "0                      sss                                      0",
-            "0                                             ssss              0",
-            "0            sssss                                              0",
-            "0                                                               0",
-            "0                                      sssss                    0",
-            "0             s                                                 0",
-            "0                                                               0",
-            "0        s                                                      0",
-            "0                                                               0",
-            "0                      sssss                                    0",
-            "0                                                               0",
-            "0       sssssss                                                 0",
-            "0                                                               0",
-            "0                                                               0",
-            "0                                            ssssssssss         0",
-            "0                                                               0",
-            "0        sssss                                                  0",
-            "0                       sssssss                                 0",
-            "0                                                               0",
-            "0                                                               0",
-            "0                                        sssss                  0",
-            "0          ssss                                                 0",
-            "0                                                       sssssss 0",
-            "0                                                               0",
-            "0              sssssss                                          0",
-            "0                                                               0",
-            "0                                                               0",
-            "00000000000000000000000000000000000000000000000000000000000000000"
-    }; //// визуал карты
-    size_t map_width = WIDTH_MAP; //// ширина карты
-    size_t map_height = HEIGHT_MAP; //// высота карты
-    sf::Image map_image; //// картинка откуда будет загружаться карта
+    size_t map_width; //// ширина карты
+    size_t map_height; //// высота карты
+    std::vector<sf::RectangleShape> m_rectangles; //// массив прямоугольников которыми будет заполнена карта
     sf::Texture map_texture; //// текстура из картинки
     sf::Sprite map_sprite; //// спарйт для карты
+    sf::String map[HEIGHT_MAP] = {
+            "000000000000000000000000000000000000000",
+            "0                                     0",
+            "0                                     0",
+            "0          ssssssssssss               0",
+            "0                                     0",
+            "0     ssssssssssssss                  0",
+            "0                                     0",
+            "0                      sss            0",
+            "0                   ssss              0",
+            "0            sssss                    0",
+            "0                                     0",
+            "0                                     0",
+            "0                                     0",
+            "0                                     0",
+            "0                                     0",
+            "0                                     0",
+            "0                                     0",
+            "0                                     0",
+            "0                                     0",
+            "0                                     0",
+            "0                                     0",
+            "0                                     0",
+            "0                                     0",
+            "0                                     0",
+            "0                                     0",
+            "0                                     0",
+            "0                                     0",
+            "0                                     0",
+            "0                                     0",
+            "0                                     0",
+            "0                                     0",
+            "0                                     0",
+            "0                                     0",
+            "0                                     0",
+            "0                                     0",
+            "000000000000000000000000000000000000000",
+    }; //// визуал карты
 
 public:
-    Map();
-    Map(std::string path_to_file);
+    Map(); // загружаем текстуру, устанавливаем спрайт, задаём размеры
     ~Map() = default;
-    void draw_map();
+    void draw_map(sf::RenderWindow &window); // рисуем карту
 };
 
-#endif //APPLICATION_MAP_H
+
+
+
+#endif // APPLICATION_INCLUDE_MAP_H

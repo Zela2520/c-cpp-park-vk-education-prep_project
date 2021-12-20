@@ -6,6 +6,22 @@
 
 #IncludeRegexTransform: 
 
+/home/daniil/CLionProjects/application/include/danya_client.h
+model.h
+/home/daniil/CLionProjects/application/include/model.h
+player.h
+/home/daniil/CLionProjects/application/include/player.h
+unmovable.h
+/home/daniil/CLionProjects/application/include/unmovable.h
+mob.h
+/home/daniil/CLionProjects/application/include/mob.h
+map.h
+/home/daniil/CLionProjects/application/include/map.h
+
+/home/daniil/CLionProjects/application/include/map.h
+model.h
+/home/daniil/CLionProjects/application/include/model.h
+
 /home/daniil/CLionProjects/application/include/mob.h
 player.h
 /home/daniil/CLionProjects/application/include/player.h
@@ -40,31 +56,7 @@ cmath
 model.h
 /home/daniil/CLionProjects/application/include/model.h
 
-/home/daniil/CLionProjects/application/src/Network/dim_client.cpp
-../../include/model.h
-/home/daniil/CLionProjects/application/include/model.h
-../../include/player.h
-/home/daniil/CLionProjects/application/include/player.h
-../../include/unmovable.h
-/home/daniil/CLionProjects/application/include/unmovable.h
-../../include/mob.h
-/home/daniil/CLionProjects/application/include/mob.h
-iostream
--
-
-/home/daniil/CLionProjects/application/src/models/mob.cpp
-../../include/mob.h
-/home/daniil/CLionProjects/application/include/mob.h
-
-/home/daniil/CLionProjects/application/src/models/model.cpp
-../../include/model.h
-/home/daniil/CLionProjects/application/include/model.h
-
-/home/daniil/CLionProjects/application/src/models/player.cpp
-../../include/player.h
-/home/daniil/CLionProjects/application/include/player.h
-
-/home/daniil/CLionProjects/application/src/models/unmovable.cpp
-../../include/unmovable.h
-/home/daniil/CLionProjects/application/include/unmovable.h
+/home/daniil/CLionProjects/application/src/Network/danya_client.cpp
+../../include/danya_client.h
+/home/daniil/CLionProjects/application/include/danya_client.h
 

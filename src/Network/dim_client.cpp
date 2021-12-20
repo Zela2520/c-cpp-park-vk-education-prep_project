@@ -2,13 +2,12 @@
 #include "../../include/player.h"
 #include "../../include/unmovable.h"
 #include "../../include/mob.h"
+#include "../../include/map.h"
 
 #include <iostream>
 
 using namespace sf;
 using namespace std;
-
-
 
 int main() {
     setlocale(LC_ALL, "");
@@ -23,17 +22,18 @@ int main() {
     amogusTexture.loadFromFile("../include/textures/amogus.png");
     Texture gachiTexture;
     gachiTexture.loadFromFile("../include/textures/gachi.png");
-
-
     Texture mobTexture;
-    mobTexture.loadFromFile("../include/textures/amogus.png");
-    Mob mob(-500.0,-500.0,mobTexture);
-    mob.setScale(0.5,0.5);
+    mobTexture.loadFromFile("../include/textures/tnt.png");
+
+    Mob mob(-500.0,-500.0, mobTexture);
+    mob.setScale(0.8,0.8);
     std::vector<Player> players(2, Player(0, 0, amogusTexture));  //// Инициализируем начальное положение объектов на карте, принимая данные от сервера.
     std::vector<Unmovable> unmovables(1, Unmovable(200, 200, gachiTexture));
 
 
     RenderWindow window(sf::VideoMode(500, 500), "Squid game");  //// Создаём игровое окно.
+    window.clear(sf::Color::Blue); //// заливаем его в синий цвет
+    Map map; //// создаём карту
     View camera;
     camera.zoom(1);
     camera.setCenter(players[0].getX(), players[0].getY());
@@ -48,29 +48,34 @@ int main() {
             socket.receive(packet);  //// Получаем пакет.
             packet >> player;  //// Записываем данные из пакета в игрока.
             packet.clear();
+        }
 
-            //std::cout << "Корды игрока: " << player.getX() << ' ' << player.getY() << std::endl;  // Дебаг.
-        }
-        mob.moveMob(players[1]);
-        mob.draw(window);
-        camera.setCenter(players[ID].getX() ,players[ID].getY());
-        window.setView(camera);
-        window.clear(sf::Color::White);
-        mob.draw(window);
-        //// Отрисовка всех игроков.
-        for (auto &player : players) {
-            player.draw(window);
-        }
+        //// Получение информации обо всех неподвижных объектах.
         for (auto &unmovable : unmovables) {
             socket.receive(packet);
             packet >> unmovable;
             packet.clear();
-
-            std::cout << "Корды Гачимучи" << unmovable.getX() << ' ' << unmovable.getY() << std::endl;
+//          std::cout << "Корды Гачимучи" << unmovable.getX() << ' ' << unmovable.getY() << std::endl;
         }
+        camera.setCenter(players[ID].getX() ,players[ID].getY());
+        window.setView(camera);
+
+        //// чистим окно перед отрисовкой
+        window.clear(sf::Color::Blue);
+
+        ///// отрисовываем все объекты на карте
+        map.draw_map(window);
+        mob.moveMob(players[1]);
+        mob.draw(window);
+
+        for (auto &player : players) {
+            player.draw(window);
+        }
+
         for (auto& unmovable : unmovables) {
             unmovable.draw(window);
         }
+
         window.display();
 
 
@@ -81,6 +86,7 @@ int main() {
                 window.close();
             }
         }
+
         if (window.hasFocus()) {
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
                 directions[0] = true;

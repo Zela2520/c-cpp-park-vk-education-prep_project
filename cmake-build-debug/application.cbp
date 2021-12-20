@@ -170,12 +170,23 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="/home/daniil/CLionProjects/application/include/danya_client.h">
+			<Option target="client"/>
+		</Unit>
+		<Unit filename="/home/daniil/CLionProjects/application/src/Network/danya_client.cpp">
+			<Option target="client"/>
+		</Unit>
 		<Unit filename="/home/daniil/CLionProjects/application/src/Network/dim_client.cpp">
 			<Option target="client"/>
 			<Option target="client_2"/>
 		</Unit>
 		<Unit filename="/home/daniil/CLionProjects/application/src/Network/dim_server.cpp">
 			<Option target="server"/>
+		</Unit>
+		<Unit filename="/home/daniil/CLionProjects/application/src/models/map.cpp">
+			<Option target="server"/>
+			<Option target="client"/>
+			<Option target="client_2"/>
 		</Unit>
 		<Unit filename="/home/daniil/CLionProjects/application/src/models/mob.cpp">
 			<Option target="server"/>

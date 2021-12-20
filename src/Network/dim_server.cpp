@@ -56,7 +56,6 @@ int main(int argc, char* argv[]) {
             packet << unmovable;
             client.send(packet);
             packet.clear();
-//            std::cout << unmovable.getX() << ' ' << unmovable.getY() << '\n';  // Дебаг.
         }
     }
 

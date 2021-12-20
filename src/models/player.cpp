@@ -1,4 +1,5 @@
 #include "../../include/player.h"
+#include "../../include/map.h"
 
 Player::Player(float _x, float _y, const sf::Texture& _texture) : Object() {  //// Конструктор инициализации игрока.
     sprite.setTexture(_texture);

@@ -155,6 +155,30 @@ client_2/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/client_2.dir/build.make CMakeFiles/client_2.dir/build
 .PHONY : client_2/fast
 
+src/Network/danya_client.o: src/Network/danya_client.cpp.o
+.PHONY : src/Network/danya_client.o
+
+# target to build an object file
+src/Network/danya_client.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/src/Network/danya_client.cpp.o
+.PHONY : src/Network/danya_client.cpp.o
+
+src/Network/danya_client.i: src/Network/danya_client.cpp.i
+.PHONY : src/Network/danya_client.i
+
+# target to preprocess a source file
+src/Network/danya_client.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/src/Network/danya_client.cpp.i
+.PHONY : src/Network/danya_client.cpp.i
+
+src/Network/danya_client.s: src/Network/danya_client.cpp.s
+.PHONY : src/Network/danya_client.s
+
+# target to generate assembly for a file
+src/Network/danya_client.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/src/Network/danya_client.cpp.s
+.PHONY : src/Network/danya_client.cpp.s
+
 src/Network/dim_client.o: src/Network/dim_client.cpp.o
 .PHONY : src/Network/dim_client.o
 
@@ -205,6 +229,36 @@ src/Network/dim_server.s: src/Network/dim_server.cpp.s
 src/Network/dim_server.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/Network/dim_server.cpp.s
 .PHONY : src/Network/dim_server.cpp.s
+
+src/models/map.o: src/models/map.cpp.o
+.PHONY : src/models/map.o
+
+# target to build an object file
+src/models/map.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/models/map.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/src/models/map.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client_2.dir/build.make CMakeFiles/client_2.dir/src/models/map.cpp.o
+.PHONY : src/models/map.cpp.o
+
+src/models/map.i: src/models/map.cpp.i
+.PHONY : src/models/map.i
+
+# target to preprocess a source file
+src/models/map.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/models/map.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/src/models/map.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client_2.dir/build.make CMakeFiles/client_2.dir/src/models/map.cpp.i
+.PHONY : src/models/map.cpp.i
+
+src/models/map.s: src/models/map.cpp.s
+.PHONY : src/models/map.s
+
+# target to generate assembly for a file
+src/models/map.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/models/map.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/src/models/map.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client_2.dir/build.make CMakeFiles/client_2.dir/src/models/map.cpp.s
+.PHONY : src/models/map.cpp.s
 
 src/models/mob.o: src/models/mob.cpp.o
 .PHONY : src/models/mob.o
@@ -337,12 +391,18 @@ help:
 	@echo "... client"
 	@echo "... client_2"
 	@echo "... server"
+	@echo "... src/Network/danya_client.o"
+	@echo "... src/Network/danya_client.i"
+	@echo "... src/Network/danya_client.s"
 	@echo "... src/Network/dim_client.o"
 	@echo "... src/Network/dim_client.i"
 	@echo "... src/Network/dim_client.s"
 	@echo "... src/Network/dim_server.o"
 	@echo "... src/Network/dim_server.i"
 	@echo "... src/Network/dim_server.s"
+	@echo "... src/models/map.o"
+	@echo "... src/models/map.i"
+	@echo "... src/models/map.s"
 	@echo "... src/models/mob.o"
 	@echo "... src/models/mob.i"
 	@echo "... src/models/mob.s"
