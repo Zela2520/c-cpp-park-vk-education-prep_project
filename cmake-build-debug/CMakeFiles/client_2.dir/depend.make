@@ -11,6 +11,7 @@ CMakeFiles/client_2.dir/src/Network/dim_client.cpp.o: \
 CMakeFiles/client_2.dir/src/models/map.cpp.o: \
  ../include/map.h \
  ../include/model.h \
+ ../include/unmovable.h \
  ../src/models/map.cpp
 CMakeFiles/client_2.dir/src/models/mob.cpp.o: \
  ../include/mob.h \

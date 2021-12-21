@@ -66,22 +66,35 @@ include CMakeFiles/server.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/server.dir/flags.make
 
-CMakeFiles/server.dir/src/Network/dim_server.cpp.o: CMakeFiles/server.dir/flags.make
-CMakeFiles/server.dir/src/Network/dim_server.cpp.o: ../src/Network/dim_server.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/daniil/CLionProjects/application/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/server.dir/src/Network/dim_server.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/src/Network/dim_server.cpp.o -c /home/daniil/CLionProjects/application/src/Network/dim_server.cpp
+CMakeFiles/server.dir/src/Network/danya_server.cpp.o: CMakeFiles/server.dir/flags.make
+CMakeFiles/server.dir/src/Network/danya_server.cpp.o: ../src/Network/danya_server.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/daniil/CLionProjects/application/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/server.dir/src/Network/danya_server.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/src/Network/danya_server.cpp.o -c /home/daniil/CLionProjects/application/src/Network/danya_server.cpp
 
-CMakeFiles/server.dir/src/Network/dim_server.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/server.dir/src/Network/dim_server.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/daniil/CLionProjects/application/src/Network/dim_server.cpp > CMakeFiles/server.dir/src/Network/dim_server.cpp.i
+CMakeFiles/server.dir/src/Network/danya_server.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/server.dir/src/Network/danya_server.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/daniil/CLionProjects/application/src/Network/danya_server.cpp > CMakeFiles/server.dir/src/Network/danya_server.cpp.i
 
-CMakeFiles/server.dir/src/Network/dim_server.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/server.dir/src/Network/dim_server.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/daniil/CLionProjects/application/src/Network/dim_server.cpp -o CMakeFiles/server.dir/src/Network/dim_server.cpp.s
+CMakeFiles/server.dir/src/Network/danya_server.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/server.dir/src/Network/danya_server.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/daniil/CLionProjects/application/src/Network/danya_server.cpp -o CMakeFiles/server.dir/src/Network/danya_server.cpp.s
+
+CMakeFiles/server.dir/src/Network/main_sever.cpp.o: CMakeFiles/server.dir/flags.make
+CMakeFiles/server.dir/src/Network/main_sever.cpp.o: ../src/Network/main_sever.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/daniil/CLionProjects/application/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/server.dir/src/Network/main_sever.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/src/Network/main_sever.cpp.o -c /home/daniil/CLionProjects/application/src/Network/main_sever.cpp
+
+CMakeFiles/server.dir/src/Network/main_sever.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/server.dir/src/Network/main_sever.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/daniil/CLionProjects/application/src/Network/main_sever.cpp > CMakeFiles/server.dir/src/Network/main_sever.cpp.i
+
+CMakeFiles/server.dir/src/Network/main_sever.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/server.dir/src/Network/main_sever.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/daniil/CLionProjects/application/src/Network/main_sever.cpp -o CMakeFiles/server.dir/src/Network/main_sever.cpp.s
 
 CMakeFiles/server.dir/src/models/model.cpp.o: CMakeFiles/server.dir/flags.make
 CMakeFiles/server.dir/src/models/model.cpp.o: ../src/models/model.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/daniil/CLionProjects/application/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/server.dir/src/models/model.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/daniil/CLionProjects/application/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/server.dir/src/models/model.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/src/models/model.cpp.o -c /home/daniil/CLionProjects/application/src/models/model.cpp
 
 CMakeFiles/server.dir/src/models/model.cpp.i: cmake_force
@@ -94,7 +107,7 @@ CMakeFiles/server.dir/src/models/model.cpp.s: cmake_force
 
 CMakeFiles/server.dir/src/models/unmovable.cpp.o: CMakeFiles/server.dir/flags.make
 CMakeFiles/server.dir/src/models/unmovable.cpp.o: ../src/models/unmovable.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/daniil/CLionProjects/application/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/server.dir/src/models/unmovable.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/daniil/CLionProjects/application/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/server.dir/src/models/unmovable.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/src/models/unmovable.cpp.o -c /home/daniil/CLionProjects/application/src/models/unmovable.cpp
 
 CMakeFiles/server.dir/src/models/unmovable.cpp.i: cmake_force
@@ -107,7 +120,7 @@ CMakeFiles/server.dir/src/models/unmovable.cpp.s: cmake_force
 
 CMakeFiles/server.dir/src/models/player.cpp.o: CMakeFiles/server.dir/flags.make
 CMakeFiles/server.dir/src/models/player.cpp.o: ../src/models/player.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/daniil/CLionProjects/application/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/server.dir/src/models/player.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/daniil/CLionProjects/application/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/server.dir/src/models/player.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/src/models/player.cpp.o -c /home/daniil/CLionProjects/application/src/models/player.cpp
 
 CMakeFiles/server.dir/src/models/player.cpp.i: cmake_force
@@ -120,7 +133,7 @@ CMakeFiles/server.dir/src/models/player.cpp.s: cmake_force
 
 CMakeFiles/server.dir/src/models/mob.cpp.o: CMakeFiles/server.dir/flags.make
 CMakeFiles/server.dir/src/models/mob.cpp.o: ../src/models/mob.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/daniil/CLionProjects/application/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/server.dir/src/models/mob.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/daniil/CLionProjects/application/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/server.dir/src/models/mob.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/src/models/mob.cpp.o -c /home/daniil/CLionProjects/application/src/models/mob.cpp
 
 CMakeFiles/server.dir/src/models/mob.cpp.i: cmake_force
@@ -133,7 +146,7 @@ CMakeFiles/server.dir/src/models/mob.cpp.s: cmake_force
 
 CMakeFiles/server.dir/src/models/map.cpp.o: CMakeFiles/server.dir/flags.make
 CMakeFiles/server.dir/src/models/map.cpp.o: ../src/models/map.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/daniil/CLionProjects/application/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/server.dir/src/models/map.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/daniil/CLionProjects/application/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/server.dir/src/models/map.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/src/models/map.cpp.o -c /home/daniil/CLionProjects/application/src/models/map.cpp
 
 CMakeFiles/server.dir/src/models/map.cpp.i: cmake_force
@@ -146,7 +159,8 @@ CMakeFiles/server.dir/src/models/map.cpp.s: cmake_force
 
 # Object files for target server
 server_OBJECTS = \
-"CMakeFiles/server.dir/src/Network/dim_server.cpp.o" \
+"CMakeFiles/server.dir/src/Network/danya_server.cpp.o" \
+"CMakeFiles/server.dir/src/Network/main_sever.cpp.o" \
 "CMakeFiles/server.dir/src/models/model.cpp.o" \
 "CMakeFiles/server.dir/src/models/unmovable.cpp.o" \
 "CMakeFiles/server.dir/src/models/player.cpp.o" \
@@ -156,7 +170,8 @@ server_OBJECTS = \
 # External object files for target server
 server_EXTERNAL_OBJECTS =
 
-server: CMakeFiles/server.dir/src/Network/dim_server.cpp.o
+server: CMakeFiles/server.dir/src/Network/danya_server.cpp.o
+server: CMakeFiles/server.dir/src/Network/main_sever.cpp.o
 server: CMakeFiles/server.dir/src/models/model.cpp.o
 server: CMakeFiles/server.dir/src/models/unmovable.cpp.o
 server: CMakeFiles/server.dir/src/models/player.cpp.o
@@ -168,7 +183,7 @@ server: /usr/lib/x86_64-linux-gnu/libsfml-window.so
 server: /usr/lib/x86_64-linux-gnu/libsfml-system.so
 server: /usr/lib/x86_64-linux-gnu/libsfml-network.so
 server: CMakeFiles/server.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/daniil/CLionProjects/application/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Linking CXX executable server"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/daniil/CLionProjects/application/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Linking CXX executable server"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/server.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

@@ -11,6 +11,7 @@ CMakeFiles/client_2.dir/src/Network/dim_client.cpp.o
 CMakeFiles/client_2.dir/src/models/map.cpp.o
  /home/daniil/CLionProjects/application/include/map.h
  /home/daniil/CLionProjects/application/include/model.h
+ /home/daniil/CLionProjects/application/include/unmovable.h
  /home/daniil/CLionProjects/application/src/models/map.cpp
 CMakeFiles/client_2.dir/src/models/mob.cpp.o
  /home/daniil/CLionProjects/application/include/mob.h

@@ -13,7 +13,7 @@ int main() {
     setlocale(LC_ALL, "");
 
     sf::TcpSocket socket;  //// Создаем сокет. У каждого клиента - свой сокет.
-    socket.connect("127.0.0.1", 3001);  //// Подключаемся к серверу по заданному порту.
+    socket.connect("127.0.0.1", 3000);  //// Подключаемся к серверу по заданному порту.
 
     sf::Packet packet;  //// Создаём пакет для общения клиента с сервером.
 
@@ -27,14 +27,14 @@ int main() {
 
     Mob mob(-500.0,-500.0, mobTexture);
     mob.setScale(0.8,0.8);
-    std::vector<Player> players(2, Player(0, 0, amogusTexture));  //// Инициализируем начальное положение объектов на карте, принимая данные от сервера.
-    std::vector<Unmovable> unmovables(1, Unmovable(200, 200, gachiTexture));
+    std::vector<Player> players(2, Player(10, 10, amogusTexture));  //// Инициализируем начальное положение объектов на карте, принимая данные от сервера.
+    std::vector<Unmovable> unmovables;
 
 
     RenderWindow window(sf::VideoMode(500, 500), "Squid game");  //// Создаём игровое окно.
     window.clear(sf::Color::Blue); //// заливаем его в синий цвет
     Map map; //// создаём карту
-    map.creat_map();
+    map.creat_map(unmovables, &gachiTexture);
     View camera;
     camera.zoom(2);
     camera.setCenter(players[0].getX(), players[0].getY());

@@ -155,29 +155,29 @@ client_2/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/client_2.dir/build.make CMakeFiles/client_2.dir/build
 .PHONY : client_2/fast
 
-src/Network/danya_client.o: src/Network/danya_client.cpp.o
-.PHONY : src/Network/danya_client.o
+src/Network/danya_server.o: src/Network/danya_server.cpp.o
+.PHONY : src/Network/danya_server.o
 
 # target to build an object file
-src/Network/danya_client.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/src/Network/danya_client.cpp.o
-.PHONY : src/Network/danya_client.cpp.o
+src/Network/danya_server.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/Network/danya_server.cpp.o
+.PHONY : src/Network/danya_server.cpp.o
 
-src/Network/danya_client.i: src/Network/danya_client.cpp.i
-.PHONY : src/Network/danya_client.i
+src/Network/danya_server.i: src/Network/danya_server.cpp.i
+.PHONY : src/Network/danya_server.i
 
 # target to preprocess a source file
-src/Network/danya_client.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/src/Network/danya_client.cpp.i
-.PHONY : src/Network/danya_client.cpp.i
+src/Network/danya_server.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/Network/danya_server.cpp.i
+.PHONY : src/Network/danya_server.cpp.i
 
-src/Network/danya_client.s: src/Network/danya_client.cpp.s
-.PHONY : src/Network/danya_client.s
+src/Network/danya_server.s: src/Network/danya_server.cpp.s
+.PHONY : src/Network/danya_server.s
 
 # target to generate assembly for a file
-src/Network/danya_client.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/src/Network/danya_client.cpp.s
-.PHONY : src/Network/danya_client.cpp.s
+src/Network/danya_server.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/Network/danya_server.cpp.s
+.PHONY : src/Network/danya_server.cpp.s
 
 src/Network/dim_client.o: src/Network/dim_client.cpp.o
 .PHONY : src/Network/dim_client.o
@@ -206,29 +206,29 @@ src/Network/dim_client.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/client_2.dir/build.make CMakeFiles/client_2.dir/src/Network/dim_client.cpp.s
 .PHONY : src/Network/dim_client.cpp.s
 
-src/Network/dim_server.o: src/Network/dim_server.cpp.o
-.PHONY : src/Network/dim_server.o
+src/Network/main_sever.o: src/Network/main_sever.cpp.o
+.PHONY : src/Network/main_sever.o
 
 # target to build an object file
-src/Network/dim_server.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/Network/dim_server.cpp.o
-.PHONY : src/Network/dim_server.cpp.o
+src/Network/main_sever.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/Network/main_sever.cpp.o
+.PHONY : src/Network/main_sever.cpp.o
 
-src/Network/dim_server.i: src/Network/dim_server.cpp.i
-.PHONY : src/Network/dim_server.i
+src/Network/main_sever.i: src/Network/main_sever.cpp.i
+.PHONY : src/Network/main_sever.i
 
 # target to preprocess a source file
-src/Network/dim_server.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/Network/dim_server.cpp.i
-.PHONY : src/Network/dim_server.cpp.i
+src/Network/main_sever.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/Network/main_sever.cpp.i
+.PHONY : src/Network/main_sever.cpp.i
 
-src/Network/dim_server.s: src/Network/dim_server.cpp.s
-.PHONY : src/Network/dim_server.s
+src/Network/main_sever.s: src/Network/main_sever.cpp.s
+.PHONY : src/Network/main_sever.s
 
 # target to generate assembly for a file
-src/Network/dim_server.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/Network/dim_server.cpp.s
-.PHONY : src/Network/dim_server.cpp.s
+src/Network/main_sever.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/Network/main_sever.cpp.s
+.PHONY : src/Network/main_sever.cpp.s
 
 src/models/map.o: src/models/map.cpp.o
 .PHONY : src/models/map.o
@@ -391,15 +391,15 @@ help:
 	@echo "... client"
 	@echo "... client_2"
 	@echo "... server"
-	@echo "... src/Network/danya_client.o"
-	@echo "... src/Network/danya_client.i"
-	@echo "... src/Network/danya_client.s"
+	@echo "... src/Network/danya_server.o"
+	@echo "... src/Network/danya_server.i"
+	@echo "... src/Network/danya_server.s"
 	@echo "... src/Network/dim_client.o"
 	@echo "... src/Network/dim_client.i"
 	@echo "... src/Network/dim_client.s"
-	@echo "... src/Network/dim_server.o"
-	@echo "... src/Network/dim_server.i"
-	@echo "... src/Network/dim_server.s"
+	@echo "... src/Network/main_sever.o"
+	@echo "... src/Network/main_sever.i"
+	@echo "... src/Network/main_sever.s"
 	@echo "... src/models/map.o"
 	@echo "... src/models/map.i"
 	@echo "... src/models/map.s"

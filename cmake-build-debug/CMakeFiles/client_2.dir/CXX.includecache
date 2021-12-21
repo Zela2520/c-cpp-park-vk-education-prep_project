@@ -9,6 +9,8 @@
 /home/daniil/CLionProjects/application/include/map.h
 model.h
 /home/daniil/CLionProjects/application/include/model.h
+unmovable.h
+/home/daniil/CLionProjects/application/include/unmovable.h
 
 /home/daniil/CLionProjects/application/include/mob.h
 player.h

@@ -64,8 +64,7 @@
 				2,
 				3,
 				4,
-				5,
-				6
+				5
 			]
 		}
 	],
@@ -123,15 +122,7 @@
 				2,
 				3,
 				4,
-				5,
-				6
-			]
-		},
-		{
-			"name" : "Header Files",
-			"sourceIndexes" : 
-			[
-				7
+				5
 			]
 		}
 	],
@@ -172,17 +163,6 @@
 			"compileGroupIndex" : 0,
 			"path" : "src/models/map.cpp",
 			"sourceGroupIndex" : 0
-		},
-		{
-			"backtrace" : 1,
-			"compileGroupIndex" : 0,
-			"path" : "src/Network/danya_client.cpp",
-			"sourceGroupIndex" : 0
-		},
-		{
-			"backtrace" : 1,
-			"path" : "include/danya_client.h",
-			"sourceGroupIndex" : 1
 		}
 	],
 	"type" : "EXECUTABLE"

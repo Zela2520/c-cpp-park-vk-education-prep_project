@@ -5,6 +5,7 @@
 
 class Unmovable : public Object {
 public:
+    explicit Unmovable(const sf::RectangleShape &rectangle);
     Unmovable(float _x, float _y, const sf::Texture &texture);
     friend sf::Packet& operator << (sf::Packet& packet, const Unmovable& unmovable);
     friend sf::Packet& operator >> (sf::Packet& packet, Unmovable& unmovable);

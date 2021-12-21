@@ -1,5 +1,6 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/server.dir/src/Network/dim_server.cpp.o"
+  "CMakeFiles/server.dir/src/Network/danya_server.cpp.o"
+  "CMakeFiles/server.dir/src/Network/main_sever.cpp.o"
   "CMakeFiles/server.dir/src/models/map.cpp.o"
   "CMakeFiles/server.dir/src/models/mob.cpp.o"
   "CMakeFiles/server.dir/src/models/model.cpp.o"

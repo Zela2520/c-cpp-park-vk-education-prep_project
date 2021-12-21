@@ -1,5 +1,14 @@
 #include "../../include/unmovable.h"
 
+
+Unmovable::Unmovable(const sf::RectangleShape &rectangle) {
+    const sf::Texture* temp_texture = rectangle.getTexture();
+    sprite.setTexture(*temp_texture);
+    sf::Vector2f rectangle_coord = rectangle.getSize();
+    setX(rectangle_coord.x);
+    setY(rectangle_coord.y);
+}
+
 Unmovable::Unmovable(float _x, float _y, const sf::Texture& texture) : Object() {
     sprite.setTexture(texture);
     setX(_x);

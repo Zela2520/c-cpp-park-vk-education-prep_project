@@ -8,7 +8,6 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/daniil/CLionProjects/application/src/Network/danya_client.cpp" "/home/daniil/CLionProjects/application/cmake-build-debug/CMakeFiles/client.dir/src/Network/danya_client.cpp.o"
   "/home/daniil/CLionProjects/application/src/Network/dim_client.cpp" "/home/daniil/CLionProjects/application/cmake-build-debug/CMakeFiles/client.dir/src/Network/dim_client.cpp.o"
   "/home/daniil/CLionProjects/application/src/models/map.cpp" "/home/daniil/CLionProjects/application/cmake-build-debug/CMakeFiles/client.dir/src/models/map.cpp.o"
   "/home/daniil/CLionProjects/application/src/models/mob.cpp" "/home/daniil/CLionProjects/application/cmake-build-debug/CMakeFiles/client.dir/src/models/mob.cpp.o"

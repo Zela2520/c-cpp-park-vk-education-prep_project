@@ -9,10 +9,8 @@
 /home/daniil/CLionProjects/application/include/map.h
 model.h
 /home/daniil/CLionProjects/application/include/model.h
-
-/home/daniil/CLionProjects/application/include/mob.h
-player.h
-/home/daniil/CLionProjects/application/include/player.h
+unmovable.h
+/home/daniil/CLionProjects/application/include/unmovable.h
 
 /home/daniil/CLionProjects/application/include/model.h
 SFML/Graphics.hpp
@@ -23,20 +21,6 @@ vector
 -
 string
 -
-cmath
-/home/daniil/CLionProjects/application/include/cmath
-
-/home/daniil/CLionProjects/application/include/player.h
-SFML/Graphics.hpp
--
-SFML/Network.hpp
--
-vector
--
-string
--
-unmovable.h
-/home/daniil/CLionProjects/application/include/unmovable.h
 cmath
 /home/daniil/CLionProjects/application/include/cmath
 
@@ -49,14 +33,4 @@ model.h
 /home/daniil/CLionProjects/application/include/map.h
 iostream
 -
-
-/home/daniil/CLionProjects/application/src/models/mob.cpp
-../../include/mob.h
-/home/daniil/CLionProjects/application/include/mob.h
-
-/home/daniil/CLionProjects/application/src/models/player.cpp
-../../include/player.h
-/home/daniil/CLionProjects/application/include/player.h
-../../include/map.h
-/home/daniil/CLionProjects/application/include/map.h
 

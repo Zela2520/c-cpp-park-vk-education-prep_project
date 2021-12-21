@@ -1,7 +1,5 @@
-#include "../../include/model.h"
-#include "../../include/player.h"
-#include "../../include/unmovable.h"
 #include "../../include/mob.h"
+#include "../../include/map.h"
 
 #include <iostream>
 
@@ -29,6 +27,8 @@ int main(int argc, char* argv[]) {
         packet.clear();
     }
 
+    Map map;
+    map.creat_map();
 
     //// Все используемые в программе текстуры.
     Texture amogusTexture;
