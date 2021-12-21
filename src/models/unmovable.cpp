@@ -9,11 +9,11 @@ Unmovable::Unmovable(const sf::RectangleShape &rectangle) {
     setY(rectangle_coord.y);
 }
 
-Unmovable::Unmovable(float _x, float _y, const sf::Texture& texture) : Object() {
-    sprite.setTexture(texture);
-    setX(_x);
-    setY(_y);
-}
+//Unmovable::Unmovable(float _x, float _y, const sf::Texture& texture) : Object() {
+//    sprite.setTexture(texture);
+//    setX(_x);
+//    setY(_y);
+//}
 
 sf::Packet& operator >> (sf::Packet& packet, Unmovable& unmovable) {  //// Пакета в статичный объект
     float x, y;

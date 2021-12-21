@@ -21,13 +21,13 @@ int main() {
     Texture amogusTexture;
     amogusTexture.loadFromFile("../include/textures/amogus.png");
     Texture gachiTexture;
-    gachiTexture.loadFromFile("../include/textures/gachi.png");
+    gachiTexture.loadFromFile("../include/textures/tnt.png");
     Texture mobTexture;
     mobTexture.loadFromFile("../include/textures/tnt.png");
 
     Mob mob(-500.0,-500.0, mobTexture);
     mob.setScale(0.8,0.8);
-    std::vector<Player> players(2, Player(10, 10, amogusTexture));  //// Инициализируем начальное положение объектов на карте, принимая данные от сервера.
+    std::vector<Player> players(2, Player(20, 30, amogusTexture));  //// Инициализируем начальное положение объектов на карте, принимая данные от сервера.
     std::vector<Unmovable> unmovables;
 
 
@@ -65,17 +65,13 @@ int main() {
         window.clear(sf::Color::Blue);
 
         ///// отрисовываем все объекты на карте
-        map.draw_map(window); //// можно добавить ассинхронность
+        map.draw_map(window); //// можно добавить ассинхронность. Тут нарисуются Unmovables
         mob.moveMob(players[1]);
         mob.draw(window);
         //// а тут сделать join
 
         for (auto &player : players) {
             player.draw(window);
-        }
-
-        for (auto& unmovable : unmovables) {
-            unmovable.draw(window);
         }
 
         window.display();

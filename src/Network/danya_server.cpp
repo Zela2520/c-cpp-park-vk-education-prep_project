@@ -10,7 +10,7 @@ Server::Server(size_t port) {
     load_pictures(m_pictures);
     m_map.creat_map(m_unmovables, &m_pictures.gachiTexture); //// можно передавать несколько текстур, чтобы объекты были разные либо передавать Pictures&, а в map подключить server_danya.h
     for (int i = 0; i < MAX_NUMBER_OF_CLIENTS; i++) {
-        m_players.emplace_back(0, 0, m_pictures.amogusTexture);
+        m_players.emplace_back(20, 30, m_pictures.amogusTexture);
         m_players[i].setId(i);
     }
     std::cout << "Server was started\n";
