@@ -13,7 +13,7 @@ int main() {
     setlocale(LC_ALL, "");
 
     sf::TcpSocket socket;  //// Создаем сокет. У каждого клиента - свой сокет.
-    socket.connect("127.0.0.1", 3000);  //// Подключаемся к серверу по заданному порту.
+    socket.connect("127.0.0.1", 3001);  //// Подключаемся к серверу по заданному порту.
 
     sf::Packet packet;  //// Создаём пакет для общения клиента с сервером.
 
@@ -34,8 +34,9 @@ int main() {
     RenderWindow window(sf::VideoMode(500, 500), "Squid game");  //// Создаём игровое окно.
     window.clear(sf::Color::Blue); //// заливаем его в синий цвет
     Map map; //// создаём карту
+    map.creat_map();
     View camera;
-    camera.zoom(1);
+    camera.zoom(2);
     camera.setCenter(players[0].getX(), players[0].getY());
     int ID = -1;
     socket.receive(packet);
@@ -64,9 +65,10 @@ int main() {
         window.clear(sf::Color::Blue);
 
         ///// отрисовываем все объекты на карте
-        map.draw_map(window);
+        map.draw_map(window); //// можно добавить ассинхронность
         mob.moveMob(players[1]);
         mob.draw(window);
+        //// а тут сделать join
 
         for (auto &player : players) {
             player.draw(window);

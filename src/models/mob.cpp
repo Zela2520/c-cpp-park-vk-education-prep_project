@@ -12,7 +12,7 @@ sf::Vector2<float> Mob::getPlayersCoords(const Player player) {
     return playersCoords;
 }
 
-sf::Vector2<float> Mob::moveMob(Player player) {
+sf::Vector2<float> Mob::moveMob(Player player) { //// будем передавать вектор игроков и добавим циклы
     sf::Vector2<float> playersCoords = getPlayersCoords(player);
     sf::Vector2<float> mobCoords(this->getX(), this->getY());
     sf::Vector2<float> movingDir(playersCoords.x - mobCoords.x, playersCoords.y - mobCoords.y);

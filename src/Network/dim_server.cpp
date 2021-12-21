@@ -14,7 +14,7 @@ using namespace std;
 int main(int argc, char* argv[]) {
     sf::TcpListener listener;
     //// Устанавливаем по какому порту будет проходить подключение к серверу
-        if (listener.listen(3000) != sf::Socket::Done) {  //// Слушаем порт 3000.
+        if (listener.listen(3001) != sf::Socket::Done) {  //// Слушаем порт 3000.
             std::cerr << "Error";
         }
     sf::Packet packet;  //// Создаём пакет для общения клиента с сервером.
@@ -65,7 +65,7 @@ int main(int argc, char* argv[]) {
     while (true) {
         float time = clock.getElapsedTime().asMicroseconds();
         clock.restart();
-        time /= 800;
+        time /= 400;
         //// Получаем пакет с информацией о перемещении какждого клиента и извлекаем информацию о его перемещении.
         //// Перемещение i-ого клиента значит перемещение i-ого мячика.
         for (int i = 0; i < clients.size(); ++i) {
