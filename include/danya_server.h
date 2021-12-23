@@ -32,7 +32,7 @@ public:
         sf::Texture amogusTexture;
         sf::Texture gachiTexture;
     };
-    explicit Server(size_t port);
+    explicit Server(int port);
     void set_connection();
     void receive_clients();
     void send_data();
@@ -42,17 +42,17 @@ public:
     static void load_pictures(Pictures &pictures); //// если хотим добавить картинки необходимо прописать путт в этом методе
 
 private:
-    size_t m_port;
+    size_t port;
     int id = ERROR;
-    sf::TcpListener m_listener;
-    sf::TcpSocket m_client_one;
-    sf::TcpSocket m_client_two;
+    sf::TcpListener listener;
+    sf::TcpSocket clientOne;
+    sf::TcpSocket clientTwo;
     sf::Packet packet;
 
     Pictures pictures;
     Map* map;
     std::vector<Player> players;
-    sf::Clock m_clock;
+    sf::Clock clock;
 
 };
 

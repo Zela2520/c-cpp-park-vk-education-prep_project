@@ -2,16 +2,14 @@
 #define APPLICATION_INCLUDE_MAP_H
 
 #include "model.h"
-#include "unmovable.h"
+#include "wall.h"
 
 #define HEIGHT_MAP (40)
 
 class Map {
 private:
-    int width;    //// ширина карты в блоках
-    int height;     //// высота карты в блоках
-//    sf::Texture wallTexture;    //// текстура блока стены
-//    sf::Sprite wallSprite;    //// спарйт блока стены
+    int width = 0;    //// ширина карты в блоках
+    int height = 0;     //// высота карты в блоках
     std::vector<Wall> walls;
 public:
     explicit Map(const char* fileName, const sf::Texture& globalBoundTexture, const sf::Texture& localBoundTexture);   //// Создаём карту из файла.

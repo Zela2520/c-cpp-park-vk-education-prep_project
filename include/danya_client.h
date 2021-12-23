@@ -3,7 +3,7 @@
 
 #include "model.h"
 #include "player.h"
-#include "unmovable.h"
+#include "wall.h"
 #include "mob.h"
 #include "map.h"
 

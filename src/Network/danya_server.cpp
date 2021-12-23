@@ -5,13 +5,12 @@
 #define INIT_ID 0
 
 
-Server::Server(size_t port) {
+Server::Server(int _port) {
     sf::Texture wallTexture;
     wallTexture.loadFromFile("../include/textures/brick.png");
     map = new Map("../include/initialMap", wallTexture, wallTexture);
-    m_port = port;
+    port = _port;
     load_pictures(pictures);
-//    m_map.creat_map(m_walls, &pictures.gachiTexture); //// можно передавать несколько текстур, чтобы объекты были разные либо передавать Pictures&, а в map подключить server_danya.h
     for (int i = 0; i < MAX_NUMBER_OF_CLIENTS; i++) {
         players.emplace_back(100, 100, pictures.amogusTexture);
         players[i].setId(i);
@@ -21,7 +20,7 @@ Server::Server(size_t port) {
 
 void Server::set_connection() {
     std::cout << "Сервер должен начать слушать\n";
-    if (m_listener.listen(m_port) != sf::Socket::Done) {
+    if (listener.listen(port) != sf::Socket::Done) {
         std::cerr << "The server is not ready to accept the client";
         exit(1);
     }
@@ -32,23 +31,23 @@ void Server::set_connection() {
 void Server::receive_clients() {
     std::cout << "Сервер должен принять клиента\n";
 
-    if (m_listener.accept(m_client_one) != sf::Socket::Done) {
+    if (listener.accept(clientOne) != sf::Socket::Done) {
         std::cerr << "The server is not ready to accept the client";
         exit(1);
     }
 
     id = INIT_ID;
     packet << id;
-    m_client_one.send(packet);
+    clientOne.send(packet);
     packet.clear();
 
-    if (m_listener.accept(m_client_two) != sf::Socket::Done) {
+    if (listener.accept(clientTwo) != sf::Socket::Done) {
         std::cerr << "The server is not ready to accept the client";
         exit(1);
     }
 
     packet << ++id;
-    m_client_two.send(packet);
+    clientTwo.send(packet);
     packet.clear();
     std::cout << "Сервер принял клиентов\n";
 }
@@ -61,42 +60,42 @@ void Server::send_data() {
     //// Отправляем данные первому клиенту
     for (auto& cur_player : players) {
         packet << cur_player;
-        m_client_one.send(packet);
+        clientOne.send(packet);
         packet.clear();
         std::cout << "ДАННЫЕ БЫЛИ ОТПРАВЛЕНЫ\n";
     }
     packet << (int)(map->getWalls().size());
-    m_client_one.send(packet);
+    clientOne.send(packet);
     packet.clear();
     for (auto& wall : map->getWalls()) {   //// И о каждом несдвигаемом объекте.
         packet << wall;
-        m_client_one.send(packet);
+        clientOne.send(packet);
         packet.clear();
     }
 
     //// Отправляем данные второму клиенту
     for (auto& cur_player : players) {
         packet << cur_player;
-        m_client_two.send(packet);
+        clientTwo.send(packet);
         packet.clear();
         std::cout << "ДАННЫЕ БЫЛИ ОТПРАВЛЕНЫ\n";
     }
     packet << (int)(map->getWalls().size());
-    m_client_two.send(packet);
+    clientTwo.send(packet);
     packet.clear();
     for (auto& wall : map->getWalls()) {   //// И о каждом несдвигаемом объекте.
         packet << wall;
-        m_client_two.send(packet);
+        clientTwo.send(packet);
         packet.clear();
     }
 }
 
 void Server::clients_movements() {
     std::cout << "НАЧИНАЕМ ОТСЛЕЖИВАТЬ ПЕРЕДВИЖЕНИЯ КЛИЕНТА\n";
-    float time = m_clock.getElapsedTime().asMicroseconds();
-    m_clock.restart();
+    float time = clock.getElapsedTime().asMicroseconds();
+    clock.restart();
     time /= 400;
-    m_client_one.receive(packet);
+    clientOne.receive(packet);
     bool directions[4];
     packet >> directions;  //// Достаём информацию из пакета.
     packet.clear();
@@ -119,7 +118,7 @@ void Server::clients_movements() {
         if (players[0].intersectsWith(map->getWalls())) players[0].goRight(0.3 * time);
     }
 
-    m_client_two.receive(packet);
+    clientTwo.receive(packet);
     packet >> directions;  //// Достаём информацию из пакета.
     packet.clear();
 

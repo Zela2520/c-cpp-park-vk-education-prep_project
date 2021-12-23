@@ -30,12 +30,12 @@ void Player::draw(sf::RenderWindow& window) {
     window.draw(sprite);
 }
 
-void Player::setId(int _Id) {
-    Id = _Id;
+void Player::setId(int _id) {
+    id = _id;
 }
 
 int Player::getId() const {
-    return Id;
+    return id;
 }
 
 sf::Packet& operator << (sf::Packet& packet, const Player& player) {  //// Из игрока в пакет

@@ -5,16 +5,16 @@
 0                                      0
 0     ssssssssssssss                   0
 0                                      0
-0                      sss             0
-0                   ssss               0
-0            sssss                     0
-0                                      0
-0                                      0
-0                        sss           0
-0                                      0
-0                                      0
-0                                      0
-0       sss                            0
+0                      sss             00000000000000000000000000000
+0                                                              0
+0         sssss     sss                                        0
+0                  s   s                                       0
+0                  s   s                                       0
+0                  s   s               000000000000000000000000
+0               sss     sss            0
+0              s           s           0
+0              s   ssss    s           0
+0       sss     sss    ssss            0
 0                                      0
 0                                      0
 0                    sss               0

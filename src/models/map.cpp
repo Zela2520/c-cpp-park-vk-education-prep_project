@@ -17,7 +17,7 @@ Map::Map(const char* fileName, const sf::Texture& globalBoundTexture, const sf::
         exit(1);
     }
 
-    char c = fgetc(source);    //// Получаем символ из файла
+    int c = fgetc(source);    //// Получаем символ из файла
     for (int i = 0; c != EOF; ++i) {
         c = 0;
         for (int j = 0; c != EOF && c != '\n'; ++j) {
@@ -31,6 +31,7 @@ Map::Map(const char* fileName, const sf::Texture& globalBoundTexture, const sf::
                 walls.emplace_back(Wall(j * 100, i * 100, localBoundTexture));
             }
         }
+        height++;
     }
     std::cout << "LOL\n";
 }

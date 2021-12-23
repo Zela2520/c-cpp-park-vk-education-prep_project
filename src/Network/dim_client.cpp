@@ -1,9 +1,10 @@
 #include "../../include/model.h"
 #include "../../include/player.h"
-#include "../../include/unmovable.h"
+#include "../../include/wall.h"
 #include "../../include/mob.h"
 #include "../../include/map.h"
 
+#include <string>
 #include <iostream>
 
 using namespace sf;
@@ -16,6 +17,10 @@ int main() {
     socket.connect("127.0.0.1", 3000);  //// Подключаемся к серверу по заданному порту.
 
     sf::Packet packet;  //// Создаём пакет для общения клиента с сервером.
+    int ID = -1;
+    socket.receive(packet);
+    packet >> ID;
+    packet.clear();
 
     //// Все используемые в программе текстуры.
     Texture amogusTexture;
@@ -30,19 +35,16 @@ int main() {
     std::vector<Player> players(2, Player(100, 100, amogusTexture));  //// Инициализируем начальное положение объектов на карте, принимая данные от сервера
 
 
-    RenderWindow window(sf::VideoMode(500, 500), "Squid game");  //// Создаём игровое окно.
-    window.clear(sf::Color::White); //// заливаем его в белый цвет
     sf::Texture wallTexture;
     wallTexture.loadFromFile("../include/textures/brick.png");
     Map map("../include/initialMap", wallTexture, wallTexture);
 //    map.creat_map(walls, &gachiTexture);
     View camera;
     camera.zoom(2);
-    int ID = -1;
-    socket.receive(packet);
-    packet >> ID;
-    packet.clear();
 
+
+    RenderWindow window(sf::VideoMode(500, 500), "Client " + to_string(ID));  //// Создаём игровое окно.
+    window.clear(sf::Color::White); //// заливаем его в белый цвет
 
     while (window.isOpen()) {
         window.clear(sf::Color::Blue);
@@ -56,6 +58,7 @@ int main() {
             packet.clear();
         }
         for (auto &player: players) {    //// Рисуем игроков
+            if (ID == 1) player.getSprite().setColor(sf::Color(0, 255, 0));
             player.draw(window);
         }
         //// Получение информации обо всех неподвижных объектах.

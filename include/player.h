@@ -6,12 +6,12 @@
 #include <vector>
 #include <string>
 
-#include "unmovable.h"
+#include "wall.h"
 #include "cmath"
 
 
 class Player : public Object {
-    int Id = -1;
+    int id = -1;
 public:
     Player(float _x, float _y, const sf::Texture& texture);
     bool intersectsWith(std::vector<Wall>& objects);

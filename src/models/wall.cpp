@@ -1,4 +1,4 @@
-#include "../../include/unmovable.h"
+#include "../../include/wall.h"
 
 
 Wall::Wall(const sf::RectangleShape &rectangle) {
@@ -20,16 +20,16 @@ void Wall::draw(sf::RenderWindow &window) const {
     window.draw(sprite);
 }
 
-sf::Packet& operator >> (sf::Packet& packet, Wall& unmovable) {  //// Пакета в статичный объект
+sf::Packet& operator >> (sf::Packet& packet, Wall& wall) {  //// Пакета в статичный объект
     float x, y;
     packet >> x >> y;
-    unmovable.setX(x);
-    unmovable.setY(y);
+    wall.setX(x);
+    wall.setY(y);
     return packet;
 }
 
-sf::Packet& operator << (sf::Packet& packet, const Wall& unmovable) {  //// Из статичного объекта в пакет
-    return packet << unmovable.getX() << unmovable.getY();
+sf::Packet& operator << (sf::Packet& packet, const Wall& wall) {  //// Из статичного объекта в пакет
+    return packet << wall.getX() << wall.getY();
 }
 
 
