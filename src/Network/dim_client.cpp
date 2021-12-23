@@ -1,3 +1,4 @@
+
 #include "../../include/model.h"
 #include "../../include/player.h"
 #include "../../include/wall.h"
@@ -30,13 +31,9 @@ int main() {
     Texture mobTexture;
     mobTexture.loadFromFile("../include/textures/tnt.png");
 
-    //// Инициализируем начальное положение объектов на карте, принимая данные от сервера
-    std::vector<Mob> mobs(2);
-    for (int i = 0; i < mobs.size(); ++i) {
-        mobs.emplace_back(Mob(400 + i * 10, 300 + i * 10, mobTexture));
-        mobs[i].setScale(0.8,0.8);
-    }
-    std::vector<Player> players(2, Player(100, 100, amogusTexture));
+    Mob mob(200.0,200.0, mobTexture);
+    mob.setScale(0.8,0.8);
+    std::vector<Player> players(2, Player(100, 100, amogusTexture));  //// Инициализируем начальное положение объектов на карте, принимая данные от сервера
 
 
     sf::Texture wallTexture;
@@ -55,7 +52,6 @@ int main() {
 //        cout << ID;
 
         map.draw(window);
-
         //// Получение информации обо всех игроках.
         for (auto &player : players) {  //// Пробегаем по всем игрокам. На 1 игрока 1 пакет.
             socket.receive(packet);  //// Получаем пакет.
@@ -91,14 +87,8 @@ int main() {
 
         ///// отрисовываем все объекты на карте
         //// можно добавить ассинхронность. Тут нарисуются Unmovables
-        for (auto& mob : mobs) {
-            mob.moveMob(mob.setTaregt(players), map.getWalls());
-            mob.draw(window);
-        }
-
-
-//        mob.moveMob(players[1]);
-
+        mob.moveMob(mob.setTaregt(players), map.getWalls());
+        mob.draw(window);
         //// а тут сделать join
 
 
@@ -121,9 +111,9 @@ int main() {
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
                 directions[1] = true;
             }
-        }
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
                 directions[2] = true;
+            }
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
                 directions[3] = true;
             }
