@@ -46,8 +46,9 @@ private:
     size_t port;
     int id = ERROR;
     sf::TcpListener listener;
-    sf::TcpSocket clientOne;
-    sf::TcpSocket clientTwo;
+//    sf::TcpSocket clientOne;
+//    sf::TcpSocket clientTwo;
+    std::vector<sf::TcpSocket>* clients;
     sf::Packet packet;
 
     Pictures pictures;

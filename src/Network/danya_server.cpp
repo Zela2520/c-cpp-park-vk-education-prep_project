@@ -8,6 +8,7 @@
 
 Server::Server(int _port) {
     port = _port;
+    clients = new std::vector<sf::TcpSocket>(2);
     sf::Texture wallTexture;
     wallTexture.loadFromFile("../include/textures/brick.png");
     setConnection();
@@ -34,24 +35,17 @@ void Server::setConnection() {
 void Server::receiveClients() {
     std::cout << "Сервер должен принять клиента\n";
 
-    if (listener.accept(clientOne) != sf::Socket::Done) {
-        std::cerr << "The server is not ready to accept the client";
-        exit(1);
+    for (auto& client : *clients) {
+        if (listener.accept(client) != sf::Socket::Done) {
+            std::cerr << "The server is not ready to accept the client";
+            exit(1);
+        }
+
+        id = INIT_ID;
+        packet << id++;
+        client.send(packet);
+        packet.clear();
     }
-
-    id = INIT_ID;
-    packet << id;
-    clientOne.send(packet);
-    packet.clear();
-
-    if (listener.accept(clientTwo) != sf::Socket::Done) {
-        std::cerr << "The server is not ready to accept the client";
-        exit(1);
-    }
-
-    packet << ++id;
-    clientTwo.send(packet);
-    packet.clear();
     std::cout << "Сервер принял клиентов\n";
 }
 
@@ -61,35 +55,22 @@ void Server::sendData() {
     //// кусок ниже можно сделать ассинхроно, добавив функцию void и передавая в неё нужного клиента.
 
     //// Отправляем данные первому клиенту
-    for (auto& cur_player : players) {
-        packet << cur_player;
-        clientOne.send(packet);
-        packet.clear();
-        std::cout << "ДАННЫЕ БЫЛИ ОТПРАВЛЕНЫ\n";
-    }
-    packet << (int)(map->getWalls().size());
-    clientOne.send(packet);
-    packet.clear();
-    for (auto& wall : map->getWalls()) {   //// И о каждом несдвигаемом объекте.
-        packet << wall;
-        clientOne.send(packet);
-        packet.clear();
-    }
 
-    //// Отправляем данные второму клиенту
-    for (auto& cur_player : players) {
-        packet << cur_player;
-        clientTwo.send(packet);
+    for (auto& client : *clients) {
+        for (auto& cur_player : players) {
+            packet << cur_player;
+            client.send(packet);
+            packet.clear();
+            std::cout << "ДАННЫЕ БЫЛИ ОТПРАВЛЕНЫ\n";
+        }
+        packet << (int)(map->getWalls().size());
+        client.send(packet);
         packet.clear();
-        std::cout << "ДАННЫЕ БЫЛИ ОТПРАВЛЕНЫ\n";
-    }
-    packet << (int)(map->getWalls().size());
-    clientTwo.send(packet);
-    packet.clear();
-    for (auto& wall : map->getWalls()) {   //// И о каждом несдвигаемом объекте.
-        packet << wall;
-        clientTwo.send(packet);
-        packet.clear();
+        for (auto& wall : map->getWalls()) {   //// И о каждом несдвигаемом объекте.
+            packet << wall;
+            client.send(packet);
+            packet.clear();
+        }
     }
 }
 
@@ -98,49 +79,30 @@ void Server::processAcquiredData() {
     float time = clock.getElapsedTime().asMicroseconds();
     clock.restart();
     time /= 400;
-    clientOne.receive(packet);
-    bool directions[4];
-    packet >> directions;  //// Достаём информацию из пакета.
-    packet.clear();
 
-    //// Обрабатываем полученную информацию о направлении.
-    if (directions[0]) {   //// Вверх.
-        players[0].goUp(0.3 * time);
-        if (players[0].intersectsWith(map->getWalls())) players[0].goDown(0.3 * time);
-    }
-    if (directions[1]) {  //// Направо.
-        players[0].goRight(0.3 * time);
-        if (players[0].intersectsWith(map->getWalls())) players[0].goLeft(0.3 * time);
-    }
-    if (directions[2]) {  //// Вниз.
-        players[0].goDown(0.3 * time);
-        if (players[0].intersectsWith(map->getWalls())) players[0].goUp(0.3 * time);
-    }
-    if (directions[3]) {  //// Налево.
-        players[0].goLeft(0.3 * time);
-        if (players[0].intersectsWith(map->getWalls())) players[0].goRight(0.3 * time);
-    }
+    for (auto& client : *clients) {
+        client.receive(packet);
+        bool directions[4];
+        packet >> directions;  //// Достаём информацию из пакета.
+        packet.clear();
 
-    clientTwo.receive(packet);
-    packet >> directions;  //// Достаём информацию из пакета.
-    packet.clear();
-
-    //// Обрабатываем полученную информацию о направлении.
-    if (directions[0]) {   //// Вверх.
-        players[1].goUp(0.3 * time);
-        if (players[1].intersectsWith(map->getWalls())) players[1].goDown(0.3 * time);
-    }
-    if (directions[1]) {  //// Направо.
-        players[1].goRight(0.3 * time);
-        if (players[1].intersectsWith(map->getWalls())) players[1].goLeft(0.3 * time);
-    }
-    if (directions[2]) {  //// Вниз.
-        players[1].goDown(0.3 * time);
-        if (players[1].intersectsWith(map->getWalls())) players[1].goUp(0.3 * time);
-    }
-    if (directions[3]) {  //// Налево.
-        players[1].goLeft(0.3 * time);
-        if (players[1].intersectsWith(map->getWalls())) players[1].goRight(0.3 * time);
+        //// Обрабатываем полученную информацию о направлении.
+        if (directions[0]) {   //// Вверх.
+            players[0].goUp(0.3 * time);
+            if (players[0].intersectsWith(map->getWalls())) players[0].goDown(0.3 * time);
+        }
+        if (directions[1]) {  //// Направо.
+            players[0].goRight(0.3 * time);
+            if (players[0].intersectsWith(map->getWalls())) players[0].goLeft(0.3 * time);
+        }
+        if (directions[2]) {  //// Вниз.
+            players[0].goDown(0.3 * time);
+            if (players[0].intersectsWith(map->getWalls())) players[0].goUp(0.3 * time);
+        }
+        if (directions[3]) {  //// Налево.
+            players[0].goLeft(0.3 * time);
+            if (players[0].intersectsWith(map->getWalls())) players[0].goRight(0.3 * time);
+        }
     }
 
     std::cout << "ЗАКАНЧИВАЕМ ОТСЛЕЖИВАТЬ ПЕРЕДВИЖЕНИЯ КЛИЕНТА\n";
