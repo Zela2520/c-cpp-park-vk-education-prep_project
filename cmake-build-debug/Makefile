@@ -48,10 +48,10 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /snap/clion/175/bin/cmake/linux/bin/cmake
+CMAKE_COMMAND = /snap/clion/177/bin/cmake/linux/bin/cmake
 
 # The command to remove a file.
-RM = /snap/clion/175/bin/cmake/linux/bin/cmake -E rm -f
+RM = /snap/clion/177/bin/cmake/linux/bin/cmake -E rm -f
 
 # Escaping for special characters.
 EQUALS = =
@@ -68,7 +68,7 @@ CMAKE_BINARY_DIR = /home/daniil/CLionProjects/application/cmake-build-debug
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	/snap/clion/175/bin/cmake/linux/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+	/snap/clion/177/bin/cmake/linux/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -78,7 +78,7 @@ edit_cache/fast: edit_cache
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/snap/clion/175/bin/cmake/linux/bin/cmake --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	/snap/clion/177/bin/cmake/linux/bin/cmake --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : rebuild_cache
 
 # Special rule for the target rebuild_cache
@@ -350,35 +350,35 @@ src/models/player.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/client_2.dir/build.make CMakeFiles/client_2.dir/src/models/player.cpp.s
 .PHONY : src/models/player.cpp.s
 
-src/models/unmovable.o: src/models/unmovable.cpp.o
-.PHONY : src/models/unmovable.o
+src/models/wall.o: src/models/wall.cpp.o
+.PHONY : src/models/wall.o
 
 # target to build an object file
-src/models/unmovable.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/models/unmovable.cpp.o
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/src/models/unmovable.cpp.o
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/client_2.dir/build.make CMakeFiles/client_2.dir/src/models/unmovable.cpp.o
-.PHONY : src/models/unmovable.cpp.o
+src/models/wall.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/models/wall.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/src/models/wall.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client_2.dir/build.make CMakeFiles/client_2.dir/src/models/wall.cpp.o
+.PHONY : src/models/wall.cpp.o
 
-src/models/unmovable.i: src/models/unmovable.cpp.i
-.PHONY : src/models/unmovable.i
+src/models/wall.i: src/models/wall.cpp.i
+.PHONY : src/models/wall.i
 
 # target to preprocess a source file
-src/models/unmovable.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/models/unmovable.cpp.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/src/models/unmovable.cpp.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/client_2.dir/build.make CMakeFiles/client_2.dir/src/models/unmovable.cpp.i
-.PHONY : src/models/unmovable.cpp.i
+src/models/wall.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/models/wall.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/src/models/wall.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client_2.dir/build.make CMakeFiles/client_2.dir/src/models/wall.cpp.i
+.PHONY : src/models/wall.cpp.i
 
-src/models/unmovable.s: src/models/unmovable.cpp.s
-.PHONY : src/models/unmovable.s
+src/models/wall.s: src/models/wall.cpp.s
+.PHONY : src/models/wall.s
 
 # target to generate assembly for a file
-src/models/unmovable.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/models/unmovable.cpp.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/src/models/unmovable.cpp.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/client_2.dir/build.make CMakeFiles/client_2.dir/src/models/unmovable.cpp.s
-.PHONY : src/models/unmovable.cpp.s
+src/models/wall.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/models/wall.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/src/models/wall.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client_2.dir/build.make CMakeFiles/client_2.dir/src/models/wall.cpp.s
+.PHONY : src/models/wall.cpp.s
 
 # Help Target
 help:
@@ -412,9 +412,9 @@ help:
 	@echo "... src/models/player.o"
 	@echo "... src/models/player.i"
 	@echo "... src/models/player.s"
-	@echo "... src/models/unmovable.o"
-	@echo "... src/models/unmovable.i"
-	@echo "... src/models/unmovable.s"
+	@echo "... src/models/wall.o"
+	@echo "... src/models/wall.i"
+	@echo "... src/models/wall.s"
 .PHONY : help
 
 

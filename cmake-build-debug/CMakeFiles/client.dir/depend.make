@@ -6,18 +6,18 @@ CMakeFiles/client.dir/src/Network/dim_client.cpp.o: \
  ../include/mob.h \
  ../include/model.h \
  ../include/player.h \
- ../include/unmovable.h \
+ ../include/wall.h \
  ../src/Network/dim_client.cpp
 CMakeFiles/client.dir/src/models/map.cpp.o: \
  ../include/map.h \
  ../include/model.h \
- ../include/unmovable.h \
+ ../include/wall.h \
  ../src/models/map.cpp
 CMakeFiles/client.dir/src/models/mob.cpp.o: \
  ../include/mob.h \
  ../include/model.h \
  ../include/player.h \
- ../include/unmovable.h \
+ ../include/wall.h \
  ../src/models/mob.cpp
 CMakeFiles/client.dir/src/models/model.cpp.o: \
  ../include/model.h \
@@ -26,9 +26,9 @@ CMakeFiles/client.dir/src/models/player.cpp.o: \
  ../include/map.h \
  ../include/model.h \
  ../include/player.h \
- ../include/unmovable.h \
+ ../include/wall.h \
  ../src/models/player.cpp
-CMakeFiles/client.dir/src/models/unmovable.cpp.o: \
+CMakeFiles/client.dir/src/models/wall.cpp.o: \
  ../include/model.h \
- ../include/unmovable.h \
- ../src/models/unmovable.cpp
+ ../include/wall.h \
+ ../src/models/wall.cpp

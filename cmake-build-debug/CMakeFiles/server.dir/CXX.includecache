@@ -15,8 +15,8 @@ map.h
 /home/daniil/CLionProjects/application/include/map.h
 model.h
 /home/daniil/CLionProjects/application/include/model.h
-unmovable.h
-/home/daniil/CLionProjects/application/include/unmovable.h
+wall.h
+/home/daniil/CLionProjects/application/include/wall.h
 
 /home/daniil/CLionProjects/application/include/mob.h
 player.h
@@ -43,12 +43,12 @@ vector
 -
 string
 -
-unmovable.h
-/home/daniil/CLionProjects/application/include/unmovable.h
+wall.h
+/home/daniil/CLionProjects/application/include/wall.h
 cmath
 /home/daniil/CLionProjects/application/include/cmath
 
-/home/daniil/CLionProjects/application/include/unmovable.h
+/home/daniil/CLionProjects/application/include/wall.h
 model.h
 /home/daniil/CLionProjects/application/include/model.h
 
@@ -57,4 +57,12 @@ model.h
 /home/daniil/CLionProjects/application/include/danya_server.h
 iostream
 -
+
+/home/daniil/CLionProjects/application/src/Network/main_sever.cpp
+../../include/danya_server.h
+/home/daniil/CLionProjects/application/include/danya_server.h
+
+/home/daniil/CLionProjects/application/src/models/mob.cpp
+../../include/mob.h
+/home/daniil/CLionProjects/application/include/mob.h
 

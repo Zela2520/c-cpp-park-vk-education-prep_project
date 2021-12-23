@@ -12,7 +12,7 @@ using namespace std;
 int main(int argc, char* argv[]) {
     sf::TcpListener listener;
     //// Устанавливаем по какому порту будет проходить подключение к серверу
-        if (listener.listen(3001) != sf::Socket::Done) {  //// Слушаем порт 3000.
+        if (listener.listen(3000) != sf::Socket::Done) {  //// Слушаем порт 3000.
             std::cerr << "Error";
         }
     sf::Packet packet;  //// Создаём пакет для общения клиента с сервером.
@@ -27,22 +27,26 @@ int main(int argc, char* argv[]) {
         packet.clear();
     }
 
-    Map map;
-    map.creat_map();
+
 
     //// Все используемые в программе текстуры.
     Texture amogusTexture;
     amogusTexture.loadFromFile("../include/textures/amogus.png");
     Texture gachiTexture;
-    gachiTexture.loadFromFile("../include/textures/gachi.png");
+    gachiTexture.loadFromFile("../include/textures/tnt.png");
+
+    Map map;
+    map.creat_map();
 
     std::vector<Player> players;
     for (int i = 0; i < 2; i++) {
-        players.emplace_back(0, 0, amogusTexture);
+        players.emplace_back(400, 400, amogusTexture);
         players[i].setId(i);
     }
 
-    std::vector<Unmovable> unmovables(1, Unmovable(200, 200, gachiTexture));   //// Создаём одну стенку.
+    ////std::vector<Unmovable> unmovables(1, Unmovable(200, 200, gachiTexture));   //// Создаём одну стенку.
+
+
 
     //// Заранее отправляем клиентам данные о том, что мячи расположены на нулевых координатах.
     for (auto & client : clients) {  //// Для каждого клиента.
@@ -52,11 +56,11 @@ int main(int argc, char* argv[]) {
             packet.clear();
         }
 
-        for (auto & unmovable : unmovables) {   //// И о каждом несдвигаемом объекте.
-            packet << unmovable;
-            client.send(packet);
-            packet.clear();
-        }
+//        for (auto & unmovable : map.get_map()) {   //// И о каждом несдвигаемом объекте.
+//            packet << unmovable;
+//            client.send(packet);
+//            packet.clear();
+//        }
     }
 
 
@@ -78,19 +82,19 @@ int main(int argc, char* argv[]) {
             //// Обрабатываем полученную информацию о направлении.
             if (directions[0]) {   //// Вверх.
                 players[i].goUp(0.3 * time);
-                if (players[i].intersectsWith(unmovables)) players[i].goDown(0.3 * time);
+                if (players[i].intersectsWith(map.get_map())) players[i].goDown(0.3 * time);
             }
             if (directions[1]) {  //// Направо.
                 players[i].goRight(0.3 * time);
-                if (players[i].intersectsWith(unmovables)) players[i].goLeft(0.3 * time);
+                if (players[i].intersectsWith(map.get_map())) players[i].goLeft(0.3 * time);
             }
             if (directions[2]) {  //// Вниз.
                 players[i].goDown(0.3 * time);
-                if (players[i].intersectsWith(unmovables)) players[i].goUp(0.3 * time);
+                if (players[i].intersectsWith(map.get_map())) players[i].goUp(0.3 * time);
             }
             if (directions[3]) {  //// Налево.
                 players[i].goLeft(0.3 * time);
-                if (players[i].intersectsWith(unmovables)) players[i].goRight(0.3 * time);
+                if (players[i].intersectsWith(map.get_map())) players[i].goRight(0.3 * time);
             }
         }
 
@@ -102,11 +106,11 @@ int main(int argc, char* argv[]) {
                 packet.clear();
 //                std::cout << player.getX() << ' ' << player.getY() << '\n';
             }
-            for (auto & unmovable : unmovables) {   //// И о каждом несдвигаемом объекте.
-                packet << unmovable;
-                client.send(packet);
-                packet.clear();
-            }
+//            for (auto & unmovable : map.get_map()) {   //// И о каждом несдвигаемом объекте.
+//                packet << unmovable;
+//                client.send(packet);
+//                packet.clear();
+//            }
         }
     }
     return 0;

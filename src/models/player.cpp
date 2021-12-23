@@ -10,12 +10,17 @@ Player::Player(float _x, float _y, const sf::Texture& _texture) : Object() {  //
     setY(_y);
 }
 
-bool Player::intersectsWith(std::vector<Unmovable>& objects) {
+//Player::Player (const Player& otherPlayer) {
+//    this->x = otherPlayer.x;
+//    this->y = otherPlayer.y;
+//}
+
+bool Player::intersectsWith(std::vector<Wall>& objects) {
     for (auto& object : objects) {
         sf::Rect<float> thisBounds = sprite.getGlobalBounds();
         sf::Rect<float> objectBounds = object.getSprite().getGlobalBounds();
 
-        return (thisBounds.intersects(objectBounds));
+        if (thisBounds.intersects(objectBounds)) return true;
     }
     return false;
 }
@@ -30,12 +35,12 @@ void Player::draw(sf::RenderWindow& window) {
     window.draw(sprite);
 }
 
-void Player::setId(int _gotId) {
-    Id = _gotId;
+void Player::setId(int _id) {
+    id = _id;
 }
 
 int Player::getId() const {
-    return Id;
+    return id;
 }
 
 sf::Packet& operator << (sf::Packet& packet, const Player& player) {  //// Из игрока в пакет

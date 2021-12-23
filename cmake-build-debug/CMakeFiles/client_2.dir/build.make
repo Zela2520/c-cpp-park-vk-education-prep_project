@@ -44,10 +44,10 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /snap/clion/175/bin/cmake/linux/bin/cmake
+CMAKE_COMMAND = /snap/clion/177/bin/cmake/linux/bin/cmake
 
 # The command to remove a file.
-RM = /snap/clion/175/bin/cmake/linux/bin/cmake -E rm -f
+RM = /snap/clion/177/bin/cmake/linux/bin/cmake -E rm -f
 
 # Escaping for special characters.
 EQUALS = =
@@ -92,18 +92,18 @@ CMakeFiles/client_2.dir/src/models/model.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/client_2.dir/src/models/model.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/daniil/CLionProjects/application/src/models/model.cpp -o CMakeFiles/client_2.dir/src/models/model.cpp.s
 
-CMakeFiles/client_2.dir/src/models/unmovable.cpp.o: CMakeFiles/client_2.dir/flags.make
-CMakeFiles/client_2.dir/src/models/unmovable.cpp.o: ../src/models/unmovable.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/daniil/CLionProjects/application/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/client_2.dir/src/models/unmovable.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/client_2.dir/src/models/unmovable.cpp.o -c /home/daniil/CLionProjects/application/src/models/unmovable.cpp
+CMakeFiles/client_2.dir/src/models/wall.cpp.o: CMakeFiles/client_2.dir/flags.make
+CMakeFiles/client_2.dir/src/models/wall.cpp.o: ../src/models/wall.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/daniil/CLionProjects/application/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/client_2.dir/src/models/wall.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/client_2.dir/src/models/wall.cpp.o -c /home/daniil/CLionProjects/application/src/models/wall.cpp
 
-CMakeFiles/client_2.dir/src/models/unmovable.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/client_2.dir/src/models/unmovable.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/daniil/CLionProjects/application/src/models/unmovable.cpp > CMakeFiles/client_2.dir/src/models/unmovable.cpp.i
+CMakeFiles/client_2.dir/src/models/wall.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/client_2.dir/src/models/wall.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/daniil/CLionProjects/application/src/models/wall.cpp > CMakeFiles/client_2.dir/src/models/wall.cpp.i
 
-CMakeFiles/client_2.dir/src/models/unmovable.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/client_2.dir/src/models/unmovable.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/daniil/CLionProjects/application/src/models/unmovable.cpp -o CMakeFiles/client_2.dir/src/models/unmovable.cpp.s
+CMakeFiles/client_2.dir/src/models/wall.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/client_2.dir/src/models/wall.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/daniil/CLionProjects/application/src/models/wall.cpp -o CMakeFiles/client_2.dir/src/models/wall.cpp.s
 
 CMakeFiles/client_2.dir/src/models/player.cpp.o: CMakeFiles/client_2.dir/flags.make
 CMakeFiles/client_2.dir/src/models/player.cpp.o: ../src/models/player.cpp
@@ -148,7 +148,7 @@ CMakeFiles/client_2.dir/src/models/map.cpp.s: cmake_force
 client_2_OBJECTS = \
 "CMakeFiles/client_2.dir/src/Network/dim_client.cpp.o" \
 "CMakeFiles/client_2.dir/src/models/model.cpp.o" \
-"CMakeFiles/client_2.dir/src/models/unmovable.cpp.o" \
+"CMakeFiles/client_2.dir/src/models/wall.cpp.o" \
 "CMakeFiles/client_2.dir/src/models/player.cpp.o" \
 "CMakeFiles/client_2.dir/src/models/mob.cpp.o" \
 "CMakeFiles/client_2.dir/src/models/map.cpp.o"
@@ -158,7 +158,7 @@ client_2_EXTERNAL_OBJECTS =
 
 client_2: CMakeFiles/client_2.dir/src/Network/dim_client.cpp.o
 client_2: CMakeFiles/client_2.dir/src/models/model.cpp.o
-client_2: CMakeFiles/client_2.dir/src/models/unmovable.cpp.o
+client_2: CMakeFiles/client_2.dir/src/models/wall.cpp.o
 client_2: CMakeFiles/client_2.dir/src/models/player.cpp.o
 client_2: CMakeFiles/client_2.dir/src/models/mob.cpp.o
 client_2: CMakeFiles/client_2.dir/src/models/map.cpp.o

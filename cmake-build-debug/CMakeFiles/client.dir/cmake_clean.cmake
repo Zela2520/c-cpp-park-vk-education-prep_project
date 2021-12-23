@@ -4,7 +4,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/client.dir/src/models/mob.cpp.o"
   "CMakeFiles/client.dir/src/models/model.cpp.o"
   "CMakeFiles/client.dir/src/models/player.cpp.o"
-  "CMakeFiles/client.dir/src/models/unmovable.cpp.o"
+  "CMakeFiles/client.dir/src/models/wall.cpp.o"
   "client"
   "client.pdb"
 )

@@ -6,17 +6,17 @@
 #include <vector>
 #include <string>
 
-#include "unmovable.h"
+#include "wall.h"
 #include "cmath"
 
 
 class Player : public Object {
-    int Id = -1;
+    int id = -1;
 public:
+    Player() = default;
+//    Player (const Player& otherPlayer);
     Player(float _x, float _y, const sf::Texture& texture);
-    bool intersectsWith(std::vector<Unmovable>& objects);
-//    bool intersectsWith(std::vector<localBound>& objects);
-//    bool intersectsWith(std::vector<globalBound>& objects);
+    bool intersectsWith(std::vector<Wall>& objects);
     void draw(sf::RenderWindow& window) override;
     void setId(int);
     int getId() const;

@@ -8,7 +8,7 @@
 
 class Server {
 public:
-    class Pictures {
+    class Pictures {  //// Хранит в себе все текстурки
     public:
         Pictures() = default;
         explicit Pictures(std::string amogus, std::string gachi) {
@@ -32,8 +32,7 @@ public:
         sf::Texture amogusTexture;
         sf::Texture gachiTexture;
     };
-    explicit Server(size_t port);
-    ~Server() = default;
+    explicit Server(int port);
     void set_connection();
     void receive_clients();
     void send_data();
@@ -43,18 +42,17 @@ public:
     static void load_pictures(Pictures &pictures); //// если хотим добавить картинки необходимо прописать путт в этом методе
 
 private:
-    size_t m_port;
-    int m_id = ERROR;
-    sf::TcpListener m_listener;
-    sf::TcpSocket m_client_one;
-    sf::TcpSocket m_client_two;
-    sf::Packet m_packet;
+    size_t port;
+    int id = ERROR;
+    sf::TcpListener listener;
+    sf::TcpSocket clientOne;
+    sf::TcpSocket clientTwo;
+    sf::Packet packet;
 
-    Pictures m_pictures;
-    Map m_map;
-    std::vector<Player> m_players;
-    std::vector<Unmovable> m_unmovables;
-    sf::Clock m_clock;
+    Pictures pictures;
+    Map* map;
+    std::vector<Player> players;
+    sf::Clock clock;
 
 };
 

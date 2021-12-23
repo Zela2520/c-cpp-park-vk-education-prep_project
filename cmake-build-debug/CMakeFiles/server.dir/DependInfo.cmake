@@ -14,7 +14,7 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "/home/daniil/CLionProjects/application/src/models/mob.cpp" "/home/daniil/CLionProjects/application/cmake-build-debug/CMakeFiles/server.dir/src/models/mob.cpp.o"
   "/home/daniil/CLionProjects/application/src/models/model.cpp" "/home/daniil/CLionProjects/application/cmake-build-debug/CMakeFiles/server.dir/src/models/model.cpp.o"
   "/home/daniil/CLionProjects/application/src/models/player.cpp" "/home/daniil/CLionProjects/application/cmake-build-debug/CMakeFiles/server.dir/src/models/player.cpp.o"
-  "/home/daniil/CLionProjects/application/src/models/unmovable.cpp" "/home/daniil/CLionProjects/application/cmake-build-debug/CMakeFiles/server.dir/src/models/unmovable.cpp.o"
+  "/home/daniil/CLionProjects/application/src/models/wall.cpp" "/home/daniil/CLionProjects/application/cmake-build-debug/CMakeFiles/server.dir/src/models/wall.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

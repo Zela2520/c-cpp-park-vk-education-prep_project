@@ -3,7 +3,7 @@
 
 #include "model.h"
 #include "player.h"
-#include "unmovable.h"
+#include "wall.h"
 #include "mob.h"
 #include "map.h"
 
@@ -13,7 +13,7 @@ private:
     sf::TcpSocket m_socket;
     sf::Packet m_packet;
     std::vector<Player> m_players;
-    std::vector<Unmovable> m_unmovables;
+    std::vector<Wall> m_unmovables;
     Mob m_mob;
     sf::RenderWindow m_window;
     Map m_map;

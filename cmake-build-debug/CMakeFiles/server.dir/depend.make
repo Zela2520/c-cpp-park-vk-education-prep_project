@@ -7,7 +7,7 @@ CMakeFiles/server.dir/src/Network/danya_server.cpp.o: \
  ../include/mob.h \
  ../include/model.h \
  ../include/player.h \
- ../include/unmovable.h \
+ ../include/wall.h \
  ../src/Network/danya_server.cpp
 CMakeFiles/server.dir/src/Network/main_sever.cpp.o: \
  ../include/danya_server.h \
@@ -15,18 +15,18 @@ CMakeFiles/server.dir/src/Network/main_sever.cpp.o: \
  ../include/mob.h \
  ../include/model.h \
  ../include/player.h \
- ../include/unmovable.h \
+ ../include/wall.h \
  ../src/Network/main_sever.cpp
 CMakeFiles/server.dir/src/models/map.cpp.o: \
  ../include/map.h \
  ../include/model.h \
- ../include/unmovable.h \
+ ../include/wall.h \
  ../src/models/map.cpp
 CMakeFiles/server.dir/src/models/mob.cpp.o: \
  ../include/mob.h \
  ../include/model.h \
  ../include/player.h \
- ../include/unmovable.h \
+ ../include/wall.h \
  ../src/models/mob.cpp
 CMakeFiles/server.dir/src/models/model.cpp.o: \
  ../include/model.h \
@@ -35,9 +35,9 @@ CMakeFiles/server.dir/src/models/player.cpp.o: \
  ../include/map.h \
  ../include/model.h \
  ../include/player.h \
- ../include/unmovable.h \
+ ../include/wall.h \
  ../src/models/player.cpp
-CMakeFiles/server.dir/src/models/unmovable.cpp.o: \
+CMakeFiles/server.dir/src/models/wall.cpp.o: \
  ../include/model.h \
- ../include/unmovable.h \
- ../src/models/unmovable.cpp
+ ../include/wall.h \
+ ../src/models/wall.cpp

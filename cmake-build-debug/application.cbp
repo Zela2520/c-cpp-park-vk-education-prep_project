@@ -200,7 +200,7 @@
 			<Option target="client"/>
 			<Option target="client_2"/>
 		</Unit>
-		<Unit filename="/home/daniil/CLionProjects/application/src/models/unmovable.cpp">
+		<Unit filename="/home/daniil/CLionProjects/application/src/models/wall.cpp">
 			<Option target="server"/>
 			<Option target="client"/>
 			<Option target="client_2"/>
