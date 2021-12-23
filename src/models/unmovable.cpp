@@ -11,6 +11,7 @@ Wall::Wall(const sf::RectangleShape &rectangle) {
 
 Wall::Wall(float _x, float _y, const sf::Texture& texture) : Object() {
     sprite.setTexture(texture);
+    sprite.setTextureRect(sf::IntRect(0, 0, 100, 100));
     setX(_x);
     setY(_y);
 }

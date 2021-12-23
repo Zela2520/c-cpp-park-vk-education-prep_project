@@ -6,13 +6,15 @@
 
 
 Server::Server(size_t port) {
-    map = new Map("../include/initialMap");
+    sf::Texture wallTexture;
+    wallTexture.loadFromFile("../include/textures/brick.png");
+    map = new Map("../include/initialMap", wallTexture, wallTexture);
     m_port = port;
-    load_pictures(m_pictures);
-//    m_map.creat_map(m_walls, &m_pictures.gachiTexture); //// можно передавать несколько текстур, чтобы объекты были разные либо передавать Pictures&, а в map подключить server_danya.h
+    load_pictures(pictures);
+//    m_map.creat_map(m_walls, &pictures.gachiTexture); //// можно передавать несколько текстур, чтобы объекты были разные либо передавать Pictures&, а в map подключить server_danya.h
     for (int i = 0; i < MAX_NUMBER_OF_CLIENTS; i++) {
-        m_players.emplace_back(20, 30, m_pictures.amogusTexture);
-        m_players[i].setId(i);
+        players.emplace_back(100, 100, pictures.amogusTexture);
+        players[i].setId(i);
     }
     std::cout << "Server was started\n";
 }
@@ -57,7 +59,7 @@ void Server::send_data() {
     //// кусок ниже можно сделать ассинхроно, добавив функцию void и передавая в неё нужного клиента.
 
     //// Отправляем данные первому клиенту
-    for (auto& cur_player : m_players) {
+    for (auto& cur_player : players) {
         packet << cur_player;
         m_client_one.send(packet);
         packet.clear();
@@ -73,7 +75,7 @@ void Server::send_data() {
     }
 
     //// Отправляем данные второму клиенту
-    for (auto& cur_player : m_players) {
+    for (auto& cur_player : players) {
         packet << cur_player;
         m_client_two.send(packet);
         packet.clear();
@@ -101,20 +103,20 @@ void Server::clients_movements() {
 
     //// Обрабатываем полученную информацию о направлении.
     if (directions[0]) {   //// Вверх.
-        m_players[0].goUp(0.3 * time);
-        if (m_players[0].intersectsWith(map->getWalls())) m_players[0].goDown(0.3 * time);
+        players[0].goUp(0.3 * time);
+        if (players[0].intersectsWith(map->getWalls())) players[0].goDown(0.3 * time);
     }
     if (directions[1]) {  //// Направо.
-        m_players[0].goRight(0.3 * time);
-        if (m_players[0].intersectsWith(map->getWalls())) m_players[0].goLeft(0.3 * time);
+        players[0].goRight(0.3 * time);
+        if (players[0].intersectsWith(map->getWalls())) players[0].goLeft(0.3 * time);
     }
     if (directions[2]) {  //// Вниз.
-        m_players[0].goDown(0.3 * time);
-        if (m_players[0].intersectsWith(map->getWalls())) m_players[0].goUp(0.3 * time);
+        players[0].goDown(0.3 * time);
+        if (players[0].intersectsWith(map->getWalls())) players[0].goUp(0.3 * time);
     }
     if (directions[3]) {  //// Налево.
-        m_players[0].goLeft(0.3 * time);
-        if (m_players[0].intersectsWith(map->getWalls())) m_players[0].goRight(0.3 * time);
+        players[0].goLeft(0.3 * time);
+        if (players[0].intersectsWith(map->getWalls())) players[0].goRight(0.3 * time);
     }
 
     m_client_two.receive(packet);
@@ -123,20 +125,20 @@ void Server::clients_movements() {
 
     //// Обрабатываем полученную информацию о направлении.
     if (directions[0]) {   //// Вверх.
-        m_players[1].goUp(0.3 * time);
-        if (m_players[1].intersectsWith(map->getWalls())) m_players[1].goDown(0.3 * time);
+        players[1].goUp(0.3 * time);
+        if (players[1].intersectsWith(map->getWalls())) players[1].goDown(0.3 * time);
     }
     if (directions[1]) {  //// Направо.
-        m_players[1].goRight(0.3 * time);
-        if (m_players[1].intersectsWith(map->getWalls())) m_players[1].goLeft(0.3 * time);
+        players[1].goRight(0.3 * time);
+        if (players[1].intersectsWith(map->getWalls())) players[1].goLeft(0.3 * time);
     }
     if (directions[2]) {  //// Вниз.
-        m_players[1].goDown(0.3 * time);
-        if (m_players[1].intersectsWith(map->getWalls())) m_players[1].goUp(0.3 * time);
+        players[1].goDown(0.3 * time);
+        if (players[1].intersectsWith(map->getWalls())) players[1].goUp(0.3 * time);
     }
     if (directions[3]) {  //// Налево.
-        m_players[1].goLeft(0.3 * time);
-        if (m_players[1].intersectsWith(map->getWalls())) m_players[1].goRight(0.3 * time);
+        players[1].goLeft(0.3 * time);
+        if (players[1].intersectsWith(map->getWalls())) players[1].goRight(0.3 * time);
     }
 
     std::cout << "ЗАКАНЧИВАЕМ ОТСЛЕЖИВАТЬ ПЕРЕДВИЖЕНИЯ КЛИЕНТА\n";

@@ -10,7 +10,7 @@
 
 
 
-Map::Map(const char* fileName) {
+Map::Map(const char* fileName, const sf::Texture& globalBoundTexture, const sf::Texture& localBoundTexture) {
     FILE* source = fopen(fileName, "r+");
     if (source == nullptr) {
         printf("Couldn't open file\n");
@@ -25,10 +25,10 @@ Map::Map(const char* fileName) {
 //            sf::RectangleShape tempRectangle; //// создаём временную переменную для того, чтобы пушить её в вектор
 //            tempRectangle.setSize(sf::Vector2f(100, 100)); //// задаём размер неподвижным объектам
             if (c == '0') {
-                walls.emplace_back(Wall(j * 100, i * 100, wallTexture));
+                walls.emplace_back(Wall(j * 100, i * 100, globalBoundTexture));
             }
             if (c == 's') {
-                walls.emplace_back(Wall(j * 100, i * 100, wallTexture));
+                walls.emplace_back(Wall(j * 100, i * 100, localBoundTexture));
             }
         }
     }

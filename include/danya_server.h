@@ -49,9 +49,9 @@ private:
     sf::TcpSocket m_client_two;
     sf::Packet packet;
 
-    Pictures m_pictures;
+    Pictures pictures;
     Map* map;
-    std::vector<Player> m_players;
+    std::vector<Player> players;
     sf::Clock m_clock;
 
 };

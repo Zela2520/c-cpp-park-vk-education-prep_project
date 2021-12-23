@@ -27,12 +27,14 @@ int main() {
 
     Mob mob(-500.0,-500.0, mobTexture);
     mob.setScale(0.8,0.8);
-    std::vector<Player> players(2, Player(20, 30, amogusTexture));  //// Инициализируем начальное положение объектов на карте, принимая данные от сервера
+    std::vector<Player> players(2, Player(100, 100, amogusTexture));  //// Инициализируем начальное положение объектов на карте, принимая данные от сервера
 
 
     RenderWindow window(sf::VideoMode(500, 500), "Squid game");  //// Создаём игровое окно.
     window.clear(sf::Color::White); //// заливаем его в белый цвет
-    Map map("../include/initialMap"); //// создаём карту
+    sf::Texture wallTexture;
+    wallTexture.loadFromFile("../include/textures/brick.png");
+    Map map("../include/initialMap", wallTexture, wallTexture);
 //    map.creat_map(walls, &gachiTexture);
     View camera;
     camera.zoom(2);
@@ -43,7 +45,9 @@ int main() {
 
 
     while (window.isOpen()) {
-        cout << ID;
+        window.clear(sf::Color::Blue);
+//        cout << ID;
+
         map.draw(window);
         //// Получение информации обо всех игроках.
         for (auto &player : players) {  //// Пробегаем по всем игрокам. На 1 игрока 1 пакет.
@@ -51,13 +55,16 @@ int main() {
             packet >> player;  //// Записываем данные из пакета в игрока.
             packet.clear();
         }
-
+        for (auto &player: players) {    //// Рисуем игроков
+            player.draw(window);
+        }
         //// Получение информации обо всех неподвижных объектах.
         socket.receive(packet);
         int amountOfWalls;
         packet >> amountOfWalls;
         packet.clear();
         std::vector<Wall> walls(amountOfWalls);
+        cout << "walls.size()" << walls.size() << endl;
         for (auto &wall : walls) {    ////  Получаем инфу о стенах
             socket.receive(packet);
             packet >> wall;
@@ -68,18 +75,19 @@ int main() {
         camera.setCenter(players[ID].getX() ,players[ID].getY());
         window.setView(camera);
 
+
         //// чистим окно перед отрисовкой
-        window.clear(sf::Color::Blue);
+
+
+
 
         ///// отрисовываем все объекты на карте
-//        map.draw(window); //// можно добавить ассинхронность. Тут нарисуются Unmovables
+        //// можно добавить ассинхронность. Тут нарисуются Unmovables
         mob.moveMob(players[1]);
         mob.draw(window);
         //// а тут сделать join
 
-        for (auto &player : players) {    //// Рисуем игроков
-            player.draw(window);
-        }
+
 
         window.display();
 
