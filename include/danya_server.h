@@ -3,6 +3,7 @@
 
 #include "mob.h"
 #include "map.h"
+#include "bullet.h"
 
 #define ERROR (-1)
 
@@ -33,10 +34,10 @@ public:
         sf::Texture gachiTexture;
     };
     explicit Server(int port);
-    void set_connection();
-    void receive_clients();
-    void send_data();
-    void clients_movements();
+    void setConnection();
+    void receiveClients();
+    void sendData();
+    void processAcquiredData();
     void start_server();
 
     static void load_pictures(Pictures &pictures); //// если хотим добавить картинки необходимо прописать путт в этом методе
@@ -52,6 +53,7 @@ private:
     Pictures pictures;
     Map* map;
     std::vector<Player> players;
+    std::vector<Bullet> bullets;
     sf::Clock clock;
 
 };

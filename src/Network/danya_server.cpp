@@ -1,15 +1,18 @@
 #include "../../include/danya_server.h"
 #include <iostream>
+#include "../../include/map.h"
 
 #define MAX_NUMBER_OF_CLIENTS 2
 #define INIT_ID 0
 
 
 Server::Server(int _port) {
+    port = _port;
     sf::Texture wallTexture;
     wallTexture.loadFromFile("../include/textures/brick.png");
-    map = new Map("../include/initialMap", wallTexture, wallTexture);
-    port = _port;
+    setConnection();
+    receiveClients();
+    map = new Map((char*)"../include/initialMap", wallTexture, wallTexture);
     load_pictures(pictures);
     for (int i = 0; i < MAX_NUMBER_OF_CLIENTS; i++) {
         players.emplace_back(100, 100, pictures.amogusTexture);
@@ -18,7 +21,7 @@ Server::Server(int _port) {
     std::cout << "Server was started\n";
 }
 
-void Server::set_connection() {
+void Server::setConnection() {
     std::cout << "Сервер должен начать слушать\n";
     if (listener.listen(port) != sf::Socket::Done) {
         std::cerr << "The server is not ready to accept the client";
@@ -28,7 +31,7 @@ void Server::set_connection() {
     std::cout << "Сервер начал слушать\n";
 }
 
-void Server::receive_clients() {
+void Server::receiveClients() {
     std::cout << "Сервер должен принять клиента\n";
 
     if (listener.accept(clientOne) != sf::Socket::Done) {
@@ -52,7 +55,7 @@ void Server::receive_clients() {
     std::cout << "Сервер принял клиентов\n";
 }
 
-void Server::send_data() {
+void Server::sendData() {
     std::cout << "ДАННЫЕ ДОЛЖНЫ БЫТЬ ОТПРАВЛЕНЫ\n";
 
     //// кусок ниже можно сделать ассинхроно, добавив функцию void и передавая в неё нужного клиента.
@@ -90,7 +93,7 @@ void Server::send_data() {
     }
 }
 
-void Server::clients_movements() {
+void Server::processAcquiredData() {
     std::cout << "НАЧИНАЕМ ОТСЛЕЖИВАТЬ ПЕРЕДВИЖЕНИЯ КЛИЕНТА\n";
     float time = clock.getElapsedTime().asMicroseconds();
     clock.restart();
@@ -146,9 +149,9 @@ void Server::clients_movements() {
 void Server::start_server() {
     std::cout << "СТАРТ";
     while (true) {
-        clients_movements();
+        processAcquiredData();
         std::cout << "ДАННЫЕ ДОЛЖНЫ УЛЕТЕТЬ КЛИЕНТУ";
-        send_data();
+        sendData();
         std::cout << "ДАННЫЕ УЛЕТЕЛИ КЛИЕНТУ";
     }
 }

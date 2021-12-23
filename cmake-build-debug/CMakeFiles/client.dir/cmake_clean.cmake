@@ -1,6 +1,8 @@
 file(REMOVE_RECURSE
   "CMakeFiles/client.dir/src/Network/dim_client.cpp.o"
   "CMakeFiles/client.dir/src/Network/dim_client.cpp.o.d"
+  "CMakeFiles/client.dir/src/models/bullet.cpp.o"
+  "CMakeFiles/client.dir/src/models/bullet.cpp.o.d"
   "CMakeFiles/client.dir/src/models/map.cpp.o"
   "CMakeFiles/client.dir/src/models/map.cpp.o.d"
   "CMakeFiles/client.dir/src/models/mob.cpp.o"
@@ -9,8 +11,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/client.dir/src/models/model.cpp.o.d"
   "CMakeFiles/client.dir/src/models/player.cpp.o"
   "CMakeFiles/client.dir/src/models/player.cpp.o.d"
-  "CMakeFiles/client.dir/src/models/unmovable.cpp.o"
-  "CMakeFiles/client.dir/src/models/unmovable.cpp.o.d"
+  "CMakeFiles/client.dir/src/models/wall.cpp.o"
+  "CMakeFiles/client.dir/src/models/wall.cpp.o.d"
   "client"
   "client.pdb"
 )

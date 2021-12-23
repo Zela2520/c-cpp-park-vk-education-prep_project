@@ -180,6 +180,11 @@
 		<Unit filename="/home/dima/!Stuff/TP/trying to make engine/src/Network/main_sever.cpp">
 			<Option target="server"/>
 		</Unit>
+		<Unit filename="/home/dima/!Stuff/TP/trying to make engine/src/models/bullet.cpp">
+			<Option target="server"/>
+			<Option target="client"/>
+			<Option target="client_2"/>
+		</Unit>
 		<Unit filename="/home/dima/!Stuff/TP/trying to make engine/src/models/map.cpp">
 			<Option target="server"/>
 			<Option target="client"/>
@@ -200,7 +205,7 @@
 			<Option target="client"/>
 			<Option target="client_2"/>
 		</Unit>
-		<Unit filename="/home/dima/!Stuff/TP/trying to make engine/src/models/unmovable.cpp">
+		<Unit filename="/home/dima/!Stuff/TP/trying to make engine/src/models/wall.cpp">
 			<Option target="server"/>
 			<Option target="client"/>
 			<Option target="client_2"/>

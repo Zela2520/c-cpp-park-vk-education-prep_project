@@ -10,7 +10,7 @@
 
 
 
-Map::Map(const char* fileName, const sf::Texture& globalBoundTexture, const sf::Texture& localBoundTexture) {
+Map::Map(char* fileName, const sf::Texture& globalBoundTexture, const sf::Texture& localBoundTexture) {
     FILE* source = fopen(fileName, "r+");
     if (source == nullptr) {
         printf("Couldn't open file\n");

@@ -97,19 +97,19 @@ CMakeFiles/client_2.dir/src/models/model.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/client_2.dir/src/models/model.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/dima/!Stuff/TP/trying to make engine/src/models/model.cpp" -o CMakeFiles/client_2.dir/src/models/model.cpp.s
 
-CMakeFiles/client_2.dir/src/models/unmovable.cpp.o: CMakeFiles/client_2.dir/flags.make
-CMakeFiles/client_2.dir/src/models/unmovable.cpp.o: ../src/models/unmovable.cpp
-CMakeFiles/client_2.dir/src/models/unmovable.cpp.o: CMakeFiles/client_2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/dima/!Stuff/TP/trying to make engine/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/client_2.dir/src/models/unmovable.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/client_2.dir/src/models/unmovable.cpp.o -MF CMakeFiles/client_2.dir/src/models/unmovable.cpp.o.d -o CMakeFiles/client_2.dir/src/models/unmovable.cpp.o -c "/home/dima/!Stuff/TP/trying to make engine/src/models/unmovable.cpp"
+CMakeFiles/client_2.dir/src/models/wall.cpp.o: CMakeFiles/client_2.dir/flags.make
+CMakeFiles/client_2.dir/src/models/wall.cpp.o: ../src/models/wall.cpp
+CMakeFiles/client_2.dir/src/models/wall.cpp.o: CMakeFiles/client_2.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/dima/!Stuff/TP/trying to make engine/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/client_2.dir/src/models/wall.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/client_2.dir/src/models/wall.cpp.o -MF CMakeFiles/client_2.dir/src/models/wall.cpp.o.d -o CMakeFiles/client_2.dir/src/models/wall.cpp.o -c "/home/dima/!Stuff/TP/trying to make engine/src/models/wall.cpp"
 
-CMakeFiles/client_2.dir/src/models/unmovable.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/client_2.dir/src/models/unmovable.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/dima/!Stuff/TP/trying to make engine/src/models/unmovable.cpp" > CMakeFiles/client_2.dir/src/models/unmovable.cpp.i
+CMakeFiles/client_2.dir/src/models/wall.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/client_2.dir/src/models/wall.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/dima/!Stuff/TP/trying to make engine/src/models/wall.cpp" > CMakeFiles/client_2.dir/src/models/wall.cpp.i
 
-CMakeFiles/client_2.dir/src/models/unmovable.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/client_2.dir/src/models/unmovable.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/dima/!Stuff/TP/trying to make engine/src/models/unmovable.cpp" -o CMakeFiles/client_2.dir/src/models/unmovable.cpp.s
+CMakeFiles/client_2.dir/src/models/wall.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/client_2.dir/src/models/wall.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/dima/!Stuff/TP/trying to make engine/src/models/wall.cpp" -o CMakeFiles/client_2.dir/src/models/wall.cpp.s
 
 CMakeFiles/client_2.dir/src/models/player.cpp.o: CMakeFiles/client_2.dir/flags.make
 CMakeFiles/client_2.dir/src/models/player.cpp.o: ../src/models/player.cpp
@@ -153,31 +153,47 @@ CMakeFiles/client_2.dir/src/models/map.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/client_2.dir/src/models/map.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/dima/!Stuff/TP/trying to make engine/src/models/map.cpp" -o CMakeFiles/client_2.dir/src/models/map.cpp.s
 
+CMakeFiles/client_2.dir/src/models/bullet.cpp.o: CMakeFiles/client_2.dir/flags.make
+CMakeFiles/client_2.dir/src/models/bullet.cpp.o: ../src/models/bullet.cpp
+CMakeFiles/client_2.dir/src/models/bullet.cpp.o: CMakeFiles/client_2.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/dima/!Stuff/TP/trying to make engine/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/client_2.dir/src/models/bullet.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/client_2.dir/src/models/bullet.cpp.o -MF CMakeFiles/client_2.dir/src/models/bullet.cpp.o.d -o CMakeFiles/client_2.dir/src/models/bullet.cpp.o -c "/home/dima/!Stuff/TP/trying to make engine/src/models/bullet.cpp"
+
+CMakeFiles/client_2.dir/src/models/bullet.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/client_2.dir/src/models/bullet.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/dima/!Stuff/TP/trying to make engine/src/models/bullet.cpp" > CMakeFiles/client_2.dir/src/models/bullet.cpp.i
+
+CMakeFiles/client_2.dir/src/models/bullet.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/client_2.dir/src/models/bullet.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/dima/!Stuff/TP/trying to make engine/src/models/bullet.cpp" -o CMakeFiles/client_2.dir/src/models/bullet.cpp.s
+
 # Object files for target client_2
 client_2_OBJECTS = \
 "CMakeFiles/client_2.dir/src/Network/dim_client.cpp.o" \
 "CMakeFiles/client_2.dir/src/models/model.cpp.o" \
-"CMakeFiles/client_2.dir/src/models/unmovable.cpp.o" \
+"CMakeFiles/client_2.dir/src/models/wall.cpp.o" \
 "CMakeFiles/client_2.dir/src/models/player.cpp.o" \
 "CMakeFiles/client_2.dir/src/models/mob.cpp.o" \
-"CMakeFiles/client_2.dir/src/models/map.cpp.o"
+"CMakeFiles/client_2.dir/src/models/map.cpp.o" \
+"CMakeFiles/client_2.dir/src/models/bullet.cpp.o"
 
 # External object files for target client_2
 client_2_EXTERNAL_OBJECTS =
 
 client_2: CMakeFiles/client_2.dir/src/Network/dim_client.cpp.o
 client_2: CMakeFiles/client_2.dir/src/models/model.cpp.o
-client_2: CMakeFiles/client_2.dir/src/models/unmovable.cpp.o
+client_2: CMakeFiles/client_2.dir/src/models/wall.cpp.o
 client_2: CMakeFiles/client_2.dir/src/models/player.cpp.o
 client_2: CMakeFiles/client_2.dir/src/models/mob.cpp.o
 client_2: CMakeFiles/client_2.dir/src/models/map.cpp.o
+client_2: CMakeFiles/client_2.dir/src/models/bullet.cpp.o
 client_2: CMakeFiles/client_2.dir/build.make
 client_2: /usr/lib/x86_64-linux-gnu/libsfml-graphics.so
 client_2: /usr/lib/x86_64-linux-gnu/libsfml-window.so
 client_2: /usr/lib/x86_64-linux-gnu/libsfml-system.so
 client_2: /usr/lib/x86_64-linux-gnu/libsfml-network.so
 client_2: CMakeFiles/client_2.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/home/dima/!Stuff/TP/trying to make engine/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_7) "Linking CXX executable client_2"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/home/dima/!Stuff/TP/trying to make engine/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_8) "Linking CXX executable client_2"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/client_2.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
