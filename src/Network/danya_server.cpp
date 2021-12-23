@@ -35,13 +35,13 @@ void Server::setConnection() {
 void Server::receiveClients() {
     std::cout << "Сервер должен принять клиента\n";
 
+    id = 0;
     for (auto& client : *clients) {
         if (listener.accept(client) != sf::Socket::Done) {
             std::cerr << "The server is not ready to accept the client";
             exit(1);
         }
 
-        id = INIT_ID;
         packet << id++;
         client.send(packet);
         packet.clear();
@@ -80,29 +80,36 @@ void Server::processAcquiredData() {
     clock.restart();
     time /= 400;
 
-    for (auto& client : *clients) {
-        client.receive(packet);
+    for (int i = 0; i < clients->size(); i++) {
+        (*clients)[i].receive(packet);
         bool directions[4];
         packet >> directions;  //// Достаём информацию из пакета.
         packet.clear();
 
         //// Обрабатываем полученную информацию о направлении.
         if (directions[0]) {   //// Вверх.
-            players[0].goUp(0.3 * time);
-            if (players[0].intersectsWith(map->getWalls())) players[0].goDown(0.3 * time);
+            players[i].goUp(0.3 * time);
+            if (players[i].intersectsWith(map->getWalls())) players[i].goDown(0.3 * time);
         }
         if (directions[1]) {  //// Направо.
-            players[0].goRight(0.3 * time);
-            if (players[0].intersectsWith(map->getWalls())) players[0].goLeft(0.3 * time);
+            players[i].goRight(0.3 * time);
+            if (players[i].intersectsWith(map->getWalls())) players[i].goLeft(0.3 * time);
         }
         if (directions[2]) {  //// Вниз.
-            players[0].goDown(0.3 * time);
-            if (players[0].intersectsWith(map->getWalls())) players[0].goUp(0.3 * time);
+            players[i].goDown(0.3 * time);
+            if (players[i].intersectsWith(map->getWalls())) players[i].goUp(0.3 * time);
         }
         if (directions[3]) {  //// Налево.
-            players[0].goLeft(0.3 * time);
-            if (players[0].intersectsWith(map->getWalls())) players[0].goRight(0.3 * time);
+            players[i].goLeft(0.3 * time);
+            if (players[i].intersectsWith(map->getWalls())) players[i].goRight(0.3 * time);
         }
+
+//        bool isSpacePressed;
+//        packet >> isSpacePressed;  //// Достаём информацию из пакета.
+//        if (isSpacePressed) {
+//            bullets.emplace_back()
+//        }
+//        packet.clear();
     }
 
     std::cout << "ЗАКАНЧИВАЕМ ОТСЛЕЖИВАТЬ ПЕРЕДВИЖЕНИЯ КЛИЕНТА\n";

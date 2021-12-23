@@ -58,7 +58,6 @@ int main() {
             packet.clear();
         }
         for (auto &player: players) {    //// Рисуем игроков
-            if (ID == 1) player.getSprite().setColor(sf::Color(0, 255, 0));
             player.draw(window);
         }
         //// Получение информации обо всех неподвижных объектах.
@@ -97,6 +96,7 @@ int main() {
 
         sf::Event event{}; //// Переменная для отслеживания событий, происходящих на кажой итерации цикла
         bool directions[4] = {false, false, false, false};  //// Направления движения, которые будут обрабатываться на сервере.
+        bool isSpacePressed = false;
         while (window.pollEvent(event)) {
             if (event.type == sf::Event::Closed) {
                 window.close();
@@ -116,12 +116,19 @@ int main() {
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
                 directions[3] = true;
             }
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
+                isSpacePressed = true;
+            }
         }
 
         //// Запаковываем данные пользователя в пакет и отправляем на сервер
         packet << directions;
         socket.send(packet);
         packet.clear();
+
+//        packet << isSpacePressed;
+//        socket.send(packet);
+//        packet.clear();
     }
     return 0;
 }
