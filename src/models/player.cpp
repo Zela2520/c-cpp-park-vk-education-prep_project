@@ -15,7 +15,7 @@ bool Player::intersectsWith(std::vector<Wall>& objects) {
         sf::Rect<float> thisBounds = sprite.getGlobalBounds();
         sf::Rect<float> objectBounds = object.getSprite().getGlobalBounds();
 
-        return (thisBounds.intersects(objectBounds));
+        if (thisBounds.intersects(objectBounds)) return true;
     }
     return false;
 }
