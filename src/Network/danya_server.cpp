@@ -63,11 +63,21 @@ void Server::sendData() {
             packet.clear();
             std::cout << "ДАННЫЕ БЫЛИ ОТПРАВЛЕНЫ\n";
         }
+
         packet << (int)(map->getWalls().size());
         client.send(packet);
         packet.clear();
-        for (auto& wall : map->getWalls()) {   //// И о каждом несдвигаемом объекте.
+        for (auto& wall : map->getWalls()) {   //// И о каждом куске стены.
             packet << wall;
+            client.send(packet);
+            packet.clear();
+        }
+
+        packet << (int)(bullets.size());
+        client.send(packet);
+        packet.clear();
+        for (auto& bullet : bullets) {   //// И о каждой пуле.
+            packet << bullet;
             client.send(packet);
             packet.clear();
         }
@@ -76,9 +86,12 @@ void Server::sendData() {
 
 void Server::processAcquiredData() {
     std::cout << "НАЧИНАЕМ ОТСЛЕЖИВАТЬ ПЕРЕДВИЖЕНИЯ КЛИЕНТА\n";
-    float time = clock.getElapsedTime().asMicroseconds();
-    clock.restart();
-    time /= 400;
+    float moveTime = moveTimer.getElapsedTime().asMicroseconds();
+    moveTime /= 400;
+    moveTimer.restart();
+
+    float reloadTime = reloadTimer.getElapsedTime().asMilliseconds();
+    reloadTime /= 500;
 
     for (int i = 0; i < clients->size(); i++) {
         (*clients)[i].receive(packet);
@@ -88,28 +101,36 @@ void Server::processAcquiredData() {
 
         //// Обрабатываем полученную информацию о направлении.
         if (directions[0]) {   //// Вверх.
-            players[i].goUp(0.3 * time);
-            if (players[i].intersectsWith(map->getWalls())) players[i].goDown(0.3 * time);
+            players[i].goUp(0.3 * moveTime);
+            if (players[i].intersectsWith(map->getWalls())) players[i].goDown(0.3 * moveTime);
         }
         if (directions[1]) {  //// Направо.
-            players[i].goRight(0.3 * time);
-            if (players[i].intersectsWith(map->getWalls())) players[i].goLeft(0.3 * time);
+            players[i].goRight(0.3 * moveTime);
+            if (players[i].intersectsWith(map->getWalls())) players[i].goLeft(0.3 * moveTime);
         }
         if (directions[2]) {  //// Вниз.
-            players[i].goDown(0.3 * time);
-            if (players[i].intersectsWith(map->getWalls())) players[i].goUp(0.3 * time);
+            players[i].goDown(0.3 * moveTime);
+            if (players[i].intersectsWith(map->getWalls())) players[i].goUp(0.3 * moveTime);
         }
         if (directions[3]) {  //// Налево.
-            players[i].goLeft(0.3 * time);
-            if (players[i].intersectsWith(map->getWalls())) players[i].goRight(0.3 * time);
+            players[i].goLeft(0.3 * moveTime);
+            if (players[i].intersectsWith(map->getWalls())) players[i].goRight(0.3 * moveTime);
         }
 
-//        bool isSpacePressed;
-//        packet >> isSpacePressed;  //// Достаём информацию из пакета.
-//        if (isSpacePressed) {
-//            bullets.emplace_back()
-//        }
-//        packet.clear();
+        bool isSpacePressed;
+        (*clients)[i].receive(packet);
+        packet >> isSpacePressed;  //// Достаём информацию из пакета.
+        packet.clear();
+        if (isSpacePressed) {
+            reloadTimer.restart();
+            sf::Texture laserTexture;
+            laserTexture.loadFromFile("../include/textures/laser.png");
+            bullets.emplace_back(players[i].getX(), players[i].getY(), 45, laserTexture);
+        }
+    }
+
+    for (auto& bullet : bullets) {
+        bullet.move(0.1 * moveTime * cos(3.1415 / 180 * bullet.getRotation()), 0.1 * moveTime * sin(3.1415 / 180 * bullet.getRotation()));
     }
 
     std::cout << "ЗАКАНЧИВАЕМ ОТСЛЕЖИВАТЬ ПЕРЕДВИЖЕНИЯ КЛИЕНТА\n";

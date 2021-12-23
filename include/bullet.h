@@ -9,7 +9,8 @@ class Bullet : public Object {
     bool isAlive = false;
 public:
     Bullet(float _x, float _y, float _rotation, const sf::Texture& texture);
-//    Bullet() = default;
+    Bullet() = default;
+    void move(float, float);
     friend sf::Packet& operator >> (sf::Packet& packet, Bullet& bullet);
     friend sf::Packet& operator << (sf::Packet& packet, const Bullet& bullet);
 };

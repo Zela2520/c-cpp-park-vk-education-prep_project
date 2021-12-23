@@ -10,6 +10,11 @@ Bullet::Bullet(float _x, float _y, float _rotation, const sf::Texture& texture) 
     isAlive = true;
 }
 
+void Bullet::move(float _x, float _y) {
+    setX(x + _x);
+    setY(y + _y);
+}
+
 sf::Packet& operator >> (sf::Packet& packet, Bullet& bullet) {
     float x, y, rotation;
     packet >> x >> y >> rotation;

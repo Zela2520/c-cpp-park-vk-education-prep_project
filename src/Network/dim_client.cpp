@@ -3,6 +3,7 @@
 #include "../../include/wall.h"
 #include "../../include/mob.h"
 #include "../../include/map.h"
+#include "../../include/bullet.h"
 
 #include <string>
 #include <iostream>
@@ -29,6 +30,8 @@ int main() {
     gachiTexture.loadFromFile("../include/textures/tnt.png");
     Texture mobTexture;
     mobTexture.loadFromFile("../include/textures/tnt.png");
+    sf::Texture laserTexture;
+    laserTexture.loadFromFile("../include/textures/laser.png");
 
     Mob mob(-500.0,-500.0, mobTexture);
     mob.setScale(0.8,0.8);
@@ -66,12 +69,28 @@ int main() {
         packet >> amountOfWalls;
         packet.clear();
         std::vector<Wall> walls(amountOfWalls);
-        cout << "walls.size()" << walls.size() << endl;
+//        cout << "walls.size()" << walls.size() << endl;
         for (auto &wall : walls) {    ////  Получаем инфу о стенах
             socket.receive(packet);
             packet >> wall;
             packet.clear();
 //          std::cout << "Корды Гачимучи" << wall.getX() << ' ' << wall.getY() << std::endl;
+        }
+
+        socket.receive(packet);
+        int amountOfBullets;
+        packet >> amountOfBullets;
+        packet.clear();
+        std::vector<Bullet> bullets(amountOfBullets, Bullet(0, 0, 45, laserTexture));
+        cout << "bullets.size() = " << bullets.size() << endl;
+        for (auto &bullet : bullets) {    ////  Получаем инфу о стенах
+            socket.receive(packet);
+            packet >> bullet;
+            packet.clear();
+//          std::cout << "Корды Гачимучи" << wall.getX() << ' ' << wall.getY() << std::endl;
+        }
+        for (auto& bullet : bullets) {
+            bullet.draw(window);
         }
 //        cout << players[ID].getX() << " " << players[ID].getY() << endl;
         camera.setCenter(players[ID].getX() ,players[ID].getY());
@@ -104,16 +123,16 @@ int main() {
         }
 
         if (window.hasFocus()) {
-            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
                 directions[0] = true;
             }
-            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
                 directions[1] = true;
             }
-            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
                 directions[2] = true;
             }
-            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
                 directions[3] = true;
             }
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
@@ -126,9 +145,9 @@ int main() {
         socket.send(packet);
         packet.clear();
 
-//        packet << isSpacePressed;
-//        socket.send(packet);
-//        packet.clear();
+        packet << isSpacePressed;
+        socket.send(packet);
+        packet.clear();
     }
     return 0;
 }

@@ -55,7 +55,8 @@ private:
     Map* map;
     std::vector<Player> players;
     std::vector<Bullet> bullets;
-    sf::Clock clock;
+    sf::Clock moveTimer;
+    sf::Clock reloadTimer;
 
 };
 
