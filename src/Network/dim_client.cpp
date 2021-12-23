@@ -27,23 +27,24 @@ int main() {
 
     Mob mob(-500.0,-500.0, mobTexture);
     mob.setScale(0.8,0.8);
-    std::vector<Player> players(2, Player(20, 30, amogusTexture));  //// Инициализируем начальное положение объектов на карте, принимая данные от сервера.
-    std::vector<Unmovable> unmovables;
+    std::vector<Player> players(2, Player(20, 30, amogusTexture));  //// Инициализируем начальное положение объектов на карте, принимая данные от сервера
 
 
     RenderWindow window(sf::VideoMode(500, 500), "Squid game");  //// Создаём игровое окно.
-    window.clear(sf::Color::Blue); //// заливаем его в синий цвет
-    Map map; //// создаём карту
-    map.creat_map(unmovables, &gachiTexture);
+    window.clear(sf::Color::White); //// заливаем его в белый цвет
+    Map map("../include/initialMap"); //// создаём карту
+//    map.creat_map(walls, &gachiTexture);
     View camera;
     camera.zoom(2);
-    camera.setCenter(players[0].getX(), players[0].getY());
     int ID = -1;
     socket.receive(packet);
     packet >> ID;
+    packet.clear();
 
 
     while (window.isOpen()) {
+        cout << ID;
+        map.draw(window);
         //// Получение информации обо всех игроках.
         for (auto &player : players) {  //// Пробегаем по всем игрокам. На 1 игрока 1 пакет.
             socket.receive(packet);  //// Получаем пакет.
@@ -52,12 +53,18 @@ int main() {
         }
 
         //// Получение информации обо всех неподвижных объектах.
-        for (auto &unmovable : unmovables) {
+        socket.receive(packet);
+        int amountOfWalls;
+        packet >> amountOfWalls;
+        packet.clear();
+        std::vector<Wall> walls(amountOfWalls);
+        for (auto &wall : walls) {    ////  Получаем инфу о стенах
             socket.receive(packet);
-            packet >> unmovable;
+            packet >> wall;
             packet.clear();
-//          std::cout << "Корды Гачимучи" << unmovable.getX() << ' ' << unmovable.getY() << std::endl;
+//          std::cout << "Корды Гачимучи" << wall.getX() << ' ' << wall.getY() << std::endl;
         }
+//        cout << players[ID].getX() << " " << players[ID].getY() << endl;
         camera.setCenter(players[ID].getX() ,players[ID].getY());
         window.setView(camera);
 
@@ -65,12 +72,12 @@ int main() {
         window.clear(sf::Color::Blue);
 
         ///// отрисовываем все объекты на карте
-        map.draw_map(window); //// можно добавить ассинхронность. Тут нарисуются Unmovables
+//        map.draw(window); //// можно добавить ассинхронность. Тут нарисуются Unmovables
         mob.moveMob(players[1]);
         mob.draw(window);
         //// а тут сделать join
 
-        for (auto &player : players) {
+        for (auto &player : players) {    //// Рисуем игроков
             player.draw(window);
         }
 

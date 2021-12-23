@@ -3,12 +3,14 @@
 
 #include "model.h"
 
-class Unmovable : public Object {
+class Wall : public Object {
 public:
-    explicit Unmovable(const sf::RectangleShape &rectangle);
-//    Unmovable(float _x, float _y, const sf::Texture &texture);
-    friend sf::Packet& operator << (sf::Packet& packet, const Unmovable& unmovable);
-    friend sf::Packet& operator >> (sf::Packet& packet, Unmovable& unmovable);
+    Wall() = default;
+    explicit Wall(const sf::RectangleShape &rectangle);
+    Wall (float _x, float _y, const sf::Texture &texture);
+    void draw(sf::RenderWindow& window) const;
+    friend sf::Packet& operator << (sf::Packet& packet, const Wall& unmovable);
+    friend sf::Packet& operator >> (sf::Packet& packet, Wall& unmovable);
 };
 
 

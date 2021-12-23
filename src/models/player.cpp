@@ -10,7 +10,7 @@ Player::Player(float _x, float _y, const sf::Texture& _texture) : Object() {  //
     setY(_y);
 }
 
-bool Player::intersectsWith(std::vector<Unmovable>& objects) {
+bool Player::intersectsWith(std::vector<Wall>& objects) {
     for (auto& object : objects) {
         sf::Rect<float> thisBounds = sprite.getGlobalBounds();
         sf::Rect<float> objectBounds = object.getSprite().getGlobalBounds();
@@ -30,8 +30,8 @@ void Player::draw(sf::RenderWindow& window) {
     window.draw(sprite);
 }
 
-void Player::setId(int _gotId) {
-    Id = _gotId;
+void Player::setId(int _Id) {
+    Id = _Id;
 }
 
 int Player::getId() const {

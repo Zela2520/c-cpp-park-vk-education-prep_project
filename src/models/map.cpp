@@ -10,40 +10,37 @@
 
 
 
-Map::Map() {
-    map_width = WIDTH_MAP;
-    map_height = HEIGHT_MAP;
-}
+Map::Map(const char* fileName) {
+    FILE* source = fopen(fileName, "r+");
+    if (source == nullptr) {
+        printf("Couldn't open file\n");
+        exit(1);
+    }
 
-void Map::creat_map(std::vector<Unmovable> &static_objects, sf::Texture *unmovable_object) {
-    for (size_t i = 0; i < map_height; ++i) {
-        for (size_t j = 0; j < map_width; ++j) {
-            sf::RectangleShape tempRectangle; //// создаём временную переменную для того, чтобы пушить её в вектор
-            tempRectangle.setSize(sf::Vector2f(100, 100)); //// задаём размер неподвижным объектам
-            if (map[i][j] == '0') {
-                tempRectangle.setTexture(unmovable_object);
-                static_objects.emplace_back(tempRectangle);
-                std::cout << "Black\n";
+    char c = fgetc(source);    //// Получаем символ из файла
+    for (int i = 0; c != EOF; ++i) {
+        c = 0;
+        for (int j = 0; c != EOF && c != '\n'; ++j) {
+            c = fgetc(source);
+//            sf::RectangleShape tempRectangle; //// создаём временную переменную для того, чтобы пушить её в вектор
+//            tempRectangle.setSize(sf::Vector2f(100, 100)); //// задаём размер неподвижным объектам
+            if (c == '0') {
+                walls.emplace_back(Wall(j * 100, i * 100, wallTexture));
             }
-            if (map[i][j] == 's') {
-                tempRectangle.setTexture(unmovable_object);
-                static_objects.emplace_back(tempRectangle);
-                std::cout << "Green\n";
+            if (c == 's') {
+                walls.emplace_back(Wall(j * 100, i * 100, wallTexture));
             }
-            if (map[i][j] == ' ') {
-                tempRectangle.setFillColor(sf::Color::Yellow);
-                std::cout << "Yellow\n";
-            }
-
-            tempRectangle.setPosition(j * 32, i * 32); //// устанавливаем позицию на карте каждому прямоугольнику
-            m_rectangles.emplace_back(tempRectangle);
         }
     }
     std::cout << "LOL\n";
 }
 
-void Map::draw_map(sf::RenderWindow &window) {
-    for(size_t i = 0; i < m_rectangles.size(); ++i) {
-        window.draw(m_rectangles[i]);
+std::vector<Wall>& Map::getWalls() {
+    return walls;
+}
+
+void Map::draw(sf::RenderWindow &window) const {
+    for (auto& wall : walls) {
+        wall.draw(window);
     }
 }
