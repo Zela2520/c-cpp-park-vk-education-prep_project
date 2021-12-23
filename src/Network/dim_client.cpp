@@ -63,19 +63,7 @@ int main() {
         for (auto &player: players) {    //// Рисуем игроков
             player.draw(window);
         }
-        //// Получение информации обо всех неподвижных объектах.
-        socket.receive(packet);
-        int amountOfWalls;
-        packet >> amountOfWalls;
-        packet.clear();
-        std::vector<Wall> walls(amountOfWalls);
-//        cout << "walls.size()" << walls.size() << endl;
-        for (auto &wall : walls) {    ////  Получаем инфу о стенах
-            socket.receive(packet);
-            packet >> wall;
-            packet.clear();
-//          std::cout << "Корды Гачимучи" << wall.getX() << ' ' << wall.getY() << std::endl;
-        }
+
 
         socket.receive(packet);
         int amountOfBullets;
@@ -115,7 +103,7 @@ int main() {
 
         sf::Event event{}; //// Переменная для отслеживания событий, происходящих на кажой итерации цикла
         bool directions[4] = {false, false, false, false};  //// Направления движения, которые будут обрабатываться на сервере.
-        bool isSpacePressed = false;
+        bool isLMBPressed = false;
         while (window.pollEvent(event)) {
             if (event.type == sf::Event::Closed) {
                 window.close();
@@ -135,8 +123,8 @@ int main() {
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
                 directions[3] = true;
             }
-            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
-                isSpacePressed = true;
+            if (event.type == event.MouseButtonReleased && event.mouseButton.button == Mouse::Left) {
+                isLMBPressed = true;
             }
         }
 
@@ -145,9 +133,14 @@ int main() {
         socket.send(packet);
         packet.clear();
 
-        packet << isSpacePressed;
+        packet << isLMBPressed;
         socket.send(packet);
         packet.clear();
+        if (isLMBPressed) {
+            packet << sf::Mouse::getPosition().x << sf::Mouse::getPosition().y;
+            socket.send(packet);
+            packet.clear();
+        }
     }
     return 0;
 }
