@@ -90,9 +90,9 @@ void Server::processAcquiredData() {
     float moveTime = moveTimer.getElapsedTime().asMicroseconds();
     moveTime /= 400;
     moveTimer.restart();
-
-    float reloadTime = reloadTimer.getElapsedTime().asMilliseconds();
-    reloadTime /= 500;
+//
+//    float reloadTime = reloadTimer.getElapsedTime().asMilliseconds();
+//    reloadTime /= 500;
 
     for (int i = 0; i < clients->size(); i++) {
         (*clients)[i].receive(packet);
@@ -133,13 +133,13 @@ void Server::processAcquiredData() {
             reloadTimer.restart();
             sf::Texture laserTexture;
             laserTexture.loadFromFile("../include/textures/laser.png");
-            bullets.emplace_back(players[i].getX(), players[i].getY(), getAngle(x, y), laserTexture);
+            bullets.emplace_back(players[i].getX() + players[i].getSprite().getGlobalBounds().width/3, players[i].getY() + players[i].getSprite().getGlobalBounds().height/2, getAngle(x, y), laserTexture);
         }
 
     }
 
     for (auto& bullet : bullets) {
-        bullet.move(0.1 * moveTime * cos(3.1415 / 180 * bullet.getRotation()), 0.1 * moveTime * sin(3.1415 / 180 * bullet.getRotation()));
+        bullet.move(0.6 * moveTime * cos(3.1415 / 180 * bullet.getRotation()), 0.6 * moveTime * sin(3.1415 / 180 * bullet.getRotation()));
     }
 
 //    std::cout << "ЗАКАНЧИВАЕМ ОТСЛЕЖИВАТЬ ПЕРЕДВИЖЕНИЯ КЛИЕНТА\n";

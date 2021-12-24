@@ -7,6 +7,7 @@ Bullet::Bullet(float _x, float _y, float _rotation, const sf::Texture& texture) 
     setRotation(_rotation);
     defaultWidth = sprite.getGlobalBounds().width;
     defaultHeight = sprite.getGlobalBounds().height;
+    setScale(0.5, 0.2);
     isAlive = true;
 }
 
