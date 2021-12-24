@@ -12,14 +12,14 @@ Server::Server(int _port) {
     clients = new std::vector<sf::TcpSocket>(2);
     amogusTexture.loadFromFile("../include/textures/amogus.png");
     gachiTexture.loadFromFile("../include/textures/gachi.png");
-    globalWallTexture.loadFromFile("../include/textures/brick.png");
-    localWallTexture.loadFromFile("../include/textures/brick.png");
+    globalWallTexture.loadFromFile("../include/textures/pinkBrick.jpg");
+    localWallTexture.loadFromFile("../include/textures/pinkBrick.jpg");
     setConnection();
     receiveClients();
     map = new Map((char*)"../include/initialMap", globalWallTexture, localWallTexture);
 //    load_pictures(pictures);
     for (int i = 0; i < MAX_NUMBER_OF_CLIENTS; i++) {
-        players.emplace_back(100, 100, amogusTexture);
+        players.emplace_back(500, 500, amogusTexture);
         players[i].setId(i);
     }
     std::cout << "Server was started\n";
@@ -141,7 +141,7 @@ void Server::processAcquiredData() {
     }
 
     for (int i = 0; i < bullets.size(); i++) {
-        bullets[i].move(0.6 * moveTime * cos(3.1415 / 180 * bullets[i].getRotation()), 0.6 * moveTime * sin(3.1415 / 180 * bullets[i].getRotation()));
+        bullets[i].move(0.8 * moveTime * cos(3.1415 / 180 * bullets[i].getRotation()), 0.8 * moveTime * sin(3.1415 / 180 * bullets[i].getRotation()));
 
         int amountOfDeletedBullets = 0;
         for (auto& wall : map->getWalls()) {

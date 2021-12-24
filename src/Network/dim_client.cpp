@@ -35,31 +35,41 @@ int main() {
 
     Mob mob(-500.0,-500.0, mobTexture);
     mob.setScale(0.8,0.8);
-    std::vector<Player> players(2, Player(100, 100, amogusTexture));  //// Инициализируем начальное положение объектов на карте, принимая данные от сервера
+    std::vector<Player> players(2, Player(700, 700, amogusTexture));  //// Инициализируем начальное положение объектов на карте, принимая данные от сервера
 
 
     sf::Texture wallTexture;
-    wallTexture.loadFromFile("../include/textures/brick.png");
+    wallTexture.loadFromFile("../include/textures/pinkBrick.jpg");
     Map map("../include/initialMap", wallTexture, wallTexture);
 //    map.creat_map(walls, &gachiTexture);
     View camera;
     camera.zoom(2);
 
+    Texture backgroundTexture;
+    backgroundTexture.loadFromFile("../include/textures/sky.png");
+    Sprite background(backgroundTexture);
+    background.setScale(4, 4);
+
 
     RenderWindow window(sf::VideoMode(500, 500), "Client " + to_string(ID));  //// Создаём игровое окно.
-    window.clear(sf::Color::White); //// заливаем его в белый цвет
+    window.clear(sf::Color::White); //// заливаем его в белый цвет.
 
     while (window.isOpen()) {
         window.clear(sf::Color::Blue);
 //        cout << ID;
 
-        map.draw(window);
         //// Получение информации обо всех игроках.
         for (auto &player : players) {  //// Пробегаем по всем игрокам. На 1 игрока 1 пакет.
             socket.receive(packet);  //// Получаем пакет.
             packet >> player;  //// Записываем данные из пакета в игрока.
             packet.clear();
         }
+
+
+        background.setPosition(players[ID].getX() - background.getGlobalBounds().width/2, players[ID].getY() - background.getGlobalBounds().height/2);
+        window.draw(background);
+        map.draw(window);
+
         for (auto &player: players) {    //// Рисуем игроков
             player.draw(window);
         }
