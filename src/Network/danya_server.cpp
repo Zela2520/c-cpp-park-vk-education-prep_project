@@ -10,14 +10,16 @@
 Server::Server(int _port) {
     port = _port;
     clients = new std::vector<sf::TcpSocket>(2);
-    sf::Texture wallTexture;
-    wallTexture.loadFromFile("../include/textures/brick.png");
+    amogusTexture.loadFromFile("../include/textures/amogus.png");
+    gachiTexture.loadFromFile("../include/textures/gachi.png");
+    globalWallTexture.loadFromFile("../include/textures/brick.png");
+    localWallTexture.loadFromFile("../include/textures/brick.png");
     setConnection();
     receiveClients();
-    map = new Map((char*)"../include/initialMap", wallTexture, wallTexture);
-    load_pictures(pictures);
+    map = new Map((char*)"../include/initialMap", globalWallTexture, localWallTexture);
+//    load_pictures(pictures);
     for (int i = 0; i < MAX_NUMBER_OF_CLIENTS; i++) {
-        players.emplace_back(100, 100, pictures.amogusTexture);
+        players.emplace_back(100, 100, amogusTexture);
         players[i].setId(i);
     }
     std::cout << "Server was started\n";
@@ -145,7 +147,7 @@ void Server::processAcquiredData() {
 //    std::cout << "ЗАКАНЧИВАЕМ ОТСЛЕЖИВАТЬ ПЕРЕДВИЖЕНИЯ КЛИЕНТА\n";
 }
 
-void Server::start_server() {
+void Server::startServer() {
     std::cout << "СТАРТ";
     while (true) {
         processAcquiredData();
@@ -155,7 +157,7 @@ void Server::start_server() {
     }
 }
 
-void Server::load_pictures(Pictures &pictures) {
-    Pictures init_pictures("../include/textures/amogus.png", "../include/textures/tnt.png");
-    pictures = init_pictures;
-}
+//void Server::load_pictures(Pictures &pictures) {
+//    Pictures init_pictures("../include/textures/amogus.png", "../include/textures/tnt.png");
+//    pictures = init_pictures;
+//}

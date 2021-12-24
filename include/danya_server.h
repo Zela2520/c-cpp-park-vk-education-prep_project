@@ -9,38 +9,42 @@
 
 class Server {
 public:
-    class Pictures {  //// Хранит в себе все текстурки
-    public:
-        Pictures() = default;
-        explicit Pictures(std::string amogus, std::string gachi) {
-            this->amogusTexture.loadFromFile(amogus);
-            this->gachiTexture.loadFromFile(gachi);
-        }
-
-        Pictures(const Server::Pictures& other_pictures) {
-            this->gachiTexture = other_pictures.gachiTexture;
-            this->amogusTexture = other_pictures.amogusTexture;
-        }
-
-        Pictures& operator=(const Pictures& other_pictures) {
-            this->gachiTexture = other_pictures.gachiTexture;
-            this->amogusTexture = other_pictures.amogusTexture;
-            return *this;
-        }
-        friend class Server;
-
-    private:
-        sf::Texture amogusTexture;
-        sf::Texture gachiTexture;
-    };
+//    class Pictures {  //// Хранит в себе все текстурки
+//    public:
+//        Pictures() = default;
+//        explicit Pictures(std::string amogus, std::string gachi) {
+//            this->amogusTexture.loadFromFile(amogus);
+//            this->gachiTexture.loadFromFile(gachi);
+//        }
+//
+//        Pictures(const Server::Pictures& other_pictures) {
+//            this->gachiTexture = other_pictures.gachiTexture;
+//            this->amogusTexture = other_pictures.amogusTexture;
+//        }
+//
+//        Pictures& operator=(const Pictures& other_pictures) {
+//            this->gachiTexture = other_pictures.gachiTexture;
+//            this->amogusTexture = other_pictures.amogusTexture;
+//            return *this;
+//        }
+//        friend class Server;
+//
+//    private:
+//        sf::Texture amogusTexture;
+//        sf::Texture gachiTexture;
+//    };
+    sf::Texture amogusTexture;
+    sf::Texture gachiTexture;
+    sf::Texture globalWallTexture;
+    sf::Texture localWallTexture;
     explicit Server(int port);
     void setConnection();
     void receiveClients();
     void sendData();
     void processAcquiredData();
-    void start_server();
+    void startServer();
 
-    static void load_pictures(Pictures &pictures); //// если хотим добавить картинки необходимо прописать путт в этом методе
+//    static void load_pictures(Pictures &pictures); //// если хотим добавить картинки необходимо прописать путт в этом методе
 
 private:
     size_t port;
@@ -51,7 +55,7 @@ private:
     std::vector<sf::TcpSocket>* clients;
     sf::Packet packet;
 
-    Pictures pictures;
+//    Pictures pictures;
     Map* map;
     std::vector<Player> players;
     std::vector<Bullet> bullets;
