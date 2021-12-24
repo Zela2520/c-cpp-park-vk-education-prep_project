@@ -1,6 +1,7 @@
 #include "../../include/danya_server.h"
 #include <iostream>
 #include "../../include/map.h"
+#include "../../include/model.h"
 
 #define MAX_NUMBER_OF_CLIENTS 2
 #define INIT_ID 0
@@ -50,7 +51,7 @@ void Server::receiveClients() {
 }
 
 void Server::sendData() {
-    std::cout << "ДАННЫЕ ДОЛЖНЫ БЫТЬ ОТПРАВЛЕНЫ\n";
+//    std::cout << "ДАННЫЕ ДОЛЖНЫ БЫТЬ ОТПРАВЛЕНЫ\n";
 
     //// кусок ниже можно сделать ассинхроно, добавив функцию void и передавая в неё нужного клиента.
 
@@ -61,17 +62,17 @@ void Server::sendData() {
             packet << cur_player;
             client.send(packet);
             packet.clear();
-            std::cout << "ДАННЫЕ БЫЛИ ОТПРАВЛЕНЫ\n";
+//            std::cout << "ДАННЫЕ БЫЛИ ОТПРАВЛЕНЫ\n";
         }
 
-        packet << (int)(map->getWalls().size());
-        client.send(packet);
-        packet.clear();
-        for (auto& wall : map->getWalls()) {   //// И о каждом куске стены.
-            packet << wall;
-            client.send(packet);
-            packet.clear();
-        }
+//        packet << (int)(map->getWalls().size());
+//        client.send(packet);
+//        packet.clear();
+//        for (auto& wall : map->getWalls()) {   //// И о каждом куске стены.
+//            packet << wall;
+//            client.send(packet);
+//            packet.clear();
+//        }
 
         packet << (int)(bullets.size());
         client.send(packet);
@@ -85,7 +86,7 @@ void Server::sendData() {
 }
 
 void Server::processAcquiredData() {
-    std::cout << "НАЧИНАЕМ ОТСЛЕЖИВАТЬ ПЕРЕДВИЖЕНИЯ КЛИЕНТА\n";
+//    std::cout << "НАЧИНАЕМ ОТСЛЕЖИВАТЬ ПЕРЕДВИЖЕНИЯ КЛИЕНТА\n";
     float moveTime = moveTimer.getElapsedTime().asMicroseconds();
     moveTime /= 400;
     moveTimer.restart();
@@ -117,32 +118,40 @@ void Server::processAcquiredData() {
             if (players[i].intersectsWith(map->getWalls())) players[i].goRight(0.3 * moveTime);
         }
 
-        bool isSpacePressed;
+        bool isLMBPressed;
         (*clients)[i].receive(packet);
-        packet >> isSpacePressed;  //// Достаём информацию из пакета.
+        packet >> isLMBPressed;  //// Достаём информацию из пакета.
         packet.clear();
-        if (isSpacePressed) {
+
+        if (isLMBPressed) {
+            int x, y;
+            (*clients)[i].receive(packet);
+            packet >> x >> y;
+            std::cout << "Принял " << x << " " << y << std::endl;
+            std::cout << "Имел " << players[i].getX() << " " << players[i].getY() << std::endl;
+            packet.clear();
             reloadTimer.restart();
             sf::Texture laserTexture;
             laserTexture.loadFromFile("../include/textures/laser.png");
-            bullets.emplace_back(players[i].getX(), players[i].getY(), 45, laserTexture);
+            bullets.emplace_back(players[i].getX(), players[i].getY(), getAngle(x, y), laserTexture);
         }
+
     }
 
     for (auto& bullet : bullets) {
         bullet.move(0.1 * moveTime * cos(3.1415 / 180 * bullet.getRotation()), 0.1 * moveTime * sin(3.1415 / 180 * bullet.getRotation()));
     }
 
-    std::cout << "ЗАКАНЧИВАЕМ ОТСЛЕЖИВАТЬ ПЕРЕДВИЖЕНИЯ КЛИЕНТА\n";
+//    std::cout << "ЗАКАНЧИВАЕМ ОТСЛЕЖИВАТЬ ПЕРЕДВИЖЕНИЯ КЛИЕНТА\n";
 }
 
 void Server::start_server() {
     std::cout << "СТАРТ";
     while (true) {
         processAcquiredData();
-        std::cout << "ДАННЫЕ ДОЛЖНЫ УЛЕТЕТЬ КЛИЕНТУ";
+//        std::cout << "ДАННЫЕ ДОЛЖНЫ УЛЕТЕТЬ КЛИЕНТУ";
         sendData();
-        std::cout << "ДАННЫЕ УЛЕТЕЛИ КЛИЕНТУ";
+//        std::cout << "ДАННЫЕ УЛЕТЕЛИ КЛИЕНТУ";
     }
 }
 

@@ -96,3 +96,26 @@ sf::Packet& operator << (sf::Packet& packet, const bool* directions) {  //// И�
 sf::Packet& operator >> (sf::Packet& packet, bool* directions) {  //// Из пакета в массив направлений
     return packet >> directions[0] >> directions[1] >> directions[2] >> directions[3];
 }
+//
+//sf::Packet& operator << (sf::Packet& packet, bool& isLMBPressed) {  //// Из пакета в массив направлений
+//    return packet << isLMBPressed;
+//}
+//
+//sf::Packet& operator >> (sf::Packet& packet, bool& isLMBPressed) {  //// Из пакета в массив направлений
+//    return packet >> isLMBPressed;
+//}
+
+float getAngle(int x, int y) {
+    if (x > 250 && y > 250) {
+        return 180/3.1415 * atan(fabs(y - 250)/fabs(x - 250));
+    }
+    if (x < 250 && y > 250) {
+        return 180 - 180/3.1415 * atan(fabs(y - 250)/fabs(x - 250));
+    }
+    if (x > 250 && y < 250) {
+        return -180/3.1415 * atan(fabs(y - 250)/fabs(x - 250));
+    }
+    if (x < 250 && y < 250) {
+        return 180 + 180/3.1415 * atan(fabs(y - 250)/fabs(x - 250));
+    }
+}

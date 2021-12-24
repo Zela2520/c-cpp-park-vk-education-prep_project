@@ -64,25 +64,25 @@ int main() {
             player.draw(window);
         }
         //// Получение информации обо всех неподвижных объектах.
-        socket.receive(packet);
-        int amountOfWalls;
-        packet >> amountOfWalls;
-        packet.clear();
-        std::vector<Wall> walls(amountOfWalls);
-//        cout << "walls.size()" << walls.size() << endl;
-        for (auto &wall : walls) {    ////  Получаем инфу о стенах
-            socket.receive(packet);
-            packet >> wall;
-            packet.clear();
-//          std::cout << "Корды Гачимучи" << wall.getX() << ' ' << wall.getY() << std::endl;
-        }
+//        socket.receive(packet);
+//        int amountOfWalls;
+//        packet >> amountOfWalls;
+//        packet.clear();
+//        std::vector<Wall> walls(amountOfWalls);
+////        cout << "walls.size()" << walls.size() << endl;
+//        for (auto &wall : walls) {    ////  Получаем инфу о стенах
+//            socket.receive(packet);
+//            packet >> wall;
+//            packet.clear();
+////          std::cout << "Корды Гачимучи" << wall.getX() << ' ' << wall.getY() << std::endl;
+//        }
 
         socket.receive(packet);
         int amountOfBullets;
         packet >> amountOfBullets;
         packet.clear();
         std::vector<Bullet> bullets(amountOfBullets, Bullet(0, 0, 45, laserTexture));
-        cout << "bullets.size() = " << bullets.size() << endl;
+//        cout << "bullets.size() = " << bullets.size() << endl;
         for (auto &bullet : bullets) {    ////  Получаем инфу о стенах
             socket.receive(packet);
             packet >> bullet;
@@ -115,12 +115,13 @@ int main() {
 
         sf::Event event{}; //// Переменная для отслеживания событий, происходящих на кажой итерации цикла
         bool directions[4] = {false, false, false, false};  //// Направления движения, которые будут обрабатываться на сервере.
-        bool isSpacePressed = false;
+        bool isLMBPressed = false;
         while (window.pollEvent(event)) {
             if (event.type == sf::Event::Closed) {
                 window.close();
             }
         }
+        int mouseX, mouseY;
 
         if (window.hasFocus()) {
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
@@ -136,18 +137,27 @@ int main() {
                 directions[3] = true;
             }
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
-                isSpacePressed = true;
+                isLMBPressed = true;
+            }
+            if (event.type == event.MouseButtonReleased && event.mouseButton.button == Mouse::Left) {
+                isLMBPressed = true;
             }
         }
-
-        //// Запаковываем данные пользователя в пакет и отправляем на сервер
         packet << directions;
         socket.send(packet);
         packet.clear();
 
-        packet << isSpacePressed;
+        packet << isLMBPressed;
         socket.send(packet);
         packet.clear();
+
+        if (isLMBPressed) {
+            packet << Mouse::getPosition(window).x << Mouse::getPosition(window).y;
+            cout << Mouse::getPosition(window).x << " " << Mouse::getPosition(window).y << endl;
+            socket.send(packet);
+            packet.clear();
+        }
+
     }
     return 0;
 }
