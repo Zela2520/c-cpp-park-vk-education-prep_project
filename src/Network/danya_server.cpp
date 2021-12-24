@@ -140,8 +140,16 @@ void Server::processAcquiredData() {
 
     }
 
-    for (auto& bullet : bullets) {
-        bullet.move(0.6 * moveTime * cos(3.1415 / 180 * bullet.getRotation()), 0.6 * moveTime * sin(3.1415 / 180 * bullet.getRotation()));
+    for (int i = 0; i < bullets.size(); i++) {
+        bullets[i].move(0.6 * moveTime * cos(3.1415 / 180 * bullets[i].getRotation()), 0.6 * moveTime * sin(3.1415 / 180 * bullets[i].getRotation()));
+
+        int amountOfDeletedBullets = 0;
+        for (auto& wall : map->getWalls()) {
+            if (bullets[i - amountOfDeletedBullets].getSprite().getGlobalBounds().intersects(wall.getSprite().getGlobalBounds())) {    //// Если случилось пересечение со стеной
+                bullets.erase(bullets.begin() + i - amountOfDeletedBullets);
+                amountOfDeletedBullets++;
+            }
+        }
     }
 
 //    std::cout << "ЗАКАНЧИВАЕМ ОТСЛЕЖИВАТЬ ПЕРЕДВИЖЕНИЯ КЛИЕНТА\n";
