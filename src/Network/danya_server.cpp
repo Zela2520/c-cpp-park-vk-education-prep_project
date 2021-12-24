@@ -14,6 +14,7 @@ Server::Server(int _port) {
     gachiTexture.loadFromFile("../include/textures/gachi.png");
     globalWallTexture.loadFromFile("../include/textures/pinkBrick.jpg");
     localWallTexture.loadFromFile("../include/textures/pinkBrick.jpg");
+    pirateTexture.loadFromFile("../include/textures/pirate.png");
     setConnection();
     receiveClients();
     map = new Map((char*)"../include/initialMap", globalWallTexture, localWallTexture);
@@ -21,6 +22,9 @@ Server::Server(int _port) {
     for (int i = 0; i < MAX_NUMBER_OF_CLIENTS; i++) {
         players.emplace_back(500, 500, amogusTexture);
         players[i].setId(i);
+    }
+    for (int i = 0; i < 1; i++) {
+        mobs.emplace_back(500, 500, pirateTexture);
     }
     std::cout << "Server was started\n";
 }
@@ -58,7 +62,6 @@ void Server::sendData() {
     //// кусок ниже можно сделать ассинхроно, добавив функцию void и передавая в неё нужного клиента.
 
     //// Отправляем данные первому клиенту
-
     for (auto& client : *clients) {
         for (auto& cur_player : players) {
             packet << cur_player;
@@ -81,6 +84,15 @@ void Server::sendData() {
         packet.clear();
         for (auto& bullet : bullets) {   //// И о каждой пуле.
             packet << bullet;
+            client.send(packet);
+            packet.clear();
+        }
+
+        packet << (int)(mobs.size());
+        client.send(packet);
+        packet.clear();
+        for (auto& mob : mobs) {
+            packet << mob;
             client.send(packet);
             packet.clear();
         }
@@ -132,7 +144,6 @@ void Server::processAcquiredData() {
             std::cout << "Принял " << x << " " << y << std::endl;
             std::cout << "Имел " << players[i].getX() << " " << players[i].getY() << std::endl;
             packet.clear();
-            reloadTimer.restart();
             sf::Texture laserTexture;
             laserTexture.loadFromFile("../include/textures/laser.png");
             bullets.emplace_back(players[i].getX() + players[i].getSprite().getGlobalBounds().width/3, players[i].getY() + players[i].getSprite().getGlobalBounds().height/2, getAngle(x, y), laserTexture);
@@ -150,6 +161,10 @@ void Server::processAcquiredData() {
                 amountOfDeletedBullets++;
             }
         }
+    }
+
+    for (auto& mob : mobs) {
+        mob.moveMob(mob.setTaregt(players), map->getWalls(), moveTime);
     }
 
 //    std::cout << "ЗАКАНЧИВАЕМ ОТСЛЕЖИВАТЬ ПЕРЕДВИЖЕНИЯ КЛИЕНТА\n";

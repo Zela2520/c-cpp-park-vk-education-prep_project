@@ -28,13 +28,12 @@ int main() {
     amogusTexture.loadFromFile("../include/textures/amogus.png");
     Texture gachiTexture;
     gachiTexture.loadFromFile("../include/textures/tnt.png");
-    Texture mobTexture;
-    mobTexture.loadFromFile("../include/textures/tnt.png");
+    Texture pirateTexture;
+    pirateTexture.loadFromFile("../include/textures/pirate.png");
     sf::Texture laserTexture;
     laserTexture.loadFromFile("../include/textures/laser.png");
 
-    Mob mob(-500.0,-500.0, mobTexture);
-    mob.setScale(0.8,0.8);
+
     std::vector<Player> players(2, Player(700, 700, amogusTexture));  //// Инициализируем начальное положение объектов на карте, принимая данные от сервера
 
 
@@ -92,7 +91,6 @@ int main() {
         packet >> amountOfBullets;
         packet.clear();
         std::vector<Bullet> bullets(amountOfBullets, Bullet(0, 0, 45, laserTexture));
-//        cout << "bullets.size() = " << bullets.size() << endl;
         for (auto &bullet : bullets) {    ////  Получаем инфу о стенах
             socket.receive(packet);
             packet >> bullet;
@@ -102,6 +100,24 @@ int main() {
         for (auto& bullet : bullets) {
             bullet.draw(window);
         }
+
+        socket.receive(packet);
+        int amountOfMobs;
+        packet >> amountOfMobs;
+        packet.clear();
+        std::vector<Mob> mobs(amountOfMobs, Mob(1000, 1000, pirateTexture));
+        for (auto& mob : mobs) {    ////  Получаем инфу о стенах
+            socket.receive(packet);
+            packet >> mob;
+            packet.clear();
+//          std::cout << "Корды Гачимучи" << wall.getX() << ' ' << wall.getY() << std::endl;
+        }
+        cout << mobs[0].getX() << " " << mobs[0].getY() << endl;
+        for (auto& mob : mobs) {
+            mob.draw(window);
+        }
+
+
 //        cout << players[ID].getX() << " " << players[ID].getY() << endl;
         camera.setCenter(players[ID].getX() ,players[ID].getY());
         window.setView(camera);
@@ -114,8 +130,8 @@ int main() {
 
         ///// отрисовываем все объекты на карте
         //// можно добавить ассинхронность. Тут нарисуются Unmovables
-        mob.moveMob(players[1]);
-        mob.draw(window);
+//        mob.moveMob(players[1]);
+//        mob.draw(window);
         //// а тут сделать join
 
 
@@ -163,7 +179,7 @@ int main() {
 
         if (isLMBPressed) {
             packet << Mouse::getPosition(window).x << Mouse::getPosition(window).y;
-            cout << Mouse::getPosition(window).x << " " << Mouse::getPosition(window).y << endl;
+//            cout << Mouse::getPosition(window).x << " " << Mouse::getPosition(window).y << endl;
             socket.send(packet);
             packet.clear();
         }
