@@ -17,6 +17,7 @@ private:
     size_t port;
     double windowWidth = 500;
     double windowHeight = 500;
+    sf::Vector2<float> spawnpoint;
     int id = ERROR;
     sf::TcpListener listener;
 //    sf::TcpSocket clientOne;
@@ -30,10 +31,11 @@ private:
     std::vector<Bullet> bullets;
     std::vector<Mob> mobs;
     sf::Clock moveTimer;
+    sf::Clock firstWaveTimer;
+    sf::Clock secondWaveTimer;
     sf::Clock reloadTimer;
 
 public:
-
     explicit Server(int port);
     void setConnection();
     void receiveClients();

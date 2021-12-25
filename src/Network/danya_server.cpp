@@ -10,6 +10,7 @@
 Server::Server(int _port) {
     port = _port;
     clients = new std::vector<sf::TcpSocket>(2);
+    spawnpoint = sf::Vector2<float>(300,300);
     amogusTexture.loadFromFile("../include/textures/amogus.png");
     gachiTexture.loadFromFile("../include/textures/gachi.png");
     globalWallTexture.loadFromFile("../include/textures/pinkBrick.jpg");
@@ -23,8 +24,25 @@ Server::Server(int _port) {
         players.emplace_back(500, 500, amogusTexture);
         players[i].setId(i);
     }
-    for (int i = 0; i < 10; i++) {
+    for (int i = 0; i < 40; i++) {
         mobs.emplace_back(3000 - rand()%2000, 3000 - rand()%2000, pirateTexture);
+
+        bool intersects = false;
+        for (auto& player : players) {
+            if (mobs[mobs.size() - 1].getSprite().getGlobalBounds().intersects(player.getSprite().getGlobalBounds())) {
+                intersects = true;
+            }
+        }
+        for (auto& wall : map->getWalls()) {
+            if (mobs[mobs.size() - 1].getSprite().getGlobalBounds().intersects(wall.getSprite().getGlobalBounds())) {
+                intersects = true;
+            }
+        }
+        if (intersects) {
+            mobs.pop_back();
+            std::cout << "УДАЛЁН" << std::endl;
+        }
+
     }
     std::cout << "Server was started\n";
 }
@@ -132,7 +150,7 @@ void Server::processAcquiredData() {
 
             packet.clear();
         }
-        std::cout << windowWidth << " " << windowHeight << std::endl;
+//        std::cout << windowWidth << " " << windowHeight << std::endl;
 
 
         bool isLMBPressed;
@@ -180,9 +198,14 @@ void Server::processAcquiredData() {
                 amountOfDeletedBullets++;
             }
         }
+
+        for (auto & player : players) {
+            if (player.getSprite().getGlobalBounds().intersects(mobs[i - amountOfDeletedMobs].getSprite().getGlobalBounds())) {
+                player.setX(spawnpoint.x);
+                player.setY(spawnpoint.y);
+            }
+        }
     }
-
-
 
 //    std::cout << "ЗАКАНЧИВАЕМ ОТСЛЕЖИВАТЬ ПЕРЕДВИЖЕНИЯ КЛИЕНТА\n";
 }
