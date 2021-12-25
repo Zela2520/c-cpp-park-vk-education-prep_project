@@ -4,18 +4,27 @@ set(CMAKE_DEPENDS_IN_PROJECT_ONLY OFF)
 
 # The set of languages for which implicit dependencies are needed:
 set(CMAKE_DEPENDS_LANGUAGES
+  "CXX"
+  )
+# The set of files for implicit dependencies of each language:
+set(CMAKE_DEPENDS_CHECK_CXX
+  "/home/sachatarba/last_project/prep_senior_project/src/Network/danya_server.cpp" "/home/sachatarba/last_project/prep_senior_project/cmake-build-debug/CMakeFiles/server.dir/src/Network/danya_server.cpp.o"
+  "/home/sachatarba/last_project/prep_senior_project/src/Network/main_sever.cpp" "/home/sachatarba/last_project/prep_senior_project/cmake-build-debug/CMakeFiles/server.dir/src/Network/main_sever.cpp.o"
+  "/home/sachatarba/last_project/prep_senior_project/src/models/bullet.cpp" "/home/sachatarba/last_project/prep_senior_project/cmake-build-debug/CMakeFiles/server.dir/src/models/bullet.cpp.o"
+  "/home/sachatarba/last_project/prep_senior_project/src/models/map.cpp" "/home/sachatarba/last_project/prep_senior_project/cmake-build-debug/CMakeFiles/server.dir/src/models/map.cpp.o"
+  "/home/sachatarba/last_project/prep_senior_project/src/models/mob.cpp" "/home/sachatarba/last_project/prep_senior_project/cmake-build-debug/CMakeFiles/server.dir/src/models/mob.cpp.o"
+  "/home/sachatarba/last_project/prep_senior_project/src/models/model.cpp" "/home/sachatarba/last_project/prep_senior_project/cmake-build-debug/CMakeFiles/server.dir/src/models/model.cpp.o"
+  "/home/sachatarba/last_project/prep_senior_project/src/models/player.cpp" "/home/sachatarba/last_project/prep_senior_project/cmake-build-debug/CMakeFiles/server.dir/src/models/player.cpp.o"
+  "/home/sachatarba/last_project/prep_senior_project/src/models/wall.cpp" "/home/sachatarba/last_project/prep_senior_project/cmake-build-debug/CMakeFiles/server.dir/src/models/wall.cpp.o"
+  )
+set(CMAKE_CXX_COMPILER_ID "GNU")
+
+# The include file search paths:
+set(CMAKE_CXX_TARGET_INCLUDE_PATH
   )
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/dima/!Stuff/TP/trying to make engine/src/Network/danya_server.cpp" "CMakeFiles/server.dir/src/Network/danya_server.cpp.o" "gcc" "CMakeFiles/server.dir/src/Network/danya_server.cpp.o.d"
-  "/home/dima/!Stuff/TP/trying to make engine/src/Network/main_sever.cpp" "CMakeFiles/server.dir/src/Network/main_sever.cpp.o" "gcc" "CMakeFiles/server.dir/src/Network/main_sever.cpp.o.d"
-  "/home/dima/!Stuff/TP/trying to make engine/src/models/bullet.cpp" "CMakeFiles/server.dir/src/models/bullet.cpp.o" "gcc" "CMakeFiles/server.dir/src/models/bullet.cpp.o.d"
-  "/home/dima/!Stuff/TP/trying to make engine/src/models/map.cpp" "CMakeFiles/server.dir/src/models/map.cpp.o" "gcc" "CMakeFiles/server.dir/src/models/map.cpp.o.d"
-  "/home/dima/!Stuff/TP/trying to make engine/src/models/mob.cpp" "CMakeFiles/server.dir/src/models/mob.cpp.o" "gcc" "CMakeFiles/server.dir/src/models/mob.cpp.o.d"
-  "/home/dima/!Stuff/TP/trying to make engine/src/models/model.cpp" "CMakeFiles/server.dir/src/models/model.cpp.o" "gcc" "CMakeFiles/server.dir/src/models/model.cpp.o.d"
-  "/home/dima/!Stuff/TP/trying to make engine/src/models/player.cpp" "CMakeFiles/server.dir/src/models/player.cpp.o" "gcc" "CMakeFiles/server.dir/src/models/player.cpp.o.d"
-  "/home/dima/!Stuff/TP/trying to make engine/src/models/wall.cpp" "CMakeFiles/server.dir/src/models/wall.cpp.o" "gcc" "CMakeFiles/server.dir/src/models/wall.cpp.o.d"
   )
 
 # Targets to which this target links.

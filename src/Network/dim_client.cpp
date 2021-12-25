@@ -55,6 +55,14 @@ int main() {
     View camera;
     camera.setSize(window.getSize().x * 3, window.getSize().y * 3);
 
+    //// создание текстов
+    sf::Font font;
+    font.loadFromFile("../include/textures/Roboto-Black.ttf");
+    Text text_mobs;
+    text_mobs.setFont(font);
+    text_mobs.setColor(sf::Color::White);
+    text_mobs.setCharacterSize(50);
+    window.draw(text_mobs);
     while (window.isOpen()) {
 //        cout << "WINDOW" << window.getSize().x << " x " << window.getSize().y << endl;
         window.clear(sf::Color::Blue);
@@ -120,6 +128,10 @@ int main() {
             mob.draw(window);
         }
 
+        int mobsCounter = static_cast<int>(mobs.size());
+        text_mobs.setString("Mobs less:" + to_string(mobsCounter));
+        text_mobs.setPosition(camera.getCenter().x + 350, camera.getCenter().y - 750);
+        window.draw(text_mobs);
 
 //        cout << players[ID].getX() << " " << players[ID].getY() << endl;
 

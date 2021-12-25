@@ -1,5 +1,5 @@
-/snap/clion/177/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" "/home/dima/!Stuff/TP/trying to make engine"
+C:\Windows\system32\wsl.exe --distribution Ubuntu-20.04 --exec /bin/sh -c "export CLION_IDE=TRUE && export JETBRAINS_IDE=TRUE && cd /home/sachatarba/last_project/prep_senior_project/cmake-build-debug && /opt/cmake/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_DEPENDS_USE_COMPILER=FALSE -G 'CodeBlocks - Unix Makefiles' /home/sachatarba/last_project/prep_senior_project"
 -- Found SFML .. in /usr/include
 -- Configuring done
 -- Generating done
--- Build files have been written to: /home/dima/!Stuff/TP/trying to make engine/cmake-build-debug
+-- Build files have been written to: /home/sachatarba/last_project/prep_senior_project/cmake-build-debug

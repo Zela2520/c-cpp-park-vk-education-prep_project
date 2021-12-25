@@ -1,5 +1,5 @@
-/home/dima/!Stuff/TP/trying to make engine/cmake-build-debug/CMakeFiles/server.dir
-/home/dima/!Stuff/TP/trying to make engine/cmake-build-debug/CMakeFiles/client.dir
-/home/dima/!Stuff/TP/trying to make engine/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/dima/!Stuff/TP/trying to make engine/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/home/dima/!Stuff/TP/trying to make engine/cmake-build-debug/CMakeFiles/client_2.dir
+/home/sachatarba/last_project/prep_senior_project/cmake-build-debug/CMakeFiles/server.dir
+/home/sachatarba/last_project/prep_senior_project/cmake-build-debug/CMakeFiles/client.dir
+/home/sachatarba/last_project/prep_senior_project/cmake-build-debug/CMakeFiles/client_2.dir
+/home/sachatarba/last_project/prep_senior_project/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/sachatarba/last_project/prep_senior_project/cmake-build-debug/CMakeFiles/rebuild_cache.dir
