@@ -18,6 +18,7 @@ private:
     double windowWidth = 500;
     double windowHeight = 500;
     sf::Vector2<float> spawnpoint;
+    int amountOfKilled = 0;
     int id = ERROR;
     sf::TcpListener listener;
 //    sf::TcpSocket clientOne;
@@ -31,9 +32,8 @@ private:
     std::vector<Bullet> bullets;
     std::vector<Mob> mobs;
     sf::Clock moveTimer;
-    sf::Clock firstWaveTimer;
-    sf::Clock secondWaveTimer;
-    sf::Clock reloadTimer;
+    sf::Clock newSpawnTimer;
+    sf::Clock spawnrateTimer;
 
 public:
     explicit Server(int port);
@@ -42,7 +42,7 @@ public:
     void sendData();
     void processAcquiredData();
     void startServer();
-
+    bool badSpawn(Mob& mob);
 };
 
 #endif // APPLICATION_INCLUDE_DANYA_SERVER_H

@@ -10,7 +10,7 @@
 Server::Server(int _port) {
     port = _port;
     clients = new std::vector<sf::TcpSocket>(2);
-    spawnpoint = sf::Vector2<float>(300,300);
+    spawnpoint = sf::Vector2<float>(400,400);
     amogusTexture.loadFromFile("../include/textures/amogus.png");
     gachiTexture.loadFromFile("../include/textures/gachi.png");
     globalWallTexture.loadFromFile("../include/textures/pinkBrick.jpg");
@@ -24,27 +24,29 @@ Server::Server(int _port) {
         players.emplace_back(500, 500, amogusTexture);
         players[i].setId(i);
     }
-    for (int i = 0; i < 40; i++) {
+    for (int i = 0; i < 4; i++) {
         mobs.emplace_back(3000 - rand()%2000, 3000 - rand()%2000, pirateTexture);
-
-        bool intersects = false;
-        for (auto& player : players) {
-            if (mobs[mobs.size() - 1].getSprite().getGlobalBounds().intersects(player.getSprite().getGlobalBounds())) {
-                intersects = true;
-            }
-        }
-        for (auto& wall : map->getWalls()) {
-            if (mobs[mobs.size() - 1].getSprite().getGlobalBounds().intersects(wall.getSprite().getGlobalBounds())) {
-                intersects = true;
-            }
-        }
-        if (intersects) {
+        if (badSpawn(mobs[mobs.size() - 1])) {
             mobs.pop_back();
             std::cout << "УДАЛЁН" << std::endl;
         }
-
     }
     std::cout << "Server was started\n";
+}
+
+bool Server::badSpawn(Mob& mob) {
+    bool intersects = false;
+    for (auto& player : players) {
+        if (mob.getSprite().getGlobalBounds().intersects(player.getSprite().getGlobalBounds())) {
+            intersects = true;
+        }
+    }
+    for (auto& wall : map->getWalls()) {
+        if (mob.getSprite().getGlobalBounds().intersects(wall.getSprite().getGlobalBounds())) {
+            intersects = true;
+        }
+    }
+    return intersects;
 }
 
 void Server::setConnection() {
@@ -105,6 +107,14 @@ void Server::sendData() {
             client.send(packet);
             packet.clear();
         }
+
+        packet << amountOfKilled;
+        client.send(packet);
+        packet.clear();
+
+        packet << (float)spawnrateTimer.getElapsedTime().asSeconds();
+        client.send(packet);
+        packet.clear();
     }
 }
 
@@ -171,6 +181,8 @@ void Server::processAcquiredData() {
         }
 
 
+
+
     }
 
     int amountOfDeletedBullets = 0;
@@ -194,6 +206,7 @@ void Server::processAcquiredData() {
             if (bullets[j].getSprite().getGlobalBounds().intersects(mobs[i - amountOfDeletedMobs].getSprite().getGlobalBounds())) {    //// Если случилось пересечение со стеной
                 mobs.erase(mobs.begin() + i - amountOfDeletedMobs);
                 amountOfDeletedMobs++;
+                this->amountOfKilled++;
                 bullets.erase(bullets.begin() + j - amountOfDeletedBullets);
                 amountOfDeletedBullets++;
             }
@@ -206,6 +219,21 @@ void Server::processAcquiredData() {
             }
         }
     }
+
+    float newSpawnTime = newSpawnTimer.getElapsedTime().asSeconds();
+//    std::cout << elapsedTime;
+    float spawnRateTime = spawnrateTimer.getElapsedTime().asSeconds();
+    pirateTexture.loadFromFile("../include/textures/pirate.png");
+    if (newSpawnTime > 2) {
+        for (int i = 0; i < spawnRateTime; i++) {
+            mobs.emplace_back(  1000 + rand() % 1000, 1000 + rand() % 1000, pirateTexture);
+            if (badSpawn(mobs[mobs.size() - 1])) {
+                mobs.pop_back();
+            }
+        }
+        newSpawnTimer.restart();
+    }
+
 
 //    std::cout << "ЗАКАНЧИВАЕМ ОТСЛЕЖИВАТЬ ПЕРЕДВИЖЕНИЯ КЛИЕНТА\n";
 }

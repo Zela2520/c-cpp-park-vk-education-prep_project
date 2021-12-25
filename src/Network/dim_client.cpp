@@ -52,17 +52,26 @@ int main() {
 
     RenderWindow window(sf::VideoMode(500, 500), "Client " + to_string(ID));  //// Создаём игровое окно.
     window.clear(sf::Color::White); //// заливаем его в белый цвет.
+    Vector2<double> windowSize(500, 500);
     View camera;
     camera.setSize(window.getSize().x * 3, window.getSize().y * 3);
 
 
     sf::Font lobster;
     lobster.loadFromFile("../include/fonts/lobster.ttf");
-    sf::Text text;
-    text.setString("Просто Чел");
-    text.setFont(lobster);
-    text.setColor(sf::Color::White);
-    text.setCharacterSize(80);
+
+    sf::Font RobotoBlack;
+    RobotoBlack.loadFromFile("../include/fonts/Roboto-Black.ttf");
+    Text amountOfKilledText;
+    amountOfKilledText.setFont(RobotoBlack);
+    amountOfKilledText.setColor(sf::Color::White);
+    amountOfKilledText.setCharacterSize(90);
+    Text elapsedTimeText;
+    elapsedTimeText.setFont(RobotoBlack);
+    elapsedTimeText.setColor(sf::Color::White);
+    elapsedTimeText.setCharacterSize(90);
+
+
 
     while (window.isOpen()) {
 //        cout << "WINDOW" << window.getSize().x << " x " << window.getSize().y << endl;
@@ -129,6 +138,25 @@ int main() {
             mob.draw(window);
         }
 
+        int amountOfKilled;
+        socket.receive(packet);
+        packet >> amountOfKilled;
+        packet.clear();
+        amountOfKilledText.setString("Killed: " + to_string(amountOfKilled));
+        amountOfKilledText.setPosition(players[ID].getX() + (windowSize.x / 2 ) * 3  - amountOfKilledText.getGlobalBounds().width - 40, players[ID].getY() - (windowSize.y / 2) * 3);
+        cout << windowSize.x << " x " << windowSize.y << endl;
+        window.draw(amountOfKilledText);
+
+
+        float elapsedTime;
+        socket.receive(packet);
+        packet >> elapsedTime;
+        packet.clear();
+        elapsedTimeText.setString("Livetime: " + to_string(elapsedTime));
+        elapsedTimeText.setPosition(players[ID].getX() + (windowSize.x / 2 ) * 3  - elapsedTimeText.getGlobalBounds().width - 40, players[ID].getY() - (windowSize.y / 2) * 3 + 80);
+//        cout << windowSize.x << " x " << windowSize.y << endl;
+        window.draw(elapsedTimeText);
+
 
 //        cout << players[ID].getX() << " " << players[ID].getY() << endl;
 
@@ -145,8 +173,7 @@ int main() {
 //        mob.draw(window);
         //// а тут сделать join
 
-        text.setPosition(players[ID].getX() - 250, players[ID].getY() - 100);
-        window.draw(text);
+
 
         window.display();
 
@@ -183,7 +210,9 @@ int main() {
             }
             if (event.type == sf::Event::Resized) {
                 isWindowResized = true;
-                camera.setSize(event.size.width * 3, event.size.height * 3);
+                windowSize.x = event.size.width;
+                windowSize.y = event.size.height;
+                camera.setSize(windowSize.x * 3, windowSize.y * 3);
 //                camera.zoom(3);
             }
         }
@@ -199,7 +228,7 @@ int main() {
         socket.send(packet);
         packet.clear();
         if (isWindowResized) {
-            packet << (double)event.size.width << (double)event.size.height;
+            packet << windowSize.x << windowSize.y;
             socket.send(packet);
             packet.clear();
         }
