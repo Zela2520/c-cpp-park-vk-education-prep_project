@@ -4,6 +4,7 @@ Mob::Mob(float _x, float _y, const sf::Texture& texture) {
     sprite.setTexture(texture);
     setX(_x);
     setY(_y);
+    setScale(1.5, 1.5);
 }
 
 

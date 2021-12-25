@@ -23,8 +23,8 @@ Server::Server(int _port) {
         players.emplace_back(500, 500, amogusTexture);
         players[i].setId(i);
     }
-    for (int i = 0; i < 1; i++) {
-        mobs.emplace_back(500, 500, pirateTexture);
+    for (int i = 0; i < 200; i++) {
+        mobs.emplace_back(3000 - rand()%2000, 3000 - rand()%2000, pirateTexture);
     }
     std::cout << "Server was started\n";
 }
@@ -176,8 +176,20 @@ void Server::processAcquiredData() {
         }
     }
 
-    for (auto& mob : mobs) {
-        mob.moveMob(mob.setTaregt(players), map->getWalls(), moveTime);
+    int amountOfDeletedMobs = 0;
+    int amountOfDeletedBullets = 0;
+    for (int i = 0; i < mobs.size(); i++) {
+        mobs[i - amountOfDeletedMobs].moveMob(mobs[i - amountOfDeletedMobs].setTaregt(players), map->getWalls(), moveTime);
+
+        int bulletsSize = bullets.size();
+        for (int j = 0; j < bullets.size(); j++) {
+            if (bullets[j].getSprite().getGlobalBounds().intersects(mobs[i - amountOfDeletedMobs].getSprite().getGlobalBounds())) {    //// Если случилось пересечение со стеной
+                mobs.erase(mobs.begin() + i - amountOfDeletedMobs);
+                amountOfDeletedMobs++;
+                bullets.erase(bullets.begin() + j - amountOfDeletedBullets);
+                amountOfDeletedBullets++;
+            }
+        }
     }
 
 //    std::cout << "ЗАКАНЧИВАЕМ ОТСЛЕЖИВАТЬ ПЕРЕДВИЖЕНИЯ КЛИЕНТА\n";
