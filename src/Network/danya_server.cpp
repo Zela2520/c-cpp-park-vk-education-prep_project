@@ -107,7 +107,6 @@ void Server::processAcquiredData() {
 //
 //    float reloadTime = reloadTimer.getElapsedTime().asMilliseconds();
 //    reloadTime /= 500;
-
     for (int i = 0; i < clients->size(); i++) {
         (*clients)[i].receive(packet);
         bool directions[4];
@@ -132,6 +131,19 @@ void Server::processAcquiredData() {
             if (players[i].intersectsWith(map->getWalls())) players[i].goRight(0.3 * moveTime);
         }
 
+        bool isWindowResized;
+        (*clients)[i].receive(packet);
+        packet >> isWindowResized;  //// Достаём информацию из пакета.
+        packet.clear();
+        if (isWindowResized) {
+            (*clients)[i].receive(packet);
+            packet >> windowWidth >> windowHeight;
+
+            packet.clear();
+        }
+        std::cout << windowWidth << " " << windowHeight << std::endl;
+
+
         bool isLMBPressed;
         (*clients)[i].receive(packet);
         packet >> isLMBPressed;  //// Достаём информацию из пакета.
@@ -141,13 +153,14 @@ void Server::processAcquiredData() {
             int x, y;
             (*clients)[i].receive(packet);
             packet >> x >> y;
-            std::cout << "Принял " << x << " " << y << std::endl;
-            std::cout << "Имел " << players[i].getX() << " " << players[i].getY() << std::endl;
+//            std::cout << "Принял " << x << " " << y << std::endl;
+//            std::cout << "Имел " << players[i].getX() << " " << players[i].getY() << std::endl;
             packet.clear();
             sf::Texture laserTexture;
             laserTexture.loadFromFile("../include/textures/laser.png");
-            bullets.emplace_back(players[i].getX() + players[i].getSprite().getGlobalBounds().width/3, players[i].getY() + players[i].getSprite().getGlobalBounds().height/2, getAngle(x, y), laserTexture);
+            bullets.emplace_back(players[i].getX() + players[i].getSprite().getGlobalBounds().width/3, players[i].getY() + players[i].getSprite().getGlobalBounds().height/2, getAngle(x, y, windowWidth, windowHeight), laserTexture);
         }
+
 
     }
 

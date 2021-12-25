@@ -41,8 +41,8 @@ int main() {
     wallTexture.loadFromFile("../include/textures/pinkBrick.jpg");
     Map map("../include/initialMap", wallTexture, wallTexture);
 //    map.creat_map(walls, &gachiTexture);
-    View camera;
-    camera.zoom(2);
+
+//    camera.zoom(3);
 
     Texture backgroundTexture;
     backgroundTexture.loadFromFile("../include/textures/sky.png");
@@ -52,8 +52,11 @@ int main() {
 
     RenderWindow window(sf::VideoMode(500, 500), "Client " + to_string(ID));  //// Создаём игровое окно.
     window.clear(sf::Color::White); //// заливаем его в белый цвет.
+    View camera;
+    camera.setSize(window.getSize().x * 3, window.getSize().y * 3);
 
     while (window.isOpen()) {
+//        cout << "WINDOW" << window.getSize().x << " x " << window.getSize().y << endl;
         window.clear(sf::Color::Blue);
 //        cout << ID;
 
@@ -112,15 +115,14 @@ int main() {
             packet.clear();
 //          std::cout << "Корды Гачимучи" << wall.getX() << ' ' << wall.getY() << std::endl;
         }
-        cout << mobs[0].getX() << " " << mobs[0].getY() << endl;
+//        cout << mobs[0].getX() << " " << mobs[0].getY() << endl;
         for (auto& mob : mobs) {
             mob.draw(window);
         }
 
 
 //        cout << players[ID].getX() << " " << players[ID].getY() << endl;
-        camera.setCenter(players[ID].getX() ,players[ID].getY());
-        window.setView(camera);
+
 
 
         //// чистим окно перед отрисовкой
@@ -142,6 +144,7 @@ int main() {
         sf::Event event{}; //// Переменная для отслеживания событий, происходящих на кажой итерации цикла
         bool directions[4] = {false, false, false, false};  //// Направления движения, которые будут обрабатываться на сервере.
         bool isLMBPressed = false;
+        bool isWindowResized = false;
         while (window.pollEvent(event)) {
             if (event.type == sf::Event::Closed) {
                 window.close();
@@ -168,22 +171,38 @@ int main() {
             if (event.type == event.MouseButtonReleased && event.mouseButton.button == Mouse::Left) {
                 isLMBPressed = true;
             }
+            if (event.type == sf::Event::Resized) {
+                isWindowResized = true;
+                camera.setSize(event.size.width * 3, event.size.height * 3);
+//                camera.zoom(3);
+            }
         }
+
+        camera.setCenter(players[ID].getX() ,players[ID].getY());
+        window.setView(camera);
+
         packet << directions;
         socket.send(packet);
         packet.clear();
 
-        packet << isLMBPressed;
+        packet << isWindowResized;
         socket.send(packet);
         packet.clear();
-
-        if (isLMBPressed) {
-            packet << Mouse::getPosition(window).x << Mouse::getPosition(window).y;
-//            cout << Mouse::getPosition(window).x << " " << Mouse::getPosition(window).y << endl;
+        if (isWindowResized) {
+            packet << (double)event.size.width << (double)event.size.height;
             socket.send(packet);
             packet.clear();
         }
 
+        packet << isLMBPressed;
+        socket.send(packet);
+        packet.clear();
+        if (isLMBPressed) {
+            packet << Mouse::getPosition(window).x << Mouse::getPosition(window).y;
+            cout << Mouse::getPosition(window).x << " " << Mouse::getPosition(window).y << endl;
+            socket.send(packet);
+            packet.clear();
+        }
     }
     return 0;
 }

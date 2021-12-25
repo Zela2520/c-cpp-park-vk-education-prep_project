@@ -15,6 +15,8 @@ private:
     sf::Texture localWallTexture;
     sf::Texture pirateTexture;
     size_t port;
+    double windowWidth = 500;
+    double windowHeight = 500;
     int id = ERROR;
     sf::TcpListener listener;
 //    sf::TcpSocket clientOne;

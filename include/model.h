@@ -55,7 +55,7 @@ sf::Packet& operator << (sf::Packet& packet, const bool* directions);
 //sf::Packet& operator << (sf::Packet& packet, bool& isLMBPressed);
 //sf::Packet& operator >> (sf::Packet& packet, bool& isLMBPressed);
 
-float getAngle(int x, int y);
+float getAngle(double x, double y, double, double);
 
 
 #endif // PROJECT_INCLUDE_MODEL_H_

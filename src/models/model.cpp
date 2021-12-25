@@ -1,3 +1,4 @@
+#include <iostream>
 #include "../../include/model.h"
 
 
@@ -105,17 +106,23 @@ sf::Packet& operator >> (sf::Packet& packet, bool* directions) {  //// Из па
 //    return packet >> isLMBPressed;
 //}
 
-float getAngle(int x, int y) {
-    if (x > 250 && y > 250) {
-        return 180/3.1415 * atan(fabs(y - 250)/fabs(x - 250));
+float getAngle(double x, double y, double windowWidth, double windowHeight) {
+    if (x > windowWidth/2 && y > windowHeight/2) {
+        std::cout << "RIGHT DOWN" << std::endl;
+        return 180/3.1415 * atan(fabs(y - windowHeight/2)/fabs(x - windowWidth/2));
+
     }
-    if (x < 250 && y > 250) {
-        return 180 - 180/3.1415 * atan(fabs(y - 250)/fabs(x - 250));
+    if (x < windowWidth/2 && y > windowHeight/2) {
+        std::cout << "LEFT DOWN" << std::endl;
+        return 180 - 180/3.1415 * atan(fabs(y - windowHeight/2)/fabs(x - windowWidth/2));
+
     }
-    if (x > 250 && y < 250) {
-        return -180/3.1415 * atan(fabs(y - 250)/fabs(x - 250));
+    if (x > windowWidth/2 && y < windowHeight/2) {
+        std::cout << "RIGHT UP" << std::endl;
+        return -180/3.1415 * atan(fabs(y - windowHeight/2)/fabs(x - windowWidth/2));
     }
-    if (x < 250 && y < 250) {
-        return 180 + 180/3.1415 * atan(fabs(y - 250)/fabs(x - 250));
+    if (x < windowWidth/2 && y < windowHeight/2) {
+        std::cout << "LEFT UP" << std::endl;
+        return 180 + 180/3.1415 * atan(fabs(y - windowHeight/2)/fabs(x - windowWidth/2));
     }
 }
