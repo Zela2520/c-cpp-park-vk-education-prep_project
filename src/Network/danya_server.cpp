@@ -23,7 +23,7 @@ Server::Server(int _port) {
         players.emplace_back(500, 500, amogusTexture);
         players[i].setId(i);
     }
-    for (int i = 0; i < 200; i++) {
+    for (int i = 0; i < 10; i++) {
         mobs.emplace_back(3000 - rand()%2000, 3000 - rand()%2000, pirateTexture);
     }
     std::cout << "Server was started\n";
@@ -69,15 +69,6 @@ void Server::sendData() {
             packet.clear();
 //            std::cout << "ДАННЫЕ БЫЛИ ОТПРАВЛЕНЫ\n";
         }
-
-//        packet << (int)(map->getWalls().size());
-//        client.send(packet);
-//        packet.clear();
-//        for (auto& wall : map->getWalls()) {   //// И о каждом куске стены.
-//            packet << wall;
-//            client.send(packet);
-//            packet.clear();
-//        }
 
         packet << (int)(bullets.size());
         client.send(packet);
@@ -164,10 +155,10 @@ void Server::processAcquiredData() {
 
     }
 
+    int amountOfDeletedBullets = 0;
     for (int i = 0; i < bullets.size(); i++) {
         bullets[i].move(0.8 * moveTime * cos(3.1415 / 180 * bullets[i].getRotation()), 0.8 * moveTime * sin(3.1415 / 180 * bullets[i].getRotation()));
 
-        int amountOfDeletedBullets = 0;
         for (auto& wall : map->getWalls()) {
             if (bullets[i - amountOfDeletedBullets].getSprite().getGlobalBounds().intersects(wall.getSprite().getGlobalBounds())) {    //// Если случилось пересечение со стеной
                 bullets.erase(bullets.begin() + i - amountOfDeletedBullets);
@@ -177,11 +168,10 @@ void Server::processAcquiredData() {
     }
 
     int amountOfDeletedMobs = 0;
-    int amountOfDeletedBullets = 0;
+    amountOfDeletedBullets = 0;
     for (int i = 0; i < mobs.size(); i++) {
         mobs[i - amountOfDeletedMobs].moveMob(mobs[i - amountOfDeletedMobs].setTaregt(players), map->getWalls(), moveTime);
 
-        int bulletsSize = bullets.size();
         for (int j = 0; j < bullets.size(); j++) {
             if (bullets[j].getSprite().getGlobalBounds().intersects(mobs[i - amountOfDeletedMobs].getSprite().getGlobalBounds())) {    //// Если случилось пересечение со стеной
                 mobs.erase(mobs.begin() + i - amountOfDeletedMobs);
@@ -191,6 +181,8 @@ void Server::processAcquiredData() {
             }
         }
     }
+
+
 
 //    std::cout << "ЗАКАНЧИВАЕМ ОТСЛЕЖИВАТЬ ПЕРЕДВИЖЕНИЯ КЛИЕНТА\n";
 }

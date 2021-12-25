@@ -55,6 +55,15 @@ int main() {
     View camera;
     camera.setSize(window.getSize().x * 3, window.getSize().y * 3);
 
+
+    sf::Font lobster;
+    lobster.loadFromFile("../include/fonts/lobster.ttf");
+    sf::Text text;
+    text.setString("Просто Чел");
+    text.setFont(lobster);
+    text.setColor(sf::Color::White);
+    text.setCharacterSize(80);
+
     while (window.isOpen()) {
 //        cout << "WINDOW" << window.getSize().x << " x " << window.getSize().y << endl;
         window.clear(sf::Color::Blue);
@@ -136,7 +145,8 @@ int main() {
 //        mob.draw(window);
         //// а тут сделать join
 
-
+        text.setPosition(players[ID].getX() - 250, players[ID].getY() - 100);
+        window.draw(text);
 
         window.display();
 
