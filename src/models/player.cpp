@@ -34,6 +34,30 @@ void Player::setId(int _id) {
     id = _id;
 }
 
+void Player::resetInvincibilityTimer() {
+    invincibilityTimer.restart();
+}
+
+void Player::setInvincibility(bool invincibility) {
+    isInvincible = invincibility;
+}
+
+void Player::increaseAmountOfKilledMobs(int amount) {
+    amountOfKilledMobs += amount;
+}
+
+int Player::getAmountOfKilledMobs() const {
+    return amountOfKilledMobs;
+}
+
+float Player::getElapsedInvincibilityTime() const {
+    return invincibilityTimer.getElapsedTime().asMilliseconds();
+}
+
+bool Player::getInvincibility() const {
+    return isInvincible;
+}
+
 int Player::getId() const {
     return id;
 }

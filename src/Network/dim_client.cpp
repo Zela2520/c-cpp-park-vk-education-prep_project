@@ -63,15 +63,23 @@ int main() {
     sf::Font RobotoBlack;
     RobotoBlack.loadFromFile("../include/fonts/Roboto-Black.ttf");
 
+    sf::Font PatuaOne;
+    RobotoBlack.loadFromFile("../include/fonts/PatuaOne-Regular.ttf");
+
     Text amountOfKilledText;
     amountOfKilledText.setFont(RobotoBlack);
     amountOfKilledText.setColor(sf::Color::White);
-    amountOfKilledText.setCharacterSize(90);
+    amountOfKilledText.setCharacterSize(80);
+    amountOfKilledText.setOutlineThickness(5);
+    amountOfKilledText.setOutlineColor(sf::Color::Red);
+//    amountOfKilledText.setStyle(1);
 
     Text elapsedTimeText;
     elapsedTimeText.setFont(RobotoBlack);
     elapsedTimeText.setColor(sf::Color::White);
-    elapsedTimeText.setCharacterSize(90);
+    elapsedTimeText.setCharacterSize(80);
+    elapsedTimeText.setOutlineThickness(5);
+    elapsedTimeText.setOutlineColor(sf::Color::Red);
 
     Text endText;
     endText.setFont(RobotoBlack);
@@ -79,6 +87,24 @@ int main() {
     endText.setColor(sf::Color::Green);
     endText.setString("Wasted");
     endText.setPosition(players[ID].getX() - 500, players[ID].getY() - 450);
+
+    Text recordText;
+    recordText.setFont(RobotoBlack);
+    recordText.setColor(sf::Color::White);
+    recordText.setCharacterSize(80);
+    recordText.setOutlineThickness(4);
+    recordText.setOutlineColor(sf::Color::Blue);
+    
+    sf::CircleShape invincibility;
+    invincibility.setPointCount(30);
+    invincibility.setFillColor(sf::Color(0, 255, 0, 0));
+    invincibility.setRadius(players[ID].getSprite().getGlobalBounds().width + 9);
+    invincibility.setOutlineThickness(7);
+    invincibility.setOutlineColor(sf::Color::Green);
+//    invincibility.setFont(RobotoBlack);
+//    invincibility.setColor(sf::Color::Green);
+//    invincibility.setString("Неуязвимость");
+
 
 
 
@@ -157,14 +183,33 @@ int main() {
         window.draw(amountOfKilledText);
 
 
-        float elapsedTime;
+        int elapsedTime;
         socket.receive(packet);
         packet >> elapsedTime;
         packet.clear();
-        elapsedTimeText.setString("Livetime: " + to_string(elapsedTime));
+        elapsedTimeText.setString("lifetime: " + to_string(elapsedTime));
         elapsedTimeText.setPosition(players[ID].getX() + (windowSize.x / 2 ) * 2  - elapsedTimeText.getGlobalBounds().width - 40, players[ID].getY() - (windowSize.y / 2) * 2 + 80);
 //        cout << windowSize.x << " x " << windowSize.y << endl;
         window.draw(elapsedTimeText);
+
+        
+        int record;
+        socket.receive(packet);
+        packet >> record;
+        packet.clear();
+        recordText.setString("record: " + to_string(record));
+        recordText.setPosition(players[ID].getX() + (windowSize.x / 2 ) * 2  - recordText.getGlobalBounds().width - 40, players[ID].getY() - (windowSize.y / 2) * 2 + 80 + 100);
+        window.draw(recordText);
+
+        bool isInvincible;
+        socket.receive(packet);
+        packet >> isInvincible;
+        packet.clear();
+        if (isInvincible) {
+            invincibility.setPosition(players[ID].getX() - players[ID].getSprite().getGlobalBounds().width/2, players[ID].getY() - players[ID].getSprite().getGlobalBounds().height/2);
+            window.draw(invincibility);
+        }
+        
 
         if (players[ID].getX() > 390 && players[ID].getX() < 410) {
             window.draw(endText);

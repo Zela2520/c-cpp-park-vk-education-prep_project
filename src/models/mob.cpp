@@ -20,7 +20,7 @@ sf::Vector2<float> Mob::moveMob(Player& player, std::vector<Wall>& walls, float 
 
 
     float hyppotenuse = sqrt(pow(playersCoords.x - mobCoords.x, 2) + pow(playersCoords.y - mobCoords.y, 2));
-    hyppotenuse *= 1.8;
+    hyppotenuse *= 1.5;
     if (hyppotenuse != 0) {
         movingDir.x /= hyppotenuse;
         movingDir.y /= hyppotenuse;

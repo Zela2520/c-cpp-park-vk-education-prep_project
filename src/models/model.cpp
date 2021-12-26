@@ -110,20 +110,24 @@ float getAngle(double x, double y, double windowWidth, double windowHeight) {
     if (fabs(x - windowWidth/2) == 0) return 0;
     if (x > windowWidth/2 && y > windowHeight/2) {
         std::cout << "RIGHT DOWN" << std::endl;
-        return 180/3.1415 * atan(fabs(y - windowHeight/2)/fabs(x - windowWidth/2));
+        std::cout << 180/3.1415 * atanf(fabs(y - windowHeight/2)/fabs(x - windowWidth/2)) << std::endl;
+        return 180/3.1415 * atanf(fabs(y - windowHeight/2)/fabs(x - windowWidth/2));
 
     }
     if (x < windowWidth/2 && y > windowHeight/2) {
         std::cout << "LEFT DOWN" << std::endl;
-        return 180 - 180/3.1415 * atan(fabs(y - windowHeight/2)/fabs(x - windowWidth/2));
+        std::cout << 180 - 180/3.1415 * atanf(fabs(y - windowHeight/2)/fabs(x - windowWidth/2)) << std::endl;
+        return 180 - 180/3.1415 * atanf(fabs(y - windowHeight/2)/fabs(x - windowWidth/2));
 
     }
     if (x > windowWidth/2 && y < windowHeight/2) {
         std::cout << "RIGHT UP" << std::endl;
-        return -180/3.1415 * atan(fabs(y - windowHeight/2)/fabs(x - windowWidth/2));
+        std::cout << -180/3.1415 * atanf(fabs(y - windowHeight/2)/fabs(x - windowWidth/2)) << std::endl;
+        return -180/3.1415 * atanf(fabs(y - windowHeight/2)/fabs(x - windowWidth/2));
     }
     if (x < windowWidth/2 && y < windowHeight/2) {
         std::cout << "LEFT UP" << std::endl;
-        return 180 + 180/3.1415 * atan(fabs(y - windowHeight/2)/fabs(x - windowWidth/2));
+        std::cout << 180 + 180/3.1415 * atanf(fabs(y - windowHeight/2)/fabs(x - windowWidth/2)) << std::endl;
+        return 180 + 180/3.1415 * atanf(fabs(y - windowHeight/2)/fabs(x - windowWidth/2));
     }
 }

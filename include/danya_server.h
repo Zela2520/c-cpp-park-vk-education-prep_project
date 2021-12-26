@@ -14,11 +14,13 @@ private:
     sf::Texture globalWallTexture;
     sf::Texture localWallTexture;
     sf::Texture pirateTexture;
+    sf::Texture laserTexture;
     size_t port;
     double windowWidth = 500;
     double windowHeight = 500;
     sf::Vector2<float> spawnpoint;
     int amountOfKilled = 0;
+    int record = 0;
     int id = ERROR;
     sf::TcpListener listener;
 //    sf::TcpSocket clientOne;

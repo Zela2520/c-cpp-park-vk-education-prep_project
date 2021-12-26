@@ -12,6 +12,9 @@
 
 class Player : public Object {
     int id = -1;
+    int isInvincible = false;
+    int amountOfKilledMobs = 0;
+    sf::Clock invincibilityTimer;
 public:
     Player(float _x, float _y, const sf::Texture& texture);
     bool intersectsWith(std::vector<Wall>& objects);
@@ -19,7 +22,13 @@ public:
 //    bool intersectsWith(std::vector<globalBound>& objects);
     void draw(sf::RenderWindow& window) override;
     void setId(int);
+    void increaseAmountOfKilledMobs(int amount);
+    int getAmountOfKilledMobs() const;
     int getId() const;
+    bool getInvincibility() const;
+    float getElapsedInvincibilityTime() const;
+    void resetInvincibilityTimer();
+    void setInvincibility(bool);
     friend sf::Packet& operator >> (sf::Packet& packet, Player& player);
     friend sf::Packet& operator << (sf::Packet& packet, const Player& player);
 };

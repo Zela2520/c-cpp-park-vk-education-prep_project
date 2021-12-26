@@ -33,6 +33,7 @@ Map::Map(char* fileName, const sf::Texture& globalBoundTexture, const sf::Textur
         }
         height++;
     }
+    fclose(source);
     std::cout << "LOL\n";
 }
 

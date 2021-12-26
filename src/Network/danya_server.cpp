@@ -16,6 +16,8 @@ Server::Server(int _port) {
     globalWallTexture.loadFromFile("../include/textures/pinkBrick.jpg");
     localWallTexture.loadFromFile("../include/textures/pinkBrick.jpg");
     pirateTexture.loadFromFile("../include/textures/pirate.png");
+    laserTexture.loadFromFile("../include/textures/laser.png");
+    pirateTexture.loadFromFile("../include/textures/pirate.png");
     setConnection();
     receiveClients();
     map = new Map((char*)"../include/initialMap", globalWallTexture, localWallTexture);
@@ -43,6 +45,11 @@ bool Server::badSpawn(Mob& mob) {
     }
     for (auto& wall : map->getWalls()) {
         if (mob.getSprite().getGlobalBounds().intersects(wall.getSprite().getGlobalBounds())) {
+            intersects = true;
+        }
+    }
+    for (int i = 0; i < mobs.size() - 1; i++) {
+        if (mob.getSprite().getGlobalBounds().intersects(mobs[i].getSprite().getGlobalBounds())) {
             intersects = true;
         }
     }
@@ -82,38 +89,46 @@ void Server::sendData() {
     //// кусок ниже можно сделать ассинхроно, добавив функцию void и передавая в неё нужного клиента.
 
     //// Отправляем данные первому клиенту
-    for (auto& client : *clients) {
+    for (int i = 0; i < clients->size(); i++) {
         for (auto& player : players) {
             packet << player;
-            client.send(packet);
+            (*clients)[i].send(packet);
             packet.clear();
 //            std::cout << "ДАННЫЕ БЫЛИ ОТПРАВЛЕНЫ\n";
         }
 
         packet << (int)(bullets.size());
-        client.send(packet);
+        (*clients)[i].send(packet);
         packet.clear();
         for (auto& bullet : bullets) {   //// И о каждой пуле.
             packet << bullet;
-            client.send(packet);
+            (*clients)[i].send(packet);
             packet.clear();
         }
 
         packet << (int)(mobs.size());
-        client.send(packet);
+        (*clients)[i].send(packet);
         packet.clear();
         for (auto& mob : mobs) {
             packet << mob;
-            client.send(packet);
+            (*clients)[i].send(packet);
             packet.clear();
         }
 
         packet << amountOfKilled;
-        client.send(packet);
+        (*clients)[i].send(packet);
         packet.clear();
 
-        packet << (float)spawnrateTimer.getElapsedTime().asSeconds();
-        client.send(packet);
+        packet << (int)spawnrateTimer.getElapsedTime().asSeconds();
+        (*clients)[i].send(packet);
+        packet.clear();
+
+        packet << (int)record;
+        (*clients)[i].send(packet);
+        packet.clear();
+
+        packet << (bool)players[i].getInvincibility();
+        (*clients)[i].send(packet);
         packet.clear();
     }
 }
@@ -175,8 +190,6 @@ void Server::processAcquiredData() {
 //            std::cout << "Принял " << x << " " << y << std::endl;
 //            std::cout << "Имел " << players[i].getX() << " " << players[i].getY() << std::endl;
             packet.clear();
-            sf::Texture laserTexture;
-            laserTexture.loadFromFile("../include/textures/laser.png");
             std::cout << "Попытка создать пулю " << std::endl;
             bullets.emplace_back(players[i].getX() + players[i].getSprite().getGlobalBounds().width/3, players[i].getY() + players[i].getSprite().getGlobalBounds().height/2, getAngle(x, y, windowWidth, windowHeight), laserTexture);
             std::cout << "Пуля успешно создана " << std::endl;
@@ -222,14 +235,47 @@ void Server::processAcquiredData() {
         }
 
         if (!intersects) {
+            for (int j = 0; j < mobs.size(); j++) {
+                if (j != i - amountOfDeletedMobs) {
+                    if (mobs[j].getSprite().getGlobalBounds().intersects(mobs[i - amountOfDeletedMobs].getSprite().getGlobalBounds())) {    //// Если случилось пересечение со стеной
+                        intersects = true;
+                        mobs.erase(mobs.begin() + i - amountOfDeletedMobs);
+                        amountOfDeletedMobs++;
+//                    this->amountOfKilled++;
+//                    bullets.erase(bullets.begin() + j - amountOfDeletedBullets);
+//                    amountOfDeletedBullets++;
+                        break;
+                    }
+                }
+            }
+        }
+
+
+        if (!intersects) {
             std::cout << "Пересечение мобов с игроками" << std::endl;
             for (auto & player : players) {
                 if (player.getSprite().getGlobalBounds().intersects(mobs[i - amountOfDeletedMobs].getSprite().getGlobalBounds())) {
-                    player.setX(spawnpoint.x);
-                    player.setY(spawnpoint.y);
+                    if (player.getInvincibility() == false) {
+                        player.setX(spawnpoint.x);
+                        player.setY(spawnpoint.y);
+                        player.setInvincibility(true);
+                        player.resetInvincibilityTimer();
+
+                        if (amountOfKilled > record) {
+                            record = amountOfKilled;
+                        }
+                        amountOfKilled = 0;
+                    }
                 }
             }
             std::cout << "Пережил пересечение мобов с игроками" << std::endl;
+        }
+    }
+
+    for (auto& player: players) {
+        if (player.getElapsedInvincibilityTime() > 4000) {
+            player.setInvincibility(false);
+            player.resetInvincibilityTimer();
         }
     }
 
@@ -237,7 +283,6 @@ void Server::processAcquiredData() {
     float newSpawnTime = newSpawnTimer.getElapsedTime().asSeconds();
 //    std::cout << elapsedTime;
     float spawnRateTime = spawnrateTimer.getElapsedTime().asSeconds();
-    pirateTexture.loadFromFile("../include/textures/pirate.png");
     if (newSpawnTime > 1) {
         for (int i = 0; i < 30; i++) {
             mobs.emplace_back(  1000 + rand() % 3000, 1000 + rand() % 3000, pirateTexture);
