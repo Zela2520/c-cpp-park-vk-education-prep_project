@@ -14,6 +14,7 @@ Wall::Wall(float _x, float _y, const sf::Texture& texture) : Object() {
 //    sprite.setTextureRect(sf::IntRect(35, 35, 250, 250));
     setX(_x);
     setY(_y);
+    setScale(2, 2);
 }
 
 void Wall::draw(sf::RenderWindow &window) const {

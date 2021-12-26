@@ -13,11 +13,13 @@ Server::Server(int _port) {
     spawnpoint = sf::Vector2<float>(400,400);
     amogusTexture.loadFromFile("../include/textures/amogus.png");
     gachiTexture.loadFromFile("../include/textures/gachi.png");
-    globalWallTexture.loadFromFile("../include/textures/pinkBrick.jpg");
-    localWallTexture.loadFromFile("../include/textures/pinkBrick.jpg");
+    globalWallTexture.loadFromFile("../include/textures/box.jpg");
+    localWallTexture.loadFromFile("../include/textures/box.jpg");
     pirateTexture.loadFromFile("../include/textures/pirate.png");
     laserTexture.loadFromFile("../include/textures/laser.png");
     pirateTexture.loadFromFile("../include/textures/pirate.png");
+    T800Texture.loadFromFile("../include/textures/t800.png");
+    terminatorTexture.loadFromFile("../include/textures/terminator.png");
     setConnection();
     receiveClients();
     map = new Map((char*)"../include/initialMap", globalWallTexture, localWallTexture);
@@ -204,7 +206,7 @@ void Server::processAcquiredData() {
     for (int i = 0; i < bullets.size(); i++) {    //// Проходим по всем пулям.
         std::cout << "Началась обработка пуль" << std::endl;
         //// Двигаем текущую пулю.
-        bullets[i - amountOfDeletedBullets].move(0.8 * moveTime * cos(3.1415 / 180 * bullets[i].getRotation()), 0.8 * moveTime * sin(3.1415 / 180 * bullets[i - amountOfDeletedBullets].getRotation()));
+        bullets[i - amountOfDeletedBullets].move(1.2 * moveTime * cos(3.1415 / 180 * bullets[i].getRotation()), 1.2 * moveTime * sin(3.1415 / 180 * bullets[i - amountOfDeletedBullets].getRotation()));
 
         for (auto& wall : map->getWalls()) {    //// Проходим по всем стенкам.
             if (bullets[i - amountOfDeletedBullets].getSprite().getGlobalBounds().intersects(wall.getSprite().getGlobalBounds())) {    //// Если случилось пересечение со стеной
@@ -284,12 +286,18 @@ void Server::processAcquiredData() {
 //    std::cout << elapsedTime;
     float spawnRateTime = spawnrateTimer.getElapsedTime().asSeconds();
     if (newSpawnTime > 1) {
-        for (int i = 0; i < 30; i++) {
+        for (int i = 0; i < 20; i++) {
             mobs.emplace_back(  1000 + rand() % 3000, 1000 + rand() % 3000, pirateTexture);
             if (badSpawn(mobs[mobs.size() - 1])) {
                 mobs.pop_back();
             }
         }
+//        for (int i = 0; i < 10; i++) {
+//            mobs.emplace_back(  3500 + rand() % 7000, 3500 + rand() % 7000, pirateTexture);
+//            if (badSpawn(mobs[mobs.size() - 1])) {
+//                mobs.pop_back();
+//            }
+//        }
         newSpawnTimer.restart();
     }
 

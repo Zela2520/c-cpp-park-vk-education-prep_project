@@ -5,7 +5,7 @@ Player::Player(float _x, float _y, const sf::Texture& _texture) : Object() {  //
     sprite.setTexture(_texture);
     defaultWidth = sprite.getGlobalBounds().width;
     defaultHeight = sprite.getGlobalBounds().height;
-    setScale(0.1, 0.1);  //// Масштабировани модели
+    setScale(0.15, 0.15);  //// Масштабировани модели
     setX(_x);
     setY(_y);
 }

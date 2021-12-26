@@ -25,10 +25,10 @@ Map::Map(char* fileName, const sf::Texture& globalBoundTexture, const sf::Textur
 //            sf::RectangleShape tempRectangle; //// создаём временную переменную для того, чтобы пушить её в вектор
 //            tempRectangle.setSize(sf::Vector2f(100, 100)); //// задаём размер неподвижным объектам
             if (c == '0') {
-                walls.emplace_back(Wall(j * globalBoundTexture.getSize().x, i * globalBoundTexture.getSize().y, globalBoundTexture));
+                walls.emplace_back(Wall(2 * j * globalBoundTexture.getSize().x, 2 * i * globalBoundTexture.getSize().y, globalBoundTexture));
             }
             if (c == 's') {
-                walls.emplace_back(Wall(j * localBoundTexture.getSize().x, i * localBoundTexture.getSize().y, localBoundTexture));
+                walls.emplace_back(Wall(2 * j * localBoundTexture.getSize().x, 2 * i * localBoundTexture.getSize().y, localBoundTexture));
             }
         }
         height++;

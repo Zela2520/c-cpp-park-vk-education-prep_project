@@ -32,6 +32,10 @@ int main() {
     pirateTexture.loadFromFile("../include/textures/pirate.png");
     sf::Texture laserTexture;
     laserTexture.loadFromFile("../include/textures/laser.png");
+    sf::Texture T800Texture;
+    T800Texture.loadFromFile("../include/textures/t800.png");
+    sf::Texture terminatorTexture;
+    terminatorTexture.loadFromFile("../include/textures/terminator.png");
 
 
     std::vector<Player> players(2, Player(700, 700, amogusTexture));  //// Инициализируем начальное положение объектов на карте, принимая данные от сервера
@@ -39,15 +43,19 @@ int main() {
 
     sf::Texture wallTexture;
     wallTexture.loadFromFile("../include/textures/pinkBrick.jpg");
-    Map map("../include/initialMap", wallTexture, wallTexture);
+    sf::Texture boxTexture;
+    boxTexture.loadFromFile("../include/textures/box.jpg");
+    Map map("../include/initialMap", boxTexture, boxTexture);
 //    map.creat_map(walls, &gachiTexture);
 
 //    camera.zoom(3);
 
     Texture backgroundTexture;
-    backgroundTexture.loadFromFile("../include/textures/sky.png");
-    Sprite background(backgroundTexture);
-    background.setScale(4, 4);
+    backgroundTexture.loadFromFile("../include/textures/stones.jpg");
+    backgroundTexture.setRepeated(true);
+    Sprite background(backgroundTexture, IntRect(0, 0, 30000, 30000));
+    background.setScale(1, 1);
+    background.setPosition(-3000, -3000);
 
 
     RenderWindow window(sf::VideoMode(500, 500), "Client " + to_string(ID));  //// Создаём игровое окно.
@@ -82,11 +90,12 @@ int main() {
     elapsedTimeText.setOutlineColor(sf::Color::Red);
 
     Text endText;
-    endText.setFont(RobotoBlack);
-    endText.setCharacterSize(150);
-    endText.setColor(sf::Color::Green);
-    endText.setString("Wasted");
-    endText.setPosition(players[ID].getX() - 500, players[ID].getY() - 450);
+    endText.setFont(lobster);
+    endText.setCharacterSize(170);
+    endText.setColor(sf::Color::White);
+    endText.setOutlineColor(sf::Color::Red);
+    endText.setOutlineThickness(14);
+    endText.setString("You Died");
 
     Text recordText;
     recordText.setFont(RobotoBlack);
@@ -94,6 +103,8 @@ int main() {
     recordText.setCharacterSize(80);
     recordText.setOutlineThickness(4);
     recordText.setOutlineColor(sf::Color::Blue);
+
+
     
     sf::CircleShape invincibility;
     invincibility.setPointCount(30);
@@ -121,7 +132,7 @@ int main() {
         }
 
 
-        background.setPosition(players[ID].getX() - background.getGlobalBounds().width/2, players[ID].getY() - background.getGlobalBounds().height/2);
+//        background.setPosition(players[ID].getX() - background.getGlobalBounds().width/2, players[ID].getY() - background.getGlobalBounds().height/2);
         window.draw(background);
         map.draw(window);
 
@@ -190,7 +201,7 @@ int main() {
         elapsedTimeText.setString("lifetime: " + to_string(elapsedTime));
         elapsedTimeText.setPosition(players[ID].getX() + (windowSize.x / 2 ) * 2  - elapsedTimeText.getGlobalBounds().width - 40, players[ID].getY() - (windowSize.y / 2) * 2 + 80);
 //        cout << windowSize.x << " x " << windowSize.y << endl;
-        window.draw(elapsedTimeText);
+//        window.draw(elapsedTimeText);
 
         
         int record;
@@ -198,7 +209,7 @@ int main() {
         packet >> record;
         packet.clear();
         recordText.setString("record: " + to_string(record));
-        recordText.setPosition(players[ID].getX() + (windowSize.x / 2 ) * 2  - recordText.getGlobalBounds().width - 40, players[ID].getY() - (windowSize.y / 2) * 2 + 80 + 100);
+        recordText.setPosition(players[ID].getX() + (windowSize.x / 2 ) * 2  - recordText.getGlobalBounds().width - 40, players[ID].getY() - (windowSize.y / 2) * 2 + 80);
         window.draw(recordText);
 
         bool isInvincible;
@@ -208,12 +219,12 @@ int main() {
         if (isInvincible) {
             invincibility.setPosition(players[ID].getX() - players[ID].getSprite().getGlobalBounds().width/2, players[ID].getY() - players[ID].getSprite().getGlobalBounds().height/2);
             window.draw(invincibility);
-        }
-        
-
-        if (players[ID].getX() > 390 && players[ID].getX() < 410) {
+            endText.setPosition(players[ID].getX() - endText.getGlobalBounds().width/2 + players[ID].getSprite().getGlobalBounds().width/2, players[ID].getY() - endText.getGlobalBounds().height - players[ID].getSprite().getGlobalBounds().height);
             window.draw(endText);
         }
+
+
+
 
 //        cout << players[ID].getX() << " " << players[ID].getY() << endl;
 

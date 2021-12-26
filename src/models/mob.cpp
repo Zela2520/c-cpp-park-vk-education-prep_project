@@ -4,7 +4,7 @@ Mob::Mob(float _x, float _y, const sf::Texture& texture) {
     sprite.setTexture(texture);
     setX(_x);
     setY(_y);
-    setScale(1.5, 1.5);
+    setScale(2, 2);
 }
 
 
@@ -20,7 +20,7 @@ sf::Vector2<float> Mob::moveMob(Player& player, std::vector<Wall>& walls, float 
 
 
     float hyppotenuse = sqrt(pow(playersCoords.x - mobCoords.x, 2) + pow(playersCoords.y - mobCoords.y, 2));
-    hyppotenuse *= 1.5;
+    hyppotenuse *= 1.3;
     if (hyppotenuse != 0) {
         movingDir.x /= hyppotenuse;
         movingDir.y /= hyppotenuse;

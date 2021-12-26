@@ -15,6 +15,8 @@ private:
     sf::Texture localWallTexture;
     sf::Texture pirateTexture;
     sf::Texture laserTexture;
+    sf::Texture T800Texture;
+    sf::Texture terminatorTexture;
     size_t port;
     double windowWidth = 500;
     double windowHeight = 500;
