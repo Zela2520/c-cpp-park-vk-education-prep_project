@@ -8,12 +8,12 @@ Mob::Mob(float _x, float _y, const sf::Texture& texture) {
 }
 
 
-sf::Vector2<float> Mob::getPlayersCoords(const Player player) {
+sf::Vector2<float> Mob::getPlayersCoords(const Player& player) {
     sf::Vector2<float> playersCoords(player.getX(), player.getY());
     return playersCoords;
 }
 
-sf::Vector2<float> Mob::moveMob(Player player, std::vector<Wall> walls, float time) {   //// будем передавать вектор игроков и добавим циклы.
+sf::Vector2<float> Mob::moveMob(Player& player, std::vector<Wall>& walls, float time) {   //// будем передавать вектор игроков и добавим циклы.
     sf::Vector2<float> playersCoords = getPlayersCoords(player);
     sf::Vector2<float> mobCoords(getX(), getY());
     sf::Vector2<float> movingDir(playersCoords.x - mobCoords.x, playersCoords.y - mobCoords.y);

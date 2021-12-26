@@ -62,10 +62,12 @@ int main() {
 
     sf::Font RobotoBlack;
     RobotoBlack.loadFromFile("../include/fonts/Roboto-Black.ttf");
+
     Text amountOfKilledText;
     amountOfKilledText.setFont(RobotoBlack);
     amountOfKilledText.setColor(sf::Color::White);
     amountOfKilledText.setCharacterSize(90);
+
     Text elapsedTimeText;
     elapsedTimeText.setFont(RobotoBlack);
     elapsedTimeText.setColor(sf::Color::White);

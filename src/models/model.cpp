@@ -107,6 +107,7 @@ sf::Packet& operator >> (sf::Packet& packet, bool* directions) {  //// Из па
 //}
 
 float getAngle(double x, double y, double windowWidth, double windowHeight) {
+    if (fabs(x - windowWidth/2) == 0) return 0;
     if (x > windowWidth/2 && y > windowHeight/2) {
         std::cout << "RIGHT DOWN" << std::endl;
         return 180/3.1415 * atan(fabs(y - windowHeight/2)/fabs(x - windowWidth/2));

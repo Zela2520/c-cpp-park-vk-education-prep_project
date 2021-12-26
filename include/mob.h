@@ -7,8 +7,8 @@ class Mob : public Object {
 public:
     Mob() = default;
     Mob(float _x, float _y, const sf::Texture& texture);
-    sf::Vector2<float> getPlayersCoords(Player player); //// получаем координаты игрока
-    sf::Vector2<float> moveMob(Player player, std::vector<Wall> walls, float time); //// задаём направление движения персонажу
+    sf::Vector2<float> getPlayersCoords(const Player& player); //// получаем координаты игрока
+    sf::Vector2<float> moveMob(Player& player, std::vector<Wall>& walls, float time); //// задаём направление движения персонажу
     Player& setTaregt(std::vector<Player>& players);
     bool intersectsWith(std::vector<Wall>& objects);
 //    void moveMobeX(std::vector<Wall> &walls);
