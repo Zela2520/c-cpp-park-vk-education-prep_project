@@ -54,7 +54,7 @@ int main() {
     window.clear(sf::Color::White); //// заливаем его в белый цвет.
     Vector2<double> windowSize(500, 500);
     View camera;
-    camera.setSize(window.getSize().x * 3, window.getSize().y * 3);
+    camera.setSize(window.getSize().x * 2, window.getSize().y * 2);
 
 
     sf::Font lobster;
@@ -70,6 +70,13 @@ int main() {
     elapsedTimeText.setFont(RobotoBlack);
     elapsedTimeText.setColor(sf::Color::White);
     elapsedTimeText.setCharacterSize(90);
+
+    Text endText;
+    endText.setFont(RobotoBlack);
+    endText.setCharacterSize(150);
+    endText.setColor(sf::Color::Green);
+    endText.setString("Wasted");
+    endText.setPosition(players[ID].getX() - 500, players[ID].getY() - 450);
 
 
 
@@ -143,7 +150,7 @@ int main() {
         packet >> amountOfKilled;
         packet.clear();
         amountOfKilledText.setString("Killed: " + to_string(amountOfKilled));
-        amountOfKilledText.setPosition(players[ID].getX() + (windowSize.x / 2 ) * 3  - amountOfKilledText.getGlobalBounds().width - 40, players[ID].getY() - (windowSize.y / 2) * 3);
+        amountOfKilledText.setPosition(players[ID].getX() + (windowSize.x / 2 ) * 2  - amountOfKilledText.getGlobalBounds().width - 40, players[ID].getY() - (windowSize.y / 2) * 2);
         cout << windowSize.x << " x " << windowSize.y << endl;
         window.draw(amountOfKilledText);
 
@@ -153,10 +160,13 @@ int main() {
         packet >> elapsedTime;
         packet.clear();
         elapsedTimeText.setString("Livetime: " + to_string(elapsedTime));
-        elapsedTimeText.setPosition(players[ID].getX() + (windowSize.x / 2 ) * 3  - elapsedTimeText.getGlobalBounds().width - 40, players[ID].getY() - (windowSize.y / 2) * 3 + 80);
+        elapsedTimeText.setPosition(players[ID].getX() + (windowSize.x / 2 ) * 2  - elapsedTimeText.getGlobalBounds().width - 40, players[ID].getY() - (windowSize.y / 2) * 2 + 80);
 //        cout << windowSize.x << " x " << windowSize.y << endl;
         window.draw(elapsedTimeText);
 
+        if (players[ID].getX() > 390 && players[ID].getX() < 410) {
+            window.draw(endText);
+        }
 
 //        cout << players[ID].getX() << " " << players[ID].getY() << endl;
 
@@ -212,7 +222,7 @@ int main() {
                 isWindowResized = true;
                 windowSize.x = event.size.width;
                 windowSize.y = event.size.height;
-                camera.setSize(windowSize.x * 3, windowSize.y * 3);
+                camera.setSize(windowSize.x * 2, windowSize.y * 2);
 //                camera.zoom(3);
             }
         }

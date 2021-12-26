@@ -225,8 +225,8 @@ void Server::processAcquiredData() {
     float spawnRateTime = spawnrateTimer.getElapsedTime().asSeconds();
     pirateTexture.loadFromFile("../include/textures/pirate.png");
     if (newSpawnTime > 2) {
-        for (int i = 0; i < spawnRateTime; i++) {
-            mobs.emplace_back(  1000 + rand() % 1000, 1000 + rand() % 1000, pirateTexture);
+        for (int i = 0; i < 5; i++) {
+            mobs.emplace_back(  1000 + rand() % 2000, 1000 + rand() % 2000, pirateTexture);
             if (badSpawn(mobs[mobs.size() - 1])) {
                 mobs.pop_back();
             }
