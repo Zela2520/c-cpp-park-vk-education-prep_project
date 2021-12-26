@@ -9,20 +9,26 @@
 
 class Client {
 
-private:
-    sf::TcpSocket m_socket;
-    sf::Packet m_packet;
-    std::vector<Player> m_players;
-    std::vector<Wall> m_unmovables;
-    Mob m_mob;
-    sf::RenderWindow m_window;
-    Map m_map;
-    sf::View m_camera;
-    size_t m_id = -1;
-
 public:
-    Client();
+    explicit Client(size_t port);
     ~Client() = default;
+    void setConnection();
+    void receiveData();
+    void sendData();
+
+private:
+    size_t port;
+    sf::TcpSocket socket;
+    sf::Packet packet;
+    std::vector<Player> players;
+    std::vector<Wall> unmovables;
+    Mob mob;
+    sf::RenderWindow window;
+    Map map;
+    sf::View camera;
+    size_t id = -1;
+
+
 
 };
 

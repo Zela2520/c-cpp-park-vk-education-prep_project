@@ -180,6 +180,11 @@
 		<Unit filename="/home/daniil/CLionProjects/application/src/Network/main_sever.cpp">
 			<Option target="server"/>
 		</Unit>
+		<Unit filename="/home/daniil/CLionProjects/application/src/models/bullet.cpp">
+			<Option target="server"/>
+			<Option target="client"/>
+			<Option target="client_2"/>
+		</Unit>
 		<Unit filename="/home/daniil/CLionProjects/application/src/models/map.cpp">
 			<Option target="server"/>
 			<Option target="client"/>

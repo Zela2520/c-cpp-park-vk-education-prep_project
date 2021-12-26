@@ -10,6 +10,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 set(CMAKE_DEPENDS_CHECK_CXX
   "/home/daniil/CLionProjects/application/src/Network/danya_server.cpp" "/home/daniil/CLionProjects/application/cmake-build-debug/CMakeFiles/server.dir/src/Network/danya_server.cpp.o"
   "/home/daniil/CLionProjects/application/src/Network/main_sever.cpp" "/home/daniil/CLionProjects/application/cmake-build-debug/CMakeFiles/server.dir/src/Network/main_sever.cpp.o"
+  "/home/daniil/CLionProjects/application/src/models/bullet.cpp" "/home/daniil/CLionProjects/application/cmake-build-debug/CMakeFiles/server.dir/src/models/bullet.cpp.o"
   "/home/daniil/CLionProjects/application/src/models/map.cpp" "/home/daniil/CLionProjects/application/cmake-build-debug/CMakeFiles/server.dir/src/models/map.cpp.o"
   "/home/daniil/CLionProjects/application/src/models/mob.cpp" "/home/daniil/CLionProjects/application/cmake-build-debug/CMakeFiles/server.dir/src/models/mob.cpp.o"
   "/home/daniil/CLionProjects/application/src/models/model.cpp" "/home/daniil/CLionProjects/application/cmake-build-debug/CMakeFiles/server.dir/src/models/model.cpp.o"

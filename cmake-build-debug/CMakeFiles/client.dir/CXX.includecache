@@ -6,6 +6,12 @@
 
 #IncludeRegexTransform: 
 
+/home/daniil/CLionProjects/application/include/bullet.h
+model.h
+/home/daniil/CLionProjects/application/include/model.h
+wall.h
+/home/daniil/CLionProjects/application/include/wall.h
+
 /home/daniil/CLionProjects/application/include/map.h
 model.h
 /home/daniil/CLionProjects/application/include/model.h
@@ -15,6 +21,8 @@ wall.h
 /home/daniil/CLionProjects/application/include/mob.h
 player.h
 /home/daniil/CLionProjects/application/include/player.h
+bullet.h
+/home/daniil/CLionProjects/application/include/bullet.h
 
 /home/daniil/CLionProjects/application/include/model.h
 SFML/Graphics.hpp
@@ -57,6 +65,8 @@ model.h
 /home/daniil/CLionProjects/application/include/mob.h
 ../../include/map.h
 /home/daniil/CLionProjects/application/include/map.h
+../../include/bullet.h
+/home/daniil/CLionProjects/application/include/bullet.h
 string
 -
 iostream

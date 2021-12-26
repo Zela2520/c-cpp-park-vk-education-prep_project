@@ -12,12 +12,21 @@ sf::Vector2<float> Mob::getPlayersCoords(const Player player) {
     return playersCoords;
 }
 
-sf::Vector2<float> Mob::moveMob(Player player, std::vector<Wall> walls) { //// будем передавать вектор игроков и добавим циклы
+sf::Vector2<float> Mob::moveMob(Player player, std::vector<Wall> walls, float time) {   //// будем передавать вектор игроков и добавим циклы.
     sf::Vector2<float> playersCoords = getPlayersCoords(player);
-    sf::Vector2<float> mobCoords(this->getX(), this->getY());
+    sf::Vector2<float> mobCoords(getX(), getY());
     sf::Vector2<float> movingDir(playersCoords.x - mobCoords.x, playersCoords.y - mobCoords.y);
-    movingDir.x /= static_cast<float>(pow(pow(playersCoords.x - mobCoords.x, 2) + pow(playersCoords.y - mobCoords.y, 2), 0.5));
-    movingDir.y /= static_cast<float>(pow(pow(playersCoords.x - mobCoords.x, 2) + pow(playersCoords.y - mobCoords.y, 2), 0.5));
+
+
+    float hyppotenuse = sqrt(pow(playersCoords.x - mobCoords.x, 2) + pow(playersCoords.y - mobCoords.y, 2));
+    hyppotenuse *= 1.8;
+    if (hyppotenuse != 0) {
+        movingDir.x /= hyppotenuse;
+        movingDir.y /= hyppotenuse;
+    }
+
+
+
     this->setX(movingDir.x + this->getX());
     if (this->intersectsWith(walls)) {
         this->setX(this->getX() - movingDir.x);
@@ -39,12 +48,15 @@ bool Mob::intersectsWith(std::vector<Wall>& objects) {
     return false;
 }
 
-//void Mob::moveMobeX(std::vector<Wall> &walls) {
-//}
-//
-//void Mob::moveMobeY(std::vector<Wall> &walls) {
-//
-//}
+bool Mob::intersectsWithBullets(std::vector<Bullet>& bullets) {
+    for (auto &bullet : bullets) {
+        sf::Rect<float> thisBounds = sprite.getGlobalBounds();
+        sf::Rect<float> bulletBounds = bullet.getSprite().getGlobalBounds();
+
+        if (thisBounds.intersects(bulletBounds)) return true;
+    }
+    return false;
+}
 
 Player& Mob::setTaregt(std::vector<Player>& players) {
     float xMob = this->getX();
@@ -67,15 +79,13 @@ Player& Mob::setTaregt(std::vector<Player>& players) {
 
 
 
-sf::Packet& operator << (sf::Packet& packet, const Mob& player) {  //// Из игрока в пакет
-    return packet << player.getX() << player.getY() << player.turnedRight;
+sf::Packet& operator << (sf::Packet& packet, const Mob& mob) {  //// Из игрока в пакет
+    return packet << mob.getX() << mob.getY();
 }
 
 sf::Packet& operator >> (sf::Packet& packet, Mob& mob) {  //// Из пакета в игрока
     float x, y;
-    bool turnedRight;
-    packet >> x >> y >> turnedRight;
-    mob.setTurnedRight(turnedRight);
+    packet >> x >> y;
     mob.setX(x);
     mob.setY(y);
 

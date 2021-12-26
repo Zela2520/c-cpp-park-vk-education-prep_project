@@ -1,5 +1,6 @@
 file(REMOVE_RECURSE
   "CMakeFiles/client.dir/src/Network/dim_client.cpp.o"
+  "CMakeFiles/client.dir/src/models/bullet.cpp.o"
   "CMakeFiles/client.dir/src/models/map.cpp.o"
   "CMakeFiles/client.dir/src/models/mob.cpp.o"
   "CMakeFiles/client.dir/src/models/model.cpp.o"

@@ -3,7 +3,7 @@
 #define MAX_CLIENT 2
 #define OBJECTS 1
 
-//Client::Client(){
+//Client::Client(size_t port){
 //    //// инициализируем героев
 //    sf::Texture amogusTexture;
 //    amogusTexture.loadFromFile("../include/textures/amogus.png");

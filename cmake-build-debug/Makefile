@@ -230,6 +230,36 @@ src/Network/main_sever.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/Network/main_sever.cpp.s
 .PHONY : src/Network/main_sever.cpp.s
 
+src/models/bullet.o: src/models/bullet.cpp.o
+.PHONY : src/models/bullet.o
+
+# target to build an object file
+src/models/bullet.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/models/bullet.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/src/models/bullet.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client_2.dir/build.make CMakeFiles/client_2.dir/src/models/bullet.cpp.o
+.PHONY : src/models/bullet.cpp.o
+
+src/models/bullet.i: src/models/bullet.cpp.i
+.PHONY : src/models/bullet.i
+
+# target to preprocess a source file
+src/models/bullet.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/models/bullet.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/src/models/bullet.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client_2.dir/build.make CMakeFiles/client_2.dir/src/models/bullet.cpp.i
+.PHONY : src/models/bullet.cpp.i
+
+src/models/bullet.s: src/models/bullet.cpp.s
+.PHONY : src/models/bullet.s
+
+# target to generate assembly for a file
+src/models/bullet.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/models/bullet.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/src/models/bullet.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client_2.dir/build.make CMakeFiles/client_2.dir/src/models/bullet.cpp.s
+.PHONY : src/models/bullet.cpp.s
+
 src/models/map.o: src/models/map.cpp.o
 .PHONY : src/models/map.o
 
@@ -400,6 +430,9 @@ help:
 	@echo "... src/Network/main_sever.o"
 	@echo "... src/Network/main_sever.i"
 	@echo "... src/Network/main_sever.s"
+	@echo "... src/models/bullet.o"
+	@echo "... src/models/bullet.i"
+	@echo "... src/models/bullet.s"
 	@echo "... src/models/map.o"
 	@echo "... src/models/map.i"
 	@echo "... src/models/map.s"

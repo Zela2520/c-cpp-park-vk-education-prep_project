@@ -1,9 +1,9 @@
-
 #include "../../include/model.h"
 #include "../../include/player.h"
 #include "../../include/wall.h"
 #include "../../include/mob.h"
 #include "../../include/map.h"
+#include "../../include/bullet.h"
 
 #include <string>
 #include <iostream>
@@ -28,102 +28,138 @@ int main() {
     amogusTexture.loadFromFile("../include/textures/amogus.png");
     Texture gachiTexture;
     gachiTexture.loadFromFile("../include/textures/tnt.png");
-    Texture mobTexture;
-    mobTexture.loadFromFile("../include/textures/tnt.png");
+    Texture pirateTexture;
+    pirateTexture.loadFromFile("../include/textures/pirate.png");
+    sf::Texture laserTexture;
+    laserTexture.loadFromFile("../include/textures/laser.png");
 
-    Mob mob(200.0,200.0, mobTexture);
-    mob.setScale(0.8,0.8);
-    std::vector<Player> players(2, Player(100, 100, amogusTexture));  //// Инициализируем начальное положение объектов на карте, принимая данные от сервера
-
+    std::vector<Player> players(2, Player(700, 700, amogusTexture));  //// Инициализируем начальное положение объектов на карте, принимая данные от сервера
 
     sf::Texture wallTexture;
-    wallTexture.loadFromFile("../include/textures/brick.png");
+    wallTexture.loadFromFile("../include/textures/pinkBrick.jpg");
     Map map("../include/initialMap", wallTexture, wallTexture);
 //    map.creat_map(walls, &gachiTexture);
     View camera;
     camera.zoom(2);
 
+    Texture backgroundTexture;
+    backgroundTexture.loadFromFile("../include/textures/sky.png");
+    Sprite background(backgroundTexture);
+    background.setScale(4, 4);
 
     RenderWindow window(sf::VideoMode(500, 500), "Client " + to_string(ID));  //// Создаём игровое окно.
-    window.clear(sf::Color::White); //// заливаем его в белый цвет
+    window.clear(sf::Color::White); //// заливаем его в белый цвет.
+
+
+
+
+
+
 
     while (window.isOpen()) {
         window.clear(sf::Color::Blue);
 //        cout << ID;
 
-        map.draw(window);
         //// Получение информации обо всех игроках.
         for (auto &player : players) {  //// Пробегаем по всем игрокам. На 1 игрока 1 пакет.
             socket.receive(packet);  //// Получаем пакет.
             packet >> player;  //// Записываем данные из пакета в игрока.
             packet.clear();
         }
+
+        background.setPosition(players[ID].getX() - background.getGlobalBounds().width/2, players[ID].getY() - background.getGlobalBounds().height/2);
+        window.draw(background);
+        map.draw(window);
+
         for (auto &player: players) {    //// Рисуем игроков
-            if (ID == 1) player.getSprite().setColor(sf::Color(0, 255, 0));
             player.draw(window);
         }
-        //// Получение информации обо всех неподвижных объектах.
+
         socket.receive(packet);
-        int amountOfWalls;
-        packet >> amountOfWalls;
+        int amountOfBullets;
+        packet >> amountOfBullets;
         packet.clear();
-        std::vector<Wall> walls(amountOfWalls);
-        cout << "walls.size()" << walls.size() << endl;
-        for (auto &wall : walls) {    ////  Получаем инфу о стенах
+        std::vector<Bullet> bullets(amountOfBullets, Bullet(0, 0, 45, laserTexture));
+        for (auto &bullet : bullets) {    ////  Получаем инфу о стенах
             socket.receive(packet);
-            packet >> wall;
+            packet >> bullet;
             packet.clear();
 //          std::cout << "Корды Гачимучи" << wall.getX() << ' ' << wall.getY() << std::endl;
         }
+        for (auto& bullet : bullets) {
+            bullet.draw(window);
+        }
+
+        socket.receive(packet);
+        int amountOfMobs;
+        packet >> amountOfMobs;
+        packet.clear();
+        std::vector<Mob> mobs(amountOfMobs, Mob(1000, 1000, pirateTexture));
+        std::cout << amountOfMobs << "\n";
+        for (int i = 0; i < mobs.size(); ++i) {   ////  Получаем инфу о мобах
+            socket.receive(packet);
+            packet >> mobs[i];
+            packet.clear();
+//          std::cout << "Корды Гачимучи" << wall.getX() << ' ' << wall.getY() << std::endl;
+        }
+        cout << mobs[0].getX() << " " << mobs[0].getY() << endl;
+        for (int i = 0; i < mobs.size(); ++i) {
+            mobs[i].draw(window);
+        }
+
+
 //        cout << players[ID].getX() << " " << players[ID].getY() << endl;
         camera.setCenter(players[ID].getX() ,players[ID].getY());
-        window.setView(camera);
-
-
-        //// чистим окно перед отрисовкой
-
-
-
-
-        ///// отрисовываем все объекты на карте
-        //// можно добавить ассинхронность. Тут нарисуются Unmovables
-        mob.moveMob(mob.setTaregt(players), map.getWalls());
-        mob.draw(window);
-        //// а тут сделать join
-
-
 
         window.display();
 
-
         sf::Event event{}; //// Переменная для отслеживания событий, происходящих на кажой итерации цикла
         bool directions[4] = {false, false, false, false};  //// Направления движения, которые будут обрабатываться на сервере.
+        bool isLMBPressed = false;
         while (window.pollEvent(event)) {
             if (event.type == sf::Event::Closed) {
                 window.close();
             }
         }
+        int mouseX, mouseY;
 
         if (window.hasFocus()) {
-            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
                 directions[0] = true;
             }
-            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
                 directions[1] = true;
             }
-            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
                 directions[2] = true;
             }
-            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
                 directions[3] = true;
             }
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
+                isLMBPressed = true;
+            }
+            if (event.type == event.MouseButtonReleased && event.mouseButton.button == Mouse::Left) {
+                isLMBPressed = true;
+            }
         }
-
-        //// Запаковываем данные пользователя в пакет и отправляем на сервер
         packet << directions;
         socket.send(packet);
         packet.clear();
+
+        packet << isLMBPressed;
+        socket.send(packet);
+        packet.clear();
+
+        if (isLMBPressed) {
+            packet << Mouse::getPosition(window).x << Mouse::getPosition(window).y;
+//            cout << Mouse::getPosition(window).x << " " << Mouse::getPosition(window).y << endl;
+            socket.send(packet);
+            packet.clear();
+        }
+
     }
     return 0;
 }
+
 
