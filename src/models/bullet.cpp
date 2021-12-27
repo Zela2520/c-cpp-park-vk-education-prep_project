@@ -24,6 +24,7 @@ sf::Packet& operator >> (sf::Packet& packet, Bullet& bullet) {
     bullet.setRotation(rotation);
     return packet;
 }
+
 sf::Packet& operator << (sf::Packet& packet, const Bullet& bullet) {
     return packet << bullet.getX() << bullet.getY() << bullet.getRotation();
 }

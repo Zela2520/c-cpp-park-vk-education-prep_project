@@ -53,10 +53,10 @@ RM = /snap/clion/177/bin/cmake/linux/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = "/home/dima/!Stuff/TP/trying to make engine"
+CMAKE_SOURCE_DIR = /home/daniil/CLionProjects/application
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = "/home/dima/!Stuff/TP/trying to make engine/cmake-build-debug"
+CMAKE_BINARY_DIR = /home/daniil/CLionProjects/application/cmake-build-debug
 
 # Include any dependencies generated for this target.
 include CMakeFiles/client.dir/depend.make
@@ -72,100 +72,100 @@ include CMakeFiles/client.dir/flags.make
 CMakeFiles/client.dir/src/Network/dim_client.cpp.o: CMakeFiles/client.dir/flags.make
 CMakeFiles/client.dir/src/Network/dim_client.cpp.o: ../src/Network/dim_client.cpp
 CMakeFiles/client.dir/src/Network/dim_client.cpp.o: CMakeFiles/client.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/dima/!Stuff/TP/trying to make engine/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/client.dir/src/Network/dim_client.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/client.dir/src/Network/dim_client.cpp.o -MF CMakeFiles/client.dir/src/Network/dim_client.cpp.o.d -o CMakeFiles/client.dir/src/Network/dim_client.cpp.o -c "/home/dima/!Stuff/TP/trying to make engine/src/Network/dim_client.cpp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/daniil/CLionProjects/application/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/client.dir/src/Network/dim_client.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/client.dir/src/Network/dim_client.cpp.o -MF CMakeFiles/client.dir/src/Network/dim_client.cpp.o.d -o CMakeFiles/client.dir/src/Network/dim_client.cpp.o -c /home/daniil/CLionProjects/application/src/Network/dim_client.cpp
 
 CMakeFiles/client.dir/src/Network/dim_client.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/client.dir/src/Network/dim_client.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/dima/!Stuff/TP/trying to make engine/src/Network/dim_client.cpp" > CMakeFiles/client.dir/src/Network/dim_client.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/daniil/CLionProjects/application/src/Network/dim_client.cpp > CMakeFiles/client.dir/src/Network/dim_client.cpp.i
 
 CMakeFiles/client.dir/src/Network/dim_client.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/client.dir/src/Network/dim_client.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/dima/!Stuff/TP/trying to make engine/src/Network/dim_client.cpp" -o CMakeFiles/client.dir/src/Network/dim_client.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/daniil/CLionProjects/application/src/Network/dim_client.cpp -o CMakeFiles/client.dir/src/Network/dim_client.cpp.s
 
 CMakeFiles/client.dir/src/models/model.cpp.o: CMakeFiles/client.dir/flags.make
 CMakeFiles/client.dir/src/models/model.cpp.o: ../src/models/model.cpp
 CMakeFiles/client.dir/src/models/model.cpp.o: CMakeFiles/client.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/dima/!Stuff/TP/trying to make engine/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/client.dir/src/models/model.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/client.dir/src/models/model.cpp.o -MF CMakeFiles/client.dir/src/models/model.cpp.o.d -o CMakeFiles/client.dir/src/models/model.cpp.o -c "/home/dima/!Stuff/TP/trying to make engine/src/models/model.cpp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/daniil/CLionProjects/application/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/client.dir/src/models/model.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/client.dir/src/models/model.cpp.o -MF CMakeFiles/client.dir/src/models/model.cpp.o.d -o CMakeFiles/client.dir/src/models/model.cpp.o -c /home/daniil/CLionProjects/application/src/models/model.cpp
 
 CMakeFiles/client.dir/src/models/model.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/client.dir/src/models/model.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/dima/!Stuff/TP/trying to make engine/src/models/model.cpp" > CMakeFiles/client.dir/src/models/model.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/daniil/CLionProjects/application/src/models/model.cpp > CMakeFiles/client.dir/src/models/model.cpp.i
 
 CMakeFiles/client.dir/src/models/model.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/client.dir/src/models/model.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/dima/!Stuff/TP/trying to make engine/src/models/model.cpp" -o CMakeFiles/client.dir/src/models/model.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/daniil/CLionProjects/application/src/models/model.cpp -o CMakeFiles/client.dir/src/models/model.cpp.s
 
 CMakeFiles/client.dir/src/models/wall.cpp.o: CMakeFiles/client.dir/flags.make
 CMakeFiles/client.dir/src/models/wall.cpp.o: ../src/models/wall.cpp
 CMakeFiles/client.dir/src/models/wall.cpp.o: CMakeFiles/client.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/dima/!Stuff/TP/trying to make engine/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/client.dir/src/models/wall.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/client.dir/src/models/wall.cpp.o -MF CMakeFiles/client.dir/src/models/wall.cpp.o.d -o CMakeFiles/client.dir/src/models/wall.cpp.o -c "/home/dima/!Stuff/TP/trying to make engine/src/models/wall.cpp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/daniil/CLionProjects/application/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/client.dir/src/models/wall.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/client.dir/src/models/wall.cpp.o -MF CMakeFiles/client.dir/src/models/wall.cpp.o.d -o CMakeFiles/client.dir/src/models/wall.cpp.o -c /home/daniil/CLionProjects/application/src/models/wall.cpp
 
 CMakeFiles/client.dir/src/models/wall.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/client.dir/src/models/wall.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/dima/!Stuff/TP/trying to make engine/src/models/wall.cpp" > CMakeFiles/client.dir/src/models/wall.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/daniil/CLionProjects/application/src/models/wall.cpp > CMakeFiles/client.dir/src/models/wall.cpp.i
 
 CMakeFiles/client.dir/src/models/wall.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/client.dir/src/models/wall.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/dima/!Stuff/TP/trying to make engine/src/models/wall.cpp" -o CMakeFiles/client.dir/src/models/wall.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/daniil/CLionProjects/application/src/models/wall.cpp -o CMakeFiles/client.dir/src/models/wall.cpp.s
 
 CMakeFiles/client.dir/src/models/player.cpp.o: CMakeFiles/client.dir/flags.make
 CMakeFiles/client.dir/src/models/player.cpp.o: ../src/models/player.cpp
 CMakeFiles/client.dir/src/models/player.cpp.o: CMakeFiles/client.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/dima/!Stuff/TP/trying to make engine/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/client.dir/src/models/player.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/client.dir/src/models/player.cpp.o -MF CMakeFiles/client.dir/src/models/player.cpp.o.d -o CMakeFiles/client.dir/src/models/player.cpp.o -c "/home/dima/!Stuff/TP/trying to make engine/src/models/player.cpp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/daniil/CLionProjects/application/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/client.dir/src/models/player.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/client.dir/src/models/player.cpp.o -MF CMakeFiles/client.dir/src/models/player.cpp.o.d -o CMakeFiles/client.dir/src/models/player.cpp.o -c /home/daniil/CLionProjects/application/src/models/player.cpp
 
 CMakeFiles/client.dir/src/models/player.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/client.dir/src/models/player.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/dima/!Stuff/TP/trying to make engine/src/models/player.cpp" > CMakeFiles/client.dir/src/models/player.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/daniil/CLionProjects/application/src/models/player.cpp > CMakeFiles/client.dir/src/models/player.cpp.i
 
 CMakeFiles/client.dir/src/models/player.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/client.dir/src/models/player.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/dima/!Stuff/TP/trying to make engine/src/models/player.cpp" -o CMakeFiles/client.dir/src/models/player.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/daniil/CLionProjects/application/src/models/player.cpp -o CMakeFiles/client.dir/src/models/player.cpp.s
 
 CMakeFiles/client.dir/src/models/mob.cpp.o: CMakeFiles/client.dir/flags.make
 CMakeFiles/client.dir/src/models/mob.cpp.o: ../src/models/mob.cpp
 CMakeFiles/client.dir/src/models/mob.cpp.o: CMakeFiles/client.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/dima/!Stuff/TP/trying to make engine/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/client.dir/src/models/mob.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/client.dir/src/models/mob.cpp.o -MF CMakeFiles/client.dir/src/models/mob.cpp.o.d -o CMakeFiles/client.dir/src/models/mob.cpp.o -c "/home/dima/!Stuff/TP/trying to make engine/src/models/mob.cpp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/daniil/CLionProjects/application/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/client.dir/src/models/mob.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/client.dir/src/models/mob.cpp.o -MF CMakeFiles/client.dir/src/models/mob.cpp.o.d -o CMakeFiles/client.dir/src/models/mob.cpp.o -c /home/daniil/CLionProjects/application/src/models/mob.cpp
 
 CMakeFiles/client.dir/src/models/mob.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/client.dir/src/models/mob.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/dima/!Stuff/TP/trying to make engine/src/models/mob.cpp" > CMakeFiles/client.dir/src/models/mob.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/daniil/CLionProjects/application/src/models/mob.cpp > CMakeFiles/client.dir/src/models/mob.cpp.i
 
 CMakeFiles/client.dir/src/models/mob.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/client.dir/src/models/mob.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/dima/!Stuff/TP/trying to make engine/src/models/mob.cpp" -o CMakeFiles/client.dir/src/models/mob.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/daniil/CLionProjects/application/src/models/mob.cpp -o CMakeFiles/client.dir/src/models/mob.cpp.s
 
 CMakeFiles/client.dir/src/models/map.cpp.o: CMakeFiles/client.dir/flags.make
 CMakeFiles/client.dir/src/models/map.cpp.o: ../src/models/map.cpp
 CMakeFiles/client.dir/src/models/map.cpp.o: CMakeFiles/client.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/dima/!Stuff/TP/trying to make engine/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/client.dir/src/models/map.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/client.dir/src/models/map.cpp.o -MF CMakeFiles/client.dir/src/models/map.cpp.o.d -o CMakeFiles/client.dir/src/models/map.cpp.o -c "/home/dima/!Stuff/TP/trying to make engine/src/models/map.cpp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/daniil/CLionProjects/application/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/client.dir/src/models/map.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/client.dir/src/models/map.cpp.o -MF CMakeFiles/client.dir/src/models/map.cpp.o.d -o CMakeFiles/client.dir/src/models/map.cpp.o -c /home/daniil/CLionProjects/application/src/models/map.cpp
 
 CMakeFiles/client.dir/src/models/map.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/client.dir/src/models/map.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/dima/!Stuff/TP/trying to make engine/src/models/map.cpp" > CMakeFiles/client.dir/src/models/map.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/daniil/CLionProjects/application/src/models/map.cpp > CMakeFiles/client.dir/src/models/map.cpp.i
 
 CMakeFiles/client.dir/src/models/map.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/client.dir/src/models/map.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/dima/!Stuff/TP/trying to make engine/src/models/map.cpp" -o CMakeFiles/client.dir/src/models/map.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/daniil/CLionProjects/application/src/models/map.cpp -o CMakeFiles/client.dir/src/models/map.cpp.s
 
 CMakeFiles/client.dir/src/models/bullet.cpp.o: CMakeFiles/client.dir/flags.make
 CMakeFiles/client.dir/src/models/bullet.cpp.o: ../src/models/bullet.cpp
 CMakeFiles/client.dir/src/models/bullet.cpp.o: CMakeFiles/client.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/dima/!Stuff/TP/trying to make engine/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/client.dir/src/models/bullet.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/client.dir/src/models/bullet.cpp.o -MF CMakeFiles/client.dir/src/models/bullet.cpp.o.d -o CMakeFiles/client.dir/src/models/bullet.cpp.o -c "/home/dima/!Stuff/TP/trying to make engine/src/models/bullet.cpp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/daniil/CLionProjects/application/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/client.dir/src/models/bullet.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/client.dir/src/models/bullet.cpp.o -MF CMakeFiles/client.dir/src/models/bullet.cpp.o.d -o CMakeFiles/client.dir/src/models/bullet.cpp.o -c /home/daniil/CLionProjects/application/src/models/bullet.cpp
 
 CMakeFiles/client.dir/src/models/bullet.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/client.dir/src/models/bullet.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/dima/!Stuff/TP/trying to make engine/src/models/bullet.cpp" > CMakeFiles/client.dir/src/models/bullet.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/daniil/CLionProjects/application/src/models/bullet.cpp > CMakeFiles/client.dir/src/models/bullet.cpp.i
 
 CMakeFiles/client.dir/src/models/bullet.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/client.dir/src/models/bullet.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/dima/!Stuff/TP/trying to make engine/src/models/bullet.cpp" -o CMakeFiles/client.dir/src/models/bullet.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/daniil/CLionProjects/application/src/models/bullet.cpp -o CMakeFiles/client.dir/src/models/bullet.cpp.s
 
 # Object files for target client
 client_OBJECTS = \
@@ -193,7 +193,7 @@ client: /usr/lib/x86_64-linux-gnu/libsfml-window.so
 client: /usr/lib/x86_64-linux-gnu/libsfml-system.so
 client: /usr/lib/x86_64-linux-gnu/libsfml-network.so
 client: CMakeFiles/client.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/home/dima/!Stuff/TP/trying to make engine/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_8) "Linking CXX executable client"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/daniil/CLionProjects/application/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Linking CXX executable client"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/client.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -205,6 +205,6 @@ CMakeFiles/client.dir/clean:
 .PHONY : CMakeFiles/client.dir/clean
 
 CMakeFiles/client.dir/depend:
-	cd "/home/dima/!Stuff/TP/trying to make engine/cmake-build-debug" && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" "/home/dima/!Stuff/TP/trying to make engine" "/home/dima/!Stuff/TP/trying to make engine" "/home/dima/!Stuff/TP/trying to make engine/cmake-build-debug" "/home/dima/!Stuff/TP/trying to make engine/cmake-build-debug" "/home/dima/!Stuff/TP/trying to make engine/cmake-build-debug/CMakeFiles/client.dir/DependInfo.cmake" --color=$(COLOR)
+	cd /home/daniil/CLionProjects/application/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/daniil/CLionProjects/application /home/daniil/CLionProjects/application /home/daniil/CLionProjects/application/cmake-build-debug /home/daniil/CLionProjects/application/cmake-build-debug /home/daniil/CLionProjects/application/cmake-build-debug/CMakeFiles/client.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/client.dir/depend
 

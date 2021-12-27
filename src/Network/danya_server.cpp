@@ -150,6 +150,8 @@ void Server::processAcquiredData() {
             if (players[i].intersectsWith(map->getWalls())) players[i].goRight(0.3 * moveTime);
         }
 
+
+        //// выполняем масштабирование окна
         bool isWindowResized;
         (*clients)[i].receive(packet);
         packet >> isWindowResized;  //// Достаём информацию из пакета.
@@ -157,10 +159,8 @@ void Server::processAcquiredData() {
         if (isWindowResized) {
             (*clients)[i].receive(packet);
             packet >> windowWidth >> windowHeight;
-
             packet.clear();
         }
-//        std::cout << windowWidth << " " << windowHeight << std::endl;
 
 
         bool isLMBPressed;
@@ -172,19 +172,14 @@ void Server::processAcquiredData() {
             int x, y;
             (*clients)[i].receive(packet);
             packet >> x >> y;
-//            std::cout << "Принял " << x << " " << y << std::endl;
-//            std::cout << "Имел " << players[i].getX() << " " << players[i].getY() << std::endl;
             packet.clear();
             sf::Texture laserTexture;
             laserTexture.loadFromFile("../include/textures/laser.png");
             bullets.emplace_back(players[i].getX() + players[i].getSprite().getGlobalBounds().width/3, players[i].getY() + players[i].getSprite().getGlobalBounds().height/2, getAngle(x, y, windowWidth, windowHeight), laserTexture);
         }
-
-
-
-
     }
 
+    //// удаляем пули если они пересекаются со стенкой
     int amountOfDeletedBullets = 0;
     for (int i = 0; i < bullets.size(); i++) {
         bullets[i].move(0.8 * moveTime * cos(3.1415 / 180 * bullets[i].getRotation()), 0.8 * moveTime * sin(3.1415 / 180 * bullets[i].getRotation()));
@@ -192,23 +187,24 @@ void Server::processAcquiredData() {
         for (auto& wall : map->getWalls()) {
             if (bullets[i - amountOfDeletedBullets].getSprite().getGlobalBounds().intersects(wall.getSprite().getGlobalBounds())) {    //// Если случилось пересечение со стеной
                 bullets.erase(bullets.begin() + i - amountOfDeletedBullets);
-                amountOfDeletedBullets++;
+                ++amountOfDeletedBullets;
             }
         }
     }
 
+    //// удаляем пули и мобов если они пересекаются
     int amountOfDeletedMobs = 0;
     amountOfDeletedBullets = 0;
-    for (int i = 0; i < mobs.size(); i++) {
+    for (int i = 0; i < mobs.size(); ++i) {
         mobs[i - amountOfDeletedMobs].moveMob(mobs[i - amountOfDeletedMobs].setTaregt(players), map->getWalls(), moveTime);
 
-        for (int j = 0; j < bullets.size(); j++) {
+        for (int j = 0; j < bullets.size(); ++j) {
             if (bullets[j].getSprite().getGlobalBounds().intersects(mobs[i - amountOfDeletedMobs].getSprite().getGlobalBounds())) {    //// Если случилось пересечение со стеной
                 mobs.erase(mobs.begin() + i - amountOfDeletedMobs);
-                amountOfDeletedMobs++;
-                this->amountOfKilled++;
+                ++amountOfDeletedMobs;
+                ++this->amountOfKilled;
                 bullets.erase(bullets.begin() + j - amountOfDeletedBullets);
-                amountOfDeletedBullets++;
+                ++amountOfDeletedBullets;
             }
         }
 
@@ -220,20 +216,19 @@ void Server::processAcquiredData() {
         }
     }
 
+
     float newSpawnTime = newSpawnTimer.getElapsedTime().asSeconds();
-//    std::cout << elapsedTime;
     float spawnRateTime = spawnrateTimer.getElapsedTime().asSeconds();
     pirateTexture.loadFromFile("../include/textures/pirate.png");
     if (newSpawnTime > 2) {
         for (int i = 0; i < 5; i++) {
-            mobs.emplace_back(  1000 + rand() % 2000, 1000 + rand() % 2000, pirateTexture);
+            mobs.emplace_back(1000 + rand() % 2000, 1000 + rand() % 2000, pirateTexture);
             if (badSpawn(mobs[mobs.size() - 1])) {
                 mobs.pop_back();
             }
         }
         newSpawnTimer.restart();
     }
-
 
 //    std::cout << "ЗАКАНЧИВАЕМ ОТСЛЕЖИВАТЬ ПЕРЕДВИЖЕНИЯ КЛИЕНТА\n";
 }
@@ -242,13 +237,12 @@ void Server::startServer() {
     std::cout << "СТАРТ";
     while (true) {
         processAcquiredData();
-//        std::cout << "ДАННЫЕ ДОЛЖНЫ УЛЕТЕТЬ КЛИЕНТУ";
         sendData();
-//        std::cout << "ДАННЫЕ УЛЕТЕЛИ КЛИЕНТУ";
     }
 }
 
-//void Server::load_pictures(Pictures &pictures) {
-//    Pictures init_pictures("../include/textures/amogus.png", "../include/textures/tnt.png");
-//    pictures = init_pictures;
-//}
+void Server::checkMobSize() {
+    while(mobs.size() != MOBS_SIZE) {
+
+    }
+}

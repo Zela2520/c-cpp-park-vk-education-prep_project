@@ -43,21 +43,21 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "client::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-client-Debug-d1fafc457b8bb0a38845.json",
+					"jsonFile" : "target-client-Debug-c88cb6f68c0417dff0b5.json",
 					"name" : "client",
 					"projectIndex" : 0
 				},
 				{
 					"directoryIndex" : 0,
 					"id" : "client_2::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-client_2-Debug-3eec4d3b6c547c7c7f41.json",
+					"jsonFile" : "target-client_2-Debug-484e77c226a2c973a29e.json",
 					"name" : "client_2",
 					"projectIndex" : 0
 				},
 				{
 					"directoryIndex" : 0,
 					"id" : "server::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-server-Debug-309da3944b81082d790b.json",
+					"jsonFile" : "target-server-Debug-1479079a2558dd0d3381.json",
 					"name" : "server",
 					"projectIndex" : 0
 				}
@@ -67,8 +67,8 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "/home/dima/!Stuff/TP/trying to make engine/cmake-build-debug",
-		"source" : "/home/dima/!Stuff/TP/trying to make engine"
+		"build" : "/home/daniil/CLionProjects/application/cmake-build-debug",
+		"source" : "/home/daniil/CLionProjects/application"
 	},
 	"version" : 
 	{

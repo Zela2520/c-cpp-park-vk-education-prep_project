@@ -15,8 +15,6 @@ class Player : public Object {
 public:
     Player(float _x, float _y, const sf::Texture& texture);
     bool intersectsWith(std::vector<Wall>& objects);
-//    bool intersectsWith(std::vector<localBound>& objects);
-//    bool intersectsWith(std::vector<globalBound>& objects);
     void draw(sf::RenderWindow& window) override;
     void setId(int);
     int getId() const;

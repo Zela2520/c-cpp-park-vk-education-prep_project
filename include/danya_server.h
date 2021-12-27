@@ -6,6 +6,7 @@
 #include "bullet.h"
 
 #define ERROR (-1)
+#define MOBS_SIZE (50)
 
 class Server {
 private:
@@ -21,12 +22,9 @@ private:
     int amountOfKilled = 0;
     int id = ERROR;
     sf::TcpListener listener;
-//    sf::TcpSocket clientOne;
-//    sf::TcpSocket clientTwo;
     std::vector<sf::TcpSocket>* clients;
     sf::Packet packet;
 
-//    Pictures pictures;
     Map* map;
     std::vector<Player> players;
     std::vector<Bullet> bullets;
@@ -43,6 +41,8 @@ public:
     void processAcquiredData();
     void startServer();
     bool badSpawn(Mob& mob);
+    void checkMobSize();
+
 };
 
 #endif // APPLICATION_INCLUDE_DANYA_SERVER_H
